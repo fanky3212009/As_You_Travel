@@ -10,8 +10,6 @@
   <p>Content: <%= @diary_entry.content %></p>
   <br>
   <div class="-diary_photos">
-    <% if @diary_entry.photos.any? %>
-    <% @diary_entry.photos.each do |p| %>
-      <%= image_tag '#{p.url}'  %>
-    <% end %>
+  
+
   </div>

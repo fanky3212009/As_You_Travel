@@ -1,8 +1,6 @@
 
 
-<%= link_to "#{diary_entry.title}", journey_diary_entry_path(diary_entry.id) do  %>
+<%= link_to diary_entry.title, journey_diary_entry_path(diary_entry.journey, diary_entry)  %>
 
 <%= diary_entry.location %> <br>
 <%= diary_entry.date %> <br>
-
-<% end %>

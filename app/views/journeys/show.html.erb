@@ -5,3 +5,19 @@
 <p>From: <%= @journey.start_date %></p>
 <p>To: <%= @journey.end_date %></p>
 <p>Owner: <%= @journey.owner.email %></p>
+
+<h1>Diaries</h1>
+
+
+<%= link_to 'New Diary', new_journey_diary_entry_path(@journey) %>
+
+
+<% if @journey.diary_entries.any? %>
+  <ul>
+    <li class="all_diaries">
+    <%= render @diary_entries %>
+    </li>
+  </ul>
+<% else %>
+  <h2>No diary yet</h2>
+<% end %>

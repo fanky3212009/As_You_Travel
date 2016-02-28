@@ -4,13 +4,15 @@ class DiaryEntriesController < ApplicationController
   def new
     # @journey = Journey.find(params[:journey_id])
     @diary_entry = @journey.diary_entries.build
+  end
+
 
   def create
     # @journey = Journey.find(params[:journey_id])
     @diary_entry = @journey.diary_entries.build(diary_entry_params)
 
     if @diary_entry.save
-      redirect_to projects_path, notice: "Diary successfully created!"
+      redirect_to journey_diary_entries_path, notice: "Diary successfully created!"
     else
       render :new
     end
@@ -27,7 +29,7 @@ class DiaryEntriesController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def update
@@ -49,6 +51,6 @@ class DiaryEntriesController < ApplicationController
   private
   def diary_entry_params
     params.require(:diary_entry)
-          .permit(:title, :location, :date, :context, :recommendation)
+          .permit(:title, :location, :date, :content, :recommendation)
   end
 end
