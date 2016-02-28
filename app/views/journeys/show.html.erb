@@ -1,0 +1,10 @@
+<h1><%= @journey.title %></h1>
+<p>Feature Image: </p>
+<p>Description: <%= @journey.description %></p>
+<p>location: $<%= @journey.locaton %></p>
+<p>From: $<%= @journey.start_date %></p>
+<p>To: $<%= @journey.end_date %></p>
+<p>Owner: <%= @journey.owner.email %></p>
+
+
+<%= @journey.diary_entries %>
