@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -14,6 +12,11 @@
   <strong>Salt:</strong>
   <%= @user.salt %>
 </p> -->
+<% @user.owend_journeys.each do |journey| %>
+  <%= link_to journey.title, journey %>
+<% end %>
+
+<br>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
