@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: -> { new_record? || changes["password"] }
 
   validates :email, uniqueness: true
+
+  has_many :owend_journeys, class_name: "Journey", foreign_key: "owner_id"
 end
