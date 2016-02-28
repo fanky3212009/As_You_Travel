@@ -1,4 +1,6 @@
 class JourneysController < ApplicationController
+  before_action :set_journey, only: [:show, :edit, :update, :destroy]
+
   def index
     #code
     @journeys = Journey.all
@@ -18,7 +20,7 @@ class JourneysController < ApplicationController
   def create
 
     if current_user
-      @user = User.find(session[:user_id])
+      @user = current_user
       @journey = @user.owend_journeys.build(journey_params)
 
       if @journey.save
@@ -29,7 +31,26 @@ class JourneysController < ApplicationController
     end
   end
 
+  def destroy
+    @journey.destroy
+    redirect_to :user
+  end
+
+  def update
+      if @journey.update_attributes(journey_params)
+        redirect_to journey_path(@journey)
+      else
+        render :edit
+      end
+  end
+
+
   private
+
+  def set_journey
+    @journey = Journey.find(params[:id])
+  end
+
   def journey_params
     params.require(:journey)
           .permit(:title, :description, :location, :start_date, :end_date, :feat_img)
