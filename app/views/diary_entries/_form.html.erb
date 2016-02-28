@@ -1,0 +1,46 @@
+
+<%= form_for @diary_entry do |f| %>
+  <div class="field">
+    <%= f.label :title %> <br>
+    <%= f.text_field :title %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %> <br>
+    <%= f.datetime_field :date %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Where did you go' %> <br>
+    <%= f.text_field :location %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :recommendations %> <br>
+    <%= f.text_area_tag :recommendation %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %> <br>
+    <%= f.text_area_tag :content %> <br>
+  </div>
+
+<% end %>
+
+<!--
+  <h2>Rewards</h2>
+
+  <div id="rewards">
+    <%= f.fields_for :rewards do |reward_fields| %>
+      <%= render 'reward_fields', f: reward_fields %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association "Add Reward", f, :rewards %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.submit %>
+  </div>
+<% end %> -->

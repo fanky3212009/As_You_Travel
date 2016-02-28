@@ -1,0 +1,11 @@
+<!-- <h1>DiaryEntries#new</h1>
+<p>Find me in app/views/diary_entries/new.html.erb</p> -->
+
+<% if current_user.id == @diary.journey.id %>
+
+<h1>New Diary</h1>
+
+<%= render 'form' %>
+
+
+<% end %>

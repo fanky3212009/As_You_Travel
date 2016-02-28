@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228192215) do
+ActiveRecord::Schema.define(version: 20160228220517) do
+
+  create_table "diary_entries", force: :cascade do |t|
+    t.string   "title"
+    t.string   "location"
+    t.datetime "date"
+    t.text     "content"
+    t.text     "recommendation"
+    t.integer  "journey_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "diary_entries", ["journey_id"], name: "index_diary_entries_on_journey_id"
 
   create_table "journeys", force: :cascade do |t|
     t.string   "title"

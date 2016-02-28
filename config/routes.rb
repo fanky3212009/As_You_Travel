@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :journeys
+
+  resources :journeys do
+    resources :diary_entries
+  end
+
   resources :password_resets
   resources :users
   resources :user_sessions
