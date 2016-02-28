@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  get 'password_resets/create'
+
+  get 'password_resets/edit'
+
+  get 'password_resets/update'
+
+  get 'user_sessions/new'
+
+  get 'user_sessions/create'
+
+  get 'user_sessions/destroy'
+
+  resources :password_resets
+  resources :users
+  resources :user_sessions
+  get 'login' => 'user_sessions#new', :as => :login
+  get 'logout' => 'user_sessions#destroy', :as => :logout
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
