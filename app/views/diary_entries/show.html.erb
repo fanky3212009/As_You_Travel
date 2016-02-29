@@ -9,7 +9,28 @@
   <br>
   <p>Content: <%= @diary_entry.content %></p>
   <br>
-  <div class="-diary_photos">
   
+  <label>My Photos</label>
+  <div class="-diary_photos">
+  <% @diary_entry.photos.each do |p| %>
+      <%= image_tag "#{p.picture.url}" %>
+      <% end %>
+  </div>
+
+
+  <div class="photo-form">
+    <%= form_for Photo.new, html: { multipart: true } do |t| %>
+
+    <%= t.label :name  %>
+    <br>
+    <%= t.text_field :name %>
+    <br>
+    <%= t.file_field :picture %>
+    <br>
+    <%= t.hidden_field :picture_cache %>
+    <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
+    <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
+    <%= t.submit "Add" %>
+    <% end  %>
 
   </div>

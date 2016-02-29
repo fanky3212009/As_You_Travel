@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :owend_journeys, class_name: "Journey", foreign_key: "owner_id"
+  has_many :photos, :as => :imageable
 end

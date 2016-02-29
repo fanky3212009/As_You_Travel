@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :diary_entries
   end
 
+  resources :photos
+
   resources :password_resets
   resources :users
   resources :user_sessions
