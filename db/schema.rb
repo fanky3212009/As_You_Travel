@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228220517) do
+ActiveRecord::Schema.define(version: 20160229001917) do
 
   create_table "diary_entries", force: :cascade do |t|
     t.string   "title"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20160228220517) do
     t.datetime "updated_at",  null: false
     t.integer  "owner_id"
   end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "photos", ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           null: false
