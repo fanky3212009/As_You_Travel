@@ -14,7 +14,7 @@
 
     <div id="nav-user-logout">
       <% if current_user %>
-        <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+        Logined as <%= current_user.email %> | <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
         <%= link_to "Logout", :logout, method: :post %>
       <% else %>
         <%= link_to "Register", new_user_path %> |
