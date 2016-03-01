@@ -1,4 +1,6 @@
 <h1><%= @journey.title %></h1>
+
+
 <p>Feature Image: </p>
 <p>Description: <%= @journey.description %></p>
 <p>location: <%= @journey.location %></p>
@@ -21,3 +23,5 @@
 <% else %>
   <h2>No diary yet</h2>
 <% end %>
+
+<div id="path_map"><%= link_to 'My Path', journey_diary_entries_path(@journey) %></div>

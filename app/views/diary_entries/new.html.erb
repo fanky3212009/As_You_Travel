@@ -2,6 +2,7 @@
 <p>Find me in app/views/diary_entries/new.html.erb</p> -->
 
 <% if current_user.id == @diary_entry.journey.owner_id %>
+
   <h1>New Diary</h1>
 
   <%= render 'form' %>
