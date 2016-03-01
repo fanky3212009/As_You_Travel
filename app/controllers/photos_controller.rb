@@ -12,6 +12,6 @@ class PhotosController < ApplicationController
   end
 
   def photo_params
-    params.require(:photo).permit(:imageable_id, :imageable_type, :name, :picture)#code
+    params.require(:photo).permit(:imageable_id, :imageable_type, :name, :picture, :picture_cache)#code
   end
 end
