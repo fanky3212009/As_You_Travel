@@ -66,8 +66,38 @@
               lat: -12.043333,
               lng: -77.028333
             });
+            var styles = [
+            {
+              stylers: [
+                { hue: "#00ffe6" },
+                { saturation: -20 }
+              ]
+            }, {
+                featureType: "road",
+                elementType: "geometry",
+                stylers: [
+                    { lightness: 100 },
+                    { visibility: "simplified" }
+              ]
+            }, {
+                featureType: "road",
+                elementType: "labels",
+                stylers: [
+                    { visibility: "off" }
+              ]
+            }
+        ];
 
-            console.log(data);
+            map.addStyle({
+                styledMapName:"Styled Map",
+                styles: styles,
+                mapTypeId: "map_style"
+            });
+
+            map.setStyle("map_style");
+
+                console.log(data);
+
             var latlngs = [];
             for (var i = 0; i < data.length; i++) {
               // latlngs[i].lat = data[i].latitude;
@@ -83,9 +113,24 @@
               map.addMarker({
                 lat: latlngs[i].lat,
                 lng: latlngs[i].lng
-              });
-            }
+                // icon: .
+              }
+            );
+          }
             map.fitLatLngBounds(bounds);
+            //
+            //
+            // events: {
+            //   click: function(){
+            //     map.setZoom(8);
+            //     map.setCenter(marker.getPosition());
+            //   }
+            // }
+
+            // marker.addListener('click', function() {
+            //   map.setZoom(8);
+            //   map.setCenter(marker.getPosition());
+            // });
     //  map.addMarker({
           //    lat: data.latitude,
           //    lng: data.longitude,
