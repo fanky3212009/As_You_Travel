@@ -11,10 +11,10 @@ class User < ActiveRecord::Base
   has_many :photos, :as => :imageable
 
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :followings, through: :active_relationships, source: :followed_id
+  has_many :followings, through: :active_relationships, source: :followed
 
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :passive_relationships, source: :follower_id
+  has_many :followers, through: :passive_relationships, source: :follower
 
   def follow(another_user)
     self.active_relationships.create(followed_id: another_user.id)

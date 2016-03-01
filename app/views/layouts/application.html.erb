@@ -25,9 +25,9 @@
       <p id="notice"><%= flash[:notice] %></p>
       <p id="alert"><%= flash[:alert] %></p>
     </div>
-
+  <% if current_user %>
     <%= link_to 'Add New Journey', new_journey_path %>
-
+  <% end %>
 <%= yield %>
 
 </body>
