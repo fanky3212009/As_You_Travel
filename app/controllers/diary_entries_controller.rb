@@ -22,17 +22,41 @@ class DiaryEntriesController < ApplicationController
   def index
     # @journey = Journey.find(params[:journey_id])
     @diary_entries = @journey.diary_entries
+
+    @diary_entry1 = DiaryEntry.find(6)
+    @diary_entry2 = DiaryEntry.find(8)
+
+    @diary_entryA = []
+
+    @diary_entryA.push(@diary_entry1)
+    @diary_entryA.push(@diary_entry2)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @diary_entryA }
+    end
   end
 
   def show
     @diary_entry = @journey.diary_entries.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: {latitude: @diary_entry.latitude, longitude: @diary_entry.longitude} }
+    end
   end
 
   def edit
-
+    @diary_entry = DiaryEntry.find(params[:id])
   end
 
   def update
+    @diary_entry = DiaryEntry.find(params[:id])
+
+    if @diary_entry.update_attributes(diary_entry_params)
+      redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -51,6 +75,6 @@ class DiaryEntriesController < ApplicationController
   private
   def diary_entry_params
     params.require(:diary_entry)
-          .permit(:title, :location, :date, :content, :recommendation)
+          .permit(:title, :location, :date, :content, :recommendation, :latitude, :longitude)
   end
 end

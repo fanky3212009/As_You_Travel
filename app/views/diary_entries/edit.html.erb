@@ -1,2 +1,35 @@
-<h1>DiaryEntries#edit</h1>
-<p>Find me in app/views/diary_entries/edit.html.erb</p>
+<h1>Edit this Diary</h1>
+
+
+<%= form_for [@journey, @diary_entry] do |f| %>
+
+  <div class="field">
+    <%= f.label :title %> <br>
+    <%= f.text_field :title %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %> <br>
+    <%= f.date_field :date %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Where did you go' %> <br>
+    <%= f.text_field :location %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :recommendations %> <br>
+    <%= f.text_area :recommendation %> <br>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %> <br>
+    <%= f.text_area :content %> <br>
+  </div>
+
+  <div class="submit-new_diary">
+    <%= f.submit "Edit" %>
+  </div>
+
+<% end %>

@@ -1,7 +1,15 @@
-<!-- <h1>DiaryEntries#show</h1>
-<p>Find me in app/views/diary_entries/show.html.erb</p> -->
-<h1><%= @diary_entry.title %></h1>
+
+<body>
+
+
+<h1><%= link_to @diary_entry.title, journey_diary_entry_path(@diary_entry.journey, @diary_entry) %></a></h1>
+
+  <strong><%= link_to "Edit", edit_journey_diary_entry_path(@diary_entry.journey, @diary_entry) %></strong>
   <p>Location: <%= @diary_entry.location %></p>
+  <br>
+  <p>Longitude : <%= @diary_entry.longitude %> </p>
+  <br>
+  <p>Latitude : <%= @diary_entry.latitude %> </p>
   <br>
   <p>Time: <%= @diary_entry.date %></p>
   <br>
@@ -9,7 +17,7 @@
   <br>
   <p>Content: <%= @diary_entry.content %></p>
   <br>
-  
+
   <label>My Photos</label>
   <div class="-diary_photos">
   <% @diary_entry.photos.each do |p| %>
@@ -34,3 +42,5 @@
     <% end  %>
 
   </div>
+  <div id="map"></div>
+</body>
