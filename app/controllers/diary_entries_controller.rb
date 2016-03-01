@@ -23,17 +23,17 @@ class DiaryEntriesController < ApplicationController
     # @journey = Journey.find(params[:journey_id])
     @diary_entries = @journey.diary_entries
 
-    @diary_entry1 = DiaryEntry.find(6)
-    @diary_entry2 = DiaryEntry.find(8)
-
-    @diary_entryA = []
-
-    @diary_entryA.push(@diary_entry1)
-    @diary_entryA.push(@diary_entry2)
+    # @diary_entry1 = DiaryEntry.find(6)
+    # @diary_entry2 = DiaryEntry.find(8)
+    #
+    # @diary_entryA = []
+    #
+    # @diary_entryA.push(@diary_entry1)
+    # @diary_entryA.push(@diary_entry2)
 
     respond_to do |format|
       format.html
-      format.json { render json: @diary_entryA }
+      format.json { render json: @diary_entries }
     end
   end
 

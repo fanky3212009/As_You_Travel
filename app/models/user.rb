@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
 
   has_many :owend_journeys, class_name: "Journey", foreign_key: "owner_id"
   has_many :photos, :as => :imageable
+
+  def as_json(options={})
+    super(#:only => [:first_name,:last_name,:city,:state],
+          :include => [
+            :owend_journeys #=> {:only => [:title, :description, :start_date, :end_date, :feat_img]}
+          ]
+    )
+  end
 end

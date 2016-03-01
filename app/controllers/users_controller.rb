@@ -9,6 +9,11 @@ class UsersController < ApplicationController
 
 
   def show
+    # @journeys = @user.journeys
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
 
