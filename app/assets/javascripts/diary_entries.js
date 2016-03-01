@@ -67,26 +67,26 @@
               lng: -77.028333
             });
             var styles = [
-            {
-              stylers: [
-                { hue: "#00ffe6" },
-                { saturation: -20 }
-              ]
-            }, {
-                featureType: "road",
-                elementType: "geometry",
+              {
                 stylers: [
-                    { lightness: 100 },
-                    { visibility: "simplified" }
-              ]
-            }, {
-                featureType: "road",
-                elementType: "labels",
-                stylers: [
-                    { visibility: "off" }
-              ]
-            }
-        ];
+                  { hue: "#00ffe6" },
+                  { saturation: -20 }
+                ]
+              }, {
+                  featureType: "road",
+                  elementType: "geometry",
+                  stylers: [
+                      { lightness: 100 },
+                      { visibility: "simplified" }
+                ]
+              }, {
+                  featureType: "road",
+                  elementType: "labels",
+                  stylers: [
+                      { visibility: "off" }
+                ]
+              }
+            ];
 
             map.addStyle({
                 styledMapName:"Styled Map",
@@ -118,27 +118,6 @@
             );
           }
             map.fitLatLngBounds(bounds);
-            //
-            //
-            // events: {
-            //   click: function(){
-            //     map.setZoom(8);
-            //     map.setCenter(marker.getPosition());
-            //   }
-            // }
-
-            // marker.addListener('click', function() {
-            //   map.setZoom(8);
-            //   map.setCenter(marker.getPosition());
-            // });
-    //  map.addMarker({
-          //    lat: data.latitude,
-          //    lng: data.longitude,
-          //    title: 'Lima',
-          //    click: function(e) {
-          //      alert('You clicked in this marker');
-          //    }
-          //  });
 
          }
       });
@@ -147,5 +126,26 @@
 
 
 
+  //
+  //
+  // events: {
+  //   click: function(){
+  //     map.setZoom(8);
+  //     map.setCenter(marker.getPosition());
+  //   }
+  // }
+
+  // marker.addListener('click', function() {
+  //   map.setZoom(8);
+  //   map.setCenter(marker.getPosition());
+  // });
+  //  map.addMarker({
+  //    lat: data.latitude,
+  //    lng: data.longitude,
+  //    title: 'Lima',
+  //    click: function(e) {
+  //      alert('You clicked in this marker');
+  //    }
+  //  });
 
 //

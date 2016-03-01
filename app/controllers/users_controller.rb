@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers]
+  before_action :require_login, only: [:index, :edit, :update, :destroy, :following, :followers]
 
 
   def index
@@ -59,6 +59,17 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def followings
+    @users = @user.followings
+    render 'show_follow'
+  end
+
+  def followers
+    @users = @user.followers
+    render 'show_follow'
+  end
+
 
   private
 
