@@ -35,7 +35,7 @@
     <br>
     <div class="dropzone-previews"></div>
     <br>
-    <%= t.hidden_field :picture %>
+    <!-- <%= t.hidden_field :picture %> -->
     <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
     <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
     <%= t.submit "Add", class: "submit-picture"  %>
