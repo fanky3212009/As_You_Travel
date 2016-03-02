@@ -13,5 +13,6 @@
  *= require_tree .
  *= require_self
  *= require timeline
+ *= require dropzone
  *= require fonts/font.default.css
  */

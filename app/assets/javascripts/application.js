@@ -12,6 +12,7 @@
 //
 //= require timeline
 //= require gmaps
+//= require dropzone
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks

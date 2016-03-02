@@ -36,7 +36,7 @@ class DiaryEntriesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @diary_entries }
+      format.json { render json: @diary_entryA }
     end
   end
 
