@@ -15,5 +15,6 @@
 //= require dropzone
 //= require jquery
 //= require jquery_ujs
+//= require animatedModal.min
 //= require turbolinks
 //= require_tree .

@@ -16,14 +16,29 @@
   <p>Recommendations: <%= @diary_entry.recommendation %></p>
   <br>
   <p>Content: <%= @diary_entry.content %></p>
+
+
+  <a id="demo01" href="#animatedModal">DEMO01</a>
+
+    <!--DEMO01-->
+    <div id="animatedModal">
+        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+        <div class="close-animatedModal">
+            CLOSE MODAL
+        </div>
+
+        <div class="modal-content">
+                  <!--Your modal content goes here-->
+                  <label id="photos-list">My Photos</label>
+                  <div class="-diary_photos">
+                    <% @diary_entry.photos.each do |p| %>
+                    <%= image_tag "#{p.picture.url}" %>
+                    <% end %>
+                  </div>
+        </div>
+    </div>
   <br>
 
-  <label id="photos-list">My Photos</label>
-  <div class="-diary_photos">
-  <% @diary_entry.photos.each do |p| %>
-      <%= image_tag "#{p.picture.url}" %>
-      <% end %>
-  </div>
 
 
   <div class="photo-form">
