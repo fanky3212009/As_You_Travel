@@ -31,6 +31,8 @@ gem 'carrierwave'
 
 gem "sorcery"
 
+gem 'jquery-turbolinks'
+
 gem "mini_magick"
 
 # Use ActiveModel has_secure_password

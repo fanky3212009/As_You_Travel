@@ -1,7 +1,8 @@
 class PhotosController < ApplicationController
 
   def index
-    
+    @user = User.find(params[:user_id])
+    @journeys = Journey.where(owner_id: @user.id)
   end
 
   def create
@@ -18,11 +19,8 @@ class PhotosController < ApplicationController
 
 
   def show
-    @photo = Photo.find()
-    #code
+    @photo = Photo.find(params[:id])
   end
-
-      #code
 
   def photo_params
     params.require(:photo).permit(:imageable_id, :imageable_type, :name, :picture)#code

@@ -1,6 +1,6 @@
 
 
-<%= link_to diary_entry.title, journey_diary_entry_path(diary_entry.journey, diary_entry)  %>
+<%= link_to diary_entry.title, journey_diary_entry_path(diary_entry.journey, diary_entry), :"data-no-turbolink" => true  %>
 
 <%= diary_entry.location %> <br>
 <%= diary_entry.date %> <br>
