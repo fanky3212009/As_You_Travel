@@ -3,6 +3,5 @@ class Journey < ActiveRecord::Base
   has_many :diary_entries
   has_many :photos, :as => :imageable
   has_many :tags, :as => :taggable
-
-  accepts_nested_attributes_for :photos, reject_if: :all_blank, allow_destroy: true
+  has_many has_many :comments, :as => :commentable
 end

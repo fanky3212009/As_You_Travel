@@ -12,18 +12,18 @@
 ********************************************** */
 
 /*!
-	TL
+  TL
 */
 
 (function (root) {
-	root.TL = {
-		VERSION: '0.1',
-		_originalL: root.TL
-	};
+  root.TL = {
+    VERSION: '0.1',
+    _originalL: root.TL
+  };
 }(this));
 
 /*	TL.Debug
-	Debug mode
+  Debug mode
 ================================================== */
 TL.debug = false;
 
@@ -32,9 +32,9 @@ TL.debug = false;
 /*	TL.Bind
 ================================================== */
 TL.Bind = function (/*Function*/ fn, /*Object*/ obj) /*-> Object*/ {
-	return function () {
-		return fn.apply(obj, arguments);
-	};
+  return function () {
+    return fn.apply(obj, arguments);
+  };
 };
 
 
@@ -42,15 +42,15 @@ TL.Bind = function (/*Function*/ fn, /*Object*/ obj) /*-> Object*/ {
 /* Trace (console.log)
 ================================================== */
 trace = function( msg ) {
-	if (TL.debug) {
-		if (window.console) {
-			console.log(msg);
-		} else if ( typeof( jsTrace ) != 'undefined' ) {
-			jsTrace.send( msg );
-		} else {
-			//alert(msg);
-		}
-	}
+  if (TL.debug) {
+    if (window.console) {
+      console.log(msg);
+    } else if ( typeof( jsTrace ) != 'undefined' ) {
+      jsTrace.send( msg );
+    } else {
+      //alert(msg);
+    }
+  }
 }
 
 
@@ -65,7 +65,7 @@ function TL_Error(message_key, detail) {
     this.message = message_key || 'error';
     this.message_key = this.message;
     this.detail = detail || '';
-  
+
     // Grab stack?
     var e = new Error();
     if(e.hasOwnProperty('stack')) {
@@ -84,180 +84,180 @@ TL.Error = TL_Error;
 ********************************************** */
 
 /*	TL.Util
-	Class of utilities
+  Class of utilities
 ================================================== */
 
 TL.Util = {
-	mergeData: function(data_main, data_to_merge) {
-		var x;
-		for (x in data_to_merge) {
-			if (Object.prototype.hasOwnProperty.call(data_to_merge, x)) {
-				data_main[x] = data_to_merge[x];
-			}
-		}
-		return data_main;
-	},
+  mergeData: function(data_main, data_to_merge) {
+    var x;
+    for (x in data_to_merge) {
+      if (Object.prototype.hasOwnProperty.call(data_to_merge, x)) {
+        data_main[x] = data_to_merge[x];
+      }
+    }
+    return data_main;
+  },
 
-	// like TL.Util.mergeData but takes an arbitrarily long list of sources to merge.
-	extend: function (/*Object*/ dest) /*-> Object*/ {	// merge src properties into dest
-		var sources = Array.prototype.slice.call(arguments, 1);
-		for (var j = 0, len = sources.length, src; j < len; j++) {
-			src = sources[j] || {};
-			TL.Util.mergeData(dest, src);
-		}
-		return dest;
-	},
+  // like TL.Util.mergeData but takes an arbitrarily long list of sources to merge.
+  extend: function (/*Object*/ dest) /*-> Object*/ {	// merge src properties into dest
+    var sources = Array.prototype.slice.call(arguments, 1);
+    for (var j = 0, len = sources.length, src; j < len; j++) {
+      src = sources[j] || {};
+      TL.Util.mergeData(dest, src);
+    }
+    return dest;
+  },
 
-	isEven: function(n) {
-	  return n == parseFloat(n)? !(n%2) : void 0;
-	},
+  isEven: function(n) {
+    return n == parseFloat(n)? !(n%2) : void 0;
+  },
 
-	isTrue: function(s) {
-		if (s == null) return false;
-		return s == true || String(s).toLowerCase() == 'true' || Number(s) == 1;
-	},
+  isTrue: function(s) {
+    if (s == null) return false;
+    return s == true || String(s).toLowerCase() == 'true' || Number(s) == 1;
+  },
 
-	findArrayNumberByUniqueID: function(id, array, prop, defaultVal) {
-		var _n = defaultVal || 0;
+  findArrayNumberByUniqueID: function(id, array, prop, defaultVal) {
+    var _n = defaultVal || 0;
 
-		for (var i = 0; i < array.length; i++) {
-			if (array[i].data[prop] == id) {
-				_n = i;
-			}
-		};
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].data[prop] == id) {
+        _n = i;
+      }
+    };
 
-		return _n;
-	},
+    return _n;
+  },
 
-	convertUnixTime: function(str) {
-		var _date, _months, _year, _month, _day, _time, _date_array = [],
-			_date_str = {
-				ymd:"",
-				time:"",
-				time_array:[],
-				date_array:[],
-				full_array:[]
-			};
+  convertUnixTime: function(str) {
+    var _date, _months, _year, _month, _day, _time, _date_array = [],
+      _date_str = {
+        ymd:"",
+        time:"",
+        time_array:[],
+        date_array:[],
+        full_array:[]
+      };
 
-		_date_str.ymd = str.split(" ")[0];
-		_date_str.time = str.split(" ")[1];
-		_date_str.date_array = _date_str.ymd.split("-");
-		_date_str.time_array = _date_str.time.split(":");
-		_date_str.full_array = _date_str.date_array.concat(_date_str.time_array)
+    _date_str.ymd = str.split(" ")[0];
+    _date_str.time = str.split(" ")[1];
+    _date_str.date_array = _date_str.ymd.split("-");
+    _date_str.time_array = _date_str.time.split(":");
+    _date_str.full_array = _date_str.date_array.concat(_date_str.time_array)
 
-		for(var i = 0; i < _date_str.full_array.length; i++) {
-			_date_array.push( parseInt(_date_str.full_array[i]) )
-		}
+    for(var i = 0; i < _date_str.full_array.length; i++) {
+      _date_array.push( parseInt(_date_str.full_array[i]) )
+    }
 
-		_date = new Date(_date_array[0], _date_array[1], _date_array[2], _date_array[3], _date_array[4], _date_array[5]);
-		_months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-		_year = _date.getFullYear();
-		_month = _months[_date.getMonth()];
-		_day = _date.getDate();
-		_time = _month + ', ' + _day + ' ' + _year;
+    _date = new Date(_date_array[0], _date_array[1], _date_array[2], _date_array[3], _date_array[4], _date_array[5]);
+    _months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    _year = _date.getFullYear();
+    _month = _months[_date.getMonth()];
+    _day = _date.getDate();
+    _time = _month + ', ' + _day + ' ' + _year;
 
-		return _time;
-	},
+    return _time;
+  },
 
-	setData: function (obj, data) {
-		obj.data = TL.Util.extend({}, obj.data, data);
-		if (obj.data.unique_id === "") {
-			obj.data.unique_id = TL.Util.unique_ID(6);
-		}
-	},
+  setData: function (obj, data) {
+    obj.data = TL.Util.extend({}, obj.data, data);
+    if (obj.data.unique_id === "") {
+      obj.data.unique_id = TL.Util.unique_ID(6);
+    }
+  },
 
-	stamp: (function () {
-		var lastId = 0, key = '_tl_id';
+  stamp: (function () {
+    var lastId = 0, key = '_tl_id';
 
 
-		return function (/*Object*/ obj) {
-			obj[key] = obj[key] || ++lastId;
-			return obj[key];
-		};
-	}()),
+    return function (/*Object*/ obj) {
+      obj[key] = obj[key] || ++lastId;
+      return obj[key];
+    };
+  }()),
 
-	isArray: (function () {
-	    // Use compiler's own isArray when available
-	    if (Array.isArray) {
-	        return Array.isArray;
-	    }
+  isArray: (function () {
+      // Use compiler's own isArray when available
+      if (Array.isArray) {
+          return Array.isArray;
+      }
 
-	    // Retain references to variables for performance
-	    // optimization
-	    var objectToStringFn = Object.prototype.toString,
-	        arrayToStringResult = objectToStringFn.call([]);
+      // Retain references to variables for performance
+      // optimization
+      var objectToStringFn = Object.prototype.toString,
+          arrayToStringResult = objectToStringFn.call([]);
 
-	    return function (subject) {
-	        return objectToStringFn.call(subject) === arrayToStringResult;
-	    };
-	}()),
+      return function (subject) {
+          return objectToStringFn.call(subject) === arrayToStringResult;
+      };
+  }()),
 
     getRandomNumber: function(range) {
-   		return Math.floor(Math.random() * range);
-   	},
+       return Math.floor(Math.random() * range);
+     },
 
-	unique_ID: function(size, prefix) {
+  unique_ID: function(size, prefix) {
 
-		var getRandomNumber = function(range) {
-			return Math.floor(Math.random() * range);
-		};
+    var getRandomNumber = function(range) {
+      return Math.floor(Math.random() * range);
+    };
 
-		var getRandomChar = function() {
-			var chars = "abcdefghijklmnopqurstuvwxyz";
-			return chars.substr( getRandomNumber(32), 1 );
-		};
+    var getRandomChar = function() {
+      var chars = "abcdefghijklmnopqurstuvwxyz";
+      return chars.substr( getRandomNumber(32), 1 );
+    };
 
-		var randomID = function(size) {
-			var str = "";
-			for(var i = 0; i < size; i++) {
-				str += getRandomChar();
-			}
-			return str;
-		};
+    var randomID = function(size) {
+      var str = "";
+      for(var i = 0; i < size; i++) {
+        str += getRandomChar();
+      }
+      return str;
+    };
 
-		if (prefix) {
-			return prefix + "-" + randomID(size);
-		} else {
-			return "tl-" + randomID(size);
-		}
-	},
+    if (prefix) {
+      return prefix + "-" + randomID(size);
+    } else {
+      return "tl-" + randomID(size);
+    }
+  },
 
-	ensureUniqueKey: function(obj, candidate) {
-		if (!candidate) { candidate = TL.Util.unique_ID(6); }
+  ensureUniqueKey: function(obj, candidate) {
+    if (!candidate) { candidate = TL.Util.unique_ID(6); }
 
-		if (!(candidate in obj)) { return candidate; }
+    if (!(candidate in obj)) { return candidate; }
 
-		var root = candidate.match(/^(.+)(-\d+)?$/)[1];
-		var similar_ids = [];
-		// get an alternative
-		for (key in obj) {
-			if (key.match(/^(.+?)(-\d+)?$/)[1] == root) {
-				similar_ids.push(key);
-			}
-		}
-		candidate = root + "-" + (similar_ids.length + 1);
+    var root = candidate.match(/^(.+)(-\d+)?$/)[1];
+    var similar_ids = [];
+    // get an alternative
+    for (key in obj) {
+      if (key.match(/^(.+?)(-\d+)?$/)[1] == root) {
+        similar_ids.push(key);
+      }
+    }
+    candidate = root + "-" + (similar_ids.length + 1);
 
-		for (var counter = similar_ids.length; similar_ids.indexOf(candidate) != -1; counter++) {
-			candidate = root + '-' + counter;
-		}
+    for (var counter = similar_ids.length; similar_ids.indexOf(candidate) != -1; counter++) {
+      candidate = root + '-' + counter;
+    }
 
-		return candidate;
-	},
+    return candidate;
+  },
 
 
-	htmlify: function(str) {
-		//if (str.match(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)) {
-		if (str.match(/<p>[\s\S]*?<\/p>/)) {
+  htmlify: function(str) {
+    //if (str.match(/<\s*p[^>]*>([^<]*)<\s*\/\s*p\s*>/)) {
+    if (str.match(/<p>[\s\S]*?<\/p>/)) {
 
-			return str;
-		} else {
-			return "<p>" + str + "</p>";
-		}
-	},
+      return str;
+    } else {
+      return "<p>" + str + "</p>";
+    }
+  },
 
-	/*	* Turns plain text links into real links
-	================================================== */
-	linkify: function(text,targets,is_touch) {
+  /*	* Turns plain text links into real links
+  ================================================== */
+  linkify: function(text,targets,is_touch) {
 
         var make_link = function(url, link_text, prefix) {
             if (!prefix) {
@@ -269,18 +269,18 @@ TL.Util = {
             }
             return prefix + "<a class='tl-makelink' href='" + url + "' onclick='void(0)'>" + link_text + "</a>";
         }
-		// http://, https://, ftp://
-		var urlPattern = /\b(?:https?|ftp):\/\/([a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim;
+    // http://, https://, ftp://
+    var urlPattern = /\b(?:https?|ftp):\/\/([a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|])/gim;
 
-		// www. sans http:// or https://
-		var pseudoUrlPattern = /(^|[^\/>])(www\.[\S]+(\b|$))/gim;
+    // www. sans http:// or https://
+    var pseudoUrlPattern = /(^|[^\/>])(www\.[\S]+(\b|$))/gim;
 
-		// Email addresses
-		var emailAddressPattern = /([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)/gim;
+    // Email addresses
+    var emailAddressPattern = /([a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)/gim;
 
 
-		return text
-			.replace(urlPattern, function(match, url_sans_protocol, offset, string) {
+    return text
+      .replace(urlPattern, function(match, url_sans_protocol, offset, string) {
                 // Javascript doesn't support negative lookbehind assertions, so
                 // we need to handle risk of matching URLs in legit hrefs
                 if (offset > 0) {
@@ -291,119 +291,119 @@ TL.Util = {
                 }
                 return make_link(match, url_sans_protocol);
             })
-			.replace(pseudoUrlPattern, function(match, beforePseudo, pseudoUrl, offset, string) {
+      .replace(pseudoUrlPattern, function(match, beforePseudo, pseudoUrl, offset, string) {
                 return make_link('http://' + pseudoUrl, pseudoUrl, beforePseudo);
             })
-			.replace(emailAddressPattern, function(match, email, offset, string) {
+      .replace(emailAddressPattern, function(match, email, offset, string) {
                 return make_link('mailto:' + email, email);
             });
-	},
+  },
 
-	unlinkify: function(text) {
-		if(!text) return text;
-		text = text.replace(/<a\b[^>]*>/i,"");
-		text = text.replace(/<\/a>/i, "");
-		return text;
-	},
+  unlinkify: function(text) {
+    if(!text) return text;
+    text = text.replace(/<a\b[^>]*>/i,"");
+    text = text.replace(/<\/a>/i, "");
+    return text;
+  },
 
-	getParamString: function (obj) {
-		var params = [];
-		for (var i in obj) {
-			if (obj.hasOwnProperty(i)) {
-				params.push(i + '=' + obj[i]);
-			}
-		}
-		return '?' + params.join('&');
-	},
+  getParamString: function (obj) {
+    var params = [];
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        params.push(i + '=' + obj[i]);
+      }
+    }
+    return '?' + params.join('&');
+  },
 
-	formatNum: function (num, digits) {
-		var pow = Math.pow(10, digits || 5);
-		return Math.round(num * pow) / pow;
-	},
+  formatNum: function (num, digits) {
+    var pow = Math.pow(10, digits || 5);
+    return Math.round(num * pow) / pow;
+  },
 
-	falseFn: function () {
-		return false;
-	},
+  falseFn: function () {
+    return false;
+  },
 
-	requestAnimFrame: (function () {
-		function timeoutDefer(callback) {
-			window.setTimeout(callback, 1000 / 60);
-		}
+  requestAnimFrame: (function () {
+    function timeoutDefer(callback) {
+      window.setTimeout(callback, 1000 / 60);
+    }
 
-		var requestFn = window.requestAnimationFrame ||
-			window.webkitRequestAnimationFrame ||
-			window.mozRequestAnimationFrame ||
-			window.oRequestAnimationFrame ||
-			window.msRequestAnimationFrame ||
-			timeoutDefer;
+    var requestFn = window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      timeoutDefer;
 
-		return function (callback, context, immediate, contextEl) {
-			callback = context ? TL.Util.bind(callback, context) : callback;
-			if (immediate && requestFn === timeoutDefer) {
-				callback();
-			} else {
-				requestFn(callback, contextEl);
-			}
-		};
-	}()),
+    return function (callback, context, immediate, contextEl) {
+      callback = context ? TL.Util.bind(callback, context) : callback;
+      if (immediate && requestFn === timeoutDefer) {
+        callback();
+      } else {
+        requestFn(callback, contextEl);
+      }
+    };
+  }()),
 
-	bind: function (/*Function*/ fn, /*Object*/ obj) /*-> Object*/ {
-		return function () {
-			return fn.apply(obj, arguments);
-		};
-	},
+  bind: function (/*Function*/ fn, /*Object*/ obj) /*-> Object*/ {
+    return function () {
+      return fn.apply(obj, arguments);
+    };
+  },
 
-	template: function (str, data) {
-		return str.replace(/\{ *([\w_]+) *\}/g, function (str, key) {
-			var value = data[key];
-			if (!data.hasOwnProperty(key)) {
-			    throw new TL.Error("template_value_err", str);
-			}
-			return value;
-		});
-	},
+  template: function (str, data) {
+    return str.replace(/\{ *([\w_]+) *\}/g, function (str, key) {
+      var value = data[key];
+      if (!data.hasOwnProperty(key)) {
+          throw new TL.Error("template_value_err", str);
+      }
+      return value;
+    });
+  },
 
-	hexToRgb: function(hex) {
-	    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+  hexToRgb: function(hex) {
+      // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
         if (TL.Util.css_named_colors[hex.toLowerCase()]) {
             hex = TL.Util.css_named_colors[hex.toLowerCase()];
         }
-	    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-	    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
-	        return r + r + g + g + b + b;
-	    });
+      var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+          return r + r + g + g + b + b;
+      });
 
-	    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-	    return result ? {
-	        r: parseInt(result[1], 16),
-	        g: parseInt(result[2], 16),
-	        b: parseInt(result[3], 16)
-	    } : null;
-	},
-	// given an object with r, g, and b keys, or a string of the form 'rgb(mm,nn,ll)', return a CSS hex string including the leading '#' character
-	rgbToHex: function(rgb) {
-		var r,g,b;
-		if (typeof(rgb) == 'object') {
-			r = rgb.r;
-			g = rgb.g;
-			b = rgb.b;
-		} else if (typeof(rgb.match) == 'function'){
-			var parts = rgb.match(/^rgb\((\d+),(\d+),(\d+)\)$/);
-			if (parts) {
-				r = parts[1];
-				g = parts[2];
-				b = parts[3];
-			}
-		}
-		if (isNaN(r) || isNaN(b) || isNaN(g)) {
-			throw new TL.Error("invalid_rgb_err");
-		}
-		return "#" + TL.Util.intToHexString(r) + TL.Util.intToHexString(g) + TL.Util.intToHexString(b);
-	},
-	colorObjToHex: function(o) {
-		var parts = [o.r, o.g, o.b];
-		return TL.Util.rgbToHex("rgb(" + parts.join(',') + ")")
-	},
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+      } : null;
+  },
+  // given an object with r, g, and b keys, or a string of the form 'rgb(mm,nn,ll)', return a CSS hex string including the leading '#' character
+  rgbToHex: function(rgb) {
+    var r,g,b;
+    if (typeof(rgb) == 'object') {
+      r = rgb.r;
+      g = rgb.g;
+      b = rgb.b;
+    } else if (typeof(rgb.match) == 'function'){
+      var parts = rgb.match(/^rgb\((\d+),(\d+),(\d+)\)$/);
+      if (parts) {
+        r = parts[1];
+        g = parts[2];
+        b = parts[3];
+      }
+    }
+    if (isNaN(r) || isNaN(b) || isNaN(g)) {
+      throw new TL.Error("invalid_rgb_err");
+    }
+    return "#" + TL.Util.intToHexString(r) + TL.Util.intToHexString(g) + TL.Util.intToHexString(b);
+  },
+  colorObjToHex: function(o) {
+    var parts = [o.r, o.g, o.b];
+    return TL.Util.rgbToHex("rgb(" + parts.join(',') + ")")
+  },
     css_named_colors: {
         "aliceblue": "#f0f8ff",
         "antiquewhite": "#faebd7",
@@ -547,151 +547,151 @@ TL.Util = {
         "yellow": "#ffff00",
         "yellowgreen": "#9acd32"
     },
-	ratio: {
-		square: function(size) {
-			var s = {
-				w: 0,
-				h: 0
-			}
-			if (size.w > size.h && size.h > 0) {
-				s.h = size.h;
-				s.w = size.h;
-			} else {
-				s.w = size.w;
-				s.h = size.w;
-			}
-			return s;
-		},
+  ratio: {
+    square: function(size) {
+      var s = {
+        w: 0,
+        h: 0
+      }
+      if (size.w > size.h && size.h > 0) {
+        s.h = size.h;
+        s.w = size.h;
+      } else {
+        s.w = size.w;
+        s.h = size.w;
+      }
+      return s;
+    },
 
-		r16_9: function(size) {
-			if (size.w !== null && size.w !== "") {
-				return Math.round((size.w / 16) * 9);
-			} else if (size.h !== null && size.h !== "") {
-				return Math.round((size.h / 9) * 16);
-			} else {
-				return 0;
-			}
-		},
-		r4_3: function(size) {
-			if (size.w !== null && size.w !== "") {
-				return Math.round((size.w / 4) * 3);
-			} else if (size.h !== null && size.h !== "") {
-				return Math.round((size.h / 3) * 4);
-			}
-		}
-	},
-	getObjectAttributeByIndex: function(obj, index) {
-		if(typeof obj != 'undefined') {
-			var i = 0;
-			for (var attr in obj){
-				if (index === i){
-					return obj[attr];
-				}
-				i++;
-			}
-			return "";
-		} else {
-			return "";
-		}
+    r16_9: function(size) {
+      if (size.w !== null && size.w !== "") {
+        return Math.round((size.w / 16) * 9);
+      } else if (size.h !== null && size.h !== "") {
+        return Math.round((size.h / 9) * 16);
+      } else {
+        return 0;
+      }
+    },
+    r4_3: function(size) {
+      if (size.w !== null && size.w !== "") {
+        return Math.round((size.w / 4) * 3);
+      } else if (size.h !== null && size.h !== "") {
+        return Math.round((size.h / 3) * 4);
+      }
+    }
+  },
+  getObjectAttributeByIndex: function(obj, index) {
+    if(typeof obj != 'undefined') {
+      var i = 0;
+      for (var attr in obj){
+        if (index === i){
+          return obj[attr];
+        }
+        i++;
+      }
+      return "";
+    } else {
+      return "";
+    }
 
-	},
-	getUrlVars: function(string) {
-		var str,
-			vars = [],
-			hash,
-			hashes;
+  },
+  getUrlVars: function(string) {
+    var str,
+      vars = [],
+      hash,
+      hashes;
 
-		str = string.toString();
+    str = string.toString();
 
-		if (str.match('&#038;')) {
-			str = str.replace("&#038;", "&");
-		} else if (str.match('&#38;')) {
-			str = str.replace("&#38;", "&");
-		} else if (str.match('&amp;')) {
-			str = str.replace("&amp;", "&");
-		}
+    if (str.match('&#038;')) {
+      str = str.replace("&#038;", "&");
+    } else if (str.match('&#38;')) {
+      str = str.replace("&#38;", "&");
+    } else if (str.match('&amp;')) {
+      str = str.replace("&amp;", "&");
+    }
 
-		hashes = str.slice(str.indexOf('?') + 1).split('&');
+    hashes = str.slice(str.indexOf('?') + 1).split('&');
 
-		for(var i = 0; i < hashes.length; i++) {
-			hash = hashes[i].split('=');
-			vars.push(hash[0]);
-			vars[hash[0]] = hash[1];
-		}
+    for(var i = 0; i < hashes.length; i++) {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
 
 
-		return vars;
-	},
+    return vars;
+  },
     /**
      * Remove any leading or trailing whitespace from the given string.
      * If `str` is undefined or does not have a `replace` function, return
      * an empty string.
      */
-	trim: function(str) {
+  trim: function(str) {
         if (str && typeof(str.replace) == 'function') {
             return str.replace(/^\s+|\s+$/g, '');
         }
         return "";
-	},
+  },
 
-	slugify: function(str) {
-		// borrowed from http://stackoverflow.com/a/5782563/102476
-		str = TL.Util.trim(str);
-		str = str.toLowerCase();
+  slugify: function(str) {
+    // borrowed from http://stackoverflow.com/a/5782563/102476
+    str = TL.Util.trim(str);
+    str = str.toLowerCase();
 
-		// remove accents, swap ñ for n, etc
-		var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
-		var to   = "aaaaaeeeeeiiiiooooouuuunc------";
-		for (var i=0, l=from.length ; i<l ; i++) {
-		str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-		}
+    // remove accents, swap ñ for n, etc
+    var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+    var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
 
-		str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-		.replace(/\s+/g, '-') // collapse whitespace and replace by -
-		.replace(/-+/g, '-'); // collapse dashes
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+    .replace(/-+/g, '-'); // collapse dashes
 
-		str = str.replace(/^([0-9])/,'_$1');
-		return str;
-	},
-	maxDepth: function(ary) {
-		// given a sorted array of 2-tuples of numbers, count how many "deep" the items are.
-		// that is, what is the maximum number of tuples that occupy any one moment
-		// each tuple should also be sorted
-		var stack = [];
-		var max_depth = 0;
-		for (var i = 0; i < ary.length; i++) {
+    str = str.replace(/^([0-9])/,'_$1');
+    return str;
+  },
+  maxDepth: function(ary) {
+    // given a sorted array of 2-tuples of numbers, count how many "deep" the items are.
+    // that is, what is the maximum number of tuples that occupy any one moment
+    // each tuple should also be sorted
+    var stack = [];
+    var max_depth = 0;
+    for (var i = 0; i < ary.length; i++) {
 
-			stack.push(ary[i]);
-			if (stack.length > 1) {
-				var top = stack[stack.length - 1]
-				var bottom_idx = -1;
-				for (var j = 0; j < stack.length - 1; j++) {
-					if (stack[j][1] < top[0]) {
-						bottom_idx = j;
-					}
-				};
-				if (bottom_idx >= 0) {
-					stack = stack.slice(bottom_idx + 1);
-				}
+      stack.push(ary[i]);
+      if (stack.length > 1) {
+        var top = stack[stack.length - 1]
+        var bottom_idx = -1;
+        for (var j = 0; j < stack.length - 1; j++) {
+          if (stack[j][1] < top[0]) {
+            bottom_idx = j;
+          }
+        };
+        if (bottom_idx >= 0) {
+          stack = stack.slice(bottom_idx + 1);
+        }
 
-			}
+      }
 
-			if (stack.length > max_depth) {
-				max_depth = stack.length;
-			}
-		};
-		return max_depth;
-	},
+      if (stack.length > max_depth) {
+        max_depth = stack.length;
+      }
+    };
+    return max_depth;
+  },
 
-	pad: function (val, len) {
-		val = String(val);
-		len = len || 2;
-		while (val.length < len) val = "0" + val;
-		return val;
-	},
-	intToHexString: function(i) {
-		return TL.Util.pad(parseInt(i,10).toString(16));
-	},
+  pad: function (val, len) {
+    val = String(val);
+    len = len || 2;
+    while (val.length < len) val = "0" + val;
+    return val;
+  },
+  intToHexString: function(i) {
+    return TL.Util.pad(parseInt(i,10).toString(16));
+  },
     findNextGreater: function(list, current, default_value) {
         // given a sorted list and a current value which *might* be in the list,
         // return the next greatest value if the current value is >= the last item in the list, return default,
@@ -718,75 +718,75 @@ TL.Util = {
         return (default_value) ? default_value : current;
     },
 
-	isEmptyObject: function(o) {
-		var properties = []
-		if (Object.keys) {
-			properties = Object.keys(o);
-		} else { // all this to support IE 8
-		    for (var p in o) if (Object.prototype.hasOwnProperty.call(o,p)) properties.push(p);
+  isEmptyObject: function(o) {
+    var properties = []
+    if (Object.keys) {
+      properties = Object.keys(o);
+    } else { // all this to support IE 8
+        for (var p in o) if (Object.prototype.hasOwnProperty.call(o,p)) properties.push(p);
     }
-		for (var i = 0; i < properties.length; i++) {
-			var k = properties[i];
-			if (o[k] != null && typeof o[k] != "string") return false;
-			if (TL.Util.trim(o[k]).length != 0) return false;
-		}
-		return true;
-	},
-	parseYouTubeTime: function(s) {
-	    // given a YouTube start time string in a reasonable format, reduce it to a number of seconds as an integer.
-		if (typeof(s) == 'string') {
-			parts = s.match(/^\s*(\d+h)?(\d+m)?(\d+s)?\s*/i);
-			if (parts) {
-				var hours = parseInt(parts[1]) || 0;
-				var minutes = parseInt(parts[2]) || 0;
-				var seconds = parseInt(parts[3]) || 0;
-				return seconds + (minutes * 60) + (hours * 60 * 60);
-			}
-		} else if (typeof(s) == 'number') {
-			return s;
-		}
-		return 0;
-	},
-	/**
-	 * Try to make seamless the process of interpreting a URL to a web page which embeds an image for sharing purposes
-	 * as a direct image link. Some services have predictable transformations we can use rather than explain to people
-	 * this subtlety.
-	 */
-	transformImageURL: function(url) {
-		return url.replace(/(.*)www.dropbox.com\/(.*)/, '$1dl.dropboxusercontent.com/$2')
-	},
+    for (var i = 0; i < properties.length; i++) {
+      var k = properties[i];
+      if (o[k] != null && typeof o[k] != "string") return false;
+      if (TL.Util.trim(o[k]).length != 0) return false;
+    }
+    return true;
+  },
+  parseYouTubeTime: function(s) {
+      // given a YouTube start time string in a reasonable format, reduce it to a number of seconds as an integer.
+    if (typeof(s) == 'string') {
+      parts = s.match(/^\s*(\d+h)?(\d+m)?(\d+s)?\s*/i);
+      if (parts) {
+        var hours = parseInt(parts[1]) || 0;
+        var minutes = parseInt(parts[2]) || 0;
+        var seconds = parseInt(parts[3]) || 0;
+        return seconds + (minutes * 60) + (hours * 60 * 60);
+      }
+    } else if (typeof(s) == 'number') {
+      return s;
+    }
+    return 0;
+  },
+  /**
+   * Try to make seamless the process of interpreting a URL to a web page which embeds an image for sharing purposes
+   * as a direct image link. Some services have predictable transformations we can use rather than explain to people
+   * this subtlety.
+   */
+  transformImageURL: function(url) {
+    return url.replace(/(.*)www.dropbox.com\/(.*)/, '$1dl.dropboxusercontent.com/$2')
+  },
 
-	base58: (function(alpha) {
-	    var alphabet = alpha || '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
-	        base = alphabet.length;
-	    return {
-	        encode: function(enc) {
-	            if(typeof enc!=='number' || enc !== parseInt(enc))
-	                throw '"encode" only accepts integers.';
-	            var encoded = '';
-	            while(enc) {
-	                var remainder = enc % base;
-	                enc = Math.floor(enc / base);
-	                encoded = alphabet[remainder].toString() + encoded;
-	            }
-	            return encoded;
-	        },
-	        decode: function(dec) {
-	            if(typeof dec!=='string')
-	                throw '"decode" only accepts strings.';
-	            var decoded = 0;
-	            while(dec) {
-	                var alphabetPosition = alphabet.indexOf(dec[0]);
-	                if (alphabetPosition < 0)
-	                    throw '"decode" can\'t find "' + dec[0] + '" in the alphabet: "' + alphabet + '"';
-	                var powerOf = dec.length - 1;
-	                decoded += alphabetPosition * (Math.pow(base, powerOf));
-	                dec = dec.substring(1);
-	            }
-	            return decoded;
-	        }
-	    };
-	})()
+  base58: (function(alpha) {
+      var alphabet = alpha || '123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ',
+          base = alphabet.length;
+      return {
+          encode: function(enc) {
+              if(typeof enc!=='number' || enc !== parseInt(enc))
+                  throw '"encode" only accepts integers.';
+              var encoded = '';
+              while(enc) {
+                  var remainder = enc % base;
+                  enc = Math.floor(enc / base);
+                  encoded = alphabet[remainder].toString() + encoded;
+              }
+              return encoded;
+          },
+          decode: function(dec) {
+              if(typeof dec!=='string')
+                  throw '"decode" only accepts strings.';
+              var decoded = 0;
+              while(dec) {
+                  var alphabetPosition = alphabet.indexOf(dec[0]);
+                  if (alphabetPosition < 0)
+                      throw '"decode" can\'t find "' + dec[0] + '" in the alphabet: "' + alphabet + '"';
+                  var powerOf = dec.length - 1;
+                  decoded += alphabetPosition * (Math.pow(base, powerOf));
+                  dec = dec.substring(1);
+              }
+              return decoded;
+          }
+      };
+  })()
 
 };
 
@@ -2351,7 +2351,7 @@ TL.Util = {
 
 
   TL.getJSON = Zepto.getJSON;
-	TL.ajax = Zepto.ajax;
+  TL.ajax = Zepto.ajax;
 })(TL)
 
 //     Based on https://github.com/madrobby/zepto/blob/5585fe00f1828711c04208372265a5d71e3238d1/src/ajax.js
@@ -2362,22 +2362,22 @@ TL.Util = {
 Copyright (c) 2010-2012 Thomas Fuchs
 http://zeptojs.com
 
-Permission is hereby granted, free of charge, to any person obtaining a copy 
-of this software and associated documentation files (the "Software"), to deal 
-in the Software without restriction, including without limitation the rights 
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom the Software is 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all 
+The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
@@ -2387,69 +2387,69 @@ SOFTWARE.
 ********************************************** */
 
 /*	TL.Class
-	Class powers the OOP facilities of the library.
+  Class powers the OOP facilities of the library.
 ================================================== */
 TL.Class = function () {};
 
 TL.Class.extend = function (/*Object*/ props) /*-> Class*/ {
- 
-	// extended class with the new prototype
-	var NewClass = function () {
-		if (this.initialize) {
-			this.initialize.apply(this, arguments);
-		}
-	};
 
-	// instantiate class without calling constructor
-	var F = function () {};
-	F.prototype = this.prototype;
-	var proto = new F();
+  // extended class with the new prototype
+  var NewClass = function () {
+    if (this.initialize) {
+      this.initialize.apply(this, arguments);
+    }
+  };
 
-	proto.constructor = NewClass;
-	NewClass.prototype = proto;
+  // instantiate class without calling constructor
+  var F = function () {};
+  F.prototype = this.prototype;
+  var proto = new F();
 
-	// add superclass access
-	NewClass.superclass = this.prototype;
+  proto.constructor = NewClass;
+  NewClass.prototype = proto;
 
-	// add class name
-	//proto.className = props;
+  // add superclass access
+  NewClass.superclass = this.prototype;
 
-	//inherit parent's statics
-	for (var i in this) {
-		if (this.hasOwnProperty(i) && i !== 'prototype' && i !== 'superclass') {
-			NewClass[i] = this[i];
-		}
-	}
+  // add class name
+  //proto.className = props;
 
-	// mix static properties into the class
-	if (props.statics) {
-		TL.Util.extend(NewClass, props.statics);
-		delete props.statics;
-	}
+  //inherit parent's statics
+  for (var i in this) {
+    if (this.hasOwnProperty(i) && i !== 'prototype' && i !== 'superclass') {
+      NewClass[i] = this[i];
+    }
+  }
 
-	// mix includes into the prototype
-	if (props.includes) {
-		TL.Util.extend.apply(null, [proto].concat(props.includes));
-		delete props.includes;
-	}
+  // mix static properties into the class
+  if (props.statics) {
+    TL.Util.extend(NewClass, props.statics);
+    delete props.statics;
+  }
 
-	// merge options
-	if (props.options && proto.options) {
-		props.options = TL.Util.extend({}, proto.options, props.options);
-	}
+  // mix includes into the prototype
+  if (props.includes) {
+    TL.Util.extend.apply(null, [proto].concat(props.includes));
+    delete props.includes;
+  }
 
-	// mix given properties into the prototype
-	TL.Util.extend(proto, props);
+  // merge options
+  if (props.options && proto.options) {
+    props.options = TL.Util.extend({}, proto.options, props.options);
+  }
 
-	// allow inheriting further
-	NewClass.extend = TL.Class.extend;
+  // mix given properties into the prototype
+  TL.Util.extend(proto, props);
 
-	// method for adding properties to prototype
-	NewClass.include = function (props) {
-		TL.Util.extend(this.prototype, props);
-	};
+  // allow inheriting further
+  NewClass.extend = TL.Class.extend;
 
-	return NewClass;
+  // method for adding properties to prototype
+  NewClass.include = function (props) {
+    TL.Util.extend(this.prototype, props);
+  };
+
+  return NewClass;
 };
 
 
@@ -2458,59 +2458,59 @@ TL.Class.extend = function (/*Object*/ props) /*-> Class*/ {
 ********************************************** */
 
 /*	TL.Events
-	adds custom events functionality to TL classes
+  adds custom events functionality to TL classes
 ================================================== */
 TL.Events = {
-	addEventListener: function (/*String*/ type, /*Function*/ fn, /*(optional) Object*/ context) {
-		var events = this._tl_events = this._tl_events || {};
-		events[type] = events[type] || [];
-		events[type].push({
-			action: fn,
-			context: context || this
-		});
-		return this;
-	},
+  addEventListener: function (/*String*/ type, /*Function*/ fn, /*(optional) Object*/ context) {
+    var events = this._tl_events = this._tl_events || {};
+    events[type] = events[type] || [];
+    events[type].push({
+      action: fn,
+      context: context || this
+    });
+    return this;
+  },
 
-	hasEventListeners: function (/*String*/ type) /*-> Boolean*/ {
-		var k = '_tl_events';
-		return (k in this) && (type in this[k]) && (this[k][type].length > 0);
-	},
+  hasEventListeners: function (/*String*/ type) /*-> Boolean*/ {
+    var k = '_tl_events';
+    return (k in this) && (type in this[k]) && (this[k][type].length > 0);
+  },
 
-	removeEventListener: function (/*String*/ type, /*Function*/ fn, /*(optional) Object*/ context) {
-		if (!this.hasEventListeners(type)) {
-			return this;
-		}
+  removeEventListener: function (/*String*/ type, /*Function*/ fn, /*(optional) Object*/ context) {
+    if (!this.hasEventListeners(type)) {
+      return this;
+    }
 
-		for (var i = 0, events = this._tl_events, len = events[type].length; i < len; i++) {
-			if (
-				(events[type][i].action === fn) &&
-				(!context || (events[type][i].context === context))
-			) {
-				events[type].splice(i, 1);
-				return this;
-			}
-		}
-		return this;
-	},
+    for (var i = 0, events = this._tl_events, len = events[type].length; i < len; i++) {
+      if (
+        (events[type][i].action === fn) &&
+        (!context || (events[type][i].context === context))
+      ) {
+        events[type].splice(i, 1);
+        return this;
+      }
+    }
+    return this;
+  },
 
-	fireEvent: function (/*String*/ type, /*(optional) Object*/ data) {
-		if (!this.hasEventListeners(type)) {
-			return this;
-		}
+  fireEvent: function (/*String*/ type, /*(optional) Object*/ data) {
+    if (!this.hasEventListeners(type)) {
+      return this;
+    }
 
-		var event = TL.Util.mergeData({
-			type: type,
-			target: this
-		}, data);
+    var event = TL.Util.mergeData({
+      type: type,
+      target: this
+    }, data);
 
-		var listeners = this._tl_events[type].slice();
+    var listeners = this._tl_events[type].slice();
 
-		for (var i = 0, len = listeners.length; i < len; i++) {
-			listeners[i].action.call(listeners[i].context || this, event);
-		}
+    for (var i = 0, len = listeners.length; i < len; i++) {
+      listeners[i].action.call(listeners[i].context || this, event);
+    }
 
-		return this;
-	}
+    return this;
+  }
 };
 
 TL.Events.on	= TL.Events.addEventListener;
@@ -2523,86 +2523,86 @@ TL.Events.fire = TL.Events.fireEvent;
 ********************************************** */
 
 /*
-	Based on Leaflet Browser
-	TL.Browser handles different browser and feature detections for internal  use.
+  Based on Leaflet Browser
+  TL.Browser handles different browser and feature detections for internal  use.
 */
 
 
 (function() {
 
-	var ua = navigator.userAgent.toLowerCase(),
-		doc = document.documentElement,
+  var ua = navigator.userAgent.toLowerCase(),
+    doc = document.documentElement,
 
-		ie = 'ActiveXObject' in window,
+    ie = 'ActiveXObject' in window,
 
-		webkit = ua.indexOf('webkit') !== -1,
-		phantomjs = ua.indexOf('phantom') !== -1,
-		android23 = ua.search('android [23]') !== -1,
+    webkit = ua.indexOf('webkit') !== -1,
+    phantomjs = ua.indexOf('phantom') !== -1,
+    android23 = ua.search('android [23]') !== -1,
 
-		mobile = typeof orientation !== 'undefined',
-		msPointer = navigator.msPointerEnabled && navigator.msMaxTouchPoints && !window.PointerEvent,
-		pointer = (window.PointerEvent && navigator.pointerEnabled && navigator.maxTouchPoints) || msPointer,
+    mobile = typeof orientation !== 'undefined',
+    msPointer = navigator.msPointerEnabled && navigator.msMaxTouchPoints && !window.PointerEvent,
+    pointer = (window.PointerEvent && navigator.pointerEnabled && navigator.maxTouchPoints) || msPointer,
 
-		ie3d = ie && ('transition' in doc.style),
-		webkit3d = ('WebKitCSSMatrix' in window) && ('m11' in new window.WebKitCSSMatrix()) && !android23,
-		gecko3d = 'MozPerspective' in doc.style,
-		opera3d = 'OTransition' in doc.style,
-		opera = window.opera;
+    ie3d = ie && ('transition' in doc.style),
+    webkit3d = ('WebKitCSSMatrix' in window) && ('m11' in new window.WebKitCSSMatrix()) && !android23,
+    gecko3d = 'MozPerspective' in doc.style,
+    opera3d = 'OTransition' in doc.style,
+    opera = window.opera;
 
 
-	var retina = 'devicePixelRatio' in window && window.devicePixelRatio > 1;
+  var retina = 'devicePixelRatio' in window && window.devicePixelRatio > 1;
 
-	if (!retina && 'matchMedia' in window) {
-		var matches = window.matchMedia('(min-resolution:144dpi)');
-		retina = matches && matches.matches;
-	}
+  if (!retina && 'matchMedia' in window) {
+    var matches = window.matchMedia('(min-resolution:144dpi)');
+    retina = matches && matches.matches;
+  }
 
-	var touch = !window.L_NO_TOUCH && !phantomjs && (pointer || 'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch));
+  var touch = !window.L_NO_TOUCH && !phantomjs && (pointer || 'ontouchstart' in window || (window.DocumentTouch && document instanceof window.DocumentTouch));
 
-	TL.Browser = {
-		ie: ie,
-		ua: ua,
-		ie9: Boolean(ie && ua.match(/MSIE 9/i)),
-		ielt9: ie && !document.addEventListener,
-		webkit: webkit,
-		//gecko: (ua.indexOf('gecko') !== -1) && !webkit && !window.opera && !ie,
-		firefox: (ua.indexOf('gecko') !== -1) && !webkit && !window.opera && !ie,
-		android: ua.indexOf('android') !== -1,
-		android23: android23,
-		chrome: ua.indexOf('chrome') !== -1,
-		edge: ua.indexOf('edge/') !== -1,
+  TL.Browser = {
+    ie: ie,
+    ua: ua,
+    ie9: Boolean(ie && ua.match(/MSIE 9/i)),
+    ielt9: ie && !document.addEventListener,
+    webkit: webkit,
+    //gecko: (ua.indexOf('gecko') !== -1) && !webkit && !window.opera && !ie,
+    firefox: (ua.indexOf('gecko') !== -1) && !webkit && !window.opera && !ie,
+    android: ua.indexOf('android') !== -1,
+    android23: android23,
+    chrome: ua.indexOf('chrome') !== -1,
+    edge: ua.indexOf('edge/') !== -1,
 
-		ie3d: ie3d,
-		webkit3d: webkit3d,
-		gecko3d: gecko3d,
-		opera3d: opera3d,
-		any3d: !window.L_DISABLE_3D && (ie3d || webkit3d || gecko3d || opera3d) && !phantomjs,
+    ie3d: ie3d,
+    webkit3d: webkit3d,
+    gecko3d: gecko3d,
+    opera3d: opera3d,
+    any3d: !window.L_DISABLE_3D && (ie3d || webkit3d || gecko3d || opera3d) && !phantomjs,
 
-		mobile: mobile,
-		mobileWebkit: mobile && webkit,
-		mobileWebkit3d: mobile && webkit3d,
-		mobileOpera: mobile && window.opera,
+    mobile: mobile,
+    mobileWebkit: mobile && webkit,
+    mobileWebkit3d: mobile && webkit3d,
+    mobileOpera: mobile && window.opera,
 
-		touch: !! touch,
-		msPointer: !! msPointer,
-		pointer: !! pointer,
+    touch: !! touch,
+    msPointer: !! msPointer,
+    pointer: !! pointer,
 
-		retina: !! retina,
-		orientation: function() {
-			var w = window.innerWidth,
-				h = window.innerHeight,
-				_orientation = "portrait";
+    retina: !! retina,
+    orientation: function() {
+      var w = window.innerWidth,
+        h = window.innerHeight,
+        _orientation = "portrait";
 
-			if (w > h) {
-				_orientation = "landscape";
-			}
-			if (Math.abs(window.orientation) == 90) {
-				//_orientation = "landscape";
-			}
-			trace(_orientation);
-			return _orientation;
-		}
-	};
+      if (w > h) {
+        _orientation = "landscape";
+      }
+      if (Math.abs(window.orientation) == 90) {
+        //_orientation = "landscape";
+      }
+      trace(_orientation);
+      return _orientation;
+    }
+  };
 
 }());
 
@@ -2612,51 +2612,51 @@ TL.Events.fire = TL.Events.fireEvent;
 ********************************************** */
 
 /*	TL.Load
-	Loads External Javascript and CSS
+  Loads External Javascript and CSS
 ================================================== */
 
 TL.Load = (function (doc) {
-	var loaded	= [];
-	
-	function isLoaded(url) {
-		
-		var i			= 0,
-			has_loaded	= false;
-		
-		for (i = 0; i < loaded.length; i++) {
-			if (loaded[i] == url) {
-				has_loaded = true;
-			}
-		}
-		
-		if (has_loaded) {
-			return true;
-		} else {
-			loaded.push(url);
-			return false;
-		}
-		
-	}
-	
-	return {
-		
-		css: function (urls, callback, obj, context) {
-			if (!isLoaded(urls)) {
-				TL.LoadIt.css(urls, callback, obj, context);
-			} else {
-				callback();
-			}
-		},
+  var loaded	= [];
 
-		js: function (urls, callback, obj, context) {
-			if (!isLoaded(urls)) {
-				TL.LoadIt.js(urls, callback, obj, context);
-			} else {
-				callback();
-			}
-		}
+  function isLoaded(url) {
+
+    var i			= 0,
+      has_loaded	= false;
+
+    for (i = 0; i < loaded.length; i++) {
+      if (loaded[i] == url) {
+        has_loaded = true;
+      }
+    }
+
+    if (has_loaded) {
+      return true;
+    } else {
+      loaded.push(url);
+      return false;
+    }
+
+  }
+
+  return {
+
+    css: function (urls, callback, obj, context) {
+      if (!isLoaded(urls)) {
+        TL.LoadIt.css(urls, callback, obj, context);
+      } else {
+        callback();
+      }
+    },
+
+    js: function (urls, callback, obj, context) {
+      if (!isLoaded(urls)) {
+        TL.LoadIt.js(urls, callback, obj, context);
+      } else {
+        callback();
+      }
+    }
     };
-	
+
 })(this.document);
 
 
@@ -3063,297 +3063,297 @@ to make testing easier
 ================================================== */
 TL.TimelineConfig = TL.Class.extend({
 
-	includes: [],
-	initialize: function (data) {
-		this.title = '';
-		this.scale = '';
-		this.events = [];
-		this.eras = [];
-		this.event_dict = {}; // despite name, all slides (events + title) indexed by slide.unique_id
-		this.messages = {
-			errors: [],
-			warnings: []
-		};
+  includes: [],
+  initialize: function (data) {
+    this.title = '';
+    this.scale = '';
+    this.events = [];
+    this.eras = [];
+    this.event_dict = {}; // despite name, all slides (events + title) indexed by slide.unique_id
+    this.messages = {
+      errors: [],
+      warnings: []
+    };
 
-		// Initialize the data
-		if (typeof data === 'object' && data.events) {
-			this.scale = data.scale;
-			this.events = [];
-			this._ensureValidScale(data.events);
+    // Initialize the data
+    if (typeof data === 'object' && data.events) {
+      this.scale = data.scale;
+      this.events = [];
+      this._ensureValidScale(data.events);
 
-			if (data.title) {
-				var title_id = this._assignID(data.title);
-				this._tidyFields(data.title);
-				this.title = data.title;
-				this.event_dict[title_id] = this.title;
-			}
+      if (data.title) {
+        var title_id = this._assignID(data.title);
+        this._tidyFields(data.title);
+        this.title = data.title;
+        this.event_dict[title_id] = this.title;
+      }
 
-			for (var i = 0; i < data.events.length; i++) {
-				try {
-					this.addEvent(data.events[i], true);
-				} catch (e) {
-				    this.logError(e);
-				}
-			}
+      for (var i = 0; i < data.events.length; i++) {
+        try {
+          this.addEvent(data.events[i], true);
+        } catch (e) {
+            this.logError(e);
+        }
+      }
 
-			if (data.eras) {
-				for (var i = 0; i < data.eras.length; i++) {
-					try {
-						this.addEra(data.eras[i], true);
-					} catch (e) {
-						this.logError("Era " + i + ": " + e);
-					}
-				}
-			}
+      if (data.eras) {
+        for (var i = 0; i < data.eras.length; i++) {
+          try {
+            this.addEra(data.eras[i], true);
+          } catch (e) {
+            this.logError("Era " + i + ": " + e);
+          }
+        }
+      }
 
-			TL.DateUtil.sortByDate(this.events);
-			TL.DateUtil.sortByDate(this.eras);
+      TL.DateUtil.sortByDate(this.events);
+      TL.DateUtil.sortByDate(this.eras);
 
-		}
-	},
-	logError: function(msg) {
-		trace(msg);
-		this.messages.errors.push(msg);
-	},
-	/*
-	 * Return any accumulated error messages. If `sep` is passed, it should be a string which will be used to join all messages, resulting in a string return value. Otherwise,
-	 * errors will be returned as an array.
-	 */
-	getErrors: function(sep) {
-		if (sep) {
-			return this.messages.errors.join(sep);
-		} else {
-			return this.messages.errors;
-		}
-	},
-	/*
-	 * Perform any sanity checks we can before trying to use this to make a timeline. Returns nothing, but errors will be logged
-	 * such that after this is called, one can test `this.isValid()` to see if everything is OK.
-	 */
-	validate: function() {
-		if (typeof(this.events) == "undefined" || typeof(this.events.length) == "undefined" || this.events.length == 0) {
-			this.logError("Timeline configuration has no events.")
-		}
+    }
+  },
+  logError: function(msg) {
+    trace(msg);
+    this.messages.errors.push(msg);
+  },
+  /*
+   * Return any accumulated error messages. If `sep` is passed, it should be a string which will be used to join all messages, resulting in a string return value. Otherwise,
+   * errors will be returned as an array.
+   */
+  getErrors: function(sep) {
+    if (sep) {
+      return this.messages.errors.join(sep);
+    } else {
+      return this.messages.errors;
+    }
+  },
+  /*
+   * Perform any sanity checks we can before trying to use this to make a timeline. Returns nothing, but errors will be logged
+   * such that after this is called, one can test `this.isValid()` to see if everything is OK.
+   */
+  validate: function() {
+    if (typeof(this.events) == "undefined" || typeof(this.events.length) == "undefined" || this.events.length == 0) {
+      this.logError("Timeline configuration has no events.")
+    }
 
-		// make sure all eras have start and end dates
-		for (var i = 0; i < this.eras.length; i++) {
-			if (typeof(this.eras[i].start_date) == 'undefined' || typeof(this.eras[i].end_date) == 'undefined') {
-				var era_identifier;
-				if (this.eras[i].text && this.eras[i].text.headline) {
-					era_identifier = this.eras[i].text.headline
-				} else {
-					era_identifier = "era " + (i+1);
-				}
-				this.logError("All eras must have start and end dates. [" + era_identifier + "]") // add internationalization (I18N) and context
-			}
-		};
-	},
+    // make sure all eras have start and end dates
+    for (var i = 0; i < this.eras.length; i++) {
+      if (typeof(this.eras[i].start_date) == 'undefined' || typeof(this.eras[i].end_date) == 'undefined') {
+        var era_identifier;
+        if (this.eras[i].text && this.eras[i].text.headline) {
+          era_identifier = this.eras[i].text.headline
+        } else {
+          era_identifier = "era " + (i+1);
+        }
+        this.logError("All eras must have start and end dates. [" + era_identifier + "]") // add internationalization (I18N) and context
+      }
+    };
+  },
 
-	isValid: function() {
-		return this.messages.errors.length == 0;
-	},
-	/* Add an event (including cleaning/validation) and return the unique id.
-	* All event data validation should happen in here.
-	* Throws: TL.Error for any validation problems.
-	*/
-	addEvent: function(data, defer_sort) {
-		var event_id = this._assignID(data);
+  isValid: function() {
+    return this.messages.errors.length == 0;
+  },
+  /* Add an event (including cleaning/validation) and return the unique id.
+  * All event data validation should happen in here.
+  * Throws: TL.Error for any validation problems.
+  */
+  addEvent: function(data, defer_sort) {
+    var event_id = this._assignID(data);
 
-		if (typeof(data.start_date) == 'undefined') {
-		    throw new TL.Error("missing_start_date_err", event_id);
-		} else {
-			this._processDates(data);
-			this._tidyFields(data);
-		}
+    if (typeof(data.start_date) == 'undefined') {
+        throw new TL.Error("missing_start_date_err", event_id);
+    } else {
+      this._processDates(data);
+      this._tidyFields(data);
+    }
 
-		this.events.push(data);
-		this.event_dict[event_id] = data;
+    this.events.push(data);
+    this.event_dict[event_id] = data;
 
-		if (!defer_sort) {
-			TL.DateUtil.sortByDate(this.events);
-		}
-		return event_id;
-	},
+    if (!defer_sort) {
+      TL.DateUtil.sortByDate(this.events);
+    }
+    return event_id;
+  },
 
-	addEra: function(data, defer_sort) {
-		var event_id = this._assignID(data);
+  addEra: function(data, defer_sort) {
+    var event_id = this._assignID(data);
 
-		if (typeof(data.start_date) == 'undefined') {
-		    throw new TL.Error("missing_start_date_err", event_id);
-		} else {
-			this._processDates(data);
-			this._tidyFields(data);
-		}
+    if (typeof(data.start_date) == 'undefined') {
+        throw new TL.Error("missing_start_date_err", event_id);
+    } else {
+      this._processDates(data);
+      this._tidyFields(data);
+    }
 
-		this.eras.push(data);
-		this.event_dict[event_id] = data;
+    this.eras.push(data);
+    this.event_dict[event_id] = data;
 
-		if (!defer_sort) {
-			TL.DateUtil.sortByDate(this.eras);
-		}
-		return event_id;
-	},
+    if (!defer_sort) {
+      TL.DateUtil.sortByDate(this.eras);
+    }
+    return event_id;
+  },
 
-	/**
-	 * Given a slide, verify that its ID is unique, or assign it one which is.
-	 * The assignment happens in this function, and the assigned ID is also
-	 * the return value. Not thread-safe, because ids are not reserved
-	 * when assigned here.
-	 */
-	_assignID: function(slide) {
-		var slide_id = slide.unique_id;
-		if (!TL.Util.trim(slide_id)) {
-			// give it an ID if it doesn't have one
-			slide_id = (slide.text) ? TL.Util.slugify(slide.text.headline) : null;
-		}
-		// make sure it's unique and add it.
-		slide.unique_id = TL.Util.ensureUniqueKey(this.event_dict,slide_id);
-		return slide.unique_id
-	},
+  /**
+   * Given a slide, verify that its ID is unique, or assign it one which is.
+   * The assignment happens in this function, and the assigned ID is also
+   * the return value. Not thread-safe, because ids are not reserved
+   * when assigned here.
+   */
+  _assignID: function(slide) {
+    var slide_id = slide.unique_id;
+    if (!TL.Util.trim(slide_id)) {
+      // give it an ID if it doesn't have one
+      slide_id = (slide.text) ? TL.Util.slugify(slide.text.headline) : null;
+    }
+    // make sure it's unique and add it.
+    slide.unique_id = TL.Util.ensureUniqueKey(this.event_dict,slide_id);
+    return slide.unique_id
+  },
 
-	/**
-	 * Given an array of slide configs (the events), ensure that each one has a distinct unique_id. The id of the title
-	 * is also passed in because in most ways it functions as an event slide, and the event IDs must also all be unique
-	 * from the title ID.
-	 */
-	_makeUniqueIdentifiers: function(title_id, array) {
-		var used = [title_id];
+  /**
+   * Given an array of slide configs (the events), ensure that each one has a distinct unique_id. The id of the title
+   * is also passed in because in most ways it functions as an event slide, and the event IDs must also all be unique
+   * from the title ID.
+   */
+  _makeUniqueIdentifiers: function(title_id, array) {
+    var used = [title_id];
 
-		// establish which IDs are assigned and if any appear twice, clear out successors.
-		for (var i = 0; i < array.length; i++) {
-			if (TL.Util.trim(array[i].unique_id)) {
-				array[i].unique_id = TL.Util.slugify(array[i].unique_id); // enforce valid
-				if (used.indexOf(array[i].unique_id) == -1) {
-					used.push(array[i].unique_id);
-				} else { // it was already used, wipe it out
-					array[i].unique_id = '';
-				}
-			}
-		};
+    // establish which IDs are assigned and if any appear twice, clear out successors.
+    for (var i = 0; i < array.length; i++) {
+      if (TL.Util.trim(array[i].unique_id)) {
+        array[i].unique_id = TL.Util.slugify(array[i].unique_id); // enforce valid
+        if (used.indexOf(array[i].unique_id) == -1) {
+          used.push(array[i].unique_id);
+        } else { // it was already used, wipe it out
+          array[i].unique_id = '';
+        }
+      }
+    };
 
-		if (used.length != (array.length + 1)) {
-			// at least some are yet to be assigned
-			for (var i = 0; i < array.length; i++) {
-				if (!array[i].unique_id) {
-					// use the headline for the unique ID if it's available
-					var slug = (array[i].text) ? TL.Util.slugify(array[i].text.headline) : null;
-					if (!slug) {
-						slug = TL.Util.unique_ID(6); // or generate a random ID
-					}
-					if (used.indexOf(slug) != -1) {
-						slug = slug + '-' + i; // use the index to get a unique ID.
-					}
-					used.push(slug);
-					array[i].unique_id = slug;
-				}
-			}
-		}
-	},
-	_ensureValidScale: function(events) {
-		if(!this.scale) {
-			trace("Determining scale dynamically");
-			this.scale = "human"; // default to human unless there's a slide which is explicitly 'cosmological' or one which has a cosmological year
+    if (used.length != (array.length + 1)) {
+      // at least some are yet to be assigned
+      for (var i = 0; i < array.length; i++) {
+        if (!array[i].unique_id) {
+          // use the headline for the unique ID if it's available
+          var slug = (array[i].text) ? TL.Util.slugify(array[i].text.headline) : null;
+          if (!slug) {
+            slug = TL.Util.unique_ID(6); // or generate a random ID
+          }
+          if (used.indexOf(slug) != -1) {
+            slug = slug + '-' + i; // use the index to get a unique ID.
+          }
+          used.push(slug);
+          array[i].unique_id = slug;
+        }
+      }
+    }
+  },
+  _ensureValidScale: function(events) {
+    if(!this.scale) {
+      trace("Determining scale dynamically");
+      this.scale = "human"; // default to human unless there's a slide which is explicitly 'cosmological' or one which has a cosmological year
 
-			for (var i = 0; i < events.length; i++) {
-				if (events[i].scale == 'cosmological') {
-					this.scale = 'cosmological';
-					break;
-				}
-				if (events[i].start_date && typeof(events[i].start_date.year) != "undefined") {
-					var d = new TL.BigDate(events[i].start_date);
-					var year = d.data.date_obj.year;
-					if(year < -271820 || year >  275759) {
-						this.scale = "cosmological";
-						break;
-					}
-				}
-			}
-		}
-		var dateCls = TL.DateUtil.SCALE_DATE_CLASSES[this.scale];
-		if (!dateCls) { this.logError("Don't know how to process dates on scale "+this.scale); }
-	},
-	/*
-	   Given a thing which has a start_date and optionally an end_date, make sure that it is an instance
-		 of the correct date class (for human or cosmological scale). For slides, remove redundant end dates
-		 (people frequently configure an end date which is the same as the start date).
-	 */
-	_processDates: function(slide_or_era) {
-		var dateCls = TL.DateUtil.SCALE_DATE_CLASSES[this.scale];
-		if(!(slide_or_era.start_date instanceof dateCls)) {
-			var start_date = slide_or_era.start_date;
-			slide_or_era.start_date = new dateCls(start_date);
+      for (var i = 0; i < events.length; i++) {
+        if (events[i].scale == 'cosmological') {
+          this.scale = 'cosmological';
+          break;
+        }
+        if (events[i].start_date && typeof(events[i].start_date.year) != "undefined") {
+          var d = new TL.BigDate(events[i].start_date);
+          var year = d.data.date_obj.year;
+          if(year < -271820 || year >  275759) {
+            this.scale = "cosmological";
+            break;
+          }
+        }
+      }
+    }
+    var dateCls = TL.DateUtil.SCALE_DATE_CLASSES[this.scale];
+    if (!dateCls) { this.logError("Don't know how to process dates on scale "+this.scale); }
+  },
+  /*
+     Given a thing which has a start_date and optionally an end_date, make sure that it is an instance
+     of the correct date class (for human or cosmological scale). For slides, remove redundant end dates
+     (people frequently configure an end date which is the same as the start date).
+   */
+  _processDates: function(slide_or_era) {
+    var dateCls = TL.DateUtil.SCALE_DATE_CLASSES[this.scale];
+    if(!(slide_or_era.start_date instanceof dateCls)) {
+      var start_date = slide_or_era.start_date;
+      slide_or_era.start_date = new dateCls(start_date);
 
-			// eliminate redundant end dates.
-			if (typeof(slide_or_era.end_date) != 'undefined' && !(slide_or_era.end_date instanceof dateCls)) {
-				var end_date = slide_or_era.end_date;
-				var equal = true;
-				for (property in start_date) {
-					equal = equal && (start_date[property] == end_date[property]);
-				}
-				if (equal) {
-					trace("End date same as start date is redundant; dropping end date");
-					delete slide_or_era.end_date;
-				} else {
-					slide_or_era.end_date = new dateCls(end_date);
-				}
+      // eliminate redundant end dates.
+      if (typeof(slide_or_era.end_date) != 'undefined' && !(slide_or_era.end_date instanceof dateCls)) {
+        var end_date = slide_or_era.end_date;
+        var equal = true;
+        for (property in start_date) {
+          equal = equal && (start_date[property] == end_date[property]);
+        }
+        if (equal) {
+          trace("End date same as start date is redundant; dropping end date");
+          delete slide_or_era.end_date;
+        } else {
+          slide_or_era.end_date = new dateCls(end_date);
+        }
 
-			}
-		}
+      }
+    }
 
-	},
-	/**
-	 * Return the earliest date that this config knows about, whether it's a slide or an era
-	 */
-	getEarliestDate: function() {
-		// counting that dates were sorted in initialization
-		var date = this.events[0].start_date;
-		if (this.eras && this.eras.length > 0) {
-			if (this.eras[0].start_date.isBefore(date)) {
-				return this.eras[0].start_date;
-			}
-		}
-		return date;
+  },
+  /**
+   * Return the earliest date that this config knows about, whether it's a slide or an era
+   */
+  getEarliestDate: function() {
+    // counting that dates were sorted in initialization
+    var date = this.events[0].start_date;
+    if (this.eras && this.eras.length > 0) {
+      if (this.eras[0].start_date.isBefore(date)) {
+        return this.eras[0].start_date;
+      }
+    }
+    return date;
 
-	},
-	/**
-	 * Return the latest date that this config knows about, whether it's a slide or an era, taking end_dates into account.
-	 */
-	getLatestDate: function() {
-		var dates = [];
-		for (var i = 0; i < this.events.length; i++) {
-			if (this.events[i].end_date) {
-				dates.push({ date: this.events[i].end_date });
-			} else {
-				dates.push({ date: this.events[i].start_date });
-			}
-		}
-		for (var i = 0; i < this.eras.length; i++) {
-			if (this.eras[i].end_date) {
-				dates.push({ date: this.eras[i].end_date });
-			} else {
-				dates.push({ date: this.eras[i].start_date });
-			}
-		}
-		TL.DateUtil.sortByDate(dates, 'date');
-		return dates.slice(-1)[0].date;
-	},
-	_tidyFields: function(slide) {
+  },
+  /**
+   * Return the latest date that this config knows about, whether it's a slide or an era, taking end_dates into account.
+   */
+  getLatestDate: function() {
+    var dates = [];
+    for (var i = 0; i < this.events.length; i++) {
+      if (this.events[i].end_date) {
+        dates.push({ date: this.events[i].end_date });
+      } else {
+        dates.push({ date: this.events[i].start_date });
+      }
+    }
+    for (var i = 0; i < this.eras.length; i++) {
+      if (this.eras[i].end_date) {
+        dates.push({ date: this.eras[i].end_date });
+      } else {
+        dates.push({ date: this.eras[i].start_date });
+      }
+    }
+    TL.DateUtil.sortByDate(dates, 'date');
+    return dates.slice(-1)[0].date;
+  },
+  _tidyFields: function(slide) {
 
-		function fillIn(obj,key,default_value) {
-			if (!default_value) default_value = '';
-			if (!obj.hasOwnProperty(key)) { obj[key] = default_value }
-		}
+    function fillIn(obj,key,default_value) {
+      if (!default_value) default_value = '';
+      if (!obj.hasOwnProperty(key)) { obj[key] = default_value }
+    }
 
-		if (slide.group) {
-			slide.group = TL.Util.trim(slide.group);
-		}
+    if (slide.group) {
+      slide.group = TL.Util.trim(slide.group);
+    }
 
-		if (!slide.text) {
-			slide.text = {};
-		}
-		fillIn(slide.text,'text');
-		fillIn(slide.text,'headline');
-	}
+    if (!slide.text) {
+      slide.text = {};
+    }
+    fillIn(slide.text,'text');
+    fillIn(slide.text,'headline');
+  }
 });
 
 
@@ -3379,7 +3379,7 @@ TL.TimelineConfig = TL.Class.extend({
         }
         // key as url parameter (old-fashioned)
         var key_pat = /\bkey=([-_A-Za-z0-9]+)&?/i;
-        var url_pat = /docs.google.com\/spreadsheets(.*?)\/d\//; // fixing issue of URLs with u/0/d 
+        var url_pat = /docs.google.com\/spreadsheets(.*?)\/d\//; // fixing issue of URLs with u/0/d
 
         if (url.match(key_pat)) {
             parts.key = url.match(key_pat)[1];
@@ -3659,48 +3659,48 @@ TL.TimelineConfig = TL.Class.extend({
 ********************************************** */
 
 TL.Language = function(options) {
-	// borrowed from http://stackoverflow.com/a/14446414/102476
-	for (k in TL.Language.languages.en) {
-		this[k] = TL.Language.languages.en[k];
-	}
-	if (options && options.language && typeof(options.language) == 'string' && options.language != 'en') {
-		var code = options.language;
-		if (!(code in TL.Language.languages)) {
-			if (/\.json$/.test(code)) {
-				var url = code;
-			} else {
-				var fragment = "/locale/" + code + ".json";
-				var script_path = options.script_path || TL.Timeline.source_path;
-				if (/\/$/.test(script_path)) { fragment = fragment.substr(1)}
-				var url = script_path + fragment;
-			}
-			var self = this;
-			var xhr = TL.ajax({
-				url: url, async: false
-			});
-			if (xhr.status == 200) {
-				TL.Language.languages[code] = JSON.parse(xhr.responseText);
-			} else {
-				throw "Could not load language [" + code + "]: " + xhr.statusText;
-			}
-		}
-		TL.Util.mergeData(this,TL.Language.languages[code]);
+  // borrowed from http://stackoverflow.com/a/14446414/102476
+  for (k in TL.Language.languages.en) {
+    this[k] = TL.Language.languages.en[k];
+  }
+  if (options && options.language && typeof(options.language) == 'string' && options.language != 'en') {
+    var code = options.language;
+    if (!(code in TL.Language.languages)) {
+      if (/\.json$/.test(code)) {
+        var url = code;
+      } else {
+        var fragment = "/locale/" + code + ".json";
+        var script_path = options.script_path || TL.Timeline.source_path;
+        if (/\/$/.test(script_path)) { fragment = fragment.substr(1)}
+        var url = script_path + fragment;
+      }
+      var self = this;
+      var xhr = TL.ajax({
+        url: url, async: false
+      });
+      if (xhr.status == 200) {
+        TL.Language.languages[code] = JSON.parse(xhr.responseText);
+      } else {
+        throw "Could not load language [" + code + "]: " + xhr.statusText;
+      }
+    }
+    TL.Util.mergeData(this,TL.Language.languages[code]);
 
-	}
+  }
 }
 
 TL.Language.formatNumber = function(val,mask) {
-		if (mask.match(/%(\.(\d+))?f/)) {
-			var match = mask.match(/%(\.(\d+))?f/);
-			var token = match[0];
-			if (match[2]) {
-				val = val.toFixed(match[2]);
-			}
-			return mask.replace(token,val);
-		}
-		// use mask as literal display value.
-		return mask;
-	}
+    if (mask.match(/%(\.(\d+))?f/)) {
+      var match = mask.match(/%(\.(\d+))?f/);
+      var token = match[0];
+      if (match[2]) {
+        val = val.toFixed(match[2]);
+      }
+      return mask.replace(token,val);
+    }
+    // use mask as literal display value.
+    return mask;
+  }
 
 
 
@@ -3708,152 +3708,152 @@ TL.Language.formatNumber = function(val,mask) {
    This is a simplistic handling but should work.
  */
 TL.Language.prototype.mergeData = function(lang_json) {
-	for (k in TL.Language.languages.en) {
-		if (lang_json[k]) {
-			if (typeof(this[k]) == 'object') {
-				TL.Util.mergeData(lang_json[k], this[k]);
-			} else {
-				this[k] = lang_json[k]; // strings, mostly
-			}
-		}
-	}
+  for (k in TL.Language.languages.en) {
+    if (lang_json[k]) {
+      if (typeof(this[k]) == 'object') {
+        TL.Util.mergeData(lang_json[k], this[k]);
+      } else {
+        this[k] = lang_json[k]; // strings, mostly
+      }
+    }
+  }
 }
 
 TL.Language.fallback = { messages: {} }; // placeholder to satisfy IE8 early compilation
 TL.Language.prototype.getMessage = function(k) {
-	return this.messages[k] || TL.Language.fallback.messages[k] || k;
+  return this.messages[k] || TL.Language.fallback.messages[k] || k;
 }
 
 TL.Language.prototype._ = TL.Language.prototype.getMessage; // keep it concise
 
 TL.Language.prototype.formatDate = function(date, format_name) {
 
-	if (date.constructor == Date) {
-		return this.formatJSDate(date, format_name);
-	}
+  if (date.constructor == Date) {
+    return this.formatJSDate(date, format_name);
+  }
 
-	if (date.constructor == TL.BigYear) {
-		return this.formatBigYear(date, format_name);
-	}
+  if (date.constructor == TL.BigYear) {
+    return this.formatBigYear(date, format_name);
+  }
 
-	if (date.data && date.data.date_obj) {
-		return this.formatDate(date.data.date_obj, format_name);
-	}
+  if (date.data && date.data.date_obj) {
+    return this.formatDate(date.data.date_obj, format_name);
+  }
 
-	trace("Unfamiliar date presented for formatting");
-	return date.toString();
+  trace("Unfamiliar date presented for formatting");
+  return date.toString();
 }
 
 TL.Language.prototype.formatBigYear = function(bigyear, format_name) {
-	var the_year = bigyear.year;
-	var format_list = this.bigdateformats[format_name] || this.bigdateformats['fallback'];
+  var the_year = bigyear.year;
+  var format_list = this.bigdateformats[format_name] || this.bigdateformats['fallback'];
 
-	if (format_list) {
-		for (var i = 0; i < format_list.length; i++) {
-			var tuple = format_list[i];
-			if (Math.abs(the_year / tuple[0]) > 1) {
-				// will we ever deal with distant future dates?
-				return TL.Language.formatNumber(Math.abs(the_year / tuple[0]),tuple[1])
-			}
-		};
+  if (format_list) {
+    for (var i = 0; i < format_list.length; i++) {
+      var tuple = format_list[i];
+      if (Math.abs(the_year / tuple[0]) > 1) {
+        // will we ever deal with distant future dates?
+        return TL.Language.formatNumber(Math.abs(the_year / tuple[0]),tuple[1])
+      }
+    };
 
-		return the_year.toString();
+    return the_year.toString();
 
-	} else {
-	    trace("Language file dateformats missing cosmological. Falling back.");
-	    return TL.Language.formatNumber(the_year,format_name);
-	}
+  } else {
+      trace("Language file dateformats missing cosmological. Falling back.");
+      return TL.Language.formatNumber(the_year,format_name);
+  }
 }
 
 TL.Language.prototype.formatJSDate = function(js_date, format_name) {
-	// ultimately we probably want this to work with TL.Date instead of (in addition to?) JS Date
-	// utc, timezone and timezoneClip are carry over from Steven Levithan implementation. We probably aren't going to use them.
-	var self = this;
-	var formatPeriod = function(fmt, value) {
-		var formats = self.period_labels[fmt];
-		if (formats) {
-			var fmt = (value < 12) ? formats[0] : formats[1];
-		}
-		return "<span class='tl-timeaxis-timesuffix'>" + fmt + "</span>";
-	}
+  // ultimately we probably want this to work with TL.Date instead of (in addition to?) JS Date
+  // utc, timezone and timezoneClip are carry over from Steven Levithan implementation. We probably aren't going to use them.
+  var self = this;
+  var formatPeriod = function(fmt, value) {
+    var formats = self.period_labels[fmt];
+    if (formats) {
+      var fmt = (value < 12) ? formats[0] : formats[1];
+    }
+    return "<span class='tl-timeaxis-timesuffix'>" + fmt + "</span>";
+  }
 
-	var utc = false,
-		timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
-		timezoneClip = /[^-+\dA-Z]/g;
-
-
-	if (!format_name) {
-		format_name = 'full';
-	}
-
-	var mask = this.dateformats[format_name] || TL.Language.fallback.dateformats[format_name];
-	if (!mask) {
-		mask = format_name; // allow custom format strings
-	}
+  var utc = false,
+    timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
+    timezoneClip = /[^-+\dA-Z]/g;
 
 
-	var	_ = utc ? "getUTC" : "get",
-		d = js_date[_ + "Date"](),
-		D = js_date[_ + "Day"](),
-		m = js_date[_ + "Month"](),
-		y = js_date[_ + "FullYear"](),
-		H = js_date[_ + "Hours"](),
-		M = js_date[_ + "Minutes"](),
-		s = js_date[_ + "Seconds"](),
-		L = js_date[_ + "Milliseconds"](),
-		o = utc ? 0 : js_date.getTimezoneOffset(),
-		year = "",
-		flags = {
-			d:    d,
-			dd:   TL.Util.pad(d),
-			ddd:  this.date.day_abbr[D],
-			dddd: this.date.day[D],
-			m:    m + 1,
-			mm:   TL.Util.pad(m + 1),
-			mmm:  this.date.month_abbr[m],
-			mmmm: this.date.month[m],
-			yy:   String(y).slice(2),
-			yyyy: (y < 0 && this.has_negative_year_modifier()) ? Math.abs(y) : y,
-			h:    H % 12 || 12,
-			hh:   TL.Util.pad(H % 12 || 12),
-			H:    H,
-			HH:   TL.Util.pad(H),
-			M:    M,
-			MM:   TL.Util.pad(M),
-			s:    s,
-			ss:   TL.Util.pad(s),
-			l:    TL.Util.pad(L, 3),
-			L:    TL.Util.pad(L > 99 ? Math.round(L / 10) : L),
-			t:    formatPeriod('t',H),
-			tt:   formatPeriod('tt',H),
-			T:    formatPeriod('T',H),
-			TT:   formatPeriod('TT',H),
-			Z:    utc ? "UTC" : (String(js_date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
-			o:    (o > 0 ? "-" : "+") + TL.Util.pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
-			S:    ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
-		};
+  if (!format_name) {
+    format_name = 'full';
+  }
 
-		var formatted = mask.replace(TL.Language.DATE_FORMAT_TOKENS, function ($0) {
-			return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
-		});
+  var mask = this.dateformats[format_name] || TL.Language.fallback.dateformats[format_name];
+  if (!mask) {
+    mask = format_name; // allow custom format strings
+  }
 
-		return this._applyEra(formatted, y);
+
+  var	_ = utc ? "getUTC" : "get",
+    d = js_date[_ + "Date"](),
+    D = js_date[_ + "Day"](),
+    m = js_date[_ + "Month"](),
+    y = js_date[_ + "FullYear"](),
+    H = js_date[_ + "Hours"](),
+    M = js_date[_ + "Minutes"](),
+    s = js_date[_ + "Seconds"](),
+    L = js_date[_ + "Milliseconds"](),
+    o = utc ? 0 : js_date.getTimezoneOffset(),
+    year = "",
+    flags = {
+      d:    d,
+      dd:   TL.Util.pad(d),
+      ddd:  this.date.day_abbr[D],
+      dddd: this.date.day[D],
+      m:    m + 1,
+      mm:   TL.Util.pad(m + 1),
+      mmm:  this.date.month_abbr[m],
+      mmmm: this.date.month[m],
+      yy:   String(y).slice(2),
+      yyyy: (y < 0 && this.has_negative_year_modifier()) ? Math.abs(y) : y,
+      h:    H % 12 || 12,
+      hh:   TL.Util.pad(H % 12 || 12),
+      H:    H,
+      HH:   TL.Util.pad(H),
+      M:    M,
+      MM:   TL.Util.pad(M),
+      s:    s,
+      ss:   TL.Util.pad(s),
+      l:    TL.Util.pad(L, 3),
+      L:    TL.Util.pad(L > 99 ? Math.round(L / 10) : L),
+      t:    formatPeriod('t',H),
+      tt:   formatPeriod('tt',H),
+      T:    formatPeriod('T',H),
+      TT:   formatPeriod('TT',H),
+      Z:    utc ? "UTC" : (String(js_date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
+      o:    (o > 0 ? "-" : "+") + TL.Util.pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
+      S:    ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10]
+    };
+
+    var formatted = mask.replace(TL.Language.DATE_FORMAT_TOKENS, function ($0) {
+      return $0 in flags ? flags[$0] : $0.slice(1, $0.length - 1);
+    });
+
+    return this._applyEra(formatted, y);
 }
 
 TL.Language.prototype.has_negative_year_modifier = function() {
-	return Boolean(this.era_labels.negative_year.prefix || this.era_labels.negative_year.suffix);
+  return Boolean(this.era_labels.negative_year.prefix || this.era_labels.negative_year.suffix);
 }
 
 
 TL.Language.prototype._applyEra = function(formatted_date, original_year) {
-	// trusts that the formatted_date was property created with a non-negative year if there are
-	// negative affixes to be applied
-	var labels = (original_year < 0) ? this.era_labels.negative_year : this.era_labels.positive_year;
-	var result = '';
-	if (labels.prefix) { result += '<span>' + labels.prefix + '</span> ' }
-	result += formatted_date;
-	if (labels.suffix) { result += ' <span>' + labels.suffix + '</span>' }
-	return result;
+  // trusts that the formatted_date was property created with a non-negative year if there are
+  // negative affixes to be applied
+  var labels = (original_year < 0) ? this.era_labels.negative_year : this.era_labels.positive_year;
+  var result = '';
+  if (labels.prefix) { result += '<span>' + labels.prefix + '</span> ' }
+  result += formatted_date;
+  if (labels.suffix) { result += ' <span>' + labels.suffix + '</span>' }
+  return result;
 }
 
 
@@ -3861,21 +3861,21 @@ TL.Language.DATE_FORMAT_TOKENS = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|
 
 TL.Language.languages = {
 /*
-	This represents the canonical list of message keys which translation files should handle. The existence of the 'en.json' file should not mislead you.
-	It is provided more as a starting point for someone who wants to provide a
-	new translation since the form for non-default languages (JSON not JS) is slightly different from what appears below. Also, those files have some message keys grandfathered in from TimelineJS2 which we'd rather not have to
-	get "re-translated" if we use them.
+  This represents the canonical list of message keys which translation files should handle. The existence of the 'en.json' file should not mislead you.
+  It is provided more as a starting point for someone who wants to provide a
+  new translation since the form for non-default languages (JSON not JS) is slightly different from what appears below. Also, those files have some message keys grandfathered in from TimelineJS2 which we'd rather not have to
+  get "re-translated" if we use them.
 */
-	en: {
-		name: 					"English",
-		lang: 					"en",
+  en: {
+    name: 					"English",
+    lang: 					"en",
         api: {
             wikipedia:          "en" // the two letter code at the beginning of the Wikipedia subdomain for this language
         },
-		messages: {
-			loading: 			            		  "Loading",
-			wikipedia: 			            		"From Wikipedia, the free encyclopedia",
-			error: 				            			"Error",
+    messages: {
+      loading: 			            		  "Loading",
+      wikipedia: 			            		"From Wikipedia, the free encyclopedia",
+      error: 				            			"Error",
       contract_timeline:              "Contract Timeline",
       return_to_title:                "Return to Title",
       loading_content:                "Loading Content",
@@ -3912,65 +3912,65 @@ TL.Language.languages = {
       axis_helper_no_options_err:     "Axis helper must be configured with options",
       axis_helper_scale_err:          "No AxisHelper available for scale",
       invalid_integer_option:       	"Invalid option value—must be a whole number."
-		},
-		date: {
+    },
+    date: {
       month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       month_abbr: ["Jan.", "Feb.", "March", "April", "May", "June", "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."],
       day: ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
       day_abbr: ["Sun.","Mon.", "Tues.", "Wed.", "Thurs.", "Fri.", "Sat."]
-		},
-		era_labels: { // specify prefix or suffix to apply to formatted date. Blanks mean no change.
-	        positive_year: {
-	        	prefix: '',
-	        	suffix: ''
-	        },
-	        negative_year: { // if either of these is specified, the year will be converted to positive before they are applied
-	        	prefix: '',
-	        	suffix: 'BCE'
-	        }
+    },
+    era_labels: { // specify prefix or suffix to apply to formatted date. Blanks mean no change.
+          positive_year: {
+            prefix: '',
+            suffix: ''
+          },
+          negative_year: { // if either of these is specified, the year will be converted to positive before they are applied
+            prefix: '',
+            suffix: 'BCE'
+          }
         },
         period_labels: {  // use of t/tt/T/TT legacy of original Timeline date format
-			t: ['a', 'p'],
-			tt: ['am', 'pm'],
-			T: ['A', 'P'],
-			TT: ['AM', 'PM']
-		},
-		dateformats: {
-			year: "yyyy",
-			month_short: "mmm",
-			month: "mmmm yyyy",
-			full_short: "mmm d",
-			full: "mmmm d',' yyyy",
-			time: "h:MM:ss TT' <small>'mmmm d',' yyyy'</small>'",
-			time_short: "h:MM:ss TT",
-			time_no_seconds_short: "h:MM TT",
-			time_no_minutes_short: "h TT",
-			time_no_seconds_small_date: "h:MM TT' <small>'mmmm d',' yyyy'</small>'",
-			time_milliseconds: "l",
-			full_long: "mmm d',' yyyy 'at' h:MM TT",
-			full_long_small_date: "h:MM TT' <small>mmm d',' yyyy'</small>'"
-		},
-		bigdateformats: {
-			fallback: [ // a list of tuples, with t[0] an order of magnitude and t[1] a format string. format string syntax may change...
-				[1000000000,"%.2f billion years ago"],
-				[1000000,"%.1f million years ago"],
-				[1000,"%.1f thousand years ago"],
-				[1, "%f years ago"]
-			],
-		    compact: [
-				[1000000000,"%.2f bya"],
-				[1000000,"%.1f mya"],
-				[1000,"%.1f kya"],
-				[1, "%f years ago"]
-			],
-		    verbose: [
-				[1000000000,"%.2f billion years ago"],
-				[1000000,"%.1f million years ago"],
-				[1000,"%.1f thousand years ago"],
-				[1, "%f years ago"]
-			]
-		}
-	}
+      t: ['a', 'p'],
+      tt: ['am', 'pm'],
+      T: ['A', 'P'],
+      TT: ['AM', 'PM']
+    },
+    dateformats: {
+      year: "yyyy",
+      month_short: "mmm",
+      month: "mmmm yyyy",
+      full_short: "mmm d",
+      full: "mmmm d',' yyyy",
+      time: "h:MM:ss TT' <small>'mmmm d',' yyyy'</small>'",
+      time_short: "h:MM:ss TT",
+      time_no_seconds_short: "h:MM TT",
+      time_no_minutes_short: "h TT",
+      time_no_seconds_small_date: "h:MM TT' <small>'mmmm d',' yyyy'</small>'",
+      time_milliseconds: "l",
+      full_long: "mmm d',' yyyy 'at' h:MM TT",
+      full_long_small_date: "h:MM TT' <small>mmm d',' yyyy'</small>'"
+    },
+    bigdateformats: {
+      fallback: [ // a list of tuples, with t[0] an order of magnitude and t[1] a format string. format string syntax may change...
+        [1000000000,"%.2f billion years ago"],
+        [1000000,"%.1f million years ago"],
+        [1000,"%.1f thousand years ago"],
+        [1, "%f years ago"]
+      ],
+        compact: [
+        [1000000000,"%.2f bya"],
+        [1000000,"%.1f mya"],
+        [1000,"%.1f kya"],
+        [1, "%f years ago"]
+      ],
+        verbose: [
+        [1000000000,"%.2f billion years ago"],
+        [1000000,"%.1f million years ago"],
+        [1000,"%.1f thousand years ago"],
+        [1, "%f years ago"]
+      ]
+    }
+  }
 }
 
 TL.Language.fallback = new TL.Language();
@@ -3981,7 +3981,7 @@ TL.Language.fallback = new TL.Language();
 ********************************************** */
 
 /*  TL.I18NMixins
-    assumes that its class has an options object with a TL.Language instance    
+    assumes that its class has an options object with a TL.Language instance
 ================================================== */
 TL.I18NMixins = {
     getLanguage: function() {
@@ -4013,17 +4013,17 @@ TL.I18NMixins = {
  *
  * KeySpline - use bezier curve for transition easing function
  * Copyright (c) 2012 Gaetan Renaudeau <renaudeau.gaetan@gmail.com>
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -4041,7 +4041,7 @@ TL.I18NMixins = {
  */
 
 TL.Easings = {
-    ease:        [0.25, 0.1, 0.25, 1.0], 
+    ease:        [0.25, 0.1, 0.25, 1.0],
     linear:      [0.00, 0.0, 1.00, 1.0],
     easein:     [0.42, 0.0, 1.00, 1.0],
     easeout:    [0.00, 0.0, 0.58, 1.0],
@@ -4049,198 +4049,198 @@ TL.Easings = {
 };
 
 TL.Ease = {
-	KeySpline: function(a) {
-	//KeySpline: function(mX1, mY1, mX2, mY2) {
-		this.get = function(aX) {
-			if (a[0] == a[1] && a[2] == a[3]) return aX; // linear
-			return CalcBezier(GetTForX(aX), a[1], a[3]);
-		}
+  KeySpline: function(a) {
+  //KeySpline: function(mX1, mY1, mX2, mY2) {
+    this.get = function(aX) {
+      if (a[0] == a[1] && a[2] == a[3]) return aX; // linear
+      return CalcBezier(GetTForX(aX), a[1], a[3]);
+    }
 
-		function A(aA1, aA2) {
-			return 1.0 - 3.0 * aA2 + 3.0 * aA1;
-		}
+    function A(aA1, aA2) {
+      return 1.0 - 3.0 * aA2 + 3.0 * aA1;
+    }
 
-		function B(aA1, aA2) {
-			return 3.0 * aA2 - 6.0 * aA1;
-		}
+    function B(aA1, aA2) {
+      return 3.0 * aA2 - 6.0 * aA1;
+    }
 
-		function C(aA1) {
-			return 3.0 * aA1;
-		}
+    function C(aA1) {
+      return 3.0 * aA1;
+    }
 
-		// Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
+    // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
 
-		function CalcBezier(aT, aA1, aA2) {
-			return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT;
-		}
+    function CalcBezier(aT, aA1, aA2) {
+      return ((A(aA1, aA2) * aT + B(aA1, aA2)) * aT + C(aA1)) * aT;
+    }
 
-		// Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
+    // Returns dx/dt given t, x1, and x2, or dy/dt given t, y1, and y2.
 
-		function GetSlope(aT, aA1, aA2) {
-			return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1);
-		}
+    function GetSlope(aT, aA1, aA2) {
+      return 3.0 * A(aA1, aA2) * aT * aT + 2.0 * B(aA1, aA2) * aT + C(aA1);
+    }
 
-		function GetTForX(aX) {
-			// Newton raphson iteration
-			var aGuessT = aX;
-			for (var i = 0; i < 4; ++i) {
-				var currentSlope = GetSlope(aGuessT, a[0], a[2]);
-				if (currentSlope == 0.0) return aGuessT;
-				var currentX = CalcBezier(aGuessT, a[0], a[2]) - aX;
-				aGuessT -= currentX / currentSlope;
-			}
-			return aGuessT;
-		}
-	},
-	
-	easeInSpline: function(t) {
-		var spline = new TL.Ease.KeySpline(TL.Easings.easein);
-		return spline.get(t);
-	},
-	
-	easeInOutExpo: function(t) {
-		var spline = new TL.Ease.KeySpline(TL.Easings.easein);
-		return spline.get(t);
-	},
-	
-	easeOut: function(t) {
-		return Math.sin(t * Math.PI / 2);
-	},
-	easeOutStrong: function(t) {
-		return (t == 1) ? 1 : 1 - Math.pow(2, - 10 * t);
-	},
-	easeIn: function(t) {
-		return t * t;
-	},
-	easeInStrong: function(t) {
-		return (t == 0) ? 0 : Math.pow(2, 10 * (t - 1));
-	},
-	easeOutBounce: function(pos) {
-		if ((pos) < (1 / 2.75)) {
-			return (7.5625 * pos * pos);
-		} else if (pos < (2 / 2.75)) {
-			return (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
-		} else if (pos < (2.5 / 2.75)) {
-			return (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
-		} else {
-			return (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
-		}
-	},
-	easeInBack: function(pos) {
-		var s = 1.70158;
-		return (pos) * pos * ((s + 1) * pos - s);
-	},
-	easeOutBack: function(pos) {
-		var s = 1.70158;
-		return (pos = pos - 1) * pos * ((s + 1) * pos + s) + 1;
-	},
-	bounce: function(t) {
-		if (t < (1 / 2.75)) {
-			return 7.5625 * t * t;
-		}
-		if (t < (2 / 2.75)) {
-			return 7.5625 * (t -= (1.5 / 2.75)) * t + 0.75;
-		}
-		if (t < (2.5 / 2.75)) {
-			return 7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375;
-		}
-		return 7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375;
-	},
-	bouncePast: function(pos) {
-		if (pos < (1 / 2.75)) {
-			return (7.5625 * pos * pos);
-		} else if (pos < (2 / 2.75)) {
-			return 2 - (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
-		} else if (pos < (2.5 / 2.75)) {
-			return 2 - (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
-		} else {
-			return 2 - (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
-		}
-	},
-	swingTo: function(pos) {
-		var s = 1.70158;
-		return (pos -= 1) * pos * ((s + 1) * pos + s) + 1;
-	},
-	swingFrom: function(pos) {
-		var s = 1.70158;
-		return pos * pos * ((s + 1) * pos - s);
-	},
-	elastic: function(pos) {
-		return -1 * Math.pow(4, - 8 * pos) * Math.sin((pos * 6 - 1) * (2 * Math.PI) / 2) + 1;
-	},
-	spring: function(pos) {
-		return 1 - (Math.cos(pos * 4.5 * Math.PI) * Math.exp(-pos * 6));
-	},
-	blink: function(pos, blinks) {
-		return Math.round(pos * (blinks || 5)) % 2;
-	},
-	pulse: function(pos, pulses) {
-		return (-Math.cos((pos * ((pulses || 5) - .5) * 2) * Math.PI) / 2) + .5;
-	},
-	wobble: function(pos) {
-		return (-Math.cos(pos * Math.PI * (9 * pos)) / 2) + 0.5;
-	},
-	sinusoidal: function(pos) {
-		return (-Math.cos(pos * Math.PI) / 2) + 0.5;
-	},
-	flicker: function(pos) {
-		var pos = pos + (Math.random() - 0.5) / 5;
-		return easings.sinusoidal(pos < 0 ? 0 : pos > 1 ? 1 : pos);
-	},
-	mirror: function(pos) {
-		if (pos < 0.5) return easings.sinusoidal(pos * 2);
-		else return easings.sinusoidal(1 - (pos - 0.5) * 2);
-	},
-	// accelerating from zero velocity
-	easeInQuad: function (t) { return t*t },
-	// decelerating to zero velocity
-	easeOutQuad: function (t) { return t*(2-t) },
-	// acceleration until halfway, then deceleration
-	easeInOutQuad: function (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
-	// accelerating from zero velocity 
-	easeInCubic: function (t) { return t*t*t },
-	// decelerating to zero velocity 
-	easeOutCubic: function (t) { return (--t)*t*t+1 },
-	// acceleration until halfway, then deceleration 
-	easeInOutCubic: function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 },
-	// accelerating from zero velocity 
-	easeInQuart: function (t) { return t*t*t*t },
-	// decelerating to zero velocity 
-	easeOutQuart: function (t) { return 1-(--t)*t*t*t },
-	// acceleration until halfway, then deceleration
-	easeInOutQuart: function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t },
-	// accelerating from zero velocity
-	easeInQuint: function (t) { return t*t*t*t*t },
-	// decelerating to zero velocity
-	easeOutQuint: function (t) { return 1+(--t)*t*t*t*t },
-	// acceleration until halfway, then deceleration 
-	easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
+    function GetTForX(aX) {
+      // Newton raphson iteration
+      var aGuessT = aX;
+      for (var i = 0; i < 4; ++i) {
+        var currentSlope = GetSlope(aGuessT, a[0], a[2]);
+        if (currentSlope == 0.0) return aGuessT;
+        var currentX = CalcBezier(aGuessT, a[0], a[2]) - aX;
+        aGuessT -= currentX / currentSlope;
+      }
+      return aGuessT;
+    }
+  },
+
+  easeInSpline: function(t) {
+    var spline = new TL.Ease.KeySpline(TL.Easings.easein);
+    return spline.get(t);
+  },
+
+  easeInOutExpo: function(t) {
+    var spline = new TL.Ease.KeySpline(TL.Easings.easein);
+    return spline.get(t);
+  },
+
+  easeOut: function(t) {
+    return Math.sin(t * Math.PI / 2);
+  },
+  easeOutStrong: function(t) {
+    return (t == 1) ? 1 : 1 - Math.pow(2, - 10 * t);
+  },
+  easeIn: function(t) {
+    return t * t;
+  },
+  easeInStrong: function(t) {
+    return (t == 0) ? 0 : Math.pow(2, 10 * (t - 1));
+  },
+  easeOutBounce: function(pos) {
+    if ((pos) < (1 / 2.75)) {
+      return (7.5625 * pos * pos);
+    } else if (pos < (2 / 2.75)) {
+      return (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
+    } else if (pos < (2.5 / 2.75)) {
+      return (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
+    } else {
+      return (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
+    }
+  },
+  easeInBack: function(pos) {
+    var s = 1.70158;
+    return (pos) * pos * ((s + 1) * pos - s);
+  },
+  easeOutBack: function(pos) {
+    var s = 1.70158;
+    return (pos = pos - 1) * pos * ((s + 1) * pos + s) + 1;
+  },
+  bounce: function(t) {
+    if (t < (1 / 2.75)) {
+      return 7.5625 * t * t;
+    }
+    if (t < (2 / 2.75)) {
+      return 7.5625 * (t -= (1.5 / 2.75)) * t + 0.75;
+    }
+    if (t < (2.5 / 2.75)) {
+      return 7.5625 * (t -= (2.25 / 2.75)) * t + 0.9375;
+    }
+    return 7.5625 * (t -= (2.625 / 2.75)) * t + 0.984375;
+  },
+  bouncePast: function(pos) {
+    if (pos < (1 / 2.75)) {
+      return (7.5625 * pos * pos);
+    } else if (pos < (2 / 2.75)) {
+      return 2 - (7.5625 * (pos -= (1.5 / 2.75)) * pos + .75);
+    } else if (pos < (2.5 / 2.75)) {
+      return 2 - (7.5625 * (pos -= (2.25 / 2.75)) * pos + .9375);
+    } else {
+      return 2 - (7.5625 * (pos -= (2.625 / 2.75)) * pos + .984375);
+    }
+  },
+  swingTo: function(pos) {
+    var s = 1.70158;
+    return (pos -= 1) * pos * ((s + 1) * pos + s) + 1;
+  },
+  swingFrom: function(pos) {
+    var s = 1.70158;
+    return pos * pos * ((s + 1) * pos - s);
+  },
+  elastic: function(pos) {
+    return -1 * Math.pow(4, - 8 * pos) * Math.sin((pos * 6 - 1) * (2 * Math.PI) / 2) + 1;
+  },
+  spring: function(pos) {
+    return 1 - (Math.cos(pos * 4.5 * Math.PI) * Math.exp(-pos * 6));
+  },
+  blink: function(pos, blinks) {
+    return Math.round(pos * (blinks || 5)) % 2;
+  },
+  pulse: function(pos, pulses) {
+    return (-Math.cos((pos * ((pulses || 5) - .5) * 2) * Math.PI) / 2) + .5;
+  },
+  wobble: function(pos) {
+    return (-Math.cos(pos * Math.PI * (9 * pos)) / 2) + 0.5;
+  },
+  sinusoidal: function(pos) {
+    return (-Math.cos(pos * Math.PI) / 2) + 0.5;
+  },
+  flicker: function(pos) {
+    var pos = pos + (Math.random() - 0.5) / 5;
+    return easings.sinusoidal(pos < 0 ? 0 : pos > 1 ? 1 : pos);
+  },
+  mirror: function(pos) {
+    if (pos < 0.5) return easings.sinusoidal(pos * 2);
+    else return easings.sinusoidal(1 - (pos - 0.5) * 2);
+  },
+  // accelerating from zero velocity
+  easeInQuad: function (t) { return t*t },
+  // decelerating to zero velocity
+  easeOutQuad: function (t) { return t*(2-t) },
+  // acceleration until halfway, then deceleration
+  easeInOutQuad: function (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t },
+  // accelerating from zero velocity
+  easeInCubic: function (t) { return t*t*t },
+  // decelerating to zero velocity
+  easeOutCubic: function (t) { return (--t)*t*t+1 },
+  // acceleration until halfway, then deceleration
+  easeInOutCubic: function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 },
+  // accelerating from zero velocity
+  easeInQuart: function (t) { return t*t*t*t },
+  // decelerating to zero velocity
+  easeOutQuart: function (t) { return 1-(--t)*t*t*t },
+  // acceleration until halfway, then deceleration
+  easeInOutQuart: function (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t },
+  // accelerating from zero velocity
+  easeInQuint: function (t) { return t*t*t*t*t },
+  // decelerating to zero velocity
+  easeOutQuint: function (t) { return 1+(--t)*t*t*t*t },
+  // acceleration until halfway, then deceleration
+  easeInOutQuint: function (t) { return t<.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t }
 };
 
 /*
 Math.easeInExpo = function (t, b, c, d) {
-	return c * Math.pow( 2, 10 * (t/d - 1) ) + b;
+  return c * Math.pow( 2, 10 * (t/d - 1) ) + b;
 };
 
-		
+
 
 // exponential easing out - decelerating to zero velocity
 
 
 Math.easeOutExpo = function (t, b, c, d) {
-	return c * ( -Math.pow( 2, -10 * t/d ) + 1 ) + b;
+  return c * ( -Math.pow( 2, -10 * t/d ) + 1 ) + b;
 };
 
-		
+
 
 // exponential easing in/out - accelerating until halfway, then decelerating
 
 
 Math.easeInOutExpo = function (t, b, c, d) {
-	t /= d/2;
-	if (t < 1) return c/2 * Math.pow( 2, 10 * (t - 1) ) + b;
-	t--;
-	return c/2 * ( -Math.pow( 2, -10 * t) + 2 ) + b;
+  t /= d/2;
+  if (t < 1) return c/2 * Math.pow( 2, 10 * (t - 1) ) + b;
+  t--;
+  return c/2 * ( -Math.pow( 2, -10 * t) + 2 ) + b;
 };
 */
 
@@ -4249,100 +4249,100 @@ Math.easeInOutExpo = function (t, b, c, d) {
 ********************************************** */
 
 /*	TL.Animate
-	Basic animation
+  Basic animation
 ================================================== */
 
 TL.Animate = function(el, options) {
-	var animation = new tlanimate(el, options),
-		webkit_timeout;
-		/*
-		// POSSIBLE ISSUE WITH WEBKIT FUTURE BUILDS
-	var onWebKitTimeout = function() {
+  var animation = new tlanimate(el, options),
+    webkit_timeout;
+    /*
+    // POSSIBLE ISSUE WITH WEBKIT FUTURE BUILDS
+  var onWebKitTimeout = function() {
 
-		animation.stop(true);
-	}
-	if (TL.Browser.webkit) {
-		webkit_timeout = setTimeout(function(){onWebKitTimeout()}, options.duration);
-	}
-	*/
-	return animation;
+    animation.stop(true);
+  }
+  if (TL.Browser.webkit) {
+    webkit_timeout = setTimeout(function(){onWebKitTimeout()}, options.duration);
+  }
+  */
+  return animation;
 };
 
 
 /*	Based on: Morpheus
-	https://github.com/ded/morpheus - (c) Dustin Diaz 2011
-	License MIT
+  https://github.com/ded/morpheus - (c) Dustin Diaz 2011
+  License MIT
 ================================================== */
 window.tlanimate = (function() {
 
-	var doc = document,
-		win = window,
-		perf = win.performance,
-		perfNow = perf && (perf.now || perf.webkitNow || perf.msNow || perf.mozNow),
-		now = perfNow ? function () { return perfNow.call(perf) } : function () { return +new Date() },
-		html = doc.documentElement,
-		fixTs = false, // feature detected below
-		thousand = 1000,
-		rgbOhex = /^rgb\(|#/,
-		relVal = /^([+\-])=([\d\.]+)/,
-		numUnit = /^(?:[\+\-]=?)?\d+(?:\.\d+)?(%|in|cm|mm|em|ex|pt|pc|px)$/,
-		rotate = /rotate\(((?:[+\-]=)?([\-\d\.]+))deg\)/,
-		scale = /scale\(((?:[+\-]=)?([\d\.]+))\)/,
-		skew = /skew\(((?:[+\-]=)?([\-\d\.]+))deg, ?((?:[+\-]=)?([\-\d\.]+))deg\)/,
-		translate = /translate\(((?:[+\-]=)?([\-\d\.]+))px, ?((?:[+\-]=)?([\-\d\.]+))px\)/,
-		// these elements do not require 'px'
-		unitless = { lineHeight: 1, zoom: 1, zIndex: 1, opacity: 1, transform: 1};
+  var doc = document,
+    win = window,
+    perf = win.performance,
+    perfNow = perf && (perf.now || perf.webkitNow || perf.msNow || perf.mozNow),
+    now = perfNow ? function () { return perfNow.call(perf) } : function () { return +new Date() },
+    html = doc.documentElement,
+    fixTs = false, // feature detected below
+    thousand = 1000,
+    rgbOhex = /^rgb\(|#/,
+    relVal = /^([+\-])=([\d\.]+)/,
+    numUnit = /^(?:[\+\-]=?)?\d+(?:\.\d+)?(%|in|cm|mm|em|ex|pt|pc|px)$/,
+    rotate = /rotate\(((?:[+\-]=)?([\-\d\.]+))deg\)/,
+    scale = /scale\(((?:[+\-]=)?([\d\.]+))\)/,
+    skew = /skew\(((?:[+\-]=)?([\-\d\.]+))deg, ?((?:[+\-]=)?([\-\d\.]+))deg\)/,
+    translate = /translate\(((?:[+\-]=)?([\-\d\.]+))px, ?((?:[+\-]=)?([\-\d\.]+))px\)/,
+    // these elements do not require 'px'
+    unitless = { lineHeight: 1, zoom: 1, zIndex: 1, opacity: 1, transform: 1};
 
   // which property name does this browser use for transform
-	var transform = function () {
-		var styles = doc.createElement('a').style,
-			props = ['webkitTransform', 'MozTransform', 'OTransform', 'msTransform', 'Transform'],
-			i;
+  var transform = function () {
+    var styles = doc.createElement('a').style,
+      props = ['webkitTransform', 'MozTransform', 'OTransform', 'msTransform', 'Transform'],
+      i;
 
-		for (i = 0; i < props.length; i++) {
-			if (props[i] in styles) return props[i]
-		};
-	}();
+    for (i = 0; i < props.length; i++) {
+      if (props[i] in styles) return props[i]
+    };
+  }();
 
-	// does this browser support the opacity property?
-	var opacity = function () {
-		return typeof doc.createElement('a').style.opacity !== 'undefined'
-	}();
+  // does this browser support the opacity property?
+  var opacity = function () {
+    return typeof doc.createElement('a').style.opacity !== 'undefined'
+  }();
 
-	// initial style is determined by the elements themselves
-	var getStyle = doc.defaultView && doc.defaultView.getComputedStyle ?
-	function (el, property) {
-		property = property == 'transform' ? transform : property
-		property = camelize(property)
-		var value = null,
-			computed = doc.defaultView.getComputedStyle(el, '');
+  // initial style is determined by the elements themselves
+  var getStyle = doc.defaultView && doc.defaultView.getComputedStyle ?
+  function (el, property) {
+    property = property == 'transform' ? transform : property
+    property = camelize(property)
+    var value = null,
+      computed = doc.defaultView.getComputedStyle(el, '');
 
-		computed && (value = computed[property]);
-		return el.style[property] || value;
-	} : html.currentStyle ?
-
-    function (el, property) {
-		property = camelize(property)
-
-		if (property == 'opacity') {
-			var val = 100
-			try {
-				val = el.filters['DXImageTransform.Microsoft.Alpha'].opacity
-			} catch (e1) {
-				try {
-					val = el.filters('alpha').opacity
-				} catch (e2) {
-
-				}
-			}
-			return val / 100
-		}
-		var value = el.currentStyle ? el.currentStyle[property] : null
-		return el.style[property] || value
-	} :
+    computed && (value = computed[property]);
+    return el.style[property] || value;
+  } : html.currentStyle ?
 
     function (el, property) {
-		return el.style[camelize(property)]
+    property = camelize(property)
+
+    if (property == 'opacity') {
+      var val = 100
+      try {
+        val = el.filters['DXImageTransform.Microsoft.Alpha'].opacity
+      } catch (e1) {
+        try {
+          val = el.filters('alpha').opacity
+        } catch (e2) {
+
+        }
+      }
+      return val / 100
+    }
+    var value = el.currentStyle ? el.currentStyle[property] : null
+    return el.style[property] || value
+  } :
+
+    function (el, property) {
+    return el.style[camelize(property)]
     }
 
   var frame = function () {
@@ -4363,11 +4363,11 @@ window.tlanimate = (function() {
 
   var children = []
 
-	frame(function(timestamp) {
-	  	// feature-detect if rAF and now() are of the same scale (epoch or high-res),
-		// if not, we have to do a timestamp fix on each frame
-		fixTs = timestamp > 1e12 != now() > 1e12
-	})
+  frame(function(timestamp) {
+      // feature-detect if rAF and now() are of the same scale (epoch or high-res),
+    // if not, we have to do a timestamp fix on each frame
+    fixTs = timestamp > 1e12 != now() > 1e12
+  })
 
   function has(array, elem, i) {
     if (Array.prototype.indexOf) return array.indexOf(elem)
@@ -4381,7 +4381,7 @@ window.tlanimate = (function() {
     // if we're using a high res timer, make sure timestamp is not the old epoch-based value.
     // http://updates.html5rocks.com/2012/05/requestAnimationFrame-API-now-with-sub-millisecond-precision
     if (perfNow && timestamp > 1e12) timestamp = now()
-	if (fixTs) timestamp = now()
+  if (fixTs) timestamp = now()
     for (i = count; i--;) {
       children[i](timestamp)
     }
@@ -4685,71 +4685,71 @@ window.tlanimate = (function() {
 ********************************************** */
 
 /*	TL.Point
-	Inspired by Leaflet
-	TL.Point represents a point with x and y coordinates.
+  Inspired by Leaflet
+  TL.Point represents a point with x and y coordinates.
 ================================================== */
 
 TL.Point = function (/*Number*/ x, /*Number*/ y, /*Boolean*/ round) {
-	this.x = (round ? Math.round(x) : x);
-	this.y = (round ? Math.round(y) : y);
+  this.x = (round ? Math.round(x) : x);
+  this.y = (round ? Math.round(y) : y);
 };
 
 TL.Point.prototype = {
-	add: function (point) {
-		return this.clone()._add(point);
-	},
+  add: function (point) {
+    return this.clone()._add(point);
+  },
 
-	_add: function (point) {
-		this.x += point.x;
-		this.y += point.y;
-		return this;
-	},
+  _add: function (point) {
+    this.x += point.x;
+    this.y += point.y;
+    return this;
+  },
 
-	subtract: function (point) {
-		return this.clone()._subtract(point);
-	},
+  subtract: function (point) {
+    return this.clone()._subtract(point);
+  },
 
-	// destructive subtract (faster)
-	_subtract: function (point) {
-		this.x -= point.x;
-		this.y -= point.y;
-		return this;
-	},
+  // destructive subtract (faster)
+  _subtract: function (point) {
+    this.x -= point.x;
+    this.y -= point.y;
+    return this;
+  },
 
-	divideBy: function (num, round) {
-		return new TL.Point(this.x / num, this.y / num, round);
-	},
+  divideBy: function (num, round) {
+    return new TL.Point(this.x / num, this.y / num, round);
+  },
 
-	multiplyBy: function (num) {
-		return new TL.Point(this.x * num, this.y * num);
-	},
+  multiplyBy: function (num) {
+    return new TL.Point(this.x * num, this.y * num);
+  },
 
-	distanceTo: function (point) {
-		var x = point.x - this.x,
-			y = point.y - this.y;
-		return Math.sqrt(x * x + y * y);
-	},
+  distanceTo: function (point) {
+    var x = point.x - this.x,
+      y = point.y - this.y;
+    return Math.sqrt(x * x + y * y);
+  },
 
-	round: function () {
-		return this.clone()._round();
-	},
+  round: function () {
+    return this.clone()._round();
+  },
 
-	// destructive round
-	_round: function () {
-		this.x = Math.round(this.x);
-		this.y = Math.round(this.y);
-		return this;
-	},
+  // destructive round
+  _round: function () {
+    this.x = Math.round(this.x);
+    this.y = Math.round(this.y);
+    return this;
+  },
 
-	clone: function () {
-		return new TL.Point(this.x, this.y);
-	},
+  clone: function () {
+    return new TL.Point(this.x, this.y);
+  },
 
-	toString: function () {
-		return 'Point(' +
-				TL.Util.formatNum(this.x) + ', ' +
-				TL.Util.formatNum(this.y) + ')';
-	}
+  toString: function () {
+    return 'Point(' +
+        TL.Util.formatNum(this.x) + ', ' +
+        TL.Util.formatNum(this.y) + ')';
+  }
 };
 
 /* **********************************************
@@ -4757,93 +4757,93 @@ TL.Point.prototype = {
 ********************************************** */
 
 /*	TL.DomMixins
-	DOM methods used regularly
-	Assumes there is a _el.container and animator
+  DOM methods used regularly
+  Assumes there is a _el.container and animator
 ================================================== */
 TL.DomMixins = {
-	
-	/*	Adding, Hiding, Showing etc
-	================================================== */
-	show: function(animate) {
-		if (animate) {
-			/*
-			this.animator = TL.Animate(this._el.container, {
-				left: 		-(this._el.container.offsetWidth * n) + "px",
-				duration: 	this.options.duration,
-				easing: 	this.options.ease
-			});
-			*/
-		} else {
-			this._el.container.style.display = "block";
-		}
-	},
-	
-	hide: function(animate) {
-		this._el.container.style.display = "none";
-	},
-	
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-		this.onAdd();
-	},
-	
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-		this.onRemove();
-	},
-	
-	/*	Animate to Position
-	================================================== */
-	animatePosition: function(pos, el) {
-		var ani = {
-			duration: 	this.options.duration,
-			easing: 	this.options.ease
-		};
-		for (var name in pos) {
-			if (pos.hasOwnProperty(name)) {
-				ani[name] = pos[name] + "px";
-			}
-		}
-		
-		if (this.animator) {
-			this.animator.stop();
-		}
-		this.animator = TL.Animate(el, ani);
-	},
-	
-	/*	Events
-	================================================== */
-	
-	onLoaded: function() {
-		this.fire("loaded", this.data);
-	},
-	
-	onAdd: function() {
-		this.fire("added", this.data);
-	},
 
-	onRemove: function() {
-		this.fire("removed", this.data);
-	},
-	
-	/*	Set the Position
-	================================================== */
-	setPosition: function(pos, el) {
-		for (var name in pos) {
-			if (pos.hasOwnProperty(name)) {
-				if (el) {
-					el.style[name] = pos[name] + "px";
-				} else {
-					this._el.container.style[name] = pos[name] + "px";
-				};
-			}
-		}
-	},
-	
-	getPosition: function() {
-		return TL.Dom.getPosition(this._el.container);
-	}
-	
+  /*	Adding, Hiding, Showing etc
+  ================================================== */
+  show: function(animate) {
+    if (animate) {
+      /*
+      this.animator = TL.Animate(this._el.container, {
+        left: 		-(this._el.container.offsetWidth * n) + "px",
+        duration: 	this.options.duration,
+        easing: 	this.options.ease
+      });
+      */
+    } else {
+      this._el.container.style.display = "block";
+    }
+  },
+
+  hide: function(animate) {
+    this._el.container.style.display = "none";
+  },
+
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+    this.onAdd();
+  },
+
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+    this.onRemove();
+  },
+
+  /*	Animate to Position
+  ================================================== */
+  animatePosition: function(pos, el) {
+    var ani = {
+      duration: 	this.options.duration,
+      easing: 	this.options.ease
+    };
+    for (var name in pos) {
+      if (pos.hasOwnProperty(name)) {
+        ani[name] = pos[name] + "px";
+      }
+    }
+
+    if (this.animator) {
+      this.animator.stop();
+    }
+    this.animator = TL.Animate(el, ani);
+  },
+
+  /*	Events
+  ================================================== */
+
+  onLoaded: function() {
+    this.fire("loaded", this.data);
+  },
+
+  onAdd: function() {
+    this.fire("added", this.data);
+  },
+
+  onRemove: function() {
+    this.fire("removed", this.data);
+  },
+
+  /*	Set the Position
+  ================================================== */
+  setPosition: function(pos, el) {
+    for (var name in pos) {
+      if (pos.hasOwnProperty(name)) {
+        if (el) {
+          el.style[name] = pos[name] + "px";
+        } else {
+          this._el.container.style[name] = pos[name] + "px";
+        };
+      }
+    }
+  },
+
+  getPosition: function() {
+    return TL.Dom.getPosition(this._el.container);
+  }
+
 };
 
 
@@ -4852,91 +4852,91 @@ TL.DomMixins = {
 ********************************************** */
 
 /*	TL.Dom
-	Utilities for working with the DOM
+  Utilities for working with the DOM
 ================================================== */
 
 TL.Dom = {
 
-	get: function(id) {
-		return (typeof id === 'string' ? document.getElementById(id) : id);
-	},
+  get: function(id) {
+    return (typeof id === 'string' ? document.getElementById(id) : id);
+  },
 
-	getByClass: function(id) {
-		if (id) {
-			return document.getElementsByClassName(id);
-		}
-	},
+  getByClass: function(id) {
+    if (id) {
+      return document.getElementsByClassName(id);
+    }
+  },
 
-	create: function(tagName, className, container) {
-		var el = document.createElement(tagName);
-		el.className = className;
-		if (container) {
-			container.appendChild(el);
-		}
-		return el;
-	},
+  create: function(tagName, className, container) {
+    var el = document.createElement(tagName);
+    el.className = className;
+    if (container) {
+      container.appendChild(el);
+    }
+    return el;
+  },
 
-	createText: function(content, container) {
-		var el = document.createTextNode(content);
-		if (container) {
-			container.appendChild(el);
-		}
-		return el;
-	},
+  createText: function(content, container) {
+    var el = document.createTextNode(content);
+    if (container) {
+      container.appendChild(el);
+    }
+    return el;
+  },
 
-	getTranslateString: function (point) {
-		return TL.Dom.TRANSLATE_OPEN +
-				point.x + 'px,' + point.y + 'px' +
-				TL.Dom.TRANSLATE_CLOSE;
-	},
+  getTranslateString: function (point) {
+    return TL.Dom.TRANSLATE_OPEN +
+        point.x + 'px,' + point.y + 'px' +
+        TL.Dom.TRANSLATE_CLOSE;
+  },
 
-	setPosition: function (el, point) {
-		el._tl_pos = point;
-		if (TL.Browser.webkit3d) {
-			el.style[TL.Dom.TRANSFORM] =  TL.Dom.getTranslateString(point);
+  setPosition: function (el, point) {
+    el._tl_pos = point;
+    if (TL.Browser.webkit3d) {
+      el.style[TL.Dom.TRANSFORM] =  TL.Dom.getTranslateString(point);
 
-			if (TL.Browser.android) {
-				el.style['-webkit-perspective'] = '1000';
-				el.style['-webkit-backface-visibility'] = 'hidden';
-			}
-		} else {
-			el.style.left = point.x + 'px';
-			el.style.top = point.y + 'px';
-		}
-	},
+      if (TL.Browser.android) {
+        el.style['-webkit-perspective'] = '1000';
+        el.style['-webkit-backface-visibility'] = 'hidden';
+      }
+    } else {
+      el.style.left = point.x + 'px';
+      el.style.top = point.y + 'px';
+    }
+  },
 
-	getPosition: function(el){
-	    var pos = {
-	    	x: 0,
-			y: 0
-	    }
-	    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-	        pos.x += el.offsetLeft// - el.scrollLeft;
-	        pos.y += el.offsetTop// - el.scrollTop;
-	        el = el.offsetParent;
-	    }
-	    return pos;
-	},
+  getPosition: function(el){
+      var pos = {
+        x: 0,
+      y: 0
+      }
+      while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+          pos.x += el.offsetLeft// - el.scrollLeft;
+          pos.y += el.offsetTop// - el.scrollTop;
+          el = el.offsetParent;
+      }
+      return pos;
+  },
 
-	testProp: function(props) {
-		var style = document.documentElement.style;
+  testProp: function(props) {
+    var style = document.documentElement.style;
 
-		for (var i = 0; i < props.length; i++) {
-			if (props[i] in style) {
-				return props[i];
-			}
-		}
-		return false;
-	}
+    for (var i = 0; i < props.length; i++) {
+      if (props[i] in style) {
+        return props[i];
+      }
+    }
+    return false;
+  }
 
 };
 
 TL.Util.mergeData(TL.Dom, {
-	TRANSITION: TL.Dom.testProp(['transition', 'webkitTransition', 'OTransition', 'MozTransition', 'msTransition']),
-	TRANSFORM: TL.Dom.testProp(['transformProperty', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform']),
+  TRANSITION: TL.Dom.testProp(['transition', 'webkitTransition', 'OTransition', 'MozTransition', 'msTransition']),
+  TRANSFORM: TL.Dom.testProp(['transformProperty', 'WebkitTransform', 'OTransform', 'MozTransform', 'msTransform']),
 
-	TRANSLATE_OPEN: 'translate' + (TL.Browser.webkit3d ? '3d(' : '('),
-	TRANSLATE_CLOSE: TL.Browser.webkit3d ? ',0)' : ')'
+  TRANSLATE_OPEN: 'translate' + (TL.Browser.webkit3d ? '3d(' : '('),
+  TRANSLATE_CLOSE: TL.Browser.webkit3d ? ',0)' : ')'
 });
 
 
@@ -4945,158 +4945,158 @@ TL.Util.mergeData(TL.Dom, {
 ********************************************** */
 
 /*	TL.DomUtil
-	Inspired by Leaflet
-	TL.DomUtil contains various utility functions for working with DOM
+  Inspired by Leaflet
+  TL.DomUtil contains various utility functions for working with DOM
 ================================================== */
 
 
 TL.DomUtil = {
-	get: function (id) {
-		return (typeof id === 'string' ? document.getElementById(id) : id);
-	},
+  get: function (id) {
+    return (typeof id === 'string' ? document.getElementById(id) : id);
+  },
 
-	getStyle: function (el, style) {
-		var value = el.style[style];
-		if (!value && el.currentStyle) {
-			value = el.currentStyle[style];
-		}
-		if (!value || value === 'auto') {
-			var css = document.defaultView.getComputedStyle(el, null);
-			value = css ? css[style] : null;
-		}
-		return (value === 'auto' ? null : value);
-	},
+  getStyle: function (el, style) {
+    var value = el.style[style];
+    if (!value && el.currentStyle) {
+      value = el.currentStyle[style];
+    }
+    if (!value || value === 'auto') {
+      var css = document.defaultView.getComputedStyle(el, null);
+      value = css ? css[style] : null;
+    }
+    return (value === 'auto' ? null : value);
+  },
 
-	getViewportOffset: function (element) {
-		var top = 0,
-			left = 0,
-			el = element,
-			docBody = document.body;
+  getViewportOffset: function (element) {
+    var top = 0,
+      left = 0,
+      el = element,
+      docBody = document.body;
 
-		do {
-			top += el.offsetTop || 0;
-			left += el.offsetLeft || 0;
+    do {
+      top += el.offsetTop || 0;
+      left += el.offsetLeft || 0;
 
-			if (el.offsetParent === docBody &&
-					TL.DomUtil.getStyle(el, 'position') === 'absolute') {
-				break;
-			}
-			el = el.offsetParent;
-		} while (el);
+      if (el.offsetParent === docBody &&
+          TL.DomUtil.getStyle(el, 'position') === 'absolute') {
+        break;
+      }
+      el = el.offsetParent;
+    } while (el);
 
-		el = element;
+    el = element;
 
-		do {
-			if (el === docBody) {
-				break;
-			}
+    do {
+      if (el === docBody) {
+        break;
+      }
 
-			top -= el.scrollTop || 0;
-			left -= el.scrollLeft || 0;
+      top -= el.scrollTop || 0;
+      left -= el.scrollLeft || 0;
 
-			el = el.parentNode;
-		} while (el);
+      el = el.parentNode;
+    } while (el);
 
-		return new TL.Point(left, top);
-	},
+    return new TL.Point(left, top);
+  },
 
-	create: function (tagName, className, container) {
-		var el = document.createElement(tagName);
-		el.className = className;
-		if (container) {
-			container.appendChild(el);
-		}
-		return el;
-	},
+  create: function (tagName, className, container) {
+    var el = document.createElement(tagName);
+    el.className = className;
+    if (container) {
+      container.appendChild(el);
+    }
+    return el;
+  },
 
-	disableTextSelection: function () {
-		if (document.selection && document.selection.empty) {
-			document.selection.empty();
-		}
-		if (!this._onselectstart) {
-			this._onselectstart = document.onselectstart;
-			document.onselectstart = TL.Util.falseFn;
-		}
-	},
+  disableTextSelection: function () {
+    if (document.selection && document.selection.empty) {
+      document.selection.empty();
+    }
+    if (!this._onselectstart) {
+      this._onselectstart = document.onselectstart;
+      document.onselectstart = TL.Util.falseFn;
+    }
+  },
 
-	enableTextSelection: function () {
-		document.onselectstart = this._onselectstart;
-		this._onselectstart = null;
-	},
+  enableTextSelection: function () {
+    document.onselectstart = this._onselectstart;
+    this._onselectstart = null;
+  },
 
-	hasClass: function (el, name) {
-		return (el.className.length > 0) &&
-				new RegExp("(^|\\s)" + name + "(\\s|$)").test(el.className);
-	},
+  hasClass: function (el, name) {
+    return (el.className.length > 0) &&
+        new RegExp("(^|\\s)" + name + "(\\s|$)").test(el.className);
+  },
 
-	addClass: function (el, name) {
-		if (!TL.DomUtil.hasClass(el, name)) {
-			el.className += (el.className ? ' ' : '') + name;
-		}
-	},
+  addClass: function (el, name) {
+    if (!TL.DomUtil.hasClass(el, name)) {
+      el.className += (el.className ? ' ' : '') + name;
+    }
+  },
 
-	removeClass: function (el, name) {
-		el.className = el.className.replace(/(\S+)\s*/g, function (w, match) {
-			if (match === name) {
-				return '';
-			}
-			return w;
-		}).replace(/^\s+/, '');
-	},
+  removeClass: function (el, name) {
+    el.className = el.className.replace(/(\S+)\s*/g, function (w, match) {
+      if (match === name) {
+        return '';
+      }
+      return w;
+    }).replace(/^\s+/, '');
+  },
 
-	setOpacity: function (el, value) {
-		if (TL.Browser.ie) {
-			el.style.filter = 'alpha(opacity=' + Math.round(value * 100) + ')';
-		} else {
-			el.style.opacity = value;
-		}
-	},
+  setOpacity: function (el, value) {
+    if (TL.Browser.ie) {
+      el.style.filter = 'alpha(opacity=' + Math.round(value * 100) + ')';
+    } else {
+      el.style.opacity = value;
+    }
+  },
 
 
-	testProp: function (props) {
-		var style = document.documentElement.style;
+  testProp: function (props) {
+    var style = document.documentElement.style;
 
-		for (var i = 0; i < props.length; i++) {
-			if (props[i] in style) {
-				return props[i];
-			}
-		}
-		return false;
-	},
+    for (var i = 0; i < props.length; i++) {
+      if (props[i] in style) {
+        return props[i];
+      }
+    }
+    return false;
+  },
 
-	getTranslateString: function (point) {
+  getTranslateString: function (point) {
 
-		return TL.DomUtil.TRANSLATE_OPEN +
-				point.x + 'px,' + point.y + 'px' +
-				TL.DomUtil.TRANSLATE_CLOSE;
-	},
+    return TL.DomUtil.TRANSLATE_OPEN +
+        point.x + 'px,' + point.y + 'px' +
+        TL.DomUtil.TRANSLATE_CLOSE;
+  },
 
-	getScaleString: function (scale, origin) {
-		var preTranslateStr = TL.DomUtil.getTranslateString(origin),
-			scaleStr = ' scale(' + scale + ') ',
-			postTranslateStr = TL.DomUtil.getTranslateString(origin.multiplyBy(-1));
+  getScaleString: function (scale, origin) {
+    var preTranslateStr = TL.DomUtil.getTranslateString(origin),
+      scaleStr = ' scale(' + scale + ') ',
+      postTranslateStr = TL.DomUtil.getTranslateString(origin.multiplyBy(-1));
 
-		return preTranslateStr + scaleStr + postTranslateStr;
-	},
+    return preTranslateStr + scaleStr + postTranslateStr;
+  },
 
-	setPosition: function (el, point) {
-		el._tl_pos = point;
-		if (TL.Browser.webkit3d) {
-			el.style[TL.DomUtil.TRANSFORM] =  TL.DomUtil.getTranslateString(point);
+  setPosition: function (el, point) {
+    el._tl_pos = point;
+    if (TL.Browser.webkit3d) {
+      el.style[TL.DomUtil.TRANSFORM] =  TL.DomUtil.getTranslateString(point);
 
-			if (TL.Browser.android) {
-				el.style['-webkit-perspective'] = '1000';
-				el.style['-webkit-backface-visibility'] = 'hidden';
-			}
-		} else {
-			el.style.left = point.x + 'px';
-			el.style.top = point.y + 'px';
-		}
-	},
+      if (TL.Browser.android) {
+        el.style['-webkit-perspective'] = '1000';
+        el.style['-webkit-backface-visibility'] = 'hidden';
+      }
+    } else {
+      el.style.left = point.x + 'px';
+      el.style.top = point.y + 'px';
+    }
+  },
 
-	getPosition: function (el) {
-		return el._tl_pos;
-	}
+  getPosition: function (el) {
+    return el._tl_pos;
+  }
 };
 
 /* **********************************************
@@ -5104,151 +5104,151 @@ TL.DomUtil = {
 ********************************************** */
 
 /*	TL.DomEvent
-	Inspired by Leaflet 
-	DomEvent contains functions for working with DOM events.
+  Inspired by Leaflet
+  DomEvent contains functions for working with DOM events.
 ================================================== */
 // TODO stamp
 
 TL.DomEvent = {
-	/* inpired by John Resig, Dean Edwards and YUI addEvent implementations */
-	addListener: function (/*HTMLElement*/ obj, /*String*/ type, /*Function*/ fn, /*Object*/ context) {
-		var id = TL.Util.stamp(fn),
-			key = '_tl_' + type + id;
+  /* inpired by John Resig, Dean Edwards and YUI addEvent implementations */
+  addListener: function (/*HTMLElement*/ obj, /*String*/ type, /*Function*/ fn, /*Object*/ context) {
+    var id = TL.Util.stamp(fn),
+      key = '_tl_' + type + id;
 
-		if (obj[key]) {
-			return;
-		}
+    if (obj[key]) {
+      return;
+    }
 
-		var handler = function (e) {
-			return fn.call(context || obj, e || TL.DomEvent._getEvent());
-		};
+    var handler = function (e) {
+      return fn.call(context || obj, e || TL.DomEvent._getEvent());
+    };
 
-		if (TL.Browser.touch && (type === 'dblclick') && this.addDoubleTapListener) {
-			this.addDoubleTapListener(obj, handler, id);
-		} else if ('addEventListener' in obj) {
-			if (type === 'mousewheel') {
-				obj.addEventListener('DOMMouseScroll', handler, false);
-				obj.addEventListener(type, handler, false);
-			} else if ((type === 'mouseenter') || (type === 'mouseleave')) {
-				var originalHandler = handler,
-					newType = (type === 'mouseenter' ? 'mouseover' : 'mouseout');
-				handler = function (e) {
-					if (!TL.DomEvent._checkMouse(obj, e)) {
-						return;
-					}
-					return originalHandler(e);
-				};
-				obj.addEventListener(newType, handler, false);
-			} else {
-				obj.addEventListener(type, handler, false);
-			}
-		} else if ('attachEvent' in obj) {
-			obj.attachEvent("on" + type, handler);
-		}
+    if (TL.Browser.touch && (type === 'dblclick') && this.addDoubleTapListener) {
+      this.addDoubleTapListener(obj, handler, id);
+    } else if ('addEventListener' in obj) {
+      if (type === 'mousewheel') {
+        obj.addEventListener('DOMMouseScroll', handler, false);
+        obj.addEventListener(type, handler, false);
+      } else if ((type === 'mouseenter') || (type === 'mouseleave')) {
+        var originalHandler = handler,
+          newType = (type === 'mouseenter' ? 'mouseover' : 'mouseout');
+        handler = function (e) {
+          if (!TL.DomEvent._checkMouse(obj, e)) {
+            return;
+          }
+          return originalHandler(e);
+        };
+        obj.addEventListener(newType, handler, false);
+      } else {
+        obj.addEventListener(type, handler, false);
+      }
+    } else if ('attachEvent' in obj) {
+      obj.attachEvent("on" + type, handler);
+    }
 
-		obj[key] = handler;
-	},
+    obj[key] = handler;
+  },
 
-	removeListener: function (/*HTMLElement*/ obj, /*String*/ type, /*Function*/ fn) {
-		var id = TL.Util.stamp(fn),
-			key = '_tl_' + type + id,
-			handler = obj[key];
+  removeListener: function (/*HTMLElement*/ obj, /*String*/ type, /*Function*/ fn) {
+    var id = TL.Util.stamp(fn),
+      key = '_tl_' + type + id,
+      handler = obj[key];
 
-		if (!handler) {
-			return;
-		}
+    if (!handler) {
+      return;
+    }
 
-		if (TL.Browser.touch && (type === 'dblclick') && this.removeDoubleTapListener) {
-			this.removeDoubleTapListener(obj, id);
-		} else if ('removeEventListener' in obj) {
-			if (type === 'mousewheel') {
-				obj.removeEventListener('DOMMouseScroll', handler, false);
-				obj.removeEventListener(type, handler, false);
-			} else if ((type === 'mouseenter') || (type === 'mouseleave')) {
-				obj.removeEventListener((type === 'mouseenter' ? 'mouseover' : 'mouseout'), handler, false);
-			} else {
-				obj.removeEventListener(type, handler, false);
-			}
-		} else if ('detachEvent' in obj) {
-			obj.detachEvent("on" + type, handler);
-		}
-		obj[key] = null;
-	},
+    if (TL.Browser.touch && (type === 'dblclick') && this.removeDoubleTapListener) {
+      this.removeDoubleTapListener(obj, id);
+    } else if ('removeEventListener' in obj) {
+      if (type === 'mousewheel') {
+        obj.removeEventListener('DOMMouseScroll', handler, false);
+        obj.removeEventListener(type, handler, false);
+      } else if ((type === 'mouseenter') || (type === 'mouseleave')) {
+        obj.removeEventListener((type === 'mouseenter' ? 'mouseover' : 'mouseout'), handler, false);
+      } else {
+        obj.removeEventListener(type, handler, false);
+      }
+    } else if ('detachEvent' in obj) {
+      obj.detachEvent("on" + type, handler);
+    }
+    obj[key] = null;
+  },
 
-	_checkMouse: function (el, e) {
-		var related = e.relatedTarget;
+  _checkMouse: function (el, e) {
+    var related = e.relatedTarget;
 
-		if (!related) {
-			return true;
-		}
+    if (!related) {
+      return true;
+    }
 
-		try {
-			while (related && (related !== el)) {
-				related = related.parentNode;
-			}
-		} catch (err) {
-			return false;
-		}
+    try {
+      while (related && (related !== el)) {
+        related = related.parentNode;
+      }
+    } catch (err) {
+      return false;
+    }
 
-		return (related !== el);
-	},
+    return (related !== el);
+  },
 
-	/*jshint noarg:false */ // evil magic for IE
-	_getEvent: function () {
-		var e = window.event;
-		if (!e) {
-			var caller = arguments.callee.caller;
-			while (caller) {
-				e = caller['arguments'][0];
-				if (e && window.Event === e.constructor) {
-					break;
-				}
-				caller = caller.caller;
-			}
-		}
-		return e;
-	},
-	/*jshint noarg:false */
+  /*jshint noarg:false */ // evil magic for IE
+  _getEvent: function () {
+    var e = window.event;
+    if (!e) {
+      var caller = arguments.callee.caller;
+      while (caller) {
+        e = caller['arguments'][0];
+        if (e && window.Event === e.constructor) {
+          break;
+        }
+        caller = caller.caller;
+      }
+    }
+    return e;
+  },
+  /*jshint noarg:false */
 
-	stopPropagation: function (/*Event*/ e) {
-		if (e.stopPropagation) {
-			e.stopPropagation();
-		} else {
-			e.cancelBubble = true;
-		}
-	},
-	
-	// TODO TL.Draggable.START
-	disableClickPropagation: function (/*HTMLElement*/ el) {
-		TL.DomEvent.addListener(el, TL.Draggable.START, TL.DomEvent.stopPropagation);
-		TL.DomEvent.addListener(el, 'click', TL.DomEvent.stopPropagation);
-		TL.DomEvent.addListener(el, 'dblclick', TL.DomEvent.stopPropagation);
-	},
+  stopPropagation: function (/*Event*/ e) {
+    if (e.stopPropagation) {
+      e.stopPropagation();
+    } else {
+      e.cancelBubble = true;
+    }
+  },
 
-	preventDefault: function (/*Event*/ e) {
-		if (e.preventDefault) {
-			e.preventDefault();
-		} else {
-			e.returnValue = false;
-		}
-	},
+  // TODO TL.Draggable.START
+  disableClickPropagation: function (/*HTMLElement*/ el) {
+    TL.DomEvent.addListener(el, TL.Draggable.START, TL.DomEvent.stopPropagation);
+    TL.DomEvent.addListener(el, 'click', TL.DomEvent.stopPropagation);
+    TL.DomEvent.addListener(el, 'dblclick', TL.DomEvent.stopPropagation);
+  },
 
-	stop: function (e) {
-		TL.DomEvent.preventDefault(e);
-		TL.DomEvent.stopPropagation(e);
-	},
+  preventDefault: function (/*Event*/ e) {
+    if (e.preventDefault) {
+      e.preventDefault();
+    } else {
+      e.returnValue = false;
+    }
+  },
+
+  stop: function (e) {
+    TL.DomEvent.preventDefault(e);
+    TL.DomEvent.stopPropagation(e);
+  },
 
 
-	getWheelDelta: function (e) {
-		var delta = 0;
-		if (e.wheelDelta) {
-			delta = e.wheelDelta / 120;
-		}
-		if (e.detail) {
-			delta = -e.detail / 3;
-		}
-		return delta;
-	}
+  getWheelDelta: function (e) {
+    var delta = 0;
+    if (e.wheelDelta) {
+      delta = e.wheelDelta / 120;
+    }
+    if (e.detail) {
+      delta = -e.detail / 3;
+    }
+    return delta;
+  }
 };
 
 
@@ -5259,54 +5259,54 @@ TL.DomEvent = {
 ********************************************** */
 
 /*	TL.StyleSheet
-	Style Sheet Object
+  Style Sheet Object
 ================================================== */
 
 TL.StyleSheet = TL.Class.extend({
-	
-	includes: [TL.Events],
-	
-	_el: {},
-	
-	/*	Constructor
-	================================================== */
-	initialize: function() {
-		// Borrowed from: http://davidwalsh.name/add-rules-stylesheets
-		this.style = document.createElement("style");
-		
-		// WebKit hack :(
-		this.style.appendChild(document.createTextNode(""));
-		
-		// Add the <style> element to the page
-		document.head.appendChild(this.style);
-		
-		this.sheet = this.style.sheet;
-		
-	},
-	
-	addRule: function(selector, rules, index) {
-		var _index = 0;
-		
-		if (index) {
-			_index = index;
-		}
-		
-		if("insertRule" in this.sheet) {
-			this.sheet.insertRule(selector + "{" + rules + "}", _index);
-		}
-		else if("addRule" in this.sheet) {
-			this.sheet.addRule(selector, rules, _index);
-		}
-	},
-	
 
-	/*	Events
-	================================================== */
-	onLoaded: function(error) {
-		this._state.loaded = true;
-		this.fire("loaded", this.data);
-	}
-	
+  includes: [TL.Events],
+
+  _el: {},
+
+  /*	Constructor
+  ================================================== */
+  initialize: function() {
+    // Borrowed from: http://davidwalsh.name/add-rules-stylesheets
+    this.style = document.createElement("style");
+
+    // WebKit hack :(
+    this.style.appendChild(document.createTextNode(""));
+
+    // Add the <style> element to the page
+    document.head.appendChild(this.style);
+
+    this.sheet = this.style.sheet;
+
+  },
+
+  addRule: function(selector, rules, index) {
+    var _index = 0;
+
+    if (index) {
+      _index = index;
+    }
+
+    if("insertRule" in this.sheet) {
+      this.sheet.insertRule(selector + "{" + rules + "}", _index);
+    }
+    else if("addRule" in this.sheet) {
+      this.sheet.addRule(selector, rules, _index);
+    }
+  },
+
+
+  /*	Events
+  ================================================== */
+  onLoaded: function(error) {
+    this._state.loaded = true;
+    this.fire("loaded", this.data);
+  }
+
 });
 
 /* **********************************************
@@ -5314,8 +5314,8 @@ TL.StyleSheet = TL.Class.extend({
 ********************************************** */
 
 /*	TL.Date
-	Date object
-	MONTHS are 1-BASED, not 0-BASED (different from Javascript date objects)
+  Date object
+  MONTHS are 1-BASED, not 0-BASED (different from Javascript date objects)
 ================================================== */
 
 //
@@ -5325,33 +5325,33 @@ TL.StyleSheet = TL.Class.extend({
 TL.Date = TL.Class.extend({
 
     // @data = ms, JS Date object, or JS dictionary with date properties
-	initialize: function (data, format, format_short) {
-	    if (typeof(data) == 'number') {
-			this.data = {
-				format:     "yyyy mmmm",
-				date_obj:   new Date(data)
-			};
-	    } else if(Date == data.constructor) {
-			this.data = {
-				format:     "yyyy mmmm",
-				date_obj:   data
-			};
-	    } else {
-	        this.data = JSON.parse(JSON.stringify(data)); // clone don't use by reference.
+  initialize: function (data, format, format_short) {
+      if (typeof(data) == 'number') {
+      this.data = {
+        format:     "yyyy mmmm",
+        date_obj:   new Date(data)
+      };
+      } else if(Date == data.constructor) {
+      this.data = {
+        format:     "yyyy mmmm",
+        date_obj:   data
+      };
+      } else {
+          this.data = JSON.parse(JSON.stringify(data)); // clone don't use by reference.
             this._createDateObj();
-	    }
+      }
 
-		this._setFormat(format, format_short);
+    this._setFormat(format, format_short);
     },
 
-	setDateFormat: function(format) {
-		this.data.format = format;
-	},
+  setDateFormat: function(format) {
+    this.data.format = format;
+  },
 
-	getDisplayDate: function(language, format) {
-	    if (this.data.display_date) {
-	        return this.data.display_date;
-	    }
+  getDisplayDate: function(language, format) {
+      if (this.data.display_date) {
+          return this.data.display_date;
+      }
         if (!language) {
             language = TL.Language.fallback;
         }
@@ -5362,17 +5362,17 @@ TL.Date = TL.Class.extend({
 
         var format_key = format || this.data.format;
         return language.formatDate(this.data.date_obj, format_key);
-	},
+  },
 
-	getMillisecond: function() {
-		return this.getTime();
-	},
+  getMillisecond: function() {
+    return this.getTime();
+  },
 
-	getTime: function() {
-		return this.data.date_obj.getTime();
-	},
+  getTime: function() {
+    return this.data.date_obj.getTime();
+  },
 
-	isBefore: function(other_date) {
+  isBefore: function(other_date) {
         if (!this.data.date_obj.constructor == other_date.data.date_obj.constructor) {
             throw new TL.Error("date_compare_err") // but should be able to compare 'cosmological scale' dates once we get to that...
         }
@@ -5380,9 +5380,9 @@ TL.Date = TL.Class.extend({
             return this.data.date_obj['isBefore'](other_date.data.date_obj);
         }
         return this.data.date_obj < other_date.data.date_obj
-	},
+  },
 
-	isAfter: function(other_date) {
+  isAfter: function(other_date) {
         if (!this.data.date_obj.constructor == other_date.data.date_obj.constructor) {
             throw new TL.Error("date_compare_err") // but should be able to compare 'cosmological scale' dates once we get to that...
         }
@@ -5390,7 +5390,7 @@ TL.Date = TL.Class.extend({
             return this.data.date_obj['isAfter'](other_date.data.date_obj);
         }
         return this.data.date_obj > other_date.data.date_obj
-	},
+  },
 
     // Return a new TL.Date which has been 'floored' at the given scale.
     // @scale = string value from TL.Date.SCALES
@@ -5405,8 +5405,8 @@ TL.Date = TL.Class.extend({
         throw new TL.Error("invalid_scale_err", scale);
     },
 
-	/*	Private Methods
-	================================================== */
+  /*	Private Methods
+  ================================================== */
 
     _getDateData: function() {
         var _date = {
@@ -5417,42 +5417,42 @@ TL.Date = TL.Class.extend({
             minute: 		0,
             second: 		0,
             millisecond: 	0
-		};
+    };
 
-		// Merge data
-		TL.Util.mergeData(_date, this.data);
+    // Merge data
+    TL.Util.mergeData(_date, this.data);
 
- 		// Make strings into numbers
-		var DATE_PARTS = TL.Date.DATE_PARTS;
+     // Make strings into numbers
+    var DATE_PARTS = TL.Date.DATE_PARTS;
 
- 		for (var ix in DATE_PARTS) {
- 		    var x = TL.Util.trim(_date[DATE_PARTS[ix]]);
- 		    if (!x.match(/^-?\d*$/)) {
- 		        throw new TL.Error("invalid_date_err", DATE_PARTS[ix] + " = '" + _date[DATE_PARTS[ix]] + "'");
- 		    }
- 		    
-			var parsed = parseInt(_date[DATE_PARTS[ix]]);
-			if (isNaN(parsed)) {
+     for (var ix in DATE_PARTS) {
+         var x = TL.Util.trim(_date[DATE_PARTS[ix]]);
+         if (!x.match(/^-?\d*$/)) {
+             throw new TL.Error("invalid_date_err", DATE_PARTS[ix] + " = '" + _date[DATE_PARTS[ix]] + "'");
+         }
+
+      var parsed = parseInt(_date[DATE_PARTS[ix]]);
+      if (isNaN(parsed)) {
                 parsed = (ix == 4 || ix == 5) ? 1 : 0; // month and day have diff baselines
             }
-			_date[DATE_PARTS[ix]] = parsed;
-		}
+      _date[DATE_PARTS[ix]] = parsed;
+    }
 
-		if (_date.month > 0 && _date.month <= 12) { // adjust for JS's weirdness
-			_date.month = _date.month - 1;
-		}
+    if (_date.month > 0 && _date.month <= 12) { // adjust for JS's weirdness
+      _date.month = _date.month - 1;
+    }
 
-		return _date;
+    return _date;
     },
 
-	_createDateObj: function() {
-	    var _date = this._getDateData();
+  _createDateObj: function() {
+      var _date = this._getDateData();
         this.data.date_obj = new Date(_date.year, _date.month, _date.day, _date.hour, _date.minute, _date.second, _date.millisecond);
         if (this.data.date_obj.getFullYear() != _date.year) {
             // Javascript has stupid defaults for two-digit years
             this.data.date_obj.setFullYear(_date.year);
         }
-	},
+  },
 
     /*  Find Best Format
      * this may not work with 'cosmologic' dates, or with TL.Date if we
@@ -5477,17 +5477,17 @@ TL.Date = TL.Class.extend({
         return "";
     },
     _setFormat: function(format, format_short) {
-		if (format) {
-			this.data.format = format;
-		} else if (!this.data.format) {
-			this.data.format = this.findBestFormat();
-		}
+    if (format) {
+      this.data.format = format;
+    } else if (!this.data.format) {
+      this.data.format = this.findBestFormat();
+    }
 
-		if (format_short) {
-			this.data.format_short = format_short;
-		} else if (!this.data.format_short) {
-			this.data.format_short = this.findBestFormat(true);
-		}
+    if (format_short) {
+      this.data.format_short = format_short;
+    } else if (!this.data.format_short) {
+      this.data.format_short = this.findBestFormat(true);
+    }
     }
 });
 
@@ -5689,7 +5689,7 @@ TL.BigDate = TL.Date.extend({
 
     // Create date_obj
     _createDateObj: function() {
-	    var _date = this._getDateData();
+      var _date = this._getDateData();
         this.data.date_obj = new TL.BigYear(_date.year);
     },
 
@@ -5723,10 +5723,10 @@ TL.BigDate = TL.Date.extend({
 
     // cosmological scales
     cls.SCALES = [ // ( name, units_per_tick, flooring function )
-				['year',1, new Floorer(1)],
-				['decade',10, new Floorer(10)],
-				['century',100, new Floorer(100)],
-				['millennium',1000, new Floorer(1000)],
+        ['year',1, new Floorer(1)],
+        ['decade',10, new Floorer(10)],
+        ['century',100, new Floorer(100)],
+        ['millennium',1000, new Floorer(1000)],
         ['age',AGE, new Floorer(AGE)],          // 1M years
         ['epoch',EPOCH, new Floorer(EPOCH)],    // 10M years
         ['era',ERA, new Floorer(ERA)],          // 100M years
@@ -5741,96 +5741,96 @@ TL.BigDate = TL.Date.extend({
 ********************************************** */
 
 /*	TL.DateUtil
-	Utilities for parsing time
+  Utilities for parsing time
 ================================================== */
 
 
 TL.DateUtil = {
-	get: function (id) {
-		return (typeof id === 'string' ? document.getElementById(id) : id);
-	},
+  get: function (id) {
+    return (typeof id === 'string' ? document.getElementById(id) : id);
+  },
 
-	sortByDate: function(array,prop_name) { // only for use with slide data objects
-		var prop_name = prop_name || 'start_date';
-		array.sort(function(a,b){
-			if (a[prop_name].isBefore(b[prop_name])) return -1;
-			if (a[prop_name].isAfter(b[prop_name])) return 1;
-			return 0;
-		});
-	},
+  sortByDate: function(array,prop_name) { // only for use with slide data objects
+    var prop_name = prop_name || 'start_date';
+    array.sort(function(a,b){
+      if (a[prop_name].isBefore(b[prop_name])) return -1;
+      if (a[prop_name].isAfter(b[prop_name])) return 1;
+      return 0;
+    });
+  },
 
-	parseTime: function(time_str) {
-		var parsed = {
-			hour: null, minute: null, second: null, millisecond: null // conform to keys in TL.Date
-		}
-		var period = null;
-		var match = time_str.match(/(\s*[AaPp]\.?[Mm]\.?\s*)$/);
-		if (match) {
-			period = TL.Util.trim(match[0]);
-			time_str = TL.Util.trim(time_str.substring(0,time_str.lastIndexOf(period)));
-		}
+  parseTime: function(time_str) {
+    var parsed = {
+      hour: null, minute: null, second: null, millisecond: null // conform to keys in TL.Date
+    }
+    var period = null;
+    var match = time_str.match(/(\s*[AaPp]\.?[Mm]\.?\s*)$/);
+    if (match) {
+      period = TL.Util.trim(match[0]);
+      time_str = TL.Util.trim(time_str.substring(0,time_str.lastIndexOf(period)));
+    }
 
-		var parts = [];
-		var no_separators = time_str.match(/^\s*(\d{1,2})(\d{2})\s*$/);
-		if (no_separators) {
-			parts = no_separators.slice(1);
-		} else {
-			parts = time_str.split(':');
-			if (parts.length == 1) {
-				parts = time_str.split('.');
-			}
-		}
+    var parts = [];
+    var no_separators = time_str.match(/^\s*(\d{1,2})(\d{2})\s*$/);
+    if (no_separators) {
+      parts = no_separators.slice(1);
+    } else {
+      parts = time_str.split(':');
+      if (parts.length == 1) {
+        parts = time_str.split('.');
+      }
+    }
 
-		if (parts.length > 4) { 
-		    throw new TL.Error("invalid_separator_error");
-		}
+    if (parts.length > 4) {
+        throw new TL.Error("invalid_separator_error");
+    }
 
-		parsed.hour = parseInt(parts[0]);
+    parsed.hour = parseInt(parts[0]);
 
-		if (period && period.toLowerCase()[0] == 'p' && parsed.hour != 12) {
-			parsed.hour += 12;
-		} else if (period && period.toLowerCase()[0] == 'a' && parsed.hour == 12) {
-			parsed.hour = 0;
-		}
+    if (period && period.toLowerCase()[0] == 'p' && parsed.hour != 12) {
+      parsed.hour += 12;
+    } else if (period && period.toLowerCase()[0] == 'a' && parsed.hour == 12) {
+      parsed.hour = 0;
+    }
 
 
-		if (isNaN(parsed.hour) || parsed.hour < 0 || parsed.hour > 23) {
-			throw new TL.Error("invalid_hour_err", parsed.hour);
-		}
+    if (isNaN(parsed.hour) || parsed.hour < 0 || parsed.hour > 23) {
+      throw new TL.Error("invalid_hour_err", parsed.hour);
+    }
 
-		if (parts.length > 1) {
-			parsed.minute = parseInt(parts[1]);
-			if (isNaN(parsed.minute)) { 
-			    throw new TL.Error("invalid_minute_err", parsed.minute); 
-			}
-		}
+    if (parts.length > 1) {
+      parsed.minute = parseInt(parts[1]);
+      if (isNaN(parsed.minute)) {
+          throw new TL.Error("invalid_minute_err", parsed.minute);
+      }
+    }
 
-		if (parts.length > 2) {
-			var sec_parts = parts[2].split(/[\.,]/);
-			parts = sec_parts.concat(parts.slice(3)) // deal with various methods of specifying fractional seconds
-			if (parts.length > 2) { 
-			    throw new TL.Error("invalid_second_fractional_err");
-			}
-			parsed.second = parseInt(parts[0]);
-			if (isNaN(parsed.second)) { 
-			    throw new TL.Error("invalid_second_err");
-			}
-			if (parts.length == 2) {
-				var frac_secs = parseInt(parts[1]);
-				if (isNaN(frac_secs)) { 
-				    throw new TL.Error("invalid_fractional_err");
-				}
-				parsed.millisecond = 100 * frac_secs;
-			}
-		}
+    if (parts.length > 2) {
+      var sec_parts = parts[2].split(/[\.,]/);
+      parts = sec_parts.concat(parts.slice(3)) // deal with various methods of specifying fractional seconds
+      if (parts.length > 2) {
+          throw new TL.Error("invalid_second_fractional_err");
+      }
+      parsed.second = parseInt(parts[0]);
+      if (isNaN(parsed.second)) {
+          throw new TL.Error("invalid_second_err");
+      }
+      if (parts.length == 2) {
+        var frac_secs = parseInt(parts[1]);
+        if (isNaN(frac_secs)) {
+            throw new TL.Error("invalid_fractional_err");
+        }
+        parsed.millisecond = 100 * frac_secs;
+      }
+    }
 
-		return parsed;
-	},
+    return parsed;
+  },
 
-	SCALE_DATE_CLASSES: {
-		human: TL.Date,
-		cosmological: TL.BigDate
-	}
+  SCALE_DATE_CLASSES: {
+    human: TL.Date,
+    cosmological: TL.BigDate
+  }
 
 
 };
@@ -5841,323 +5841,323 @@ TL.DateUtil = {
 ********************************************** */
 
 /*	TL.Draggable
-	TL.Draggable allows you to add dragging capabilities to any element. Supports mobile devices too.
-	TODO Enable constraints
+  TL.Draggable allows you to add dragging capabilities to any element. Supports mobile devices too.
+  TODO Enable constraints
 ================================================== */
 
 TL.Draggable = TL.Class.extend({
-	
-	includes: TL.Events,
-	
-	_el: {},
-	
-	mousedrag: {
-		down:		"mousedown",
-		up:			"mouseup",
-		leave:		"mouseleave",
-		move:		"mousemove"
-	},
-	
-	touchdrag: {
-		down:		"touchstart",
-		up:			"touchend",
-		leave:		"mouseleave",
-		move:		"touchmove"
-	},
 
-	initialize: function (drag_elem, options, move_elem) {
-		
-		// DOM ELements 
-		this._el = {
-			drag: drag_elem,
-			move: drag_elem
-		};
-		
-		if (move_elem) {
-			this._el.move = move_elem;
-		}
-		
-		
-		//Options
-		this.options = {
-			enable:	{
-				x: true,
-				y: true
-			},
-			constraint: {
-				top: false,
-				bottom: false,
-				left: false,
-				right: false
-			},
-			momentum_multiplier: 	2000,
-			duration: 				1000,
-			ease: 					TL.Ease.easeInOutQuint
-		};
-		
-		
-		// Animation Object
-		this.animator = null;
-		
-		// Drag Event Type
-		this.dragevent = this.mousedrag;
-		
-		if (TL.Browser.touch) {
-			this.dragevent = this.touchdrag;
-		}
-		
-		// Draggable Data
-		this.data = {
-			sliding:		false,
-			direction: 		"none",
-			pagex: {
-				start:		0,
-				end:		0
-			},
-			pagey: {
-				start:		0,
-				end:		0
-			},
-			pos: {
-				start: {
-					x: 0,
-					y:0
-				},
-				end: {
-					x: 0,
-					y:0
-				}
-			},
-			new_pos: {
-				x: 0,
-				y: 0
-			},
-			new_pos_parent: {
-				x: 0,
-				y: 0
-			},
-			time: {
-				start:		0,
-				end:		0
-			},
-			touch:			false
-		};
-		
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		
-		
-	},
-	
-	enable: function(e) {
-		
-		this.data.pos.start = 0; 
-		this._el.move.style.left = this.data.pos.start.x + "px";
-		this._el.move.style.top = this.data.pos.start.y + "px";
-		this._el.move.style.position = "absolute";
-	},
-	
-	disable: function() {
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.down, this._onDragStart, this);
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.up, this._onDragEnd, this);
-	},
-	
-	stopMomentum: function() {
-		if (this.animator) {
-			this.animator.stop();
-		}
+  includes: TL.Events,
 
-	},
-	
-	updateConstraint: function(c) {
-		this.options.constraint = c;
-		
-	},
-	
-	/*	Private Methods
-	================================================== */
-	_onDragStart: function(e) {
-		if (TL.Browser.touch) {
-			if (e.originalEvent) {
-				this.data.pagex.start = e.originalEvent.touches[0].screenX;
-				this.data.pagey.start = e.originalEvent.touches[0].screenY;
-			} else {
-				this.data.pagex.start = e.targetTouches[0].screenX;
-				this.data.pagey.start = e.targetTouches[0].screenY;
-			}
-		} else {
-			this.data.pagex.start = e.pageX;
-			this.data.pagey.start = e.pageY;
-		}
-		
-		// Center element to finger or mouse
-		if (this.options.enable.x) {
-			this._el.move.style.left = this.data.pagex.start - (this._el.move.offsetWidth / 2) + "px";
-		}
-		
-		if (this.options.enable.y) {
-			this._el.move.style.top = this.data.pagey.start - (this._el.move.offsetHeight / 2) + "px";
-		}
-		
-		this.data.pos.start = TL.Dom.getPosition(this._el.drag);
-		this.data.time.start = new Date().getTime();
-		
-		this.fire("dragstart", this.data);
-		TL.DomEvent.addListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
-		TL.DomEvent.addListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
-	},
-	
-	_onDragEnd: function(e) {
-		this.data.sliding = false;
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
-		this.fire("dragend", this.data);
-		
-		//  momentum
-		this._momentum();
-	},
-	
-	_onDragMove: function(e) {
-		e.preventDefault();
-		this.data.sliding = true;
-		
-		if (TL.Browser.touch) {
-			if (e.originalEvent) {
-				this.data.pagex.end = e.originalEvent.touches[0].screenX;
-				this.data.pagey.end = e.originalEvent.touches[0].screenY;
-			} else {
-				this.data.pagex.end = e.targetTouches[0].screenX;
-				this.data.pagey.end = e.targetTouches[0].screenY;
-			}
+  _el: {},
 
-		} else {
-			this.data.pagex.end = e.pageX;
-			this.data.pagey.end = e.pageY;
-		}
-		
-		this.data.pos.end = TL.Dom.getPosition(this._el.drag);
-		this.data.new_pos.x = -(this.data.pagex.start - this.data.pagex.end - this.data.pos.start.x);
-		this.data.new_pos.y = -(this.data.pagey.start - this.data.pagey.end - this.data.pos.start.y );
-		
-		if (this.options.enable.x) {
-			this._el.move.style.left = this.data.new_pos.x + "px";
-		}
-		
-		if (this.options.enable.y) {
-			this._el.move.style.top = this.data.new_pos.y + "px";
-		}
-		
-		this.fire("dragmove", this.data);
-	},
-	
-	_momentum: function() {
-		var pos_adjust = {
-				x: 0,
-				y: 0,
-				time: 0
-			},
-			pos_change = {
-				x: 0,
-				y: 0,
-				time: 0
-			},
-			swipe = false,
-			swipe_direction = "";
-		
-		
-		if (TL.Browser.touch) {
-			// Treat mobile multiplier differently
-			//this.options.momentum_multiplier = this.options.momentum_multiplier * 2;
-		}
-		
-		pos_adjust.time = (new Date().getTime() - this.data.time.start) * 10;
-		pos_change.time = (new Date().getTime() - this.data.time.start) * 10;
-		
-		pos_change.x = this.options.momentum_multiplier * (Math.abs(this.data.pagex.end) - Math.abs(this.data.pagex.start));
-		pos_change.y = this.options.momentum_multiplier * (Math.abs(this.data.pagey.end) - Math.abs(this.data.pagey.start));
-		
-		pos_adjust.x = Math.round(pos_change.x / pos_change.time);
-		pos_adjust.y = Math.round(pos_change.y / pos_change.time);
-		
-		this.data.new_pos.x = Math.min(this.data.pos.end.x + pos_adjust.x);
-		this.data.new_pos.y = Math.min(this.data.pos.end.y + pos_adjust.y);
+  mousedrag: {
+    down:		"mousedown",
+    up:			"mouseup",
+    leave:		"mouseleave",
+    move:		"mousemove"
+  },
 
-		
-		if (!this.options.enable.x) {
-			this.data.new_pos.x = this.data.pos.start.x;
-		} else if (this.data.new_pos.x < 0) {
-			this.data.new_pos.x = 0;
-		}
-		
-		if (!this.options.enable.y) {
-			this.data.new_pos.y = this.data.pos.start.y;
-		} else if (this.data.new_pos.y < 0) {
-			this.data.new_pos.y = 0;
-		}
-		
-		// Detect Swipe
-		if (pos_change.time < 3000) {
-			swipe = true;
-		}
-		
-		// Detect Direction
-		if (Math.abs(pos_change.x) > 10000) {
-			this.data.direction = "left";
-			if (pos_change.x > 0) {
-				this.data.direction = "right";
-			}
-		}
-		// Detect Swipe
-		if (Math.abs(pos_change.y) > 10000) {
-			this.data.direction = "up";
-			if (pos_change.y > 0) {
-				this.data.direction = "down";
-			}
-		}
-		this._animateMomentum();
-		if (swipe) {
-			this.fire("swipe_" + this.data.direction, this.data);
-		}
-		
-	},
-	
-	
-	_animateMomentum: function() {
-		var pos = {
-				x: this.data.new_pos.x,
-				y: this.data.new_pos.y
-			},
-			animate = {
-				duration: 	this.options.duration,
-				easing: 	TL.Ease.easeOutStrong
-			};
-		
-		if (this.options.enable.y) {
-			if (this.options.constraint.top || this.options.constraint.bottom) {
-				if (pos.y > this.options.constraint.bottom) {
-					pos.y = this.options.constraint.bottom;
-				} else if (pos.y < this.options.constraint.top) {
-					pos.y = this.options.constraint.top;
-				}
-			}
-			animate.top = Math.floor(pos.y) + "px";
-		}
-		
-		if (this.options.enable.x) {
-			if (this.options.constraint.left || this.options.constraint.right) {
-				if (pos.x > this.options.constraint.left) {
-					pos.x = this.options.constraint.left;
-				} else if (pos.x < this.options.constraint.right) {
-					pos.x = this.options.constraint.right;
-				}
-			}
-			animate.left = Math.floor(pos.x) + "px";
-		}
-		
-		this.animator = TL.Animate(this._el.move, animate);
-		
-		this.fire("momentum", this.data);
-	}
+  touchdrag: {
+    down:		"touchstart",
+    up:			"touchend",
+    leave:		"mouseleave",
+    move:		"touchmove"
+  },
+
+  initialize: function (drag_elem, options, move_elem) {
+
+    // DOM ELements
+    this._el = {
+      drag: drag_elem,
+      move: drag_elem
+    };
+
+    if (move_elem) {
+      this._el.move = move_elem;
+    }
+
+
+    //Options
+    this.options = {
+      enable:	{
+        x: true,
+        y: true
+      },
+      constraint: {
+        top: false,
+        bottom: false,
+        left: false,
+        right: false
+      },
+      momentum_multiplier: 	2000,
+      duration: 				1000,
+      ease: 					TL.Ease.easeInOutQuint
+    };
+
+
+    // Animation Object
+    this.animator = null;
+
+    // Drag Event Type
+    this.dragevent = this.mousedrag;
+
+    if (TL.Browser.touch) {
+      this.dragevent = this.touchdrag;
+    }
+
+    // Draggable Data
+    this.data = {
+      sliding:		false,
+      direction: 		"none",
+      pagex: {
+        start:		0,
+        end:		0
+      },
+      pagey: {
+        start:		0,
+        end:		0
+      },
+      pos: {
+        start: {
+          x: 0,
+          y:0
+        },
+        end: {
+          x: 0,
+          y:0
+        }
+      },
+      new_pos: {
+        x: 0,
+        y: 0
+      },
+      new_pos_parent: {
+        x: 0,
+        y: 0
+      },
+      time: {
+        start:		0,
+        end:		0
+      },
+      touch:			false
+    };
+
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+
+
+  },
+
+  enable: function(e) {
+
+    this.data.pos.start = 0;
+    this._el.move.style.left = this.data.pos.start.x + "px";
+    this._el.move.style.top = this.data.pos.start.y + "px";
+    this._el.move.style.position = "absolute";
+  },
+
+  disable: function() {
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.down, this._onDragStart, this);
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.up, this._onDragEnd, this);
+  },
+
+  stopMomentum: function() {
+    if (this.animator) {
+      this.animator.stop();
+    }
+
+  },
+
+  updateConstraint: function(c) {
+    this.options.constraint = c;
+
+  },
+
+  /*	Private Methods
+  ================================================== */
+  _onDragStart: function(e) {
+    if (TL.Browser.touch) {
+      if (e.originalEvent) {
+        this.data.pagex.start = e.originalEvent.touches[0].screenX;
+        this.data.pagey.start = e.originalEvent.touches[0].screenY;
+      } else {
+        this.data.pagex.start = e.targetTouches[0].screenX;
+        this.data.pagey.start = e.targetTouches[0].screenY;
+      }
+    } else {
+      this.data.pagex.start = e.pageX;
+      this.data.pagey.start = e.pageY;
+    }
+
+    // Center element to finger or mouse
+    if (this.options.enable.x) {
+      this._el.move.style.left = this.data.pagex.start - (this._el.move.offsetWidth / 2) + "px";
+    }
+
+    if (this.options.enable.y) {
+      this._el.move.style.top = this.data.pagey.start - (this._el.move.offsetHeight / 2) + "px";
+    }
+
+    this.data.pos.start = TL.Dom.getPosition(this._el.drag);
+    this.data.time.start = new Date().getTime();
+
+    this.fire("dragstart", this.data);
+    TL.DomEvent.addListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
+    TL.DomEvent.addListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
+  },
+
+  _onDragEnd: function(e) {
+    this.data.sliding = false;
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
+    this.fire("dragend", this.data);
+
+    //  momentum
+    this._momentum();
+  },
+
+  _onDragMove: function(e) {
+    e.preventDefault();
+    this.data.sliding = true;
+
+    if (TL.Browser.touch) {
+      if (e.originalEvent) {
+        this.data.pagex.end = e.originalEvent.touches[0].screenX;
+        this.data.pagey.end = e.originalEvent.touches[0].screenY;
+      } else {
+        this.data.pagex.end = e.targetTouches[0].screenX;
+        this.data.pagey.end = e.targetTouches[0].screenY;
+      }
+
+    } else {
+      this.data.pagex.end = e.pageX;
+      this.data.pagey.end = e.pageY;
+    }
+
+    this.data.pos.end = TL.Dom.getPosition(this._el.drag);
+    this.data.new_pos.x = -(this.data.pagex.start - this.data.pagex.end - this.data.pos.start.x);
+    this.data.new_pos.y = -(this.data.pagey.start - this.data.pagey.end - this.data.pos.start.y );
+
+    if (this.options.enable.x) {
+      this._el.move.style.left = this.data.new_pos.x + "px";
+    }
+
+    if (this.options.enable.y) {
+      this._el.move.style.top = this.data.new_pos.y + "px";
+    }
+
+    this.fire("dragmove", this.data);
+  },
+
+  _momentum: function() {
+    var pos_adjust = {
+        x: 0,
+        y: 0,
+        time: 0
+      },
+      pos_change = {
+        x: 0,
+        y: 0,
+        time: 0
+      },
+      swipe = false,
+      swipe_direction = "";
+
+
+    if (TL.Browser.touch) {
+      // Treat mobile multiplier differently
+      //this.options.momentum_multiplier = this.options.momentum_multiplier * 2;
+    }
+
+    pos_adjust.time = (new Date().getTime() - this.data.time.start) * 10;
+    pos_change.time = (new Date().getTime() - this.data.time.start) * 10;
+
+    pos_change.x = this.options.momentum_multiplier * (Math.abs(this.data.pagex.end) - Math.abs(this.data.pagex.start));
+    pos_change.y = this.options.momentum_multiplier * (Math.abs(this.data.pagey.end) - Math.abs(this.data.pagey.start));
+
+    pos_adjust.x = Math.round(pos_change.x / pos_change.time);
+    pos_adjust.y = Math.round(pos_change.y / pos_change.time);
+
+    this.data.new_pos.x = Math.min(this.data.pos.end.x + pos_adjust.x);
+    this.data.new_pos.y = Math.min(this.data.pos.end.y + pos_adjust.y);
+
+
+    if (!this.options.enable.x) {
+      this.data.new_pos.x = this.data.pos.start.x;
+    } else if (this.data.new_pos.x < 0) {
+      this.data.new_pos.x = 0;
+    }
+
+    if (!this.options.enable.y) {
+      this.data.new_pos.y = this.data.pos.start.y;
+    } else if (this.data.new_pos.y < 0) {
+      this.data.new_pos.y = 0;
+    }
+
+    // Detect Swipe
+    if (pos_change.time < 3000) {
+      swipe = true;
+    }
+
+    // Detect Direction
+    if (Math.abs(pos_change.x) > 10000) {
+      this.data.direction = "left";
+      if (pos_change.x > 0) {
+        this.data.direction = "right";
+      }
+    }
+    // Detect Swipe
+    if (Math.abs(pos_change.y) > 10000) {
+      this.data.direction = "up";
+      if (pos_change.y > 0) {
+        this.data.direction = "down";
+      }
+    }
+    this._animateMomentum();
+    if (swipe) {
+      this.fire("swipe_" + this.data.direction, this.data);
+    }
+
+  },
+
+
+  _animateMomentum: function() {
+    var pos = {
+        x: this.data.new_pos.x,
+        y: this.data.new_pos.y
+      },
+      animate = {
+        duration: 	this.options.duration,
+        easing: 	TL.Ease.easeOutStrong
+      };
+
+    if (this.options.enable.y) {
+      if (this.options.constraint.top || this.options.constraint.bottom) {
+        if (pos.y > this.options.constraint.bottom) {
+          pos.y = this.options.constraint.bottom;
+        } else if (pos.y < this.options.constraint.top) {
+          pos.y = this.options.constraint.top;
+        }
+      }
+      animate.top = Math.floor(pos.y) + "px";
+    }
+
+    if (this.options.enable.x) {
+      if (this.options.constraint.left || this.options.constraint.right) {
+        if (pos.x > this.options.constraint.left) {
+          pos.x = this.options.constraint.left;
+        } else if (pos.x < this.options.constraint.right) {
+          pos.x = this.options.constraint.right;
+        }
+      }
+      animate.left = Math.floor(pos.x) + "px";
+    }
+
+    this.animator = TL.Animate(this._el.move, animate);
+
+    this.fire("momentum", this.data);
+  }
 });
 
 
@@ -6166,397 +6166,397 @@ TL.Draggable = TL.Class.extend({
 ********************************************** */
 
 /*	TL.Swipable
-	TL.Draggable allows you to add dragging capabilities to any element. Supports mobile devices too.
-	TODO Enable constraints
+  TL.Draggable allows you to add dragging capabilities to any element. Supports mobile devices too.
+  TODO Enable constraints
 ================================================== */
 
 TL.Swipable = TL.Class.extend({
-	
-	includes: TL.Events,
-	
-	_el: {},
-	
-	mousedrag: {
-		down:		"mousedown",
-		up:			"mouseup",
-		leave:		"mouseleave",
-		move:		"mousemove"
-	},
-	
-	touchdrag: {
-		down:		"touchstart",
-		up:			"touchend",
-		leave:		"mouseleave",
-		move:		"touchmove"
-	},
 
-	initialize: function (drag_elem, move_elem, options) {
-		
-		// DOM ELements 
-		this._el = {
-			drag: drag_elem,
-			move: drag_elem
-		};
-		
-		if (move_elem) {
-			this._el.move = move_elem;
-		}
-		
-		
-		//Options
-		this.options = {
-			snap: false,
-			enable:	{
-				x: true,
-				y: true
-			},
-			constraint: {
-				top: false,
-				bottom: false,
-				left: 0,
-				right: false
-			},
-			momentum_multiplier: 	2000,
-			duration: 				1000,
-			ease: 					TL.Ease.easeInOutQuint
-		};
-		
-		
-		// Animation Object
-		this.animator = null;
-		
-		// Drag Event Type
-		this.dragevent = this.mousedrag;
-		
-		if (TL.Browser.touch) {
-			this.dragevent = this.touchdrag;
-		}
-		
-		// Draggable Data
-		this.data = {
-			sliding:		false,
-			direction: 		"none",
-			pagex: {
-				start:		0,
-				end:		0
-			},
-			pagey: {
-				start:		0,
-				end:		0
-			},
-			pos: {
-				start: {
-					x: 0,
-					y:0
-				},
-				end: {
-					x: 0,
-					y:0
-				}
-			},
-			new_pos: {
-				x: 0,
-				y: 0
-			},
-			new_pos_parent: {
-				x: 0,
-				y: 0
-			},
-			time: {
-				start:		0,
-				end:		0
-			},
-			touch:			false
-		};
-		
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		
-		
-	},
-	
-	enable: function(e) {
-		TL.DomEvent.addListener(this._el.drag, this.dragevent.down, this._onDragStart, this);
-		TL.DomEvent.addListener(this._el.drag, this.dragevent.up, this._onDragEnd, this);
-		
-		this.data.pos.start = 0; //TL.Dom.getPosition(this._el.move);
-		this._el.move.style.left = this.data.pos.start.x + "px";
-		this._el.move.style.top = this.data.pos.start.y + "px";
-		this._el.move.style.position = "absolute";
-		//this._el.move.style.zIndex = "11";
-		//this._el.move.style.cursor = "move";
-	},
-	
-	disable: function() {
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.down, this._onDragStart, this);
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.up, this._onDragEnd, this);
-	},
-	
-	stopMomentum: function() {
-		if (this.animator) {
-			this.animator.stop();
-		}
+  includes: TL.Events,
 
-	},
-	
-	updateConstraint: function(c) {
-		this.options.constraint = c;
-		
-		// Temporary until issues are fixed
-		
-	},
-	
-	/*	Private Methods
-	================================================== */
-	_onDragStart: function(e) {
-		
-		if (this.animator) {
-			this.animator.stop();
-		}
-		
-		if (TL.Browser.touch) {
-			if (e.originalEvent) {
-				this.data.pagex.start = e.originalEvent.touches[0].screenX;
-				this.data.pagey.start = e.originalEvent.touches[0].screenY;
-			} else {
-				this.data.pagex.start = e.targetTouches[0].screenX;
-				this.data.pagey.start = e.targetTouches[0].screenY;
-			}
-		} else {
-			this.data.pagex.start = e.pageX;
-			this.data.pagey.start = e.pageY;
-		}
-		
-		// Center element to finger or mouse
-		if (this.options.enable.x) {
-			//this._el.move.style.left = this.data.pagex.start - (this._el.move.offsetWidth / 2) + "px";
-		}
-		
-		if (this.options.enable.y) {
-			//this._el.move.style.top = this.data.pagey.start - (this._el.move.offsetHeight / 2) + "px";
-		}
-		
-		this.data.pos.start = {x:this._el.move.offsetLeft, y:this._el.move.offsetTop};
-		
-		
-		this.data.time.start 			= new Date().getTime();
-		
-		this.fire("dragstart", this.data);
-		TL.DomEvent.addListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
-		TL.DomEvent.addListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
-	},
-	
-	_onDragEnd: function(e) {
-		this.data.sliding = false;
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
-		TL.DomEvent.removeListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
-		this.fire("dragend", this.data);
-		
-		//  momentum
-		this._momentum();
-	},
-	
-	_onDragMove: function(e) {
-		var change = {
-			x:0,
-			y:0
-		}
-		//e.preventDefault();
-		this.data.sliding = true;
-		
-		if (TL.Browser.touch) {
-			if (e.originalEvent) {
-				this.data.pagex.end = e.originalEvent.touches[0].screenX;
-				this.data.pagey.end = e.originalEvent.touches[0].screenY;
-			} else {
-				this.data.pagex.end = e.targetTouches[0].screenX;
-				this.data.pagey.end = e.targetTouches[0].screenY;
-			}
+  _el: {},
 
-		} else {
-			this.data.pagex.end = e.pageX;
-			this.data.pagey.end = e.pageY;
-		}
-		
-		change.x = this.data.pagex.start - this.data.pagex.end;
-		change.y = this.data.pagey.start - this.data.pagey.end;
-		
-		this.data.pos.end = {x:this._el.drag.offsetLeft, y:this._el.drag.offsetTop};
-		
-		this.data.new_pos.x = -(change.x - this.data.pos.start.x);
-		this.data.new_pos.y = -(change.y - this.data.pos.start.y );
-		
-		if (this.options.enable.x && ( Math.abs(change.x) > Math.abs(change.y) ) ) {
-			e.preventDefault();
-			this._el.move.style.left = this.data.new_pos.x + "px";
-		}
-		
-		if (this.options.enable.y && ( Math.abs(change.y) > Math.abs(change.y) ) ) {
-			e.preventDefault();
-			this._el.move.style.top = this.data.new_pos.y + "px";
-		}
-		
-		this.fire("dragmove", this.data);
-	},
-	
-	_momentum: function() {
-		var pos_adjust = {
-				x: 0,
-				y: 0,
-				time: 0
-			},
-			pos_change = {
-				x: 0,
-				y: 0,
-				time: 0
-			},
-			swipe_detect = {
-				x: false,
-				y: false
-			},
-			swipe = false,
-			swipe_direction = "";
-		
-		
-		this.data.direction = null;
-		
-		pos_adjust.time = (new Date().getTime() - this.data.time.start) * 10;
-		pos_change.time = (new Date().getTime() - this.data.time.start) * 10;
-		
-		pos_change.x = this.options.momentum_multiplier * (Math.abs(this.data.pagex.end) - Math.abs(this.data.pagex.start));
-		pos_change.y = this.options.momentum_multiplier * (Math.abs(this.data.pagey.end) - Math.abs(this.data.pagey.start));
-		
-		pos_adjust.x = Math.round(pos_change.x / pos_change.time);
-		pos_adjust.y = Math.round(pos_change.y / pos_change.time);
-		
-		this.data.new_pos.x = Math.min(this.data.new_pos.x + pos_adjust.x);
-		this.data.new_pos.y = Math.min(this.data.new_pos.y + pos_adjust.y);
-		
-		if (!this.options.enable.x) {
-			this.data.new_pos.x = this.data.pos.start.x;
-		} else if (this.options.constraint.left && this.data.new_pos.x > this.options.constraint.left) {
-			this.data.new_pos.x = this.options.constraint.left;
-		}
-		
-		if (!this.options.enable.y) {
-			this.data.new_pos.y = this.data.pos.start.y;
-		} else if (this.data.new_pos.y < 0) {
-			this.data.new_pos.y = 0;
-		}
-		
-		// Detect Swipe
-		if (pos_change.time < 2000) {
-			swipe = true;
-		}
-		
-		
-		if (this.options.enable.x && this.options.enable.y) {
-			if (Math.abs(pos_change.x) > Math.abs(pos_change.y)) {
-				swipe_detect.x = true;
-			} else {
-				swipe_detect.y = true;
-			}
-		} else if (this.options.enable.x) {
-			if (Math.abs(pos_change.x) > Math.abs(pos_change.y)) {
-				swipe_detect.x = true;
-			}
-		} else {
-			if (Math.abs(pos_change.y) > Math.abs(pos_change.x)) {
-				swipe_detect.y = true;
-			}
-		}
-		
-		// Detect Direction and long swipe
-		if (swipe_detect.x) {
-			
-			// Long Swipe
-			if (Math.abs(pos_change.x) > (this._el.drag.offsetWidth/2)) {
-				swipe = true;
-			}
-			
-			if (Math.abs(pos_change.x) > 10000) {
-				this.data.direction = "left";
-				if (pos_change.x > 0) {
-					this.data.direction = "right";
-				}
-			}
-		}
-		
-		if (swipe_detect.y) {
-			
-			// Long Swipe
-			if (Math.abs(pos_change.y) > (this._el.drag.offsetHeight/2)) {
-				swipe = true;
-			}
-			
-			if (Math.abs(pos_change.y) > 10000) {
-				this.data.direction = "up";
-				if (pos_change.y > 0) {
-					this.data.direction = "down";
-				}
-			}
-		}
-		
-		if (pos_change.time < 1000 ) {
-			
-		} else {
-			this._animateMomentum();
-		}
-		
-		if (swipe && this.data.direction) {
-			this.fire("swipe_" + this.data.direction, this.data);
-		} else if (this.data.direction) {
-			this.fire("swipe_nodirection", this.data);
-		} else if (this.options.snap) {
-			this.animator.stop();
-			
-			this.animator = TL.Animate(this._el.move, {
-				top: 		this.data.pos.start.y,
-				left: 		this.data.pos.start.x,
-				duration: 	this.options.duration,
-				easing: 	TL.Ease.easeOutStrong
-			});
-		}
-		
-	},
-	
-	
-	_animateMomentum: function() {
-		var pos = {
-				x: this.data.new_pos.x,
-				y: this.data.new_pos.y
-			},
-			animate = {
-				duration: 	this.options.duration,
-				easing: 	TL.Ease.easeOutStrong
-			};
-		
-		if (this.options.enable.y) {
-			if (this.options.constraint.top || this.options.constraint.bottom) {
-				if (pos.y > this.options.constraint.bottom) {
-					pos.y = this.options.constraint.bottom;
-				} else if (pos.y < this.options.constraint.top) {
-					pos.y = this.options.constraint.top;
-				}
-			}
-			animate.top = Math.floor(pos.y) + "px";
-		}
-		
-		if (this.options.enable.x) {
-			if (this.options.constraint.left && pos.x >= this.options.constraint.left) {
-				pos.x = this.options.constraint.left;
-			}
-			if (this.options.constraint.right && pos.x < this.options.constraint.right) {
-				pos.x = this.options.constraint.right;
-			}
+  mousedrag: {
+    down:		"mousedown",
+    up:			"mouseup",
+    leave:		"mouseleave",
+    move:		"mousemove"
+  },
 
-			animate.left = Math.floor(pos.x) + "px";
-		}
-		
-		this.animator = TL.Animate(this._el.move, animate);
-		
-		this.fire("momentum", this.data);
-	}
+  touchdrag: {
+    down:		"touchstart",
+    up:			"touchend",
+    leave:		"mouseleave",
+    move:		"touchmove"
+  },
+
+  initialize: function (drag_elem, move_elem, options) {
+
+    // DOM ELements
+    this._el = {
+      drag: drag_elem,
+      move: drag_elem
+    };
+
+    if (move_elem) {
+      this._el.move = move_elem;
+    }
+
+
+    //Options
+    this.options = {
+      snap: false,
+      enable:	{
+        x: true,
+        y: true
+      },
+      constraint: {
+        top: false,
+        bottom: false,
+        left: 0,
+        right: false
+      },
+      momentum_multiplier: 	2000,
+      duration: 				1000,
+      ease: 					TL.Ease.easeInOutQuint
+    };
+
+
+    // Animation Object
+    this.animator = null;
+
+    // Drag Event Type
+    this.dragevent = this.mousedrag;
+
+    if (TL.Browser.touch) {
+      this.dragevent = this.touchdrag;
+    }
+
+    // Draggable Data
+    this.data = {
+      sliding:		false,
+      direction: 		"none",
+      pagex: {
+        start:		0,
+        end:		0
+      },
+      pagey: {
+        start:		0,
+        end:		0
+      },
+      pos: {
+        start: {
+          x: 0,
+          y:0
+        },
+        end: {
+          x: 0,
+          y:0
+        }
+      },
+      new_pos: {
+        x: 0,
+        y: 0
+      },
+      new_pos_parent: {
+        x: 0,
+        y: 0
+      },
+      time: {
+        start:		0,
+        end:		0
+      },
+      touch:			false
+    };
+
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+
+
+  },
+
+  enable: function(e) {
+    TL.DomEvent.addListener(this._el.drag, this.dragevent.down, this._onDragStart, this);
+    TL.DomEvent.addListener(this._el.drag, this.dragevent.up, this._onDragEnd, this);
+
+    this.data.pos.start = 0; //TL.Dom.getPosition(this._el.move);
+    this._el.move.style.left = this.data.pos.start.x + "px";
+    this._el.move.style.top = this.data.pos.start.y + "px";
+    this._el.move.style.position = "absolute";
+    //this._el.move.style.zIndex = "11";
+    //this._el.move.style.cursor = "move";
+  },
+
+  disable: function() {
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.down, this._onDragStart, this);
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.up, this._onDragEnd, this);
+  },
+
+  stopMomentum: function() {
+    if (this.animator) {
+      this.animator.stop();
+    }
+
+  },
+
+  updateConstraint: function(c) {
+    this.options.constraint = c;
+
+    // Temporary until issues are fixed
+
+  },
+
+  /*	Private Methods
+  ================================================== */
+  _onDragStart: function(e) {
+
+    if (this.animator) {
+      this.animator.stop();
+    }
+
+    if (TL.Browser.touch) {
+      if (e.originalEvent) {
+        this.data.pagex.start = e.originalEvent.touches[0].screenX;
+        this.data.pagey.start = e.originalEvent.touches[0].screenY;
+      } else {
+        this.data.pagex.start = e.targetTouches[0].screenX;
+        this.data.pagey.start = e.targetTouches[0].screenY;
+      }
+    } else {
+      this.data.pagex.start = e.pageX;
+      this.data.pagey.start = e.pageY;
+    }
+
+    // Center element to finger or mouse
+    if (this.options.enable.x) {
+      //this._el.move.style.left = this.data.pagex.start - (this._el.move.offsetWidth / 2) + "px";
+    }
+
+    if (this.options.enable.y) {
+      //this._el.move.style.top = this.data.pagey.start - (this._el.move.offsetHeight / 2) + "px";
+    }
+
+    this.data.pos.start = {x:this._el.move.offsetLeft, y:this._el.move.offsetTop};
+
+
+    this.data.time.start 			= new Date().getTime();
+
+    this.fire("dragstart", this.data);
+    TL.DomEvent.addListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
+    TL.DomEvent.addListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
+  },
+
+  _onDragEnd: function(e) {
+    this.data.sliding = false;
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.move, this._onDragMove, this);
+    TL.DomEvent.removeListener(this._el.drag, this.dragevent.leave, this._onDragEnd, this);
+    this.fire("dragend", this.data);
+
+    //  momentum
+    this._momentum();
+  },
+
+  _onDragMove: function(e) {
+    var change = {
+      x:0,
+      y:0
+    }
+    //e.preventDefault();
+    this.data.sliding = true;
+
+    if (TL.Browser.touch) {
+      if (e.originalEvent) {
+        this.data.pagex.end = e.originalEvent.touches[0].screenX;
+        this.data.pagey.end = e.originalEvent.touches[0].screenY;
+      } else {
+        this.data.pagex.end = e.targetTouches[0].screenX;
+        this.data.pagey.end = e.targetTouches[0].screenY;
+      }
+
+    } else {
+      this.data.pagex.end = e.pageX;
+      this.data.pagey.end = e.pageY;
+    }
+
+    change.x = this.data.pagex.start - this.data.pagex.end;
+    change.y = this.data.pagey.start - this.data.pagey.end;
+
+    this.data.pos.end = {x:this._el.drag.offsetLeft, y:this._el.drag.offsetTop};
+
+    this.data.new_pos.x = -(change.x - this.data.pos.start.x);
+    this.data.new_pos.y = -(change.y - this.data.pos.start.y );
+
+    if (this.options.enable.x && ( Math.abs(change.x) > Math.abs(change.y) ) ) {
+      e.preventDefault();
+      this._el.move.style.left = this.data.new_pos.x + "px";
+    }
+
+    if (this.options.enable.y && ( Math.abs(change.y) > Math.abs(change.y) ) ) {
+      e.preventDefault();
+      this._el.move.style.top = this.data.new_pos.y + "px";
+    }
+
+    this.fire("dragmove", this.data);
+  },
+
+  _momentum: function() {
+    var pos_adjust = {
+        x: 0,
+        y: 0,
+        time: 0
+      },
+      pos_change = {
+        x: 0,
+        y: 0,
+        time: 0
+      },
+      swipe_detect = {
+        x: false,
+        y: false
+      },
+      swipe = false,
+      swipe_direction = "";
+
+
+    this.data.direction = null;
+
+    pos_adjust.time = (new Date().getTime() - this.data.time.start) * 10;
+    pos_change.time = (new Date().getTime() - this.data.time.start) * 10;
+
+    pos_change.x = this.options.momentum_multiplier * (Math.abs(this.data.pagex.end) - Math.abs(this.data.pagex.start));
+    pos_change.y = this.options.momentum_multiplier * (Math.abs(this.data.pagey.end) - Math.abs(this.data.pagey.start));
+
+    pos_adjust.x = Math.round(pos_change.x / pos_change.time);
+    pos_adjust.y = Math.round(pos_change.y / pos_change.time);
+
+    this.data.new_pos.x = Math.min(this.data.new_pos.x + pos_adjust.x);
+    this.data.new_pos.y = Math.min(this.data.new_pos.y + pos_adjust.y);
+
+    if (!this.options.enable.x) {
+      this.data.new_pos.x = this.data.pos.start.x;
+    } else if (this.options.constraint.left && this.data.new_pos.x > this.options.constraint.left) {
+      this.data.new_pos.x = this.options.constraint.left;
+    }
+
+    if (!this.options.enable.y) {
+      this.data.new_pos.y = this.data.pos.start.y;
+    } else if (this.data.new_pos.y < 0) {
+      this.data.new_pos.y = 0;
+    }
+
+    // Detect Swipe
+    if (pos_change.time < 2000) {
+      swipe = true;
+    }
+
+
+    if (this.options.enable.x && this.options.enable.y) {
+      if (Math.abs(pos_change.x) > Math.abs(pos_change.y)) {
+        swipe_detect.x = true;
+      } else {
+        swipe_detect.y = true;
+      }
+    } else if (this.options.enable.x) {
+      if (Math.abs(pos_change.x) > Math.abs(pos_change.y)) {
+        swipe_detect.x = true;
+      }
+    } else {
+      if (Math.abs(pos_change.y) > Math.abs(pos_change.x)) {
+        swipe_detect.y = true;
+      }
+    }
+
+    // Detect Direction and long swipe
+    if (swipe_detect.x) {
+
+      // Long Swipe
+      if (Math.abs(pos_change.x) > (this._el.drag.offsetWidth/2)) {
+        swipe = true;
+      }
+
+      if (Math.abs(pos_change.x) > 10000) {
+        this.data.direction = "left";
+        if (pos_change.x > 0) {
+          this.data.direction = "right";
+        }
+      }
+    }
+
+    if (swipe_detect.y) {
+
+      // Long Swipe
+      if (Math.abs(pos_change.y) > (this._el.drag.offsetHeight/2)) {
+        swipe = true;
+      }
+
+      if (Math.abs(pos_change.y) > 10000) {
+        this.data.direction = "up";
+        if (pos_change.y > 0) {
+          this.data.direction = "down";
+        }
+      }
+    }
+
+    if (pos_change.time < 1000 ) {
+
+    } else {
+      this._animateMomentum();
+    }
+
+    if (swipe && this.data.direction) {
+      this.fire("swipe_" + this.data.direction, this.data);
+    } else if (this.data.direction) {
+      this.fire("swipe_nodirection", this.data);
+    } else if (this.options.snap) {
+      this.animator.stop();
+
+      this.animator = TL.Animate(this._el.move, {
+        top: 		this.data.pos.start.y,
+        left: 		this.data.pos.start.x,
+        duration: 	this.options.duration,
+        easing: 	TL.Ease.easeOutStrong
+      });
+    }
+
+  },
+
+
+  _animateMomentum: function() {
+    var pos = {
+        x: this.data.new_pos.x,
+        y: this.data.new_pos.y
+      },
+      animate = {
+        duration: 	this.options.duration,
+        easing: 	TL.Ease.easeOutStrong
+      };
+
+    if (this.options.enable.y) {
+      if (this.options.constraint.top || this.options.constraint.bottom) {
+        if (pos.y > this.options.constraint.bottom) {
+          pos.y = this.options.constraint.bottom;
+        } else if (pos.y < this.options.constraint.top) {
+          pos.y = this.options.constraint.top;
+        }
+      }
+      animate.top = Math.floor(pos.y) + "px";
+    }
+
+    if (this.options.enable.x) {
+      if (this.options.constraint.left && pos.x >= this.options.constraint.left) {
+        pos.x = this.options.constraint.left;
+      }
+      if (this.options.constraint.right && pos.x < this.options.constraint.right) {
+        pos.x = this.options.constraint.right;
+      }
+
+      animate.left = Math.floor(pos.x) + "px";
+    }
+
+    this.animator = TL.Animate(this._el.move, animate);
+
+    this.fire("momentum", this.data);
+  }
 });
 
 
@@ -6565,177 +6565,177 @@ TL.Swipable = TL.Class.extend({
 ********************************************** */
 
 /*	TL.MenuBar
-	Draggable component to control size
+  Draggable component to control size
 ================================================== */
 
 TL.MenuBar = TL.Class.extend({
 
-	includes: [TL.Events, TL.DomMixins],
+  includes: [TL.Events, TL.DomMixins],
 
-	_el: {},
+  _el: {},
 
-	/*	Constructor
-	================================================== */
-	initialize: function(elem, parent_elem, options) {
-		// DOM ELEMENTS
-		this._el = {
-			parent: {},
-			container: {},
-			button_backtostart: {},
-			button_zoomin: {},
-			button_zoomout: {},
-			arrow: {},
-			line: {},
-			coverbar: {},
-			grip: {}
-		};
+  /*	Constructor
+  ================================================== */
+  initialize: function(elem, parent_elem, options) {
+    // DOM ELEMENTS
+    this._el = {
+      parent: {},
+      container: {},
+      button_backtostart: {},
+      button_zoomin: {},
+      button_zoomout: {},
+      arrow: {},
+      line: {},
+      coverbar: {},
+      grip: {}
+    };
 
-		this.collapsed = false;
+    this.collapsed = false;
 
-		if (typeof elem === 'object') {
-			this._el.container = elem;
-		} else {
-			this._el.container = TL.Dom.get(elem);
-		}
+    if (typeof elem === 'object') {
+      this._el.container = elem;
+    } else {
+      this._el.container = TL.Dom.get(elem);
+    }
 
-		if (parent_elem) {
-			this._el.parent = parent_elem;
-		}
+    if (parent_elem) {
+      this._el.parent = parent_elem;
+    }
 
-		//Options
-		this.options = {
-			width: 					600,
-			height: 				600,
-			duration: 				1000,
-			ease: 					TL.Ease.easeInOutQuint,
-			menubar_default_y: 		0
-		};
+    //Options
+    this.options = {
+      width: 					600,
+      height: 				600,
+      duration: 				1000,
+      ease: 					TL.Ease.easeInOutQuint,
+      menubar_default_y: 		0
+    };
 
-		// Animation
-		this.animator = {};
+    // Animation
+    this.animator = {};
 
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
 
-		this._initLayout();
-		this._initEvents();
-	},
+    this._initLayout();
+    this._initEvents();
+  },
 
-	/*	Public
-	================================================== */
-	show: function(d) {
+  /*	Public
+  ================================================== */
+  show: function(d) {
 
-		var duration = this.options.duration;
-		if (d) {
-			duration = d;
-		}
-		/*
-		this.animator = TL.Animate(this._el.container, {
-			top: 		this.options.menubar_default_y + "px",
-			duration: 	duration,
-			easing: 	TL.Ease.easeOutStrong
-		});
-		*/
-	},
+    var duration = this.options.duration;
+    if (d) {
+      duration = d;
+    }
+    /*
+    this.animator = TL.Animate(this._el.container, {
+      top: 		this.options.menubar_default_y + "px",
+      duration: 	duration,
+      easing: 	TL.Ease.easeOutStrong
+    });
+    */
+  },
 
-	hide: function(top) {
-		/*
-		this.animator = TL.Animate(this._el.container, {
-			top: 		top,
-			duration: 	this.options.duration,
-			easing: 	TL.Ease.easeOutStrong
-		});
-		*/
-	},
+  hide: function(top) {
+    /*
+    this.animator = TL.Animate(this._el.container, {
+      top: 		top,
+      duration: 	this.options.duration,
+      easing: 	TL.Ease.easeOutStrong
+    });
+    */
+  },
 
-	toogleZoomIn: function(show) {
-		if (show) {
+  toogleZoomIn: function(show) {
+    if (show) {
       TL.DomUtil.removeClass(this._el.button_zoomin,'tl-menubar-button-inactive');
-		} else {
+    } else {
       TL.DomUtil.addClass(this._el.button_zoomin,'tl-menubar-button-inactive');
-		}
-	},
+    }
+  },
 
-	toogleZoomOut: function(show) {
-		if (show) {
+  toogleZoomOut: function(show) {
+    if (show) {
       TL.DomUtil.removeClass(this._el.button_zoomout,'tl-menubar-button-inactive');
-		} else {
+    } else {
       TL.DomUtil.addClass(this._el.button_zoomout,'tl-menubar-button-inactive');
-		}
-	},
+    }
+  },
 
-	setSticky: function(y) {
-		this.options.menubar_default_y = y;
-	},
+  setSticky: function(y) {
+    this.options.menubar_default_y = y;
+  },
 
-	/*	Color
-	================================================== */
-	setColor: function(inverted) {
-		if (inverted) {
-			this._el.container.className = 'tl-menubar tl-menubar-inverted';
-		} else {
-			this._el.container.className = 'tl-menubar';
-		}
-	},
+  /*	Color
+  ================================================== */
+  setColor: function(inverted) {
+    if (inverted) {
+      this._el.container.className = 'tl-menubar tl-menubar-inverted';
+    } else {
+      this._el.container.className = 'tl-menubar';
+    }
+  },
 
-	/*	Update Display
-	================================================== */
-	updateDisplay: function(w, h, a, l) {
-		this._updateDisplay(w, h, a, l);
-	},
-
-
-	/*	Events
-	================================================== */
-	_onButtonZoomIn: function(e) {
-		this.fire("zoom_in", e);
-	},
-
-	_onButtonZoomOut: function(e) {
-		this.fire("zoom_out", e);
-	},
-
-	_onButtonBackToStart: function(e) {
-		this.fire("back_to_start", e);
-	},
+  /*	Update Display
+  ================================================== */
+  updateDisplay: function(w, h, a, l) {
+    this._updateDisplay(w, h, a, l);
+  },
 
 
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
+  /*	Events
+  ================================================== */
+  _onButtonZoomIn: function(e) {
+    this.fire("zoom_in", e);
+  },
 
-		// Create Layout
-		this._el.button_zoomin 							= TL.Dom.create('span', 'tl-menubar-button', this._el.container);
-		this._el.button_zoomout 						= TL.Dom.create('span', 'tl-menubar-button', this._el.container);
-		this._el.button_backtostart 					= TL.Dom.create('span', 'tl-menubar-button', this._el.container);
+  _onButtonZoomOut: function(e) {
+    this.fire("zoom_out", e);
+  },
 
-		if (TL.Browser.mobile) {
-			this._el.container.setAttribute("ontouchstart"," ");
-		}
-
-		this._el.button_backtostart.innerHTML		= "<span class='tl-icon-goback'></span>";
-		this._el.button_zoomin.innerHTML			= "<span class='tl-icon-zoom-in'></span>";
-		this._el.button_zoomout.innerHTML			= "<span class='tl-icon-zoom-out'></span>";
+  _onButtonBackToStart: function(e) {
+    this.fire("back_to_start", e);
+  },
 
 
-	},
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
 
-	_initEvents: function () {
-		TL.DomEvent.addListener(this._el.button_backtostart, 'click', this._onButtonBackToStart, this);
-		TL.DomEvent.addListener(this._el.button_zoomin, 'click', this._onButtonZoomIn, this);
-		TL.DomEvent.addListener(this._el.button_zoomout, 'click', this._onButtonZoomOut, this);
-	},
+    // Create Layout
+    this._el.button_zoomin 							= TL.Dom.create('span', 'tl-menubar-button', this._el.container);
+    this._el.button_zoomout 						= TL.Dom.create('span', 'tl-menubar-button', this._el.container);
+    this._el.button_backtostart 					= TL.Dom.create('span', 'tl-menubar-button', this._el.container);
 
-	// Update Display
-	_updateDisplay: function(width, height, animate) {
+    if (TL.Browser.mobile) {
+      this._el.container.setAttribute("ontouchstart"," ");
+    }
 
-		if (width) {
-			this.options.width = width;
-		}
-		if (height) {
-			this.options.height = height;
-		}
-	}
+    this._el.button_backtostart.innerHTML		= "<span class='tl-icon-goback'></span>";
+    this._el.button_zoomin.innerHTML			= "<span class='tl-icon-zoom-in'></span>";
+    this._el.button_zoomout.innerHTML			= "<span class='tl-icon-zoom-out'></span>";
+
+
+  },
+
+  _initEvents: function () {
+    TL.DomEvent.addListener(this._el.button_backtostart, 'click', this._onButtonBackToStart, this);
+    TL.DomEvent.addListener(this._el.button_zoomin, 'click', this._onButtonZoomIn, this);
+    TL.DomEvent.addListener(this._el.button_zoomout, 'click', this._onButtonZoomOut, this);
+  },
+
+  // Update Display
+  _updateDisplay: function(width, height, animate) {
+
+    if (width) {
+      this.options.width = width;
+    }
+    if (height) {
+      this.options.height = height;
+    }
+  }
 
 });
 
@@ -6745,119 +6745,119 @@ TL.MenuBar = TL.Class.extend({
 ********************************************** */
 
 /*	TL.Message
-	
+
 ================================================== */
- 
+
 TL.Message = TL.Class.extend({
-	
-	includes: [TL.Events, TL.DomMixins, TL.I18NMixins],
-	
-	_el: {},
-	
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options, add_to_container) {
-		// DOM ELEMENTS
-		this._el = {
-			parent: {},
-			container: {},
-			message_container: {},
-			loading_icon: {},
-			message: {}
-		};
-	
-		//Options
-		this.options = {
-			width: 					600,
-			height: 				600,
-			message_class: 			"tl-message",
-			message_icon_class: 	"tl-loading-icon"
-		};
-		
-		this._add_to_container = add_to_container || {}; // save ref
-		
-		// Merge Data and Options
-		TL.Util.mergeData(this.data, data);
-		TL.Util.mergeData(this.options, options);
-		
-		this._el.container = TL.Dom.create("div", this.options.message_class);
-		
-		if (add_to_container) {
-			add_to_container.appendChild(this._el.container);
-			this._el.parent = add_to_container;
-		}
-		
-		// Animation
-		this.animator = {};
-				
-		this._initLayout();
-		this._initEvents();
-	},
-	
-	/*	Public
-	================================================== */
-	updateMessage: function(t) {
-		this._updateMessage(t);
-	},
-	
-	
-	/*	Update Display
-	================================================== */
-	updateDisplay: function(w, h) {
-		this._updateDisplay(w, h);
-	},
-	
-	_updateMessage: function(t) {
-		if (!t) {
-			this._el.message.innerHTML = this._('loading');
-		} else {
-			this._el.message.innerHTML = t;
-		}
-		
-		// Re-add to DOM?
-		if(!this._el.parent.atrributes && this._add_to_container.attributes) {
-		    this._add_to_container.appendChild(this._el.container);
-		    this._el.parent = this._add_to_container;
-		}
-	},
-	
 
-	/*	Events
-	================================================== */
+  includes: [TL.Events, TL.DomMixins, TL.I18NMixins],
 
-	
-	_onMouseClick: function() {
-		this.fire("clicked", this.options);
-	},
-	
-	_onRemove: function() {
-	    this._el.parent = {};
-	},
+  _el: {},
+
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options, add_to_container) {
+    // DOM ELEMENTS
+    this._el = {
+      parent: {},
+      container: {},
+      message_container: {},
+      loading_icon: {},
+      message: {}
+    };
+
+    //Options
+    this.options = {
+      width: 					600,
+      height: 				600,
+      message_class: 			"tl-message",
+      message_icon_class: 	"tl-loading-icon"
+    };
+
+    this._add_to_container = add_to_container || {}; // save ref
+
+    // Merge Data and Options
+    TL.Util.mergeData(this.data, data);
+    TL.Util.mergeData(this.options, options);
+
+    this._el.container = TL.Dom.create("div", this.options.message_class);
+
+    if (add_to_container) {
+      add_to_container.appendChild(this._el.container);
+      this._el.parent = add_to_container;
+    }
+
+    // Animation
+    this.animator = {};
+
+    this._initLayout();
+    this._initEvents();
+  },
+
+  /*	Public
+  ================================================== */
+  updateMessage: function(t) {
+    this._updateMessage(t);
+  },
 
 
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		
-		// Create Layout
-		this._el.message_container = TL.Dom.create("div", "tl-message-container", this._el.container);
-		this._el.loading_icon = TL.Dom.create("div", this.options.message_icon_class, this._el.message_container);
-		this._el.message = TL.Dom.create("div", "tl-message-content", this._el.message_container);
-		
-		this._updateMessage();
-		
-	},
-	
-	_initEvents: function () {
-		TL.DomEvent.addListener(this._el.container, 'click', this._onMouseClick, this);
-		TL.DomEvent.addListener(this, 'removed', this._onRemove, this);
-	},
-	
-	// Update Display
-	_updateDisplay: function(width, height, animate) {
-		
-	}
-	
+  /*	Update Display
+  ================================================== */
+  updateDisplay: function(w, h) {
+    this._updateDisplay(w, h);
+  },
+
+  _updateMessage: function(t) {
+    if (!t) {
+      this._el.message.innerHTML = this._('loading');
+    } else {
+      this._el.message.innerHTML = t;
+    }
+
+    // Re-add to DOM?
+    if(!this._el.parent.atrributes && this._add_to_container.attributes) {
+        this._add_to_container.appendChild(this._el.container);
+        this._el.parent = this._add_to_container;
+    }
+  },
+
+
+  /*	Events
+  ================================================== */
+
+
+  _onMouseClick: function() {
+    this.fire("clicked", this.options);
+  },
+
+  _onRemove: function() {
+      this._el.parent = {};
+  },
+
+
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+
+    // Create Layout
+    this._el.message_container = TL.Dom.create("div", "tl-message-container", this._el.container);
+    this._el.loading_icon = TL.Dom.create("div", this.options.message_icon_class, this._el.message_container);
+    this._el.message = TL.Dom.create("div", "tl-message-content", this._el.message_container);
+
+    this._updateMessage();
+
+  },
+
+  _initEvents: function () {
+    TL.DomEvent.addListener(this._el.container, 'click', this._onMouseClick, this);
+    TL.DomEvent.addListener(this, 'removed', this._onRemove, this);
+  },
+
+  // Update Display
+  _updateDisplay: function(width, height, animate) {
+
+  }
+
 });
 
 /* **********************************************
@@ -6865,175 +6865,175 @@ TL.Message = TL.Class.extend({
 ********************************************** */
 
 /*	TL.MediaType
-	Determines the type of media the url string is.
-	returns an object with .type and .id
-	You can add new media types by adding a regex
-	to match and the media class name to use to
-	render the media
-	
-	The image_only parameter indicates that the
-	call only wants an image-based media type
-	that can be resolved to an image URL.
+  Determines the type of media the url string is.
+  returns an object with .type and .id
+  You can add new media types by adding a regex
+  to match and the media class name to use to
+  render the media
 
-	TODO
-	Allow array so a slideshow can be a mediatype
+  The image_only parameter indicates that the
+  call only wants an image-based media type
+  that can be resolved to an image URL.
+
+  TODO
+  Allow array so a slideshow can be a mediatype
 ================================================== */
 TL.MediaType = function(m, image_only) {
-	var media = {},
-		media_types = 	[
-			{
-				type: 		"youtube",
-				name: 		"YouTube",
-				match_str: 	"^(https?:)?\/*(www.)?youtube|youtu\.be",
-				cls: 		TL.Media.YouTube
-			},
-			{
-				type: 		"vimeo",
-				name: 		"Vimeo",
-				match_str: 	"^(https?:)?\/*(player.)?vimeo\.com",
-				cls: 		TL.Media.Vimeo
-			},
-			{
-				type: 		"dailymotion",
-				name: 		"DailyMotion",
-				match_str: 	"^(https?:)?\/*(www.)?dailymotion\.com",
-				cls: 		TL.Media.DailyMotion
-			},
-			{
-				type: 		"vine",
-				name: 		"Vine",
-				match_str: 	"^(https?:)?\/*(www.)?vine\.co",
-				cls: 		TL.Media.Vine
-			},
-			{
-				type: 		"soundcloud",
-				name: 		"SoundCloud",
-				match_str: 	"^(https?:)?\/*(player.)?soundcloud\.com",
-				cls: 		TL.Media.SoundCloud
-			},
-			{
-				type: 		"twitter",
-				name: 		"Twitter",
-				match_str: 	"^(https?:)?\/*(www.)?twitter\.com",
-				cls: 		TL.Media.Twitter
-			},
-			{
-				type: 		"twitterembed",
-				name: 		"TwitterEmbed",
-				match_str: 	"<blockquote class=\"twitter-tweet\"",
-				cls: 		TL.Media.TwitterEmbed
-			},
-			{
-				type: 		"googlemaps",
-				name: 		"Google Map",
-				match_str: 	/google.+?\/maps\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)|google.+?\/maps\/search\/([\w\W]+)\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)|google.+?\/maps\/place\/([\w\W]+)\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)|google.+?\/maps\/dir\/([\w\W]+)\/([\w\W]+)\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)/,
-				cls: 		TL.Media.GoogleMap
-			},
-			{
-				type: 		"googleplus",
-				name: 		"Google+",
-				match_str: 	"^(https?:)?\/*plus.google",
-				cls: 		TL.Media.GooglePlus
-			},
-			{
-				type: 		"flickr",
-				name: 		"Flickr",
-				match_str: 	"^(https?:)?\/*(www.)?flickr.com\/photos",
-				cls: 		TL.Media.Flickr
-			},
-			{
-				type: 		"flickr",
-				name: 		"Flickr",
-				match_str: 	"^(https?:\/\/)?flic.kr\/.*",
-				cls: 		TL.Media.Flickr
-			},
-			{
-				type: 		"instagram",
-				name: 		"Instagram",
-				match_str: 	/^(https?:)?\/*(www.)?(instagr.am|^(https?:)?\/*(www.)?instagram.com)\/p\//,
-				cls: 		TL.Media.Instagram
-			},
-			{
-				type: 		"profile",
-				name: 		"Profile",
-				match_str: 	/^(https?:)?\/*(www.)?instagr.am\/[a-zA-Z0-9]{2,}|^(https?:)?\/*(www.)?instagram.com\/[a-zA-Z0-9]{2,}/,
-				cls: 		TL.Media.Profile
-			},
-			{
-			    type:       "documentcloud",
-			    name:       "Document Cloud",
-			    match_str:  /documentcloud.org\//,
-			    cls:        TL.Media.DocumentCloud
-			},
-			{
-				type: 		"image",
-				name: 		"Image",
-				match_str: 	/(jpg|jpeg|png|gif|svg)(\?.*)?$/i,
-				cls: 		TL.Media.Image
-			},
-			{
-				type: 		"imgur",
-				name: 		"Imgur",
-				match_str: 	/^.*imgur.com\/.+$/i,
-				cls: 		TL.Media.Imgur
-			},
-			{
-				type: 		"googledocs",
-				name: 		"Google Doc",
-				match_str: 	"^(https?:)?\/*[^.]*.google.com\/[^\/]*\/d\/[^\/]*\/[^\/]*\?usp=sharing|^(https?:)?\/*drive.google.com\/open\?id=[^\&]*\&authuser=0|^(https?:)?\/*drive.google.com\/open\?id=[^\&]*|^(https?:)?\/*[^.]*.googledrive.com\/host\/[^\/]*\/",
-				cls: 		TL.Media.GoogleDoc
-			},
-			{
-				type: 		"pdf",
-				name: 		"PDF",
-				match_str: 	/^.*\.pdf(\?.*)?(\#.*)?/,
-				cls: 		TL.Media.PDF
-			},
-			{
-				type: 		"wikipedia",
-				name: 		"Wikipedia",
-				match_str: 	"^(https?:)?\/*(www.)?wikipedia\.org|^(https?:)?\/*([a-z][a-z].)?wikipedia\.org",
-				cls: 		TL.Media.Wikipedia
-			},
-			{
-				type: 		"spotify",
-				name: 		"spotify",
-				match_str: 	"spotify",
-				cls: 		TL.Media.Spotify
-			},
-			{
-				type: 		"iframe",
-				name: 		"iFrame",
-				match_str: 	"iframe",
-				cls: 		TL.Media.IFrame
-			},
-			{
-				type: 		"storify",
-				name: 		"Storify",
-				match_str: 	"storify",
-				cls: 		TL.Media.Storify
-			},
-			{
-				type: 		"blockquote",
-				name: 		"Quote",
-				match_str: 	"blockquote",
-				cls: 		TL.Media.Blockquote
-			},
-			// {
-			// 	type: 		"website",
-			// 	name: 		"Website",
-			// 	match_str: 	"https?://",
-			// 	cls: 		TL.Media.Website
-			// },
-			{
-				type: 		"imageblank",
-				name: 		"Imageblank",
-				match_str: 	"",
-				cls: 		TL.Media.Image
-			}
-		];
-	
-	if(image_only) {
+  var media = {},
+    media_types = 	[
+      {
+        type: 		"youtube",
+        name: 		"YouTube",
+        match_str: 	"^(https?:)?\/*(www.)?youtube|youtu\.be",
+        cls: 		TL.Media.YouTube
+      },
+      {
+        type: 		"vimeo",
+        name: 		"Vimeo",
+        match_str: 	"^(https?:)?\/*(player.)?vimeo\.com",
+        cls: 		TL.Media.Vimeo
+      },
+      {
+        type: 		"dailymotion",
+        name: 		"DailyMotion",
+        match_str: 	"^(https?:)?\/*(www.)?dailymotion\.com",
+        cls: 		TL.Media.DailyMotion
+      },
+      {
+        type: 		"vine",
+        name: 		"Vine",
+        match_str: 	"^(https?:)?\/*(www.)?vine\.co",
+        cls: 		TL.Media.Vine
+      },
+      {
+        type: 		"soundcloud",
+        name: 		"SoundCloud",
+        match_str: 	"^(https?:)?\/*(player.)?soundcloud\.com",
+        cls: 		TL.Media.SoundCloud
+      },
+      {
+        type: 		"twitter",
+        name: 		"Twitter",
+        match_str: 	"^(https?:)?\/*(www.)?twitter\.com",
+        cls: 		TL.Media.Twitter
+      },
+      {
+        type: 		"twitterembed",
+        name: 		"TwitterEmbed",
+        match_str: 	"<blockquote class=\"twitter-tweet\"",
+        cls: 		TL.Media.TwitterEmbed
+      },
+      {
+        type: 		"googlemaps",
+        name: 		"Google Map",
+        match_str: 	/google.+?\/maps\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)|google.+?\/maps\/search\/([\w\W]+)\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)|google.+?\/maps\/place\/([\w\W]+)\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)|google.+?\/maps\/dir\/([\w\W]+)\/([\w\W]+)\/@([-\d.]+),([-\d.]+),((?:[-\d.]+[zmayht],?)*)/,
+        cls: 		TL.Media.GoogleMap
+      },
+      {
+        type: 		"googleplus",
+        name: 		"Google+",
+        match_str: 	"^(https?:)?\/*plus.google",
+        cls: 		TL.Media.GooglePlus
+      },
+      {
+        type: 		"flickr",
+        name: 		"Flickr",
+        match_str: 	"^(https?:)?\/*(www.)?flickr.com\/photos",
+        cls: 		TL.Media.Flickr
+      },
+      {
+        type: 		"flickr",
+        name: 		"Flickr",
+        match_str: 	"^(https?:\/\/)?flic.kr\/.*",
+        cls: 		TL.Media.Flickr
+      },
+      {
+        type: 		"instagram",
+        name: 		"Instagram",
+        match_str: 	/^(https?:)?\/*(www.)?(instagr.am|^(https?:)?\/*(www.)?instagram.com)\/p\//,
+        cls: 		TL.Media.Instagram
+      },
+      {
+        type: 		"profile",
+        name: 		"Profile",
+        match_str: 	/^(https?:)?\/*(www.)?instagr.am\/[a-zA-Z0-9]{2,}|^(https?:)?\/*(www.)?instagram.com\/[a-zA-Z0-9]{2,}/,
+        cls: 		TL.Media.Profile
+      },
+      {
+          type:       "documentcloud",
+          name:       "Document Cloud",
+          match_str:  /documentcloud.org\//,
+          cls:        TL.Media.DocumentCloud
+      },
+      {
+        type: 		"image",
+        name: 		"Image",
+        match_str: 	/(jpg|jpeg|png|gif|svg)(\?.*)?$/i,
+        cls: 		TL.Media.Image
+      },
+      {
+        type: 		"imgur",
+        name: 		"Imgur",
+        match_str: 	/^.*imgur.com\/.+$/i,
+        cls: 		TL.Media.Imgur
+      },
+      {
+        type: 		"googledocs",
+        name: 		"Google Doc",
+        match_str: 	"^(https?:)?\/*[^.]*.google.com\/[^\/]*\/d\/[^\/]*\/[^\/]*\?usp=sharing|^(https?:)?\/*drive.google.com\/open\?id=[^\&]*\&authuser=0|^(https?:)?\/*drive.google.com\/open\?id=[^\&]*|^(https?:)?\/*[^.]*.googledrive.com\/host\/[^\/]*\/",
+        cls: 		TL.Media.GoogleDoc
+      },
+      {
+        type: 		"pdf",
+        name: 		"PDF",
+        match_str: 	/^.*\.pdf(\?.*)?(\#.*)?/,
+        cls: 		TL.Media.PDF
+      },
+      {
+        type: 		"wikipedia",
+        name: 		"Wikipedia",
+        match_str: 	"^(https?:)?\/*(www.)?wikipedia\.org|^(https?:)?\/*([a-z][a-z].)?wikipedia\.org",
+        cls: 		TL.Media.Wikipedia
+      },
+      {
+        type: 		"spotify",
+        name: 		"spotify",
+        match_str: 	"spotify",
+        cls: 		TL.Media.Spotify
+      },
+      {
+        type: 		"iframe",
+        name: 		"iFrame",
+        match_str: 	"iframe",
+        cls: 		TL.Media.IFrame
+      },
+      {
+        type: 		"storify",
+        name: 		"Storify",
+        match_str: 	"storify",
+        cls: 		TL.Media.Storify
+      },
+      {
+        type: 		"blockquote",
+        name: 		"Quote",
+        match_str: 	"blockquote",
+        cls: 		TL.Media.Blockquote
+      },
+      // {
+      // 	type: 		"website",
+      // 	name: 		"Website",
+      // 	match_str: 	"https?://",
+      // 	cls: 		TL.Media.Website
+      // },
+      {
+        type: 		"imageblank",
+        name: 		"Imageblank",
+        match_str: 	"",
+        cls: 		TL.Media.Image
+      }
+    ];
+
+  if(image_only) {
         if (m instanceof Array) {
             return false;
         }
@@ -7048,13 +7048,13 @@ TL.MediaType = function(m, image_only) {
                         return media;
                     }
                     break;
-                
+
                 default:
-                    break;            
+                    break;
             }
-        }        
-	
-	} else {
+        }
+
+  } else {
         for (var i = 0; i < media_types.length; i++) {
             if (m instanceof Array) {
                 return media = {
@@ -7068,7 +7068,7 @@ TL.MediaType = function(m, image_only) {
         };
     }
 
-	return false;
+  return false;
 
 }
 
@@ -7078,80 +7078,80 @@ TL.MediaType = function(m, image_only) {
 ********************************************** */
 
 /*	TL.Media
-	Main media template for media assets.
-	Takes a data object and populates a dom object
+  Main media template for media assets.
+  Takes a data object and populates a dom object
 ================================================== */
 // TODO add link
 
 TL.Media = TL.Class.extend({
 
-	includes: [TL.Events, TL.I18NMixins],
+  includes: [TL.Events, TL.I18NMixins],
 
-	_el: {},
+  _el: {},
 
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options, add_to_container) {
-		// DOM ELEMENTS
-		this._el = {
-			container: {},
-			content_container: {},
-			content: {},
-			content_item: {},
-			content_link: {},
-			caption: null,
-			credit: null,
-			parent: {},
-			link: null
-		};
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options, add_to_container) {
+    // DOM ELEMENTS
+    this._el = {
+      container: {},
+      content_container: {},
+      content: {},
+      content_item: {},
+      content_link: {},
+      caption: null,
+      credit: null,
+      parent: {},
+      link: null
+    };
 
-		// Player (If Needed)
-		this.player = null;
+    // Player (If Needed)
+    this.player = null;
 
-		// Timer (If Needed)
-		this.timer = null;
-		this.load_timer = null;
+    // Timer (If Needed)
+    this.timer = null;
+    this.load_timer = null;
 
-		// Message
-		this.message = null;
+    // Message
+    this.message = null;
 
-		// Media ID
-		this.media_id = null;
+    // Media ID
+    this.media_id = null;
 
-		// State
-		this._state = {
-			loaded: false,
-			show_meta: false,
-			media_loaded: false
-		};
+    // State
+    this._state = {
+      loaded: false,
+      show_meta: false,
+      media_loaded: false
+    };
 
-		// Data
-		this.data = {
-			unique_id: 			null,
-			url: 				null,
-			credit:				null,
-			caption:			null,
-			credit_alternate: 	null,
-			caption_alternate: 	null,
-			link: 				null,
-			link_target: 		null
-		};
+    // Data
+    this.data = {
+      unique_id: 			null,
+      url: 				null,
+      credit:				null,
+      caption:			null,
+      credit_alternate: 	null,
+      caption_alternate: 	null,
+      link: 				null,
+      link_target: 		null
+    };
 
-		//Options
-		this.options = {
-			api_key_flickr: 		"f2cc870b4d233dd0a5bfe73fd0d64ef0",
-			api_key_googlemaps: 	"AIzaSyB9dW8e_iRrATFa8g24qB6BDBGdkrLDZYI",
-			api_key_embedly: 		"", // ae2da610d1454b66abdf2e6a4c44026d
-			credit_height: 			0,
-			caption_height: 		0,
-			background:             0   // is background media (for slide)
-		};
+    //Options
+    this.options = {
+      api_key_flickr: 		"f2cc870b4d233dd0a5bfe73fd0d64ef0",
+      api_key_googlemaps: 	"AIzaSyB9dW8e_iRrATFa8g24qB6BDBGdkrLDZYI",
+      api_key_embedly: 		"", // ae2da610d1454b66abdf2e6a4c44026d
+      credit_height: 			0,
+      caption_height: 		0,
+      background:             0   // is background media (for slide)
+    };
 
-		this.animator = {};
+    this.animator = {};
 
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		TL.Util.mergeData(this.data, data);
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+    TL.Util.mergeData(this.data, data);
 
         // Don't create DOM elements if this is background media
         if(!this.options.background) {
@@ -7168,80 +7168,80 @@ TL.Media = TL.Class.extend({
                 this._el.parent = add_to_container;
             }
         }
-	},
+  },
 
-	loadMedia: function() {
-		var self = this;
+  loadMedia: function() {
+    var self = this;
 
-		if (!this._state.loaded) {
-			try {
-				this.load_timer = setTimeout(function() {
-		            self.loadingMessage();
-					self._loadMedia();
-					// self._state.loaded = true; handled in onLoaded()
-					self._updateDisplay();
-				}, 1200);
-			} catch (e) {
-				trace("Error loading media for ", this._media);
-				trace(e);
-			}
-		}
-	},
+    if (!this._state.loaded) {
+      try {
+        this.load_timer = setTimeout(function() {
+                self.loadingMessage();
+          self._loadMedia();
+          // self._state.loaded = true; handled in onLoaded()
+          self._updateDisplay();
+        }, 1200);
+      } catch (e) {
+        trace("Error loading media for ", this._media);
+        trace(e);
+      }
+    }
+  },
 
     _updateMessage: function(msg) {
         if(this.message) {
             this.message.updateMessage(msg);
-        }    
+        }
     },
-    
-	loadingMessage: function() {
-	    this._updateMessage(this._('loading') + " " + this.options.media_name);
-	},
 
-	errorMessage: function(msg) {
-		if (msg) {
-			msg = this._('error') + ": " + msg;
-		} else {
-			msg = this._('error');
-		}
-		this._updateMessage(msg);
-	},
+  loadingMessage: function() {
+      this._updateMessage(this._('loading') + " " + this.options.media_name);
+  },
 
-	updateMediaDisplay: function(layout) {
-		if (this._state.loaded && !this.options.background) {
+  errorMessage: function(msg) {
+    if (msg) {
+      msg = this._('error') + ": " + msg;
+    } else {
+      msg = this._('error');
+    }
+    this._updateMessage(msg);
+  },
 
-			if (TL.Browser.mobile) {
-				this._el.content_item.style.maxHeight = (this.options.height/2) + "px";
-			} else {
-				this._el.content_item.style.maxHeight = this.options.height - this.options.credit_height - this.options.caption_height - 30 + "px";
-			}
+  updateMediaDisplay: function(layout) {
+    if (this._state.loaded && !this.options.background) {
 
-			//this._el.content_item.style.maxWidth = this.options.width + "px";
-			this._el.container.style.maxWidth = this.options.width + "px";
-			// Fix for max-width issues in Firefox
-			if (TL.Browser.firefox) {
-				if (this._el.content_item.offsetWidth > this._el.content_item.offsetHeight) {
-					//this._el.content_item.style.width = "100%";
-				}
-			}
+      if (TL.Browser.mobile) {
+        this._el.content_item.style.maxHeight = (this.options.height/2) + "px";
+      } else {
+        this._el.content_item.style.maxHeight = this.options.height - this.options.credit_height - this.options.caption_height - 30 + "px";
+      }
 
-			this._updateMediaDisplay(layout);
+      //this._el.content_item.style.maxWidth = this.options.width + "px";
+      this._el.container.style.maxWidth = this.options.width + "px";
+      // Fix for max-width issues in Firefox
+      if (TL.Browser.firefox) {
+        if (this._el.content_item.offsetWidth > this._el.content_item.offsetHeight) {
+          //this._el.content_item.style.width = "100%";
+        }
+      }
 
-			if (this._state.media_loaded) {
-				if (this._el.credit) {
-					this._el.credit.style.width		= this._el.content_item.offsetWidth + "px";
-				}
-				if (this._el.caption) {
-					this._el.caption.style.width		= this._el.content_item.offsetWidth + "px";
-				}
-			}
+      this._updateMediaDisplay(layout);
 
-		}
-	},
+      if (this._state.media_loaded) {
+        if (this._el.credit) {
+          this._el.credit.style.width		= this._el.content_item.offsetWidth + "px";
+        }
+        if (this._el.caption) {
+          this._el.caption.style.width		= this._el.content_item.offsetWidth + "px";
+        }
+      }
 
-	/*	Media Specific
-	================================================== */
-    _loadMedia: function() {        
+    }
+  },
+
+  /*	Media Specific
+  ================================================== */
+    _loadMedia: function() {
         // All overrides must call this.onLoaded() to set state
         this.onLoaded();
     },
@@ -7262,188 +7262,188 @@ TL.Media = TL.Class.extend({
         // Image-based media types should return <img>-compatible src url
         return "";
     },
-    
-	/*	Public
-	================================================== */
-	show: function() {
 
-	},
+  /*	Public
+  ================================================== */
+  show: function() {
 
-	hide: function() {
+  },
 
-	},
+  hide: function() {
 
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-		this.onAdd();
-	},
+  },
 
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-		this.onRemove();
-	},
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+    this.onAdd();
+  },
+
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+    this.onRemove();
+  },
 
     getImageURL: function(w, h) {
         return this._getImageURL(w, h);
     },
-    
-	// Update Display
-	updateDisplay: function(w, h, l) {
-		this._updateDisplay(w, h, l);
-	},
 
-	stopMedia: function() {
-		this._stopMedia();
-	},
+  // Update Display
+  updateDisplay: function(w, h, l) {
+    this._updateDisplay(w, h, l);
+  },
 
-	loadErrorDisplay: function(message) {
-		try {
-			this._el.content.removeChild(this._el.content_item);
-		} catch(e) {
-			// if this._el.content_item isn't a child of this._el then just keep truckin
-		}
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-loaderror", this._el.content);
-		this._el.content_item.innerHTML = "<div class='tl-icon-" + this.options.media_type + "'></div><p>" + message + "</p>";
+  stopMedia: function() {
+    this._stopMedia();
+  },
 
-		// After Loaded
-		this.onLoaded(true);
-	},
+  loadErrorDisplay: function(message) {
+    try {
+      this._el.content.removeChild(this._el.content_item);
+    } catch(e) {
+      // if this._el.content_item isn't a child of this._el then just keep truckin
+    }
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-loaderror", this._el.content);
+    this._el.content_item.innerHTML = "<div class='tl-icon-" + this.options.media_type + "'></div><p>" + message + "</p>";
 
-	/*	Events
-	================================================== */
-	onLoaded: function(error) {
-		this._state.loaded = true;
-		this.fire("loaded", this.data);
-		if (this.message) {
-			this.message.hide();
-		}
-		if (!(error || this.options.background)) {
-			this.showMeta();
-		}
-		this.updateDisplay();
-	},
+    // After Loaded
+    this.onLoaded(true);
+  },
 
-	onMediaLoaded: function(e) {
-		this._state.media_loaded = true;
-		this.fire("media_loaded", this.data);
-		if (this._el.credit) {
-			this._el.credit.style.width		= this._el.content_item.offsetWidth + "px";
-		}
-		if (this._el.caption) {
-			this._el.caption.style.width		= this._el.content_item.offsetWidth + "px";
-		}
-	},
+  /*	Events
+  ================================================== */
+  onLoaded: function(error) {
+    this._state.loaded = true;
+    this.fire("loaded", this.data);
+    if (this.message) {
+      this.message.hide();
+    }
+    if (!(error || this.options.background)) {
+      this.showMeta();
+    }
+    this.updateDisplay();
+  },
 
-	showMeta: function(credit, caption) {
-		this._state.show_meta = true;
-		// Credit
-		if (this.data.credit && this.data.credit != "") {
-			this._el.credit					= TL.Dom.create("div", "tl-credit", this._el.content_container);
-			this._el.credit.innerHTML		= this.options.autolink == true ? TL.Util.linkify(this.data.credit) : this.data.credit;
-			this.options.credit_height 		= this._el.credit.offsetHeight;
-		}
+  onMediaLoaded: function(e) {
+    this._state.media_loaded = true;
+    this.fire("media_loaded", this.data);
+    if (this._el.credit) {
+      this._el.credit.style.width		= this._el.content_item.offsetWidth + "px";
+    }
+    if (this._el.caption) {
+      this._el.caption.style.width		= this._el.content_item.offsetWidth + "px";
+    }
+  },
 
-		// Caption
-		if (this.data.caption && this.data.caption != "") {
-			this._el.caption				= TL.Dom.create("div", "tl-caption", this._el.content_container);
-			this._el.caption.innerHTML		= this.options.autolink == true ? TL.Util.linkify(this.data.caption) : this.data.caption;
-			this.options.caption_height 	= this._el.caption.offsetHeight;
-		}
+  showMeta: function(credit, caption) {
+    this._state.show_meta = true;
+    // Credit
+    if (this.data.credit && this.data.credit != "") {
+      this._el.credit					= TL.Dom.create("div", "tl-credit", this._el.content_container);
+      this._el.credit.innerHTML		= this.options.autolink == true ? TL.Util.linkify(this.data.credit) : this.data.credit;
+      this.options.credit_height 		= this._el.credit.offsetHeight;
+    }
 
-		if (!this.data.caption || !this.data.credit) {
-			this.getMeta();
-		}
+    // Caption
+    if (this.data.caption && this.data.caption != "") {
+      this._el.caption				= TL.Dom.create("div", "tl-caption", this._el.content_container);
+      this._el.caption.innerHTML		= this.options.autolink == true ? TL.Util.linkify(this.data.caption) : this.data.caption;
+      this.options.caption_height 	= this._el.caption.offsetHeight;
+    }
 
-	},
+    if (!this.data.caption || !this.data.credit) {
+      this.getMeta();
+    }
 
-	getMeta: function() {
-		this._getMeta();
-	},
+  },
 
-	updateMeta: function() {
-		if (!this.data.credit && this.data.credit_alternate) {
-			this._el.credit					= TL.Dom.create("div", "tl-credit", this._el.content_container);
-			this._el.credit.innerHTML		= this.data.credit_alternate;
-			this.options.credit_height 		= this._el.credit.offsetHeight;
-		}
+  getMeta: function() {
+    this._getMeta();
+  },
 
-		if (!this.data.caption && this.data.caption_alternate) {
-			this._el.caption				= TL.Dom.create("div", "tl-caption", this._el.content_container);
-			this._el.caption.innerHTML		= this.data.caption_alternate;
-			this.options.caption_height 	= this._el.caption.offsetHeight;
-		}
+  updateMeta: function() {
+    if (!this.data.credit && this.data.credit_alternate) {
+      this._el.credit					= TL.Dom.create("div", "tl-credit", this._el.content_container);
+      this._el.credit.innerHTML		= this.data.credit_alternate;
+      this.options.credit_height 		= this._el.credit.offsetHeight;
+    }
 
-		this.updateDisplay();
-	},
+    if (!this.data.caption && this.data.caption_alternate) {
+      this._el.caption				= TL.Dom.create("div", "tl-caption", this._el.content_container);
+      this._el.caption.innerHTML		= this.data.caption_alternate;
+      this.options.caption_height 	= this._el.caption.offsetHeight;
+    }
 
-	onAdd: function() {
-		this.fire("added", this.data);
-	},
+    this.updateDisplay();
+  },
 
-	onRemove: function() {
-		this.fire("removed", this.data);
-	},
+  onAdd: function() {
+    this.fire("added", this.data);
+  },
 
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
+  onRemove: function() {
+    this.fire("removed", this.data);
+  },
 
-		// Message
-		this.message = new TL.Message({}, this.options);
-		this.message.addTo(this._el.container);
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
 
-		// Create Layout
-		this._el.content_container = TL.Dom.create("div", "tl-media-content-container", this._el.container);
+    // Message
+    this.message = new TL.Message({}, this.options);
+    this.message.addTo(this._el.container);
 
-		// Link
-		if (this.data.link && this.data.link != "") {
+    // Create Layout
+    this._el.content_container = TL.Dom.create("div", "tl-media-content-container", this._el.container);
 
-			this._el.link = TL.Dom.create("a", "tl-media-link", this._el.content_container);
-			this._el.link.href = this.data.link;
-			if (this.data.link_target && this.data.link_target != "") {
-				this._el.link.target = this.data.link_target;
-			} else {
-				this._el.link.target = "_blank";
-			}
+    // Link
+    if (this.data.link && this.data.link != "") {
 
-			this._el.content = TL.Dom.create("div", "tl-media-content", this._el.link);
+      this._el.link = TL.Dom.create("a", "tl-media-link", this._el.content_container);
+      this._el.link.href = this.data.link;
+      if (this.data.link_target && this.data.link_target != "") {
+        this._el.link.target = this.data.link_target;
+      } else {
+        this._el.link.target = "_blank";
+      }
 
-		} else {
-			this._el.content = TL.Dom.create("div", "tl-media-content", this._el.content_container);
-		}
+      this._el.content = TL.Dom.create("div", "tl-media-content", this._el.link);
+
+    } else {
+      this._el.content = TL.Dom.create("div", "tl-media-content", this._el.content_container);
+    }
 
 
-	},
+  },
 
-	// Update Display
-	_updateDisplay: function(w, h, l) {
-		if (w) {
-			this.options.width = w;
+  // Update Display
+  _updateDisplay: function(w, h, l) {
+    if (w) {
+      this.options.width = w;
 
-		}
-		//this._el.container.style.width = this.options.width + "px";
-		if (h) {
-			this.options.height = h;
-		}
+    }
+    //this._el.container.style.width = this.options.width + "px";
+    if (h) {
+      this.options.height = h;
+    }
 
-		if (l) {
-			this.options.layout = l;
-		}
+    if (l) {
+      this.options.layout = l;
+    }
 
-		if (this._el.credit) {
-			this.options.credit_height 		= this._el.credit.offsetHeight;
-		}
-		if (this._el.caption) {
-			this.options.caption_height 	= this._el.caption.offsetHeight + 5;
-		}
+    if (this._el.credit) {
+      this.options.credit_height 		= this._el.credit.offsetHeight;
+    }
+    if (this._el.caption) {
+      this.options.caption_height 	= this._el.caption.offsetHeight + 5;
+    }
 
-		this.updateMediaDisplay(this.options.layout);
+    this.updateMediaDisplay(this.options.layout);
 
-	},
+  },
 
-	_stopMedia: function() {
+  _stopMedia: function() {
 
-	}
+  }
 
 });
 
@@ -7456,35 +7456,35 @@ TL.Media = TL.Class.extend({
 ================================================== */
 
 TL.Media.Blockquote = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {		
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-blockquote", this._el.content);
-		this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
-		
-		// Get Media ID
-		this.media_id = this.data.url;
-		
-		// API Call
-		this._el.content_item.innerHTML = this.media_id;
-		
-		// After Loaded
-		this.onLoaded();
-	},
-	
-	updateMediaDisplay: function() {
-		
-	},
-	
-	_updateMediaDisplay: function() {
-		
-	}
 
-	
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-blockquote", this._el.content);
+    this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
+
+    // Get Media ID
+    this.media_id = this.data.url;
+
+    // API Call
+    this._el.content_item.innerHTML = this.media_id;
+
+    // After Loaded
+    this.onLoaded();
+  },
+
+  updateMediaDisplay: function() {
+
+  },
+
+  _updateMediaDisplay: function() {
+
+  }
+
+
 });
 
 
@@ -7497,38 +7497,38 @@ TL.Media.Blockquote = TL.Media.extend({
 
 TL.Media.DailyMotion = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-dailymotion", this._el.content);
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-dailymotion", this._el.content);
 
-		// Get Media ID
-		if (this.data.url.match("video")) {
-			this.media_id = this.data.url.split("video\/")[1].split(/[?&]/)[0];
-		} else {
-			this.media_id = this.data.url.split("embed\/")[1].split(/[?&]/)[0];
-		}
+    // Get Media ID
+    if (this.data.url.match("video")) {
+      this.media_id = this.data.url.split("video\/")[1].split(/[?&]/)[0];
+    } else {
+      this.media_id = this.data.url.split("embed\/")[1].split(/[?&]/)[0];
+    }
 
-		// API URL
-		api_url = "https://www.dailymotion.com/embed/video/" + this.media_id;
+    // API URL
+    api_url = "https://www.dailymotion.com/embed/video/" + this.media_id;
 
-		// API Call
-		this._el.content_item.innerHTML = "<iframe autostart='false' frameborder='0' width='100%' height='100%' src='" + api_url + "'></iframe>"
+    // API Call
+    this._el.content_item.innerHTML = "<iframe autostart='false' frameborder='0' width='100%' height='100%' src='" + api_url + "'></iframe>"
 
-		// After Loaded
-		this.onLoaded();
-	},
+    // After Loaded
+    this.onLoaded();
+  },
 
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = TL.Util.ratio.r16_9({w:this._el.content_item.offsetWidth}) + "px";
-	}
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = TL.Util.ratio.r16_9({w:this._el.content_item.offsetWidth}) + "px";
+  }
 
 });
 
@@ -7542,58 +7542,58 @@ TL.Media.DailyMotion = TL.Media.extend({
 
 TL.Media.DocumentCloud = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var self = this;
 
-		// Create Dom elements
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-documentcloud tl-media-shadow", this._el.content);
-		this._el.content_item.id = TL.Util.unique_ID(7)
+    // Create Dom elements
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-documentcloud tl-media-shadow", this._el.content);
+    this._el.content_item.id = TL.Util.unique_ID(7)
 
-		// Check url
-		if(this.data.url.match(/\.html$/)) {
-		    this.data.url = this._transformURL(this.data.url);
-		} else if(!(this.data.url.match(/.(json|js)$/))) {
-		    trace("DOCUMENT CLOUD IN URL BUT INVALID SUFFIX");
-		}
+    // Check url
+    if(this.data.url.match(/\.html$/)) {
+        this.data.url = this._transformURL(this.data.url);
+    } else if(!(this.data.url.match(/.(json|js)$/))) {
+        trace("DOCUMENT CLOUD IN URL BUT INVALID SUFFIX");
+    }
 
-		// Load viewer API
+    // Load viewer API
         TL.Load.js([
-					'https://assets.documentcloud.org/viewer/loader.js',
-					'https://assets.documentcloud.org/viewer/viewer.js'],
-            function() {	
-	            self.createMedia();
-			}
-		);
-	},
+          'https://assets.documentcloud.org/viewer/loader.js',
+          'https://assets.documentcloud.org/viewer/viewer.js'],
+            function() {
+              self.createMedia();
+      }
+    );
+  },
 
-	// Viewer API needs js, not html
-	_transformURL: function(url) {
+  // Viewer API needs js, not html
+  _transformURL: function(url) {
         return url.replace(/(.*)\.html$/, '$1.js')
-	},
+  },
 
-	// Update Media Display
-	_updateMediaDisplay: function() {
+  // Update Media Display
+  _updateMediaDisplay: function() {
         this._el.content_item.style.height = this.options.height + "px";
-		//this._el.content_item.style.width = this.options.width + "px";
-	},
+    //this._el.content_item.style.width = this.options.width + "px";
+  },
 
-	createMedia: function() {
-		// DocumentCloud API call
-		DV.load(this.data.url, {
-		    container: '#'+this._el.content_item.id,
-		    showSidebar: false
-		});
-		this.onLoaded();
-	},
+  createMedia: function() {
+    // DocumentCloud API call
+    DV.load(this.data.url, {
+        container: '#'+this._el.content_item.id,
+        showSidebar: false
+    });
+    this.onLoaded();
+  },
 
 
 
-	/*	Events
-	================================================== */
+  /*	Events
+  ================================================== */
 
 
 
@@ -7610,17 +7610,17 @@ TL.Media.DocumentCloud = TL.Media.extend({
 
 TL.Media.Flickr = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
 
-		try {
-		    // Get Media ID
-		    this.establishMediaID();
+    try {
+        // Get Media ID
+        this.establishMediaID();
 
             // API URL
             api_url = "https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + this.options.api_key_flickr + "&photo_id=" + this.media_id + "&format=json&jsoncallback=?";
@@ -7639,97 +7639,97 @@ TL.Media.Flickr = TL.Media.extend({
                     self.loadErrorDisplay(self._("flickr_notfound_err"));
                 }
             });
-		} catch(e) {
-		    self.loadErrorDisplay(self._(e.message_key));
-		}
-	},
+    } catch(e) {
+        self.loadErrorDisplay(self._(e.message_key));
+    }
+  },
 
-	establishMediaID: function() {
-		if (this.data.url.match(/flic.kr\/.+/i)) {
-			var encoded = this.data.url.split('/').slice(-1)[0];
-			this.media_id = TL.Util.base58.decode(encoded);
-		} else {
-			var marker = 'flickr.com/photos/';
-			var idx = this.data.url.indexOf(marker);
-			if (idx == -1) { throw new TL.Error("flickr_invalidurl_err"); }
-			var pos = idx + marker.length;
-			this.media_id = this.data.url.substr(pos).split("/")[1];
-		}
-	},
+  establishMediaID: function() {
+    if (this.data.url.match(/flic.kr\/.+/i)) {
+      var encoded = this.data.url.split('/').slice(-1)[0];
+      this.media_id = TL.Util.base58.decode(encoded);
+    } else {
+      var marker = 'flickr.com/photos/';
+      var idx = this.data.url.indexOf(marker);
+      if (idx == -1) { throw new TL.Error("flickr_invalidurl_err"); }
+      var pos = idx + marker.length;
+      this.media_id = this.data.url.substr(pos).split("/")[1];
+    }
+  },
 
-	createMedia: function() {
-	    var self = this;
+  createMedia: function() {
+      var self = this;
 
-		// Link
-		this._el.content_link = TL.Dom.create("a", "", this._el.content);
-		this._el.content_link.href = this.data.url;
-		this._el.content_link.target = "_blank";
+    // Link
+    this._el.content_link = TL.Dom.create("a", "", this._el.content);
+    this._el.content_link.href = this.data.url;
+    this._el.content_link.target = "_blank";
 
-		// Photo
-		this._el.content_item = TL.Dom.create("img", "tl-media-item tl-media-image tl-media-flickr tl-media-shadow", this._el.content_link);
+    // Photo
+    this._el.content_item = TL.Dom.create("img", "tl-media-item tl-media-image tl-media-flickr tl-media-shadow", this._el.content_link);
 
-		// Media Loaded Event
-		this._el.content_item.addEventListener('load', function(e) {
-			self.onMediaLoaded();
-		});
+    // Media Loaded Event
+    this._el.content_item.addEventListener('load', function(e) {
+      self.onMediaLoaded();
+    });
 
-		// Set Image Source
-		this._el.content_item.src = this.getImageURL(this.options.width, this.options.height);
-	},
+    // Set Image Source
+    this._el.content_item.src = this.getImageURL(this.options.width, this.options.height);
+  },
 
     getImageURL: function(w, h) {
         var best_size 	= this.size_label(h),
             source = this.sizes[this.sizes.length - 2].source;
 
-		for(var i = 0; i < this.sizes.length; i++) {
-			if (this.sizes[i].label == best_size) {
-				source = this.sizes[i].source;
-			}
-		}
+    for(var i = 0; i < this.sizes.length; i++) {
+      if (this.sizes[i].label == best_size) {
+        source = this.sizes[i].source;
+      }
+    }
 
-		return source;
+    return source;
     },
 
-	_getMeta: function() {
-		var self = this,
-		api_url;
+  _getMeta: function() {
+    var self = this,
+    api_url;
 
-		// API URL
-		api_url = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + this.options.api_key_flickr + "&photo_id=" + this.media_id + "&format=json&jsoncallback=?";
+    // API URL
+    api_url = "https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + this.options.api_key_flickr + "&photo_id=" + this.media_id + "&format=json&jsoncallback=?";
 
-		// API Call
-		TL.getJSON(api_url, function(d) {
-			self.data.credit_alternate = "<a href='" + self.data.url + "' target='_blank'>" + d.photo.owner.realname + "</a>";
-			self.data.caption_alternate = d.photo.title._content + " " + d.photo.description._content;
-			self.updateMeta();
-		});
-	},
+    // API Call
+    TL.getJSON(api_url, function(d) {
+      self.data.credit_alternate = "<a href='" + self.data.url + "' target='_blank'>" + d.photo.owner.realname + "</a>";
+      self.data.caption_alternate = d.photo.title._content + " " + d.photo.description._content;
+      self.updateMeta();
+    });
+  },
 
-	size_label: function(s) {
-		var _size = "";
+  size_label: function(s) {
+    var _size = "";
 
-		if (s <= 75) {
-			if (s <= 0) {
-				_size = "Large";
-			} else {
-				_size = "Thumbnail";
-			}
-		} else if (s <= 180) {
-			_size = "Small";
-		} else if (s <= 240) {
-			_size = "Small 320";
-		} else if (s <= 375) {
-			_size = "Medium";
-		} else if (s <= 480) {
-			_size = "Medium 640";
-		} else if (s <= 600) {
-			_size = "Large";
-		} else {
-			_size = "Large";
-		}
+    if (s <= 75) {
+      if (s <= 0) {
+        _size = "Large";
+      } else {
+        _size = "Thumbnail";
+      }
+    } else if (s <= 180) {
+      _size = "Small";
+    } else if (s <= 240) {
+      _size = "Small 320";
+    } else if (s <= 375) {
+      _size = "Medium";
+    } else if (s <= 480) {
+      _size = "Medium 640";
+    } else if (s <= 600) {
+      _size = "Large";
+    } else {
+      _size = "Large";
+    }
 
-		return _size;
-	}
+    return _size;
+  }
 
 
 
@@ -7745,46 +7745,46 @@ TL.Media.Flickr = TL.Media.extend({
 ================================================== */
 
 TL.Media.GoogleDoc = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var url,
-			self = this;
-		
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe", this._el.content);
-		
-		// Get Media ID
-		if (this.data.url.match("open\?id\=")) {
-			this.media_id = this.data.url.split("open\?id\=")[1];
-			if (this.data.url.match("\&authuser\=0")) {
-				url = this.media_id.match("\&authuser\=0")[0];
-			};
-		} else if (this.data.url.match(/file\/d\/([^/]*)\/?/)) {
-			var doc_id = this.data.url.match(/file\/d\/([^/]*)\/?/)[1];
-			url = 'https://drive.google.com/file/d/' + doc_id + '/preview'
-		} else {
-			url = this.data.url;
-		}
-		
-		// this URL makes something suitable for an img src but what if it's not an image?
-		// api_url = "http://www.googledrive.com/host/" + this.media_id + "/";
-		
-		this._el.content_item.innerHTML	=	"<iframe class='doc' frameborder='0' width='100%' height='100%' src='" + url + "'></iframe>";
-		
-		// After Loaded
-		this.onLoaded();
-	},
-	
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = this.options.height + "px";
-	}
 
-	
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var url,
+      self = this;
+
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe", this._el.content);
+
+    // Get Media ID
+    if (this.data.url.match("open\?id\=")) {
+      this.media_id = this.data.url.split("open\?id\=")[1];
+      if (this.data.url.match("\&authuser\=0")) {
+        url = this.media_id.match("\&authuser\=0")[0];
+      };
+    } else if (this.data.url.match(/file\/d\/([^/]*)\/?/)) {
+      var doc_id = this.data.url.match(/file\/d\/([^/]*)\/?/)[1];
+      url = 'https://drive.google.com/file/d/' + doc_id + '/preview'
+    } else {
+      url = this.data.url;
+    }
+
+    // this URL makes something suitable for an img src but what if it's not an image?
+    // api_url = "http://www.googledrive.com/host/" + this.media_id + "/";
+
+    this._el.content_item.innerHTML	=	"<iframe class='doc' frameborder='0' width='100%' height='100%' src='" + url + "'></iframe>";
+
+    // After Loaded
+    this.onLoaded();
+  },
+
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = this.options.height + "px";
+  }
+
+
 });
 
 
@@ -7796,37 +7796,37 @@ TL.Media.GoogleDoc = TL.Media.extend({
 ================================================== */
 
 TL.Media.GooglePlus = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
-		
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-googleplus", this._el.content);
-		
-		// Get Media ID
-		this.media_id = this.data.url;
-		
-		// API URL
-		api_url = this.media_id;
-		
-		// API Call
-		this._el.content_item.innerHTML = "<iframe frameborder='0' width='100%' height='100%' src='" + api_url + "'></iframe>"		
-		
-		// After Loaded
-		this.onLoaded();
-	},
-	
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = this.options.height + "px";
-	}
 
-	
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
+
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-googleplus", this._el.content);
+
+    // Get Media ID
+    this.media_id = this.data.url;
+
+    // API URL
+    api_url = this.media_id;
+
+    // API Call
+    this._el.content_item.innerHTML = "<iframe frameborder='0' width='100%' height='100%' src='" + api_url + "'></iframe>"
+
+    // After Loaded
+    this.onLoaded();
+  },
+
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = this.options.height + "px";
+  }
+
+
 });
 
 
@@ -7838,36 +7838,36 @@ TL.Media.GooglePlus = TL.Media.extend({
 ================================================== */
 
 TL.Media.IFrame = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
-				
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe", this._el.content);
-		
-		// Get Media ID
-		this.media_id = this.data.url;
-		
-		// API URL
-		api_url = this.media_id;
-		
-		// API Call
-		this._el.content_item.innerHTML = api_url;
-		
-		// After Loaded
-		this.onLoaded();
-	},
-	
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = this.options.height + "px";
-	}
-	
+
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
+
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe", this._el.content);
+
+    // Get Media ID
+    this.media_id = this.data.url;
+
+    // API URL
+    api_url = this.media_id;
+
+    // API Call
+    this._el.content_item.innerHTML = api_url;
+
+    // After Loaded
+    this.onLoaded();
+  },
+
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = this.options.height + "px";
+  }
+
 });
 
 
@@ -7876,65 +7876,65 @@ TL.Media.IFrame = TL.Media.extend({
 ********************************************** */
 
 /*	TL.Media.Image
-	Produces image assets.
-	Takes a data object and populates a dom object
+  Produces image assets.
+  Takes a data object and populates a dom object
 ================================================== */
 
 TL.Media.Image = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		// Loading Message
-		this.loadingMessage();
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    // Loading Message
+    this.loadingMessage();
 
         // Create media?
         if(!this.options.background) {
             this.createMedia();
         }
-        
+
         // After loaded
-		this.onLoaded();
-	},
+    this.onLoaded();
+  },
 
     createMedia: function() {
         var self = this,
             image_class = "tl-media-item tl-media-image tl-media-shadow";
-        
-		if (this.data.url.match(/.png(\?.*)?$/) || this.data.url.match(/.svg(\?.*)?$/)) {
-			image_class = "tl-media-item tl-media-image"
-		}
-		
- 		// Link
-		if (this.data.link) {
-			this._el.content_link 				= TL.Dom.create("a", "", this._el.content);
-			this._el.content_link.href 			= this.data.link;
-			this._el.content_link.target 		= "_blank";
-			this._el.content_item				= TL.Dom.create("img", image_class, this._el.content_link);
-		} else {
-			this._el.content_item				= TL.Dom.create("img", image_class, this._el.content);
-		}
-		
-		// Media Loaded Event
-		this._el.content_item.addEventListener('load', function(e) {
-			self.onMediaLoaded();
-		});
 
-		this._el.content_item.src			= this.getImageURL();
+    if (this.data.url.match(/.png(\?.*)?$/) || this.data.url.match(/.svg(\?.*)?$/)) {
+      image_class = "tl-media-item tl-media-image"
+    }
+
+     // Link
+    if (this.data.link) {
+      this._el.content_link 				= TL.Dom.create("a", "", this._el.content);
+      this._el.content_link.href 			= this.data.link;
+      this._el.content_link.target 		= "_blank";
+      this._el.content_item				= TL.Dom.create("img", image_class, this._el.content_link);
+    } else {
+      this._el.content_item				= TL.Dom.create("img", image_class, this._el.content);
+    }
+
+    // Media Loaded Event
+    this._el.content_item.addEventListener('load', function(e) {
+      self.onMediaLoaded();
+    });
+
+    this._el.content_item.src			= this.getImageURL();
     },
-        
+
     getImageURL: function(w, h) {
         return TL.Util.transformImageURL(this.data.url);
     },
-    
-	_updateMediaDisplay: function(layout) {
-		if(TL.Browser.firefox) {
-			//this._el.content_item.style.maxWidth = (this.options.width/2) - 40 + "px";
-			this._el.content_item.style.width = "auto";
-		}
-	}
+
+  _updateMediaDisplay: function(layout) {
+    if(TL.Browser.firefox) {
+      //this._el.content_item.style.maxWidth = (this.options.width/2) - 40 + "px";
+      this._el.content_item.style.width = "auto";
+    }
+  }
 
 });
 
@@ -7949,49 +7949,49 @@ TL.Media.Image = TL.Media.extend({
 
 TL.Media.Imgur = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		try {
-		    this.media_id = this.data.url.split('/').slice(-1)[0];
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    try {
+        this.media_id = this.data.url.split('/').slice(-1)[0];
 
             if(!this.options.background) {
                 this.createMedia();
             }
-            
-			// After Loaded
-			this.onLoaded();
 
-		} catch(e) {
-		    this.loadErrorDisplay(self._("imgur_invalidurl_err"));
-		}
-	},
-		
-	createMedia: function() {
-	    var self = this;
-	    
-		// Link
-		this._el.content_link 				= TL.Dom.create("a", "", this._el.content);
-		this._el.content_link.href 			= this.data.url;
-		this._el.content_link.target 		= "_blank";
+      // After Loaded
+      this.onLoaded();
 
-		// Photo
-		this._el.content_item	= TL.Dom.create("img", "tl-media-item tl-media-image tl-media-imgur tl-media-shadow", this._el.content_link);
+    } catch(e) {
+        this.loadErrorDisplay(self._("imgur_invalidurl_err"));
+    }
+  },
 
-		// Media Loaded Event
-		this._el.content_item.addEventListener('load', function(e) {
-			self.onMediaLoaded();
-		});
-	
+  createMedia: function() {
+      var self = this;
+
+    // Link
+    this._el.content_link 				= TL.Dom.create("a", "", this._el.content);
+    this._el.content_link.href 			= this.data.url;
+    this._el.content_link.target 		= "_blank";
+
+    // Photo
+    this._el.content_item	= TL.Dom.create("img", "tl-media-item tl-media-image tl-media-imgur tl-media-shadow", this._el.content_link);
+
+    // Media Loaded Event
+    this._el.content_item.addEventListener('load', function(e) {
+      self.onMediaLoaded();
+    });
+
         this._el.content_item.src			= this.getImageURL();
-	},
-	
-	getImageURL: function(w, h) {
-	    return 'https://i.imgur.com/' + this.media_id + '.png';	
-	}
-	
+  },
+
+  getImageURL: function(w, h) {
+      return 'https://i.imgur.com/' + this.media_id + '.png';
+  }
+
 });
 
 
@@ -8005,72 +8005,72 @@ TL.Media.Imgur = TL.Media.extend({
 
 TL.Media.Instagram = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		// Get Media ID
-		this.media_id = this.data.url.split("\/p\/")[1].split("/")[0];
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    // Get Media ID
+    this.media_id = this.data.url.split("\/p\/")[1].split("/")[0];
 
-		if(!this.options.background) {
-		    this.createMedia();
-		}
+    if(!this.options.background) {
+        this.createMedia();
+    }
 
-		// After Loaded
-		this.onLoaded();
-	},
+    // After Loaded
+    this.onLoaded();
+  },
 
     createMedia: function() {
         var self = this;
 
-		// Link
-		this._el.content_link 				= TL.Dom.create("a", "", this._el.content);
-		this._el.content_link.href 			= this.data.url;
-		this._el.content_link.target 		= "_blank";
+    // Link
+    this._el.content_link 				= TL.Dom.create("a", "", this._el.content);
+    this._el.content_link.href 			= this.data.url;
+    this._el.content_link.target 		= "_blank";
 
-		// Photo
-		this._el.content_item				= TL.Dom.create("img", "tl-media-item tl-media-image tl-media-instagram tl-media-shadow", this._el.content_link);
+    // Photo
+    this._el.content_item				= TL.Dom.create("img", "tl-media-item tl-media-image tl-media-instagram tl-media-shadow", this._el.content_link);
 
-		// Media Loaded Event
-		this._el.content_item.addEventListener('load', function(e) {
-			self.onMediaLoaded();
-		});
+    // Media Loaded Event
+    this._el.content_item.addEventListener('load', function(e) {
+      self.onMediaLoaded();
+    });
 
-	    this._el.content_item.src = this.getImageURL(this._el.content.offsetWidth);
+      this._el.content_item.src = this.getImageURL(this._el.content.offsetWidth);
     },
 
     getImageURL: function(w, h) {
         return "https://instagram.com/p/" + this.media_id + "/media/?size=" + this.sizes(w);
     },
 
-	_getMeta: function() {
-		var self = this,
-		    api_url;
+  _getMeta: function() {
+    var self = this,
+        api_url;
 
-		// API URL
-		api_url = "https://api.instagram.com/oembed?url=https://instagr.am/p/" + this.media_id + "&callback=?";
+    // API URL
+    api_url = "https://api.instagram.com/oembed?url=https://instagr.am/p/" + this.media_id + "&callback=?";
 
-		// API Call
-		TL.getJSON(api_url, function(d) {
-			self.data.credit_alternate = "<a href='" + d.author_url + "' target='_blank'>" + d.author_name + "</a>";
-			self.data.caption_alternate = d.title;
-			self.updateMeta();
-		});
-	},
+    // API Call
+    TL.getJSON(api_url, function(d) {
+      self.data.credit_alternate = "<a href='" + d.author_url + "' target='_blank'>" + d.author_name + "</a>";
+      self.data.caption_alternate = d.title;
+      self.updateMeta();
+    });
+  },
 
-	sizes: function(s) {
-		var _size = "";
-		if (s <= 150) {
-			_size = "t";
-		} else if (s <= 306) {
-			_size = "m";
-		} else {
-			_size = "l";
-		}
+  sizes: function(s) {
+    var _size = "";
+    if (s <= 150) {
+      _size = "t";
+    } else if (s <= 306) {
+      _size = "m";
+    } else {
+      _size = "l";
+    }
 
-		return _size;
-	}
+    return _size;
+  }
 
 
 
@@ -8085,151 +8085,151 @@ TL.Media.Instagram = TL.Media.extend({
 ================================================== */
 
 TL.Media.GoogleMap = TL.Media.extend({
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*  Load the media
-	================================================== */
-	_loadMedia: function() {
+  /*  Load the media
+  ================================================== */
+  _loadMedia: function() {
 
-		// Create Dom element
-		this._el.content_item   = TL.Dom.create("div", "tl-media-item tl-media-map tl-media-shadow", this._el.content);
+    // Create Dom element
+    this._el.content_item   = TL.Dom.create("div", "tl-media-item tl-media-map tl-media-shadow", this._el.content);
 
-		// Get Media ID
-		this.media_id = this.data.url;
+    // Get Media ID
+    this.media_id = this.data.url;
 
-		// API Call
-		this.mapframe = TL.Dom.create("iframe", "", this._el.content_item);
-		window.stash = this;
-		this.mapframe.width       = "100%";
-		this.mapframe.height      = "100%";
-		this.mapframe.frameBorder = "0";
-		this.mapframe.src         = this.makeGoogleMapsEmbedURL(this.media_id, this.options.api_key_googlemaps);
-		
-		
-		// After Loaded
-		this.onLoaded();
-	},
-
-	_updateMediaDisplay: function() {
-		if (this._state.loaded) {
-			var dimensions = TL.Util.ratio.square({w:this._el.content_item.offsetWidth});
-			this._el.content_item.style.height = dimensions.h + "px";
-		}
-	},
-	
-	makeGoogleMapsEmbedURL: function(url,api_key) {
-		// Test with https://docs.google.com/spreadsheets/d/1zCpvtRdftlR5fBPppmy_-SkGIo7RMwoPUiGFZDAXbTc/edit
-		var Streetview = false;
-
-		function determineMapMode(url){
-			function parseDisplayMode(display_mode, param_string) {
-				// Set the zoom param
-				if (display_mode.slice(-1) == "z") {
-					param_string["zoom"] = display_mode;
-					// Set the maptype to something other than "roadmap"
-				} else if (display_mode.slice(-1) == "m") {
-					// TODO: make this somehow interpret the correct zoom level
-					// until then fake it by using Google's default zoom level
-					param_string["zoom"] = 14;
-					param_string["maptype"] = "satellite";
-					// Set all the fun streetview params
-				} else if (display_mode.slice(-1) == "t") {
-					Streetview = true;
-					// streetview uses "location" instead of "center"
-					// "place" mode doesn't have the center param, so we may need to grab that now
-					if (mapmode == "place") {
-						var center = url.match(regexes["place"])[3] + "," + url.match(regexes["place"])[4];
-					} else {
-						var center = param_string["center"];
-						delete param_string["center"];
-					}
-					// Clear out all the other params -- this is so hacky
-					param_string = {};
-					param_string["location"] = center;
-					streetview_params = display_mode.split(",");
-					for (param in param_defs["streetview"]) {
-						var i = parseInt(param) + 1;
-						if (param_defs["streetview"][param] == "pitch" && streetview_params[i] == "90t"){
-							// Although 90deg is the horizontal default in the URL, 0 is horizontal default for embed URL. WHY??
-							// https://developers.google.com/maps/documentation/javascript/streetview
-							param_string[param_defs["streetview"][param]] = 0;
-						} else {
-							param_string[param_defs["streetview"][param]] = streetview_params[i].slice(0,-1);
-						}
-					}
-
-				}
-				return param_string;
-			}
-			function determineMapModeURL(mapmode, match) {
-				var param_string = {};
-				var url_root = match[1], display_mode = match[match.length - 1];
-				for (param in param_defs[mapmode]) {
-					// skip first 2 matches, because they reflect the URL and not params
-					var i = parseInt(param)+2;
-					if (param_defs[mapmode][param] == "center") {
-						param_string[param_defs[mapmode][param]] = match[i] + "," + match[++i];
-					} else {
-						param_string[param_defs[mapmode][param]] = match[i];
-					}
-				}
-
-				param_string = parseDisplayMode(display_mode, param_string);
-				param_string["key"] = api_key;
-				if (Streetview == true) {
-					mapmode = "streetview";
-				} else {
-				}
-				return (url_root + "/embed/v1/" + mapmode + TL.Util.getParamString(param_string));
-			}
+    // API Call
+    this.mapframe = TL.Dom.create("iframe", "", this._el.content_item);
+    window.stash = this;
+    this.mapframe.width       = "100%";
+    this.mapframe.height      = "100%";
+    this.mapframe.frameBorder = "0";
+    this.mapframe.src         = this.makeGoogleMapsEmbedURL(this.media_id, this.options.api_key_googlemaps);
 
 
-			mapmode = "view";
-			if (url.match(regexes["place"])) {
-				mapmode = "place";
-			} else if (url.match(regexes["directions"])) {
-				mapmode = "directions";
-			} else if (url.match(regexes["search"])) {
-				mapmode = "search";
-			}
-			return determineMapModeURL(mapmode, url.match(regexes[mapmode]));
+    // After Loaded
+    this.onLoaded();
+  },
 
-		}
+  _updateMediaDisplay: function() {
+    if (this._state.loaded) {
+      var dimensions = TL.Util.ratio.square({w:this._el.content_item.offsetWidth});
+      this._el.content_item.style.height = dimensions.h + "px";
+    }
+  },
 
-		// These must be in the order they appear in the original URL
-		// "key" param not included since it's not in the URL structure
-		// Streetview "location" param not included since it's captured as "center"
-		// Place "center" param ...um...
-		var param_defs = {
-			"view": ["center"],
-			"place": ["q", "center"],
-			"directions": ["origin", "destination", "center"],
-			"search": ["q", "center"],
-			"streetview": ["fov", "heading", "pitch"]
-		};
-		// Set up regex parts to make updating these easier if Google changes them
-		var root_url_regex = /(https:\/\/.+google.+?\/maps)/;
-		var coords_regex = /@([-\d.]+),([-\d.]+)/;
-		var address_regex = /([\w\W]+)/;
+  makeGoogleMapsEmbedURL: function(url,api_key) {
+    // Test with https://docs.google.com/spreadsheets/d/1zCpvtRdftlR5fBPppmy_-SkGIo7RMwoPUiGFZDAXbTc/edit
+    var Streetview = false;
 
-		// Data doesn't seem to get used for anything
-		var data_regex = /data=[\S]*/;
+    function determineMapMode(url){
+      function parseDisplayMode(display_mode, param_string) {
+        // Set the zoom param
+        if (display_mode.slice(-1) == "z") {
+          param_string["zoom"] = display_mode;
+          // Set the maptype to something other than "roadmap"
+        } else if (display_mode.slice(-1) == "m") {
+          // TODO: make this somehow interpret the correct zoom level
+          // until then fake it by using Google's default zoom level
+          param_string["zoom"] = 14;
+          param_string["maptype"] = "satellite";
+          // Set all the fun streetview params
+        } else if (display_mode.slice(-1) == "t") {
+          Streetview = true;
+          // streetview uses "location" instead of "center"
+          // "place" mode doesn't have the center param, so we may need to grab that now
+          if (mapmode == "place") {
+            var center = url.match(regexes["place"])[3] + "," + url.match(regexes["place"])[4];
+          } else {
+            var center = param_string["center"];
+            delete param_string["center"];
+          }
+          // Clear out all the other params -- this is so hacky
+          param_string = {};
+          param_string["location"] = center;
+          streetview_params = display_mode.split(",");
+          for (param in param_defs["streetview"]) {
+            var i = parseInt(param) + 1;
+            if (param_defs["streetview"][param] == "pitch" && streetview_params[i] == "90t"){
+              // Although 90deg is the horizontal default in the URL, 0 is horizontal default for embed URL. WHY??
+              // https://developers.google.com/maps/documentation/javascript/streetview
+              param_string[param_defs["streetview"][param]] = 0;
+            } else {
+              param_string[param_defs["streetview"][param]] = streetview_params[i].slice(0,-1);
+            }
+          }
 
-		// Capture the parameters that determine what map tiles to use
-		// In roadmap view, mode URLs include zoom paramater (e.g. "14z")
-		// In satellite (or "earth") view, URLs include a distance parameter (e.g. "84511m")
-		// In streetview, URLs include paramaters like "3a,75y,49.76h,90t" -- see http://stackoverflow.com/a/22988073
-		var display_mode_regex = /,((?:[-\d.]+[zmayht],?)*)/;
+        }
+        return param_string;
+      }
+      function determineMapModeURL(mapmode, match) {
+        var param_string = {};
+        var url_root = match[1], display_mode = match[match.length - 1];
+        for (param in param_defs[mapmode]) {
+          // skip first 2 matches, because they reflect the URL and not params
+          var i = parseInt(param)+2;
+          if (param_defs[mapmode][param] == "center") {
+            param_string[param_defs[mapmode][param]] = match[i] + "," + match[++i];
+          } else {
+            param_string[param_defs[mapmode][param]] = match[i];
+          }
+        }
 
-		var regexes = {
-			view: new RegExp(root_url_regex.source + "/" + coords_regex.source + display_mode_regex.source),
-			place: new RegExp(root_url_regex.source + "/place/" + address_regex.source + "/" + coords_regex.source + display_mode_regex.source),
-			directions: new RegExp(root_url_regex.source + "/dir/" + address_regex.source + "/" + address_regex.source + "/" + coords_regex.source + display_mode_regex.source),
-			search: new RegExp(root_url_regex.source + "/search/" + address_regex.source + "/" + coords_regex.source + display_mode_regex.source)
-		};
-		return determineMapMode(url);
-	}
-   
+        param_string = parseDisplayMode(display_mode, param_string);
+        param_string["key"] = api_key;
+        if (Streetview == true) {
+          mapmode = "streetview";
+        } else {
+        }
+        return (url_root + "/embed/v1/" + mapmode + TL.Util.getParamString(param_string));
+      }
+
+
+      mapmode = "view";
+      if (url.match(regexes["place"])) {
+        mapmode = "place";
+      } else if (url.match(regexes["directions"])) {
+        mapmode = "directions";
+      } else if (url.match(regexes["search"])) {
+        mapmode = "search";
+      }
+      return determineMapModeURL(mapmode, url.match(regexes[mapmode]));
+
+    }
+
+    // These must be in the order they appear in the original URL
+    // "key" param not included since it's not in the URL structure
+    // Streetview "location" param not included since it's captured as "center"
+    // Place "center" param ...um...
+    var param_defs = {
+      "view": ["center"],
+      "place": ["q", "center"],
+      "directions": ["origin", "destination", "center"],
+      "search": ["q", "center"],
+      "streetview": ["fov", "heading", "pitch"]
+    };
+    // Set up regex parts to make updating these easier if Google changes them
+    var root_url_regex = /(https:\/\/.+google.+?\/maps)/;
+    var coords_regex = /@([-\d.]+),([-\d.]+)/;
+    var address_regex = /([\w\W]+)/;
+
+    // Data doesn't seem to get used for anything
+    var data_regex = /data=[\S]*/;
+
+    // Capture the parameters that determine what map tiles to use
+    // In roadmap view, mode URLs include zoom paramater (e.g. "14z")
+    // In satellite (or "earth") view, URLs include a distance parameter (e.g. "84511m")
+    // In streetview, URLs include paramaters like "3a,75y,49.76h,90t" -- see http://stackoverflow.com/a/22988073
+    var display_mode_regex = /,((?:[-\d.]+[zmayht],?)*)/;
+
+    var regexes = {
+      view: new RegExp(root_url_regex.source + "/" + coords_regex.source + display_mode_regex.source),
+      place: new RegExp(root_url_regex.source + "/place/" + address_regex.source + "/" + coords_regex.source + display_mode_regex.source),
+      directions: new RegExp(root_url_regex.source + "/dir/" + address_regex.source + "/" + address_regex.source + "/" + coords_regex.source + display_mode_regex.source),
+      search: new RegExp(root_url_regex.source + "/search/" + address_regex.source + "/" + coords_regex.source + display_mode_regex.source)
+    };
+    return determineMapMode(url);
+  }
+
 });
 
 
@@ -8245,31 +8245,31 @@ TL.Media.GoogleMap = TL.Media.extend({
 
 TL.Media.PDF = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var url = TL.Util.transformImageURL(this.data.url),
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var url = TL.Util.transformImageURL(this.data.url),
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe", this._el.content);
-		var markup = "";
-		// not assigning media_id attribute. Seems like a holdover which is no longer used.
-		if (TL.Browser.ie || TL.Browser.edge || url.match(/dl.dropboxusercontent.com/)) {
-			markup = "<iframe class='doc' frameborder='0' width='100%' height='100%' src='//docs.google.com/viewer?url=" + url + "&amp;embedded=true'></iframe>";
-		} else {
-			markup = "<iframe class='doc' frameborder='0' width='100%' height='100%' src='" + url + "'></iframe>"
-		}
-		this._el.content_item.innerHTML	= markup
-		this.onLoaded();
-	},
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe", this._el.content);
+    var markup = "";
+    // not assigning media_id attribute. Seems like a holdover which is no longer used.
+    if (TL.Browser.ie || TL.Browser.edge || url.match(/dl.dropboxusercontent.com/)) {
+      markup = "<iframe class='doc' frameborder='0' width='100%' height='100%' src='//docs.google.com/viewer?url=" + url + "&amp;embedded=true'></iframe>";
+    } else {
+      markup = "<iframe class='doc' frameborder='0' width='100%' height='100%' src='" + url + "'></iframe>"
+    }
+    this._el.content_item.innerHTML	= markup
+    this.onLoaded();
+  },
 
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = this.options.height + "px";
-	}
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = this.options.height + "px";
+  }
 
 
 });
@@ -8284,27 +8284,27 @@ TL.Media.PDF = TL.Media.extend({
 ================================================== */
 
 TL.Media.Profile = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		
-		this._el.content_item				= TL.Dom.create("img", "tl-media-item tl-media-image tl-media-profile tl-media-shadow", this._el.content);
-		this._el.content_item.src			= this.data.url;
-		
-		this.onLoaded();
-	},
-	
-	_updateMediaDisplay: function(layout) {
-		
-		
-		if(TL.Browser.firefox) {
-			this._el.content_item.style.maxWidth = (this.options.width/2) - 40 + "px";
-		}
-	}
-	
+
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+
+    this._el.content_item				= TL.Dom.create("img", "tl-media-item tl-media-image tl-media-profile tl-media-shadow", this._el.content);
+    this._el.content_item.src			= this.data.url;
+
+    this.onLoaded();
+  },
+
+  _updateMediaDisplay: function(layout) {
+
+
+    if(TL.Browser.firefox) {
+      this._el.content_item.style.maxWidth = (this.options.width/2) - 40 + "px";
+    }
+  }
+
 });
 
 /* **********************************************
@@ -8312,26 +8312,26 @@ TL.Media.Profile = TL.Media.extend({
 ********************************************** */
 
 /*	TL.Media.SLider
-	Produces a Slider
-	Takes a data object and populates a dom object
-	TODO
-	Placeholder
+  Produces a Slider
+  Takes a data object and populates a dom object
+  TODO
+  Placeholder
 ================================================== */
 
 TL.Media.Slider = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		
-		this._el.content_item				= TL.Dom.create("img", "tl-media-item tl-media-image", this._el.content);
-		this._el.content_item.src			= this.data.url;
-		
-		this.onLoaded();
-	}
-	
+
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+
+    this._el.content_item				= TL.Dom.create("img", "tl-media-item tl-media-image", this._el.content);
+    this._el.content_item.src			= this.data.url;
+
+    this.onLoaded();
+  }
+
 });
 
 /* **********************************************
@@ -8343,36 +8343,36 @@ TL.Media.Slider = TL.Media.extend({
 
 TL.Media.SoundCloud = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-soundcloud tl-media-shadow", this._el.content);
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-soundcloud tl-media-shadow", this._el.content);
 
-		// Get Media ID
-		this.media_id = this.data.url;
+    // Get Media ID
+    this.media_id = this.data.url;
 
-		// API URL
-		api_url = "https://soundcloud.com/oembed?url=" + this.media_id + "&format=js&callback=?"
+    // API URL
+    api_url = "https://soundcloud.com/oembed?url=" + this.media_id + "&format=js&callback=?"
 
-		// API Call
-		TL.getJSON(api_url, function(d) {
-			self.createMedia(d);
-		});
+    // API Call
+    TL.getJSON(api_url, function(d) {
+      self.createMedia(d);
+    });
 
-	},
+  },
 
-	createMedia: function(d) {
-		this._el.content_item.innerHTML = d.html;
+  createMedia: function(d) {
+    this._el.content_item.innerHTML = d.html;
 
-		// After Loaded
-		this.onLoaded();
-	}
+    // After Loaded
+    this.onLoaded();
+  }
 
 });
 
@@ -8386,91 +8386,91 @@ TL.Media.SoundCloud = TL.Media.extend({
 
 TL.Media.Spotify = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-spotify", this._el.content);
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-spotify", this._el.content);
 
-		// Get Media ID
-		if (this.data.url.match(/^spotify:track/) || this.data.url.match(/^spotify:user:.+:playlist:/)) {
-			this.media_id = this.data.url;
-		}
-		if (this.data.url.match(/spotify.com\/track\/(.+)/)) {
-			this.media_id = "spotify:track:" + this.data.url.match(/spotify.com\/track\/(.+)/)[1];
-		} else if (this.data.url.match(/spotify.com\/user\/(.+?)\/playlist\/(.+)/)) {
-			var user = this.data.url.match(/spotify.com\/user\/(.+?)\/playlist\/(.+)/)[1];
-			var playlist = this.data.url.match(/spotify.com\/user\/(.+?)\/playlist\/(.+)/)[2];
-			this.media_id = "spotify:user:" + user + ":playlist:" + playlist;
-		}
+    // Get Media ID
+    if (this.data.url.match(/^spotify:track/) || this.data.url.match(/^spotify:user:.+:playlist:/)) {
+      this.media_id = this.data.url;
+    }
+    if (this.data.url.match(/spotify.com\/track\/(.+)/)) {
+      this.media_id = "spotify:track:" + this.data.url.match(/spotify.com\/track\/(.+)/)[1];
+    } else if (this.data.url.match(/spotify.com\/user\/(.+?)\/playlist\/(.+)/)) {
+      var user = this.data.url.match(/spotify.com\/user\/(.+?)\/playlist\/(.+)/)[1];
+      var playlist = this.data.url.match(/spotify.com\/user\/(.+?)\/playlist\/(.+)/)[2];
+      this.media_id = "spotify:user:" + user + ":playlist:" + playlist;
+    }
 
-		if (this.media_id) {
-			// API URL
-			api_url = "https://embed.spotify.com/?uri=" + this.media_id + "&theme=white&view=coverart";
+    if (this.media_id) {
+      // API URL
+      api_url = "https://embed.spotify.com/?uri=" + this.media_id + "&theme=white&view=coverart";
 
-			this.player = TL.Dom.create("iframe", "tl-media-shadow", this._el.content_item);
-			this.player.width 		= "100%";
-			this.player.height 		= "100%";
-			this.player.frameBorder = "0";
-			this.player.src 		= api_url;
+      this.player = TL.Dom.create("iframe", "tl-media-shadow", this._el.content_item);
+      this.player.width 		= "100%";
+      this.player.height 		= "100%";
+      this.player.frameBorder = "0";
+      this.player.src 		= api_url;
 
-			// After Loaded
-			this.onLoaded();
+      // After Loaded
+      this.onLoaded();
 
-		} else {
-				this.loadErrorDisplay(this._('spotify_invalid_url'));
-		}
-	},
+    } else {
+        this.loadErrorDisplay(this._('spotify_invalid_url'));
+    }
+  },
 
-	// Update Media Display
+  // Update Media Display
 
-	_updateMediaDisplay: function(l) {
-		var _height = this.options.height,
-			_player_height = 0,
-			_player_width = 0;
+  _updateMediaDisplay: function(l) {
+    var _height = this.options.height,
+      _player_height = 0,
+      _player_width = 0;
 
-		if (TL.Browser.mobile) {
-			_height = (this.options.height/2);
-		} else {
-			_height = this.options.height - this.options.credit_height - this.options.caption_height - 30;
-		}
+    if (TL.Browser.mobile) {
+      _height = (this.options.height/2);
+    } else {
+      _height = this.options.height - this.options.credit_height - this.options.caption_height - 30;
+    }
 
-		this._el.content_item.style.maxHeight = "none";
-		trace(_height);
-		trace(this.options.width)
-		if (_height > this.options.width) {
-			trace("height is greater")
-			_player_height = this.options.width + 80 + "px";
-			_player_width = this.options.width + "px";
-		} else {
-			trace("width is greater")
-			trace(this.options.width)
-			_player_height = _height + "px";
-			_player_width = _height - 80 + "px";
-		}
-
-
-		this.player.style.width = _player_width;
-		this.player.style.height = _player_height;
-
-		if (this._el.credit) {
-			this._el.credit.style.width		= _player_width;
-		}
-		if (this._el.caption) {
-			this._el.caption.style.width		= _player_width;
-		}
-	},
+    this._el.content_item.style.maxHeight = "none";
+    trace(_height);
+    trace(this.options.width)
+    if (_height > this.options.width) {
+      trace("height is greater")
+      _player_height = this.options.width + 80 + "px";
+      _player_width = this.options.width + "px";
+    } else {
+      trace("width is greater")
+      trace(this.options.width)
+      _player_height = _height + "px";
+      _player_width = _height - 80 + "px";
+    }
 
 
-	_stopMedia: function() {
-		// Need spotify stop code
+    this.player.style.width = _player_width;
+    this.player.style.height = _player_height;
 
-	}
+    if (this._el.credit) {
+      this._el.credit.style.width		= _player_width;
+    }
+    if (this._el.caption) {
+      this._el.caption.style.width		= _player_width;
+    }
+  },
+
+
+  _stopMedia: function() {
+    // Need spotify stop code
+
+  }
 
 });
 
@@ -8483,37 +8483,37 @@ TL.Media.Spotify = TL.Media.extend({
 ================================================== */
 
 TL.Media.Storify = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var content;
-				
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-storify", this._el.content);
-		
-		// Get Media ID
-		this.media_id = this.data.url;
-		
-		// Content
-		content =	"<iframe frameborder='0' width='100%' height='100%' src='" + this.media_id + "/embed'></iframe>";
-		content +=	"<script src='" + this.media_id + ".js'></script>";
-		
-		// API Call
-		this._el.content_item.innerHTML = content;
-		
-		// After Loaded
-		this.onLoaded();
-	},
-	
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = this.options.height + "px";
-	}
-	
-	
+
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var content;
+
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-storify", this._el.content);
+
+    // Get Media ID
+    this.media_id = this.data.url;
+
+    // Content
+    content =	"<iframe frameborder='0' width='100%' height='100%' src='" + this.media_id + "/embed'></iframe>";
+    content +=	"<script src='" + this.media_id + ".js'></script>";
+
+    // API Call
+    this._el.content_item.innerHTML = content;
+
+    // After Loaded
+    this.onLoaded();
+  },
+
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = this.options.height + "px";
+  }
+
+
 });
 
 
@@ -8522,127 +8522,127 @@ TL.Media.Storify = TL.Media.extend({
 ********************************************** */
 
 TL.Media.Text = TL.Class.extend({
-	
-	includes: [TL.Events],
-	
-	// DOM ELEMENTS
-	_el: {
-		container: {},
-		content_container: {},
-		content: {},
-		headline: {},
-		date: {}
-	},
-	
-	// Data
-	data: {
-		unique_id: 			"",
-		headline: 			"headline",
-		text: 				"text"
-	},
-	
-	// Options
-	options: {
-		title: 			false
-	},
-	
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options, add_to_container) {
-		
-		TL.Util.setData(this, data);
-		
-		// Merge Options
-		TL.Util.mergeData(this.options, options);
-		
-		this._el.container = TL.Dom.create("div", "tl-text");
-		this._el.container.id = this.data.unique_id;
-		
-		this._initLayout();
-		
-		if (add_to_container) {
-			add_to_container.appendChild(this._el.container);
-		};
-		
-	},
-	
-	/*	Adding, Hiding, Showing etc
-	================================================== */
-	show: function() {
-		
-	},
-	
-	hide: function() {
-		
-	},
-	
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-		//this.onAdd();
-	},
-	
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-	},
-	
-	headlineHeight: function() {
-		return this._el.headline.offsetHeight + 40;
-	},
-	
-	addDateText: function(str) {
-		this._el.date.innerHTML = str;
-	},
-	
-	/*	Events
-	================================================== */
-	onLoaded: function() {
-		this.fire("loaded", this.data);
-	},
-	
-	onAdd: function() {
-		this.fire("added", this.data);
-	},
 
-	onRemove: function() {
-		this.fire("removed", this.data);
-	},
-	
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		
-		// Create Layout
-		this._el.content_container			= TL.Dom.create("div", "tl-text-content-container", this._el.container);
-		
-		// Date
-		this._el.date 				= TL.Dom.create("h3", "tl-headline-date", this._el.content_container);
-		
-		// Headline
-		if (this.data.headline != "") {
-			var headline_class = "tl-headline";
-			if (this.options.title) {
-				headline_class = "tl-headline tl-headline-title";
-			}
-			this._el.headline				= TL.Dom.create("h2", headline_class, this._el.content_container);
-			this._el.headline.innerHTML		= this.data.headline;
-		}
+  includes: [TL.Events],
 
-		// Text
-		if (this.data.text != "") {
-			var text_content = "";
+  // DOM ELEMENTS
+  _el: {
+    container: {},
+    content_container: {},
+    content: {},
+    headline: {},
+    date: {}
+  },
 
-			text_content += TL.Util.htmlify(this.options.autolink == true ? TL.Util.linkify(this.data.text) : this.data.text);
-			trace(this.data.text);
-			this._el.content				= TL.Dom.create("div", "tl-text-content", this._el.content_container);
-			this._el.content.innerHTML		= text_content;
-			trace(text_content);
-			trace(this._el.content)
-		}
+  // Data
+  data: {
+    unique_id: 			"",
+    headline: 			"headline",
+    text: 				"text"
+  },
 
-		// Fire event that the slide is loaded
-		this.onLoaded();
+  // Options
+  options: {
+    title: 			false
+  },
 
-	}
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options, add_to_container) {
+
+    TL.Util.setData(this, data);
+
+    // Merge Options
+    TL.Util.mergeData(this.options, options);
+
+    this._el.container = TL.Dom.create("div", "tl-text");
+    this._el.container.id = this.data.unique_id;
+
+    this._initLayout();
+
+    if (add_to_container) {
+      add_to_container.appendChild(this._el.container);
+    };
+
+  },
+
+  /*	Adding, Hiding, Showing etc
+  ================================================== */
+  show: function() {
+
+  },
+
+  hide: function() {
+
+  },
+
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+    //this.onAdd();
+  },
+
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+  },
+
+  headlineHeight: function() {
+    return this._el.headline.offsetHeight + 40;
+  },
+
+  addDateText: function(str) {
+    this._el.date.innerHTML = str;
+  },
+
+  /*	Events
+  ================================================== */
+  onLoaded: function() {
+    this.fire("loaded", this.data);
+  },
+
+  onAdd: function() {
+    this.fire("added", this.data);
+  },
+
+  onRemove: function() {
+    this.fire("removed", this.data);
+  },
+
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+
+    // Create Layout
+    this._el.content_container			= TL.Dom.create("div", "tl-text-content-container", this._el.container);
+
+    // Date
+    this._el.date 				= TL.Dom.create("h3", "tl-headline-date", this._el.content_container);
+
+    // Headline
+    if (this.data.headline != "") {
+      var headline_class = "tl-headline";
+      if (this.options.title) {
+        headline_class = "tl-headline tl-headline-title";
+      }
+      this._el.headline				= TL.Dom.create("h2", headline_class, this._el.content_container);
+      this._el.headline.innerHTML		= this.data.headline;
+    }
+
+    // Text
+    if (this.data.text != "") {
+      var text_content = "";
+
+      text_content += TL.Util.htmlify(this.options.autolink == true ? TL.Util.linkify(this.data.text) : this.data.text);
+      trace(this.data.text);
+      this._el.content				= TL.Dom.create("div", "tl-text-content", this._el.content_container);
+      this._el.content.innerHTML		= text_content;
+      trace(text_content);
+      trace(this._el.content)
+    }
+
+    // Fire event that the slide is loaded
+    this.onLoaded();
+
+  }
 
 });
 
@@ -8652,104 +8652,104 @@ TL.Media.Text = TL.Class.extend({
 ********************************************** */
 
 /*	TL.Media.Twitter
-	Produces Twitter Display
+  Produces Twitter Display
 ================================================== */
 
 TL.Media.Twitter = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
-					
-		// Create Dom element
-		this._el.content_item = TL.Dom.create("div", "tl-media-twitter", this._el.content);
-		this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
-		
-		// Get Media ID
-		if (this.data.url.match("status\/")) {
-			this.media_id = this.data.url.split("status\/")[1];
-		} else if (this.data.url.match("statuses\/")) {
-			this.media_id = this.data.url.split("statuses\/")[1];
-		} else {
-			this.media_id = "";
-		}
-		
-		// API URL
-		api_url = "https://api.twitter.com/1/statuses/oembed.json?id=" + this.media_id + "&omit_script=true&include_entities=true&callback=?";
-		
-		// API Call
-		TL.ajax({
-			type: 'GET',
-			url: api_url,
-			dataType: 'json', //json data type
-			success: function(d){
-				self.createMedia(d);
-			},
-			error:function(xhr, type){
-				var error_text = "";
-				error_text += self._("twitter_load_err") + "<br/>" + self.media_id + "<br/>" + type;
-				self.loadErrorDisplay(error_text);
-			}
-		});
-		 
-	},
-	
-	createMedia: function(d) {
-		var tweet				= "",
-			tweet_text			= "",
-			tweetuser			= "",
-			tweet_status_temp 	= "",
-			tweet_status_url 	= "",
-			tweet_status_date 	= "";
-			
-		//	TWEET CONTENT
-		tweet_text 			= d.html.split("<\/p>\&mdash;")[0] + "</p></blockquote>";
-		tweetuser			= d.author_url.split("twitter.com\/")[1];
-		tweet_status_temp 	= d.html.split("<\/p>\&mdash;")[1].split("<a href=\"")[1];
-		tweet_status_url 	= tweet_status_temp.split("\"\>")[0];
-		tweet_status_date 	= tweet_status_temp.split("\"\>")[1].split("<\/a>")[0];
-		
-		// Open links in new window
-		tweet_text = tweet_text.replace(/<a href/ig, '<a class="tl-makelink" target="_blank" href');
 
-		// 	TWEET CONTENT
-		tweet += tweet_text;
-		
-		//	TWEET AUTHOR
-		tweet += "<div class='vcard'>";
-		tweet += "<a href='" + tweet_status_url + "' class='twitter-date' target='_blank'>" + tweet_status_date + "</a>";
-		tweet += "<div class='author'>";
-		tweet += "<a class='screen-name url' href='" + d.author_url + "' target='_blank'>";
-		tweet += "<span class='avatar'></span>";
-		tweet += "<span class='fn'>" + d.author_name + " <span class='tl-icon-twitter'></span></span>";
-		tweet += "<span class='nickname'>@" + tweetuser + "<span class='thumbnail-inline'></span></span>";
-		tweet += "</a>";
-		tweet += "</div>";
-		tweet += "</div>";
-		
-		
-		// Add to DOM
-		this._el.content_item.innerHTML	= tweet;
-		
-		// After Loaded
-		this.onLoaded();
-			
-	},
-	
-	updateMediaDisplay: function() {
-		
-	},
-	
-	_updateMediaDisplay: function() {
-		
-	}
-	
-	
-	
+  includes: [TL.Events],
+
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
+
+    // Create Dom element
+    this._el.content_item = TL.Dom.create("div", "tl-media-twitter", this._el.content);
+    this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
+
+    // Get Media ID
+    if (this.data.url.match("status\/")) {
+      this.media_id = this.data.url.split("status\/")[1];
+    } else if (this.data.url.match("statuses\/")) {
+      this.media_id = this.data.url.split("statuses\/")[1];
+    } else {
+      this.media_id = "";
+    }
+
+    // API URL
+    api_url = "https://api.twitter.com/1/statuses/oembed.json?id=" + this.media_id + "&omit_script=true&include_entities=true&callback=?";
+
+    // API Call
+    TL.ajax({
+      type: 'GET',
+      url: api_url,
+      dataType: 'json', //json data type
+      success: function(d){
+        self.createMedia(d);
+      },
+      error:function(xhr, type){
+        var error_text = "";
+        error_text += self._("twitter_load_err") + "<br/>" + self.media_id + "<br/>" + type;
+        self.loadErrorDisplay(error_text);
+      }
+    });
+
+  },
+
+  createMedia: function(d) {
+    var tweet				= "",
+      tweet_text			= "",
+      tweetuser			= "",
+      tweet_status_temp 	= "",
+      tweet_status_url 	= "",
+      tweet_status_date 	= "";
+
+    //	TWEET CONTENT
+    tweet_text 			= d.html.split("<\/p>\&mdash;")[0] + "</p></blockquote>";
+    tweetuser			= d.author_url.split("twitter.com\/")[1];
+    tweet_status_temp 	= d.html.split("<\/p>\&mdash;")[1].split("<a href=\"")[1];
+    tweet_status_url 	= tweet_status_temp.split("\"\>")[0];
+    tweet_status_date 	= tweet_status_temp.split("\"\>")[1].split("<\/a>")[0];
+
+    // Open links in new window
+    tweet_text = tweet_text.replace(/<a href/ig, '<a class="tl-makelink" target="_blank" href');
+
+    // 	TWEET CONTENT
+    tweet += tweet_text;
+
+    //	TWEET AUTHOR
+    tweet += "<div class='vcard'>";
+    tweet += "<a href='" + tweet_status_url + "' class='twitter-date' target='_blank'>" + tweet_status_date + "</a>";
+    tweet += "<div class='author'>";
+    tweet += "<a class='screen-name url' href='" + d.author_url + "' target='_blank'>";
+    tweet += "<span class='avatar'></span>";
+    tweet += "<span class='fn'>" + d.author_name + " <span class='tl-icon-twitter'></span></span>";
+    tweet += "<span class='nickname'>@" + tweetuser + "<span class='thumbnail-inline'></span></span>";
+    tweet += "</a>";
+    tweet += "</div>";
+    tweet += "</div>";
+
+
+    // Add to DOM
+    this._el.content_item.innerHTML	= tweet;
+
+    // After Loaded
+    this.onLoaded();
+
+  },
+
+  updateMediaDisplay: function() {
+
+  },
+
+  _updateMediaDisplay: function() {
+
+  }
+
+
+
 });
 
 
@@ -8758,105 +8758,105 @@ TL.Media.Twitter = TL.Media.extend({
 ********************************************** */
 
 /*	TL.Media.TwitterEmbed
-	Produces Twitter Display
+  Produces Twitter Display
 ================================================== */
 
 TL.Media.TwitterEmbed = TL.Media.extend({
-	
-	includes: [TL.Events],
-	
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
-					
-		// Create Dom element
-		this._el.content_item = TL.Dom.create("div", "tl-media-twitter", this._el.content);
-		this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
-		
-		// Get Media ID
-		var found = this.data.url.match(/(status|statuses)\/(\d+)/);
-		if (found && found.length > 2) {
-		    this.media_id = found[2];
-		} else {
-		    self.loadErrorDisplay(self._("twitterembed_invalidurl_err"));
-		    return;
-		}
 
-		// API URL
-		api_url = "https://api.twitter.com/1/statuses/oembed.json?id=" + this.media_id + "&omit_script=true&include_entities=true&callback=?";
-		
-		// API Call
-		TL.ajax({
-			type: 'GET',
-			url: api_url,
-			dataType: 'json', //json data type
-			success: function(d){
-				self.createMedia(d);
-			},
-			error:function(xhr, type){
-				var error_text = "";
-				error_text += self._("twitter_load_err") + "<br/>" + self.media_id + "<br/>" + type;
-				self.loadErrorDisplay(error_text);
-			}
-		});
-		 
-	},
-	
-	createMedia: function(d) {	
-		trace("create_media")	
-		var tweet				= "",
-			tweet_text			= "",
-			tweetuser			= "",
-			tweet_status_temp 	= "",
-			tweet_status_url 	= "",
-			tweet_status_date 	= "";
-			
-		//	TWEET CONTENT
-		tweet_text 			= d.html.split("<\/p>\&mdash;")[0] + "</p></blockquote>";
-		tweetuser			= d.author_url.split("twitter.com\/")[1];
-		tweet_status_temp 	= d.html.split("<\/p>\&mdash;")[1].split("<a href=\"")[1];
-		tweet_status_url 	= tweet_status_temp.split("\"\>")[0];
-		tweet_status_date 	= tweet_status_temp.split("\"\>")[1].split("<\/a>")[0];
-		
-		// Open links in new window
-		tweet_text = tweet_text.replace(/<a href/ig, '<a target="_blank" href');
+  includes: [TL.Events],
 
-		// 	TWEET CONTENT
-		tweet += tweet_text;
-		
-		//	TWEET AUTHOR
-		tweet += "<div class='vcard'>";
-		tweet += "<a href='" + tweet_status_url + "' class='twitter-date' target='_blank'>" + tweet_status_date + "</a>";
-		tweet += "<div class='author'>";
-		tweet += "<a class='screen-name url' href='" + d.author_url + "' target='_blank'>";
-		tweet += "<span class='avatar'></span>";
-		tweet += "<span class='fn'>" + d.author_name + " <span class='tl-icon-twitter'></span></span>";
-		tweet += "<span class='nickname'>@" + tweetuser + "<span class='thumbnail-inline'></span></span>";
-		tweet += "</a>";
-		tweet += "</div>";
-		tweet += "</div>";
-		
-		
-		// Add to DOM
-		this._el.content_item.innerHTML	= tweet;
-		
-		// After Loaded
-		this.onLoaded();
-			
-	},
-	
-	updateMediaDisplay: function() {
-		
-	},
-	
-	_updateMediaDisplay: function() {
-		
-	}
-	
-	
-	
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
+
+    // Create Dom element
+    this._el.content_item = TL.Dom.create("div", "tl-media-twitter", this._el.content);
+    this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
+
+    // Get Media ID
+    var found = this.data.url.match(/(status|statuses)\/(\d+)/);
+    if (found && found.length > 2) {
+        this.media_id = found[2];
+    } else {
+        self.loadErrorDisplay(self._("twitterembed_invalidurl_err"));
+        return;
+    }
+
+    // API URL
+    api_url = "https://api.twitter.com/1/statuses/oembed.json?id=" + this.media_id + "&omit_script=true&include_entities=true&callback=?";
+
+    // API Call
+    TL.ajax({
+      type: 'GET',
+      url: api_url,
+      dataType: 'json', //json data type
+      success: function(d){
+        self.createMedia(d);
+      },
+      error:function(xhr, type){
+        var error_text = "";
+        error_text += self._("twitter_load_err") + "<br/>" + self.media_id + "<br/>" + type;
+        self.loadErrorDisplay(error_text);
+      }
+    });
+
+  },
+
+  createMedia: function(d) {
+    trace("create_media")
+    var tweet				= "",
+      tweet_text			= "",
+      tweetuser			= "",
+      tweet_status_temp 	= "",
+      tweet_status_url 	= "",
+      tweet_status_date 	= "";
+
+    //	TWEET CONTENT
+    tweet_text 			= d.html.split("<\/p>\&mdash;")[0] + "</p></blockquote>";
+    tweetuser			= d.author_url.split("twitter.com\/")[1];
+    tweet_status_temp 	= d.html.split("<\/p>\&mdash;")[1].split("<a href=\"")[1];
+    tweet_status_url 	= tweet_status_temp.split("\"\>")[0];
+    tweet_status_date 	= tweet_status_temp.split("\"\>")[1].split("<\/a>")[0];
+
+    // Open links in new window
+    tweet_text = tweet_text.replace(/<a href/ig, '<a target="_blank" href');
+
+    // 	TWEET CONTENT
+    tweet += tweet_text;
+
+    //	TWEET AUTHOR
+    tweet += "<div class='vcard'>";
+    tweet += "<a href='" + tweet_status_url + "' class='twitter-date' target='_blank'>" + tweet_status_date + "</a>";
+    tweet += "<div class='author'>";
+    tweet += "<a class='screen-name url' href='" + d.author_url + "' target='_blank'>";
+    tweet += "<span class='avatar'></span>";
+    tweet += "<span class='fn'>" + d.author_name + " <span class='tl-icon-twitter'></span></span>";
+    tweet += "<span class='nickname'>@" + tweetuser + "<span class='thumbnail-inline'></span></span>";
+    tweet += "</a>";
+    tweet += "</div>";
+    tweet += "</div>";
+
+
+    // Add to DOM
+    this._el.content_item.innerHTML	= tweet;
+
+    // After Loaded
+    this.onLoaded();
+
+  },
+
+  updateMediaDisplay: function() {
+
+  },
+
+  _updateMediaDisplay: function() {
+
+  }
+
+
+
 });
 
 
@@ -8869,55 +8869,55 @@ TL.Media.TwitterEmbed = TL.Media.extend({
 
 TL.Media.Vimeo = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-vimeo tl-media-shadow", this._el.content);
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-vimeo tl-media-shadow", this._el.content);
 
-		// Get Media ID
-		this.media_id = this.data.url.split(/video\/|\/\/vimeo\.com\//)[1].split(/[?&]/)[0];
+    // Get Media ID
+    this.media_id = this.data.url.split(/video\/|\/\/vimeo\.com\//)[1].split(/[?&]/)[0];
 
-		// API URL
-		api_url = "https://player.vimeo.com/video/" + this.media_id + "?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff";
+    // API URL
+    api_url = "https://player.vimeo.com/video/" + this.media_id + "?api=1&title=0&amp;byline=0&amp;portrait=0&amp;color=ffffff";
 
-		this.player = TL.Dom.create("iframe", "", this._el.content_item);
+    this.player = TL.Dom.create("iframe", "", this._el.content_item);
 
-		// Media Loaded Event
-		this.player.addEventListener('load', function(e) {
-			self.onMediaLoaded();
-		});
+    // Media Loaded Event
+    this.player.addEventListener('load', function(e) {
+      self.onMediaLoaded();
+    });
 
-		this.player.width 		= "100%";
-		this.player.height 		= "100%";
-		this.player.frameBorder = "0";
-		this.player.src 		= api_url;
+    this.player.width 		= "100%";
+    this.player.height 		= "100%";
+    this.player.frameBorder = "0";
+    this.player.src 		= api_url;
 
-		// After Loaded
-		this.onLoaded();
-	},
+    // After Loaded
+    this.onLoaded();
+  },
 
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		this._el.content_item.style.height = TL.Util.ratio.r16_9({w:this._el.content_item.offsetWidth}) + "px";
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    this._el.content_item.style.height = TL.Util.ratio.r16_9({w:this._el.content_item.offsetWidth}) + "px";
 
-	},
+  },
 
-	_stopMedia: function() {
+  _stopMedia: function() {
 
-		try {
-			this.player.contentWindow.postMessage(JSON.stringify({method: "pause"}), "https://player.vimeo.com");
-		}
-		catch(err) {
-			trace(err);
-		}
+    try {
+      this.player.contentWindow.postMessage(JSON.stringify({method: "pause"}), "https://player.vimeo.com");
+    }
+    catch(err) {
+      trace(err);
+    }
 
-	}
+  }
 });
 
 
@@ -8931,35 +8931,35 @@ TL.Media.Vimeo = TL.Media.extend({
 
 TL.Media.Vine = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-vine tl-media-shadow", this._el.content);
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-iframe tl-media-vine tl-media-shadow", this._el.content);
 
-		// Get Media ID
-		this.media_id = this.data.url.split("vine.co/v/")[1];
+    // Get Media ID
+    this.media_id = this.data.url.split("vine.co/v/")[1];
 
-		// API URL
-		api_url = "https://vine.co/v/" + this.media_id + "/embed/simple";
+    // API URL
+    api_url = "https://vine.co/v/" + this.media_id + "/embed/simple";
 
-		// API Call
-		this._el.content_item.innerHTML = "<iframe frameborder='0' width='100%' height='100%' src='" + api_url + "'></iframe><script async src='https://platform.vine.co/static/scripts/embed.js' charset='utf-8'></script>"		
+    // API Call
+    this._el.content_item.innerHTML = "<iframe frameborder='0' width='100%' height='100%' src='" + api_url + "'></iframe><script async src='https://platform.vine.co/static/scripts/embed.js' charset='utf-8'></script>"
 
-		// After Loaded
-		this.onLoaded();
-	},
+    // After Loaded
+    this.onLoaded();
+  },
 
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		var size = TL.Util.ratio.square({w:this._el.content_item.offsetWidth , h:this.options.height});
-		this._el.content_item.style.height = size.h + "px";
-	}
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    var size = TL.Util.ratio.square({w:this._el.content_item.offsetWidth , h:this.options.height});
+    this._el.content_item.style.height = size.h + "px";
+  }
 
 });
 
@@ -8969,89 +8969,89 @@ TL.Media.Vine = TL.Media.extend({
 ********************************************** */
 
 /*	TL.Media.Website
-	Uses Embedly
-	http://embed.ly/docs/api/extract/endpoints/1/extract
+  Uses Embedly
+  http://embed.ly/docs/api/extract/endpoints/1/extract
 ================================================== */
 
 TL.Media.Website = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var self = this;
 
-		// Get Media ID
-		this.media_id = this.data.url.replace(/.*?:\/\//g, "");
+    // Get Media ID
+    this.media_id = this.data.url.replace(/.*?:\/\//g, "");
 
-		if (this.options.api_key_embedly) {
-			// API URL
-			api_url = "https://api.embed.ly/1/extract?key=" + this.options.api_key_embedly + "&url=" + this.media_id + "&callback=?";
+    if (this.options.api_key_embedly) {
+      // API URL
+      api_url = "https://api.embed.ly/1/extract?key=" + this.options.api_key_embedly + "&url=" + this.media_id + "&callback=?";
 
-			// API Call
-			TL.getJSON(api_url, function(d) {
-				self.createMedia(d);
-			});
-		} else {
-			this.createCardContent();
-		}
-	},
+      // API Call
+      TL.getJSON(api_url, function(d) {
+        self.createMedia(d);
+      });
+    } else {
+      this.createCardContent();
+    }
+  },
 
-	createCardContent: function() {
-		(function(w, d){
-			var id='embedly-platform', n = 'script';
-			if (!d.getElementById(id)){
-			 w.embedly = w.embedly || function() {(w.embedly.q = w.embedly.q || []).push(arguments);};
-			 var e = d.createElement(n); e.id = id; e.async=1;
-			 e.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://cdn.embedly.com/widgets/platform.js';
-			 var s = d.getElementsByTagName(n)[0];
-			 s.parentNode.insertBefore(e, s);
-			}
-		})(window, document);
+  createCardContent: function() {
+    (function(w, d){
+      var id='embedly-platform', n = 'script';
+      if (!d.getElementById(id)){
+       w.embedly = w.embedly || function() {(w.embedly.q = w.embedly.q || []).push(arguments);};
+       var e = d.createElement(n); e.id = id; e.async=1;
+       e.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://cdn.embedly.com/widgets/platform.js';
+       var s = d.getElementsByTagName(n)[0];
+       s.parentNode.insertBefore(e, s);
+      }
+    })(window, document);
 
-		var content = "<a href=\"" + this.data.url + "\" class=\"embedly-card\">" + this.data.url + "</a>";
-		this._setContent(content);
+    var content = "<a href=\"" + this.data.url + "\" class=\"embedly-card\">" + this.data.url + "</a>";
+    this._setContent(content);
 
-	},
-	createMedia: function(d) { // this costs API credits...
-		var content = "";
+  },
+  createMedia: function(d) { // this costs API credits...
+    var content = "";
 
 
-		content		+=	"<h4><a href='" + this.data.url + "' target='_blank'>" + d.title + "</a></h4>";
-		if (d.images) {
-			if (d.images[0]) {
-				trace(d.images[0].url);
-				content		+=	"<img src='" + d.images[0].url + "' />";
-			}
-		}
-		if (d.favicon_url) {
-			content		+=	"<img class='tl-media-website-icon' src='" + d.favicon_url + "' />";
-		}
-		content		+=	"<span class='tl-media-website-description'>" + d.provider_name + "</span><br/>";
-		content		+=	"<p>" + d.description + "</p>";
+    content		+=	"<h4><a href='" + this.data.url + "' target='_blank'>" + d.title + "</a></h4>";
+    if (d.images) {
+      if (d.images[0]) {
+        trace(d.images[0].url);
+        content		+=	"<img src='" + d.images[0].url + "' />";
+      }
+    }
+    if (d.favicon_url) {
+      content		+=	"<img class='tl-media-website-icon' src='" + d.favicon_url + "' />";
+    }
+    content		+=	"<span class='tl-media-website-description'>" + d.provider_name + "</span><br/>";
+    content		+=	"<p>" + d.description + "</p>";
 
-		this._setContent(content);
-	},
+    this._setContent(content);
+  },
 
-	_setContent: function(content) {
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-website", this._el.content);
-		this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
-		this._el.content_item.innerHTML = content;
+  _setContent: function(content) {
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-website", this._el.content);
+    this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
+    this._el.content_item.innerHTML = content;
 
-		// After Loaded
-		this.onLoaded();
+    // After Loaded
+    this.onLoaded();
 
-	},
+  },
 
-	updateMediaDisplay: function() {
+  updateMediaDisplay: function() {
 
-	},
+  },
 
-	_updateMediaDisplay: function() {
+  _updateMediaDisplay: function() {
 
-	}
+  }
 
 
 });
@@ -9066,109 +9066,109 @@ TL.Media.Website = TL.Media.extend({
 
 TL.Media.Wikipedia = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var api_url,
-			api_language,
-			self = this;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var api_url,
+      api_language,
+      self = this;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-wikipedia", this._el.content);
-		this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-wikipedia", this._el.content);
+    this._el.content_container.className = "tl-media-content-container tl-media-content-container-text";
 
-		// Get Media ID
-		this.media_id	 = this.data.url.split("wiki\/")[1].split("#")[0].replace("_", " ");
-		this.media_id	 = this.media_id.replace(" ", "%20");
-		api_language	 = this.data.url.split("//")[1].split(".wikipedia")[0];
+    // Get Media ID
+    this.media_id	 = this.data.url.split("wiki\/")[1].split("#")[0].replace("_", " ");
+    this.media_id	 = this.media_id.replace(" ", "%20");
+    api_language	 = this.data.url.split("//")[1].split(".wikipedia")[0];
 
-		// API URL
-		api_url = "https://" + api_language + ".wikipedia.org/w/api.php?action=query&prop=extracts|pageimages&redirects=&titles=" + this.media_id + "&exintro=1&format=json&callback=?";
+    // API URL
+    api_url = "https://" + api_language + ".wikipedia.org/w/api.php?action=query&prop=extracts|pageimages&redirects=&titles=" + this.media_id + "&exintro=1&format=json&callback=?";
 
-		// API Call
-		TL.ajax({
-			type: 'GET',
-			url: api_url,
-			dataType: 'json', //json data type
+    // API Call
+    TL.ajax({
+      type: 'GET',
+      url: api_url,
+      dataType: 'json', //json data type
 
-			success: function(d){
-				self.createMedia(d);
-			},
-			error:function(xhr, type){
-				var error_text = "";
-				error_text += self._("wikipedia_load_err") + "<br/>" + self.media_id + "<br/>" + type;
-				self.loadErrorDisplay(error_text);
-			}
-		});
+      success: function(d){
+        self.createMedia(d);
+      },
+      error:function(xhr, type){
+        var error_text = "";
+        error_text += self._("wikipedia_load_err") + "<br/>" + self.media_id + "<br/>" + type;
+        self.loadErrorDisplay(error_text);
+      }
+    });
 
-	},
+  },
 
-	createMedia: function(d) {
-		var wiki = "";
+  createMedia: function(d) {
+    var wiki = "";
 
-		if (d.query) {
-			var content = "",
-				wiki = {
-					entry: {},
-					title: "",
-					text: "",
-					extract: "",
-					paragraphs: 1,
-					page_image: "",
-					text_array: []
-				};
+    if (d.query) {
+      var content = "",
+        wiki = {
+          entry: {},
+          title: "",
+          text: "",
+          extract: "",
+          paragraphs: 1,
+          page_image: "",
+          text_array: []
+        };
 
-			wiki.entry		 = TL.Util.getObjectAttributeByIndex(d.query.pages, 0);
-			wiki.extract	 = wiki.entry.extract;
-			wiki.title		 = wiki.entry.title;
-			wiki.page_image	 = wiki.entry.thumbnail;
+      wiki.entry		 = TL.Util.getObjectAttributeByIndex(d.query.pages, 0);
+      wiki.extract	 = wiki.entry.extract;
+      wiki.title		 = wiki.entry.title;
+      wiki.page_image	 = wiki.entry.thumbnail;
 
-			if (wiki.extract.match("<p>")) {
-				wiki.text_array = wiki.extract.split("<p>");
-			} else {
-				wiki.text_array.push(wiki.extract);
-			}
+      if (wiki.extract.match("<p>")) {
+        wiki.text_array = wiki.extract.split("<p>");
+      } else {
+        wiki.text_array.push(wiki.extract);
+      }
 
-			for(var i = 0; i < wiki.text_array.length; i++) {
-				if (i+1 <= wiki.paragraphs && i+1 < wiki.text_array.length) {
-					wiki.text	+= "<p>" + wiki.text_array[i+1];
-				}
-			}
-
-
-			content		+=	"<span class='tl-icon-wikipedia'></span>";
-			content		+=	"<div class='tl-wikipedia-title'><h4><a href='" + this.data.url + "' target='_blank'>" + wiki.title + "</a></h4>";
-			content		+=	"<span class='tl-wikipedia-source'>" + this._('wikipedia') + "</span></div>";
-
-			if (wiki.page_image) {
-				//content 	+= 	"<img class='tl-wikipedia-pageimage' src='" + wiki.page_image.source +"'>";
-			}
-
-			content		+=	wiki.text;
-
-			if (wiki.extract.match("REDIRECT")) {
-
-			} else {
-				// Add to DOM
-				this._el.content_item.innerHTML	= content;
-				// After Loaded
-				this.onLoaded();
-			}
+      for(var i = 0; i < wiki.text_array.length; i++) {
+        if (i+1 <= wiki.paragraphs && i+1 < wiki.text_array.length) {
+          wiki.text	+= "<p>" + wiki.text_array[i+1];
+        }
+      }
 
 
-		}
+      content		+=	"<span class='tl-icon-wikipedia'></span>";
+      content		+=	"<div class='tl-wikipedia-title'><h4><a href='" + this.data.url + "' target='_blank'>" + wiki.title + "</a></h4>";
+      content		+=	"<span class='tl-wikipedia-source'>" + this._('wikipedia') + "</span></div>";
 
-	},
+      if (wiki.page_image) {
+        //content 	+= 	"<img class='tl-wikipedia-pageimage' src='" + wiki.page_image.source +"'>";
+      }
 
-	updateMediaDisplay: function() {
+      content		+=	wiki.text;
 
-	},
+      if (wiki.extract.match("REDIRECT")) {
 
-	_updateMediaDisplay: function() {
+      } else {
+        // Add to DOM
+        this._el.content_item.innerHTML	= content;
+        // After Loaded
+        this.onLoaded();
+      }
 
-	}
+
+    }
+
+  },
+
+  updateMediaDisplay: function() {
+
+  },
+
+  _updateMediaDisplay: function() {
+
+  }
 
 });
 
@@ -9182,117 +9182,117 @@ TL.Media.Wikipedia = TL.Media.extend({
 
 TL.Media.YouTube = TL.Media.extend({
 
-	includes: [TL.Events],
+  includes: [TL.Events],
 
-	/*	Load the media
-	================================================== */
-	_loadMedia: function() {
-		var self = this,
-			url_vars;
+  /*	Load the media
+  ================================================== */
+  _loadMedia: function() {
+    var self = this,
+      url_vars;
 
-		this.youtube_loaded = false;
+    this.youtube_loaded = false;
 
-		// Create Dom element
-		this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-youtube tl-media-shadow", this._el.content);
-		this._el.content_item.id = TL.Util.unique_ID(7)
+    // Create Dom element
+    this._el.content_item	= TL.Dom.create("div", "tl-media-item tl-media-youtube tl-media-shadow", this._el.content);
+    this._el.content_item.id = TL.Util.unique_ID(7)
 
-		// URL Vars
-		url_vars = TL.Util.getUrlVars(this.data.url);
+    // URL Vars
+    url_vars = TL.Util.getUrlVars(this.data.url);
 
-		// Get Media ID
-		this.media_id = {};
+    // Get Media ID
+    this.media_id = {};
 
-		if (this.data.url.match('v=')) {
-			this.media_id.id	= url_vars["v"];
-		} else if (this.data.url.match('\/embed\/')) {
-			this.media_id.id	= this.data.url.split("embed\/")[1].split(/[?&]/)[0];
-		} else if (this.data.url.match(/v\/|v=|youtu\.be\//)){
-			this.media_id.id	= this.data.url.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];
-		} else {
-			trace("YOUTUBE IN URL BUT NOT A VALID VIDEO");
-		}
+    if (this.data.url.match('v=')) {
+      this.media_id.id	= url_vars["v"];
+    } else if (this.data.url.match('\/embed\/')) {
+      this.media_id.id	= this.data.url.split("embed\/")[1].split(/[?&]/)[0];
+    } else if (this.data.url.match(/v\/|v=|youtu\.be\//)){
+      this.media_id.id	= this.data.url.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];
+    } else {
+      trace("YOUTUBE IN URL BUT NOT A VALID VIDEO");
+    }
 
-		this.media_id.start		= TL.Util.parseYouTubeTime(url_vars["t"]);
-		this.media_id.hd		= Boolean(typeof(url_vars["hd"]) != 'undefined');
+    this.media_id.start		= TL.Util.parseYouTubeTime(url_vars["t"]);
+    this.media_id.hd		= Boolean(typeof(url_vars["hd"]) != 'undefined');
 
 
-		// API Call
-		TL.Load.js('https://www.youtube.com/iframe_api', function() {
-			self.createMedia();
-		});
+    // API Call
+    TL.Load.js('https://www.youtube.com/iframe_api', function() {
+      self.createMedia();
+    });
 
-	},
+  },
 
-	// Update Media Display
-	_updateMediaDisplay: function() {
-		//this.el.content_item = document.getElementById(this._el.content_item.id);
-		this._el.content_item.style.height = TL.Util.ratio.r16_9({w:this.options.width}) + "px";
-		this._el.content_item.style.width = this.options.width + "px";
-	},
+  // Update Media Display
+  _updateMediaDisplay: function() {
+    //this.el.content_item = document.getElementById(this._el.content_item.id);
+    this._el.content_item.style.height = TL.Util.ratio.r16_9({w:this.options.width}) + "px";
+    this._el.content_item.style.width = this.options.width + "px";
+  },
 
-	_stopMedia: function() {
-		if (this.youtube_loaded) {
-			try {
-			    if(this.player.getPlayerState() == YT.PlayerState.PLAYING) {
-			        this.player.pauseVideo();
-			    }
-			}
-			catch(err) {
-				trace(err);
-			}
+  _stopMedia: function() {
+    if (this.youtube_loaded) {
+      try {
+          if(this.player.getPlayerState() == YT.PlayerState.PLAYING) {
+              this.player.pauseVideo();
+          }
+      }
+      catch(err) {
+        trace(err);
+      }
 
-		}
-	},
-	createMedia: function() {
-		var self = this;
+    }
+  },
+  createMedia: function() {
+    var self = this;
 
-		clearTimeout(this.timer);
+    clearTimeout(this.timer);
 
-		if(typeof YT != 'undefined' && typeof YT.Player != 'undefined') {
-			// Create Player
-			this.player = new YT.Player(this._el.content_item.id, {
-				playerVars: {
-					enablejsapi:		1,
-					color: 				'white',
-					autohide: 			1,
-					showinfo:			0,
-					theme:				'light',
-					start:				this.media_id.start,
-					fs: 				0,
-					rel:				0
-				},
-				videoId: this.media_id.id,
-				events: {
-					onReady: 			function() {
-						self.onPlayerReady();
-						// After Loaded
-						self.onLoaded();
-					},
-					'onStateChange': 	self.onStateChange
-				}
-			});
-		} else {
-			this.timer = setTimeout(function() {
-				self.createMedia();
-			}, 1000);
-		}
-	},
+    if(typeof YT != 'undefined' && typeof YT.Player != 'undefined') {
+      // Create Player
+      this.player = new YT.Player(this._el.content_item.id, {
+        playerVars: {
+          enablejsapi:		1,
+          color: 				'white',
+          autohide: 			1,
+          showinfo:			0,
+          theme:				'light',
+          start:				this.media_id.start,
+          fs: 				0,
+          rel:				0
+        },
+        videoId: this.media_id.id,
+        events: {
+          onReady: 			function() {
+            self.onPlayerReady();
+            // After Loaded
+            self.onLoaded();
+          },
+          'onStateChange': 	self.onStateChange
+        }
+      });
+    } else {
+      this.timer = setTimeout(function() {
+        self.createMedia();
+      }, 1000);
+    }
+  },
 
-	/*	Events
-	================================================== */
-	onPlayerReady: function(e) {
-		this.youtube_loaded = true;
-		this._el.content_item = document.getElementById(this._el.content_item.id);
-		this.onMediaLoaded();
+  /*	Events
+  ================================================== */
+  onPlayerReady: function(e) {
+    this.youtube_loaded = true;
+    this._el.content_item = document.getElementById(this._el.content_item.id);
+    this.onMediaLoaded();
 
-	},
+  },
 
-	onStateChange: function(e) {
+  onStateChange: function(e) {
         if(e.data == YT.PlayerState.ENDED) {
             e.target.seekTo(0);
             e.target.pauseVideo();
-        }				
-	}
+        }
+  }
 
 
 });
@@ -9303,171 +9303,171 @@ TL.Media.YouTube = TL.Media.extend({
 ********************************************** */
 
 /*	TL.Slide
-	Creates a slide. Takes a data object and
-	populates the slide with content.
+  Creates a slide. Takes a data object and
+  populates the slide with content.
 ================================================== */
 
 TL.Slide = TL.Class.extend({
 
-	includes: [TL.Events, TL.DomMixins, TL.I18NMixins],
+  includes: [TL.Events, TL.DomMixins, TL.I18NMixins],
 
-	_el: {},
+  _el: {},
 
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options, title_slide) {
-		// DOM Elements
-		this._el = {
-			container: {},
-			scroll_container: {},
-			background: {},
-			content_container: {},
-			content: {}
-		};
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options, title_slide) {
+    // DOM Elements
+    this._el = {
+      container: {},
+      scroll_container: {},
+      background: {},
+      content_container: {},
+      content: {}
+    };
 
-		// Components
-		this._media 		= null;
-		this._mediaclass	= {};
-		this._text			= {};
-		this._background_media = null;
+    // Components
+    this._media 		= null;
+    this._mediaclass	= {};
+    this._text			= {};
+    this._background_media = null;
 
-		// State
-		this._state = {
-			loaded: 		false
-		};
+    // State
+    this._state = {
+      loaded: 		false
+    };
 
-		this.has = {
-			headline: 	false,
-			text: 		false,
-			media: 		false,
-			title: 		false,
-			background: {
-				image: false,
-				color: false,
-				color_value :""
-			}
-		}
+    this.has = {
+      headline: 	false,
+      text: 		false,
+      media: 		false,
+      title: 		false,
+      background: {
+        image: false,
+        color: false,
+        color_value :""
+      }
+    }
 
-		this.has.title = title_slide;
+    this.has.title = title_slide;
 
-		// Data
-		this.data = {
-			unique_id: 				null,
-			background: 			null,
-			start_date: 			null,
-			end_date: 				null,
-			location: 				null,
-			text: 					null,
-			media: 					null,
+    // Data
+    this.data = {
+      unique_id: 				null,
+      background: 			null,
+      start_date: 			null,
+      end_date: 				null,
+      location: 				null,
+      text: 					null,
+      media: 					null,
             autolink: true
-		};
+    };
 
-		// Options
-		this.options = {
-			// animation
-			duration: 			1000,
-			slide_padding_lr: 	40,
-			ease: 				TL.Ease.easeInSpline,
-			width: 				600,
-			height: 			600,
-			skinny_size: 		650,
-			media_name: 		""
-		};
+    // Options
+    this.options = {
+      // animation
+      duration: 			1000,
+      slide_padding_lr: 	40,
+      ease: 				TL.Ease.easeInSpline,
+      width: 				600,
+      height: 			600,
+      skinny_size: 		650,
+      media_name: 		""
+    };
 
-		// Actively Displaying
-		this.active = false;
+    // Actively Displaying
+    this.active = false;
 
-		// Animation Object
-		this.animator = {};
+    // Animation Object
+    this.animator = {};
 
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		TL.Util.mergeData(this.data, data);
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+    TL.Util.mergeData(this.data, data);
 
-		this._initLayout();
-		this._initEvents();
+    this._initLayout();
+    this._initEvents();
 
 
-	},
+  },
 
-	/*	Adding, Hiding, Showing etc
-	================================================== */
-	show: function() {
-		this.animator = TL.Animate(this._el.slider_container, {
-			left: 		-(this._el.container.offsetWidth * n) + "px",
-			duration: 	this.options.duration,
-			easing: 	this.options.ease
-		});
-	},
+  /*	Adding, Hiding, Showing etc
+  ================================================== */
+  show: function() {
+    this.animator = TL.Animate(this._el.slider_container, {
+      left: 		-(this._el.container.offsetWidth * n) + "px",
+      duration: 	this.options.duration,
+      easing: 	this.options.ease
+    });
+  },
 
-	hide: function() {
+  hide: function() {
 
-	},
+  },
 
-	setActive: function(is_active) {
-		this.active = is_active;
+  setActive: function(is_active) {
+    this.active = is_active;
 
-		if (this.active) {
-			if (this.data.background) {
-				this.fire("background_change", this.has.background);
-			}
-			this.loadMedia();
-		} else {
-			this.stopMedia();
-		}
-	},
+    if (this.active) {
+      if (this.data.background) {
+        this.fire("background_change", this.has.background);
+      }
+      this.loadMedia();
+    } else {
+      this.stopMedia();
+    }
+  },
 
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-		//this.onAdd();
-	},
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+    //this.onAdd();
+  },
 
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-	},
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+  },
 
-	updateDisplay: function(w, h, l) {
-		this._updateDisplay(w, h, l);
-	},
+  updateDisplay: function(w, h, l) {
+    this._updateDisplay(w, h, l);
+  },
 
-	loadMedia: function() {
+  loadMedia: function() {
         var self = this;
-        
-		if (this._media && !this._state.loaded) {
-			this._media.loadMedia();
-			this._state.loaded = true;
-		}
-		
-		if(this._background_media && !this._background_media._state.loaded) {
-		    this._background_media.on("loaded", function() {
-		        self._updateBackgroundDisplay();
-		    });
-		    this._background_media.loadMedia();
-		}
-	},
 
-	stopMedia: function() {
-		if (this._media && this._state.loaded) {
-			this._media.stopMedia();
-		}
-	},
+    if (this._media && !this._state.loaded) {
+      this._media.loadMedia();
+      this._state.loaded = true;
+    }
 
-	getBackground: function() {
-		return this.has.background;
-	},
+    if(this._background_media && !this._background_media._state.loaded) {
+        this._background_media.on("loaded", function() {
+            self._updateBackgroundDisplay();
+        });
+        this._background_media.loadMedia();
+    }
+  },
 
-	scrollToTop: function() {
-		this._el.container.scrollTop = 0;
-	},
+  stopMedia: function() {
+    if (this._media && this._state.loaded) {
+      this._media.stopMedia();
+    }
+  },
 
-	getFormattedDate: function() {
+  getBackground: function() {
+    return this.has.background;
+  },
 
-		if (TL.Util.trim(this.data.display_date).length > 0) {
-			return this.data.display_date;
-		}
-		var date_text = "";
+  scrollToTop: function() {
+    this._el.container.scrollTop = 0;
+  },
 
-		if(!this.has.title) {
+  getFormattedDate: function() {
+
+    if (TL.Util.trim(this.data.display_date).length > 0) {
+      return this.data.display_date;
+    }
+    var date_text = "";
+
+    if(!this.has.title) {
             if (this.data.end_date) {
                 date_text = " &mdash; " + this.data.end_date.getDisplayDate(this.getLanguage());
             }
@@ -9475,178 +9475,178 @@ TL.Slide = TL.Class.extend({
                 date_text = this.data.start_date.getDisplayDate(this.getLanguage()) + date_text;
             }
         }
-		return date_text;
-	},
+    return date_text;
+  },
 
-	/*	Events
-	================================================== */
+  /*	Events
+  ================================================== */
 
 
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		// Create Layout
-		this._el.container 				= TL.Dom.create("div", "tl-slide");
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+    // Create Layout
+    this._el.container 				= TL.Dom.create("div", "tl-slide");
 
-		if (this.has.title) {
-			this._el.container.className = "tl-slide tl-slide-titleslide";
-		}
+    if (this.has.title) {
+      this._el.container.className = "tl-slide tl-slide-titleslide";
+    }
 
-		if (this.data.unique_id) {
-			this._el.container.id 		= this.data.unique_id;
-		}
-		this._el.scroll_container 		= TL.Dom.create("div", "tl-slide-scrollable-container", this._el.container);
-		this._el.content_container		= TL.Dom.create("div", "tl-slide-content-container", this._el.scroll_container);
-		this._el.content				= TL.Dom.create("div", "tl-slide-content", this._el.content_container);
-		this._el.background				= TL.Dom.create("div", "tl-slide-background", this._el.container);
-		// Style Slide Background
-		if (this.data.background) {
-			if (this.data.background.url) {
-			    var media_type = TL.MediaType(this.data.background, true);
-			    if(media_type) {
+    if (this.data.unique_id) {
+      this._el.container.id 		= this.data.unique_id;
+    }
+    this._el.scroll_container 		= TL.Dom.create("div", "tl-slide-scrollable-container", this._el.container);
+    this._el.content_container		= TL.Dom.create("div", "tl-slide-content-container", this._el.scroll_container);
+    this._el.content				= TL.Dom.create("div", "tl-slide-content", this._el.content_container);
+    this._el.background				= TL.Dom.create("div", "tl-slide-background", this._el.container);
+    // Style Slide Background
+    if (this.data.background) {
+      if (this.data.background.url) {
+          var media_type = TL.MediaType(this.data.background, true);
+          if(media_type) {
                     this._background_media = new media_type.cls(this.data.background, {background: 1});
-                
+
                     this.has.background.image 					= true;
                     this._el.container.className 				+= ' tl-full-image-background';
                     this.has.background.color_value 			= "#000";
                     this._el.background.style.display 			= "block";
                 }
-			}
-			if (this.data.background.color) {
-				this.has.background.color 					= true;
-				this._el.container.className 				+= ' tl-full-color-background';
-				this.has.background.color_value 			= this.data.background.color;
-				//this._el.container.style.backgroundColor = this.data.background.color;
-				//this._el.background.style.backgroundColor 	= this.data.background.color;
-				//this._el.background.style.display 			= "block";
-			}
-			if (this.data.background.text_background) {
-				this._el.container.className 				+= ' tl-text-background';
-			}
+      }
+      if (this.data.background.color) {
+        this.has.background.color 					= true;
+        this._el.container.className 				+= ' tl-full-color-background';
+        this.has.background.color_value 			= this.data.background.color;
+        //this._el.container.style.backgroundColor = this.data.background.color;
+        //this._el.background.style.backgroundColor 	= this.data.background.color;
+        //this._el.background.style.display 			= "block";
+      }
+      if (this.data.background.text_background) {
+        this._el.container.className 				+= ' tl-text-background';
+      }
 
-		}
+    }
 
 
 
-		// Determine Assets for layout and loading
-		if (this.data.media && this.data.media.url && this.data.media.url != "") {
-			this.has.media = true;
-		}
-		if (this.data.text && this.data.text.text) {
-			this.has.text = true;
-		}
-		if (this.data.text && this.data.text.headline) {
-			this.has.headline = true;
-		}
+    // Determine Assets for layout and loading
+    if (this.data.media && this.data.media.url && this.data.media.url != "") {
+      this.has.media = true;
+    }
+    if (this.data.text && this.data.text.text) {
+      this.has.text = true;
+    }
+    if (this.data.text && this.data.text.headline) {
+      this.has.headline = true;
+    }
 
-		// Create Media
-		if (this.has.media) {
+    // Create Media
+    if (this.has.media) {
 
-			// Determine the media type
-			this.data.media.mediatype 	= TL.MediaType(this.data.media);
-			this.options.media_name 	= this.data.media.mediatype.name;
-			this.options.media_type 	= this.data.media.mediatype.type;
+      // Determine the media type
+      this.data.media.mediatype 	= TL.MediaType(this.data.media);
+      this.options.media_name 	= this.data.media.mediatype.name;
+      this.options.media_type 	= this.data.media.mediatype.type;
             this.options.autolink = this.data.autolink;
 
-			// Create a media object using the matched class name
-			this._media = new this.data.media.mediatype.cls(this.data.media, this.options);
+      // Create a media object using the matched class name
+      this._media = new this.data.media.mediatype.cls(this.data.media, this.options);
 
-		}
+    }
 
-		// Create Text
-		if (this.has.text || this.has.headline) {
-			this._text = new TL.Media.Text(this.data.text, {title:this.has.title,language: this.options.language, autolink: this.data.autolink });
-			this._text.addDateText(this.getFormattedDate());
-		}
+    // Create Text
+    if (this.has.text || this.has.headline) {
+      this._text = new TL.Media.Text(this.data.text, {title:this.has.title,language: this.options.language, autolink: this.data.autolink });
+      this._text.addDateText(this.getFormattedDate());
+    }
 
 
 
-		// Add to DOM
-		if (!this.has.text && !this.has.headline && this.has.media) {
-			TL.DomUtil.addClass(this._el.container, 'tl-slide-media-only');
-			this._media.addTo(this._el.content);
-		} else if (this.has.headline && this.has.media && !this.has.text) {
-			TL.DomUtil.addClass(this._el.container, 'tl-slide-media-only');
-			this._text.addTo(this._el.content);
-			this._media.addTo(this._el.content);
-		} else if (this.has.text && this.has.media) {
-			this._media.addTo(this._el.content);
-			this._text.addTo(this._el.content);
-		} else if (this.has.text || this.has.headline) {
-			TL.DomUtil.addClass(this._el.container, 'tl-slide-text-only');
-			this._text.addTo(this._el.content);
-		}
+    // Add to DOM
+    if (!this.has.text && !this.has.headline && this.has.media) {
+      TL.DomUtil.addClass(this._el.container, 'tl-slide-media-only');
+      this._media.addTo(this._el.content);
+    } else if (this.has.headline && this.has.media && !this.has.text) {
+      TL.DomUtil.addClass(this._el.container, 'tl-slide-media-only');
+      this._text.addTo(this._el.content);
+      this._media.addTo(this._el.content);
+    } else if (this.has.text && this.has.media) {
+      this._media.addTo(this._el.content);
+      this._text.addTo(this._el.content);
+    } else if (this.has.text || this.has.headline) {
+      TL.DomUtil.addClass(this._el.container, 'tl-slide-text-only');
+      this._text.addTo(this._el.content);
+    }
 
-		// Fire event that the slide is loaded
-		this.onLoaded();
+    // Fire event that the slide is loaded
+    this.onLoaded();
 
-	},
+  },
 
-	_initEvents: function() {
+  _initEvents: function() {
 
-	},
+  },
 
-	// Update Display
-	_updateDisplay: function(width, height, layout) {
-		var content_width,
-			content_padding_left = this.options.slide_padding_lr,
-			content_padding_right = this.options.slide_padding_lr;
+  // Update Display
+  _updateDisplay: function(width, height, layout) {
+    var content_width,
+      content_padding_left = this.options.slide_padding_lr,
+      content_padding_right = this.options.slide_padding_lr;
 
-		if (width) {
-			this.options.width 					= width;
-		} else {
-			this.options.width 					= this._el.container.offsetWidth;
-		}
+    if (width) {
+      this.options.width 					= width;
+    } else {
+      this.options.width 					= this._el.container.offsetWidth;
+    }
 
-		content_width = this.options.width - (this.options.slide_padding_lr * 2);
+    content_width = this.options.width - (this.options.slide_padding_lr * 2);
 
-		if(TL.Browser.mobile && (this.options.width <= this.options.skinny_size)) {
-			content_padding_left = 0;
-			content_padding_right = 0;
-			content_width = this.options.width;
-		} else if (layout == "landscape") {
+    if(TL.Browser.mobile && (this.options.width <= this.options.skinny_size)) {
+      content_padding_left = 0;
+      content_padding_right = 0;
+      content_width = this.options.width;
+    } else if (layout == "landscape") {
 
-		} else if (this.options.width <= this.options.skinny_size) {
-			content_padding_left = 50;
-			content_padding_right = 50;
-			content_width = this.options.width - content_padding_left - content_padding_right;
-		} else {
+    } else if (this.options.width <= this.options.skinny_size) {
+      content_padding_left = 50;
+      content_padding_right = 50;
+      content_width = this.options.width - content_padding_left - content_padding_right;
+    } else {
 
-		}
+    }
 
-		this._el.content.style.paddingLeft 	= content_padding_left + "px";
-		this._el.content.style.paddingRight = content_padding_right + "px";
-		this._el.content.style.width		= content_width + "px";
+    this._el.content.style.paddingLeft 	= content_padding_left + "px";
+    this._el.content.style.paddingRight = content_padding_right + "px";
+    this._el.content.style.width		= content_width + "px";
 
-		if (height) {
-			this.options.height = height;
-			//this._el.scroll_container.style.height		= this.options.height + "px";
+    if (height) {
+      this.options.height = height;
+      //this._el.scroll_container.style.height		= this.options.height + "px";
 
-		} else {
-			this.options.height = this._el.container.offsetHeight;
-		}
+    } else {
+      this.options.height = this._el.container.offsetHeight;
+    }
 
-		if (this._media) {
+    if (this._media) {
 
-			if (!this.has.text && this.has.headline) {
-				this._media.updateDisplay(content_width, (this.options.height - this._text.headlineHeight()), layout);
-			} else if (!this.has.text && !this.has.headline) {
-				this._media.updateDisplay(content_width, this.options.height, layout);
-			} else if (this.options.width <= this.options.skinny_size) {
-				this._media.updateDisplay(content_width, this.options.height, layout);
-			} else {
-				this._media.updateDisplay(content_width/2, this.options.height, layout);
-			}
-		}
-		
-		this._updateBackgroundDisplay();
-	},
-	
-	_updateBackgroundDisplay: function() {
-	    if(this._background_media && this._background_media._state.loaded) {
-	        this._el.background.style.backgroundImage 	= "url('" + this._background_media.getImageURL(this.options.width, this.options.height) + "')";
-	    }
-	}
+      if (!this.has.text && this.has.headline) {
+        this._media.updateDisplay(content_width, (this.options.height - this._text.headlineHeight()), layout);
+      } else if (!this.has.text && !this.has.headline) {
+        this._media.updateDisplay(content_width, this.options.height, layout);
+      } else if (this.options.width <= this.options.skinny_size) {
+        this._media.updateDisplay(content_width, this.options.height, layout);
+      } else {
+        this._media.updateDisplay(content_width/2, this.options.height, layout);
+      }
+    }
+
+    this._updateBackgroundDisplay();
+  },
+
+  _updateBackgroundDisplay: function() {
+      if(this._background_media && this._background_media._state.loaded) {
+          this._el.background.style.backgroundImage 	= "url('" + this._background_media.getImageURL(this.options.width, this.options.height) + "')";
+      }
+  }
 
 });
 
@@ -9656,131 +9656,131 @@ TL.Slide = TL.Class.extend({
 ********************************************** */
 
 /*	TL.SlideNav
-	encapsulate DOM display/events for the 
-	'next' and 'previous' buttons on a slide.
+  encapsulate DOM display/events for the
+  'next' and 'previous' buttons on a slide.
 ================================================== */
 // TODO null out data
 
 TL.SlideNav = TL.Class.extend({
-	
-	includes: [TL.Events, TL.DomMixins],
-	
-	_el: {},
-	
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options, add_to_container) {
-		// DOM ELEMENTS
-		this._el = {
-			container: {},
-			content_container: {},
-			icon: {},
-			title: {},
-			description: {}
-		};
-	
-		// Media Type
-		this.mediatype = {};
-		
-		// Data
-		this.data = {
-			title: "Navigation",
-			description: "Description",
-			date: "Date"
-		};
-	
-		//Options
-		this.options = {
-			direction: 			"previous"
-		};
-	
-		this.animator = null;
-		
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		TL.Util.mergeData(this.data, data);
-		
-		
-		this._el.container = TL.Dom.create("div", "tl-slidenav-" + this.options.direction);
-		
-		if (TL.Browser.mobile) {
-			this._el.container.setAttribute("ontouchstart"," ");
-		}
-		
-		this._initLayout();
-		this._initEvents();
-		
-		if (add_to_container) {
-			add_to_container.appendChild(this._el.container);
-		};
-		
-	},
-	
-	/*	Update Content
-	================================================== */
-	update: function(slide) {
-		var d = {
-			title: "",
-			description: "",
-			date: slide.getFormattedDate()
-		};
-		
-		if (slide.data.text) {
-			if (slide.data.text.headline) {
-				d.title = slide.data.text.headline;
-			}
-		}
 
-		this._update(d);
-	},
-	
-	/*	Color
-	================================================== */
-	setColor: function(inverted) {
-		if (inverted) {
-			this._el.content_container.className = 'tl-slidenav-content-container tl-slidenav-inverted';
-		} else {
-			this._el.content_container.className = 'tl-slidenav-content-container';
-		}
-	},
-	
-	/*	Events
-	================================================== */
-	_onMouseClick: function() {
-		this.fire("clicked", this.options);
-	},
-	
-	/*	Private Methods
-	================================================== */
-	_update: function(d) {
-		// update data
-		this.data = TL.Util.mergeData(this.data, d);
-		
-		// Title
-		this._el.title.innerHTML = TL.Util.unlinkify(this.data.title);
-		
-		// Date
-		this._el.description.innerHTML	= TL.Util.unlinkify(this.data.date);
-	},
-	
-	_initLayout: function () {
-		
-		// Create Layout
-		this._el.content_container			= TL.Dom.create("div", "tl-slidenav-content-container", this._el.container);
-		this._el.icon						= TL.Dom.create("div", "tl-slidenav-icon", this._el.content_container);
-		this._el.title						= TL.Dom.create("div", "tl-slidenav-title", this._el.content_container);
-		this._el.description				= TL.Dom.create("div", "tl-slidenav-description", this._el.content_container);
-		
-		this._el.icon.innerHTML				= "&nbsp;"
-		
-		this._update();
-	},
-	
-	_initEvents: function () {
-		TL.DomEvent.addListener(this._el.container, 'click', this._onMouseClick, this);
-	}
-	
-	
+  includes: [TL.Events, TL.DomMixins],
+
+  _el: {},
+
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options, add_to_container) {
+    // DOM ELEMENTS
+    this._el = {
+      container: {},
+      content_container: {},
+      icon: {},
+      title: {},
+      description: {}
+    };
+
+    // Media Type
+    this.mediatype = {};
+
+    // Data
+    this.data = {
+      title: "Navigation",
+      description: "Description",
+      date: "Date"
+    };
+
+    //Options
+    this.options = {
+      direction: 			"previous"
+    };
+
+    this.animator = null;
+
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+    TL.Util.mergeData(this.data, data);
+
+
+    this._el.container = TL.Dom.create("div", "tl-slidenav-" + this.options.direction);
+
+    if (TL.Browser.mobile) {
+      this._el.container.setAttribute("ontouchstart"," ");
+    }
+
+    this._initLayout();
+    this._initEvents();
+
+    if (add_to_container) {
+      add_to_container.appendChild(this._el.container);
+    };
+
+  },
+
+  /*	Update Content
+  ================================================== */
+  update: function(slide) {
+    var d = {
+      title: "",
+      description: "",
+      date: slide.getFormattedDate()
+    };
+
+    if (slide.data.text) {
+      if (slide.data.text.headline) {
+        d.title = slide.data.text.headline;
+      }
+    }
+
+    this._update(d);
+  },
+
+  /*	Color
+  ================================================== */
+  setColor: function(inverted) {
+    if (inverted) {
+      this._el.content_container.className = 'tl-slidenav-content-container tl-slidenav-inverted';
+    } else {
+      this._el.content_container.className = 'tl-slidenav-content-container';
+    }
+  },
+
+  /*	Events
+  ================================================== */
+  _onMouseClick: function() {
+    this.fire("clicked", this.options);
+  },
+
+  /*	Private Methods
+  ================================================== */
+  _update: function(d) {
+    // update data
+    this.data = TL.Util.mergeData(this.data, d);
+
+    // Title
+    this._el.title.innerHTML = TL.Util.unlinkify(this.data.title);
+
+    // Date
+    this._el.description.innerHTML	= TL.Util.unlinkify(this.data.date);
+  },
+
+  _initLayout: function () {
+
+    // Create Layout
+    this._el.content_container			= TL.Dom.create("div", "tl-slidenav-content-container", this._el.container);
+    this._el.icon						= TL.Dom.create("div", "tl-slidenav-icon", this._el.content_container);
+    this._el.title						= TL.Dom.create("div", "tl-slidenav-title", this._el.content_container);
+    this._el.description				= TL.Dom.create("div", "tl-slidenav-description", this._el.content_container);
+
+    this._el.icon.innerHTML				= "&nbsp;"
+
+    this._update();
+  },
+
+  _initEvents: function () {
+    TL.DomEvent.addListener(this._el.container, 'click', this._onMouseClick, this);
+  }
+
+
 });
 
 /* **********************************************
@@ -9788,549 +9788,549 @@ TL.SlideNav = TL.Class.extend({
 ********************************************** */
 
 /*	StorySlider
-	is the central class of the API - it is used to create a StorySlider
+  is the central class of the API - it is used to create a StorySlider
 
-	Events:
-	nav_next
-	nav_previous
-	slideDisplayUpdate
-	loaded
-	slideAdded
-	slideLoaded
-	slideRemoved
+  Events:
+  nav_next
+  nav_previous
+  slideDisplayUpdate
+  loaded
+  slideAdded
+  slideLoaded
+  slideRemoved
 
 
 ================================================== */
 
 TL.StorySlider = TL.Class.extend({
 
-	includes: [TL.Events, TL.I18NMixins],
+  includes: [TL.Events, TL.I18NMixins],
 
-	/*	Private Methods
-	================================================== */
-	initialize: function (elem, data, options, init) {
+  /*	Private Methods
+  ================================================== */
+  initialize: function (elem, data, options, init) {
 
-		// DOM ELEMENTS
-		this._el = {
-			container: {},
-			background: {},
-			slider_container_mask: {},
-			slider_container: {},
-			slider_item_container: {}
-		};
+    // DOM ELEMENTS
+    this._el = {
+      container: {},
+      background: {},
+      slider_container_mask: {},
+      slider_container: {},
+      slider_item_container: {}
+    };
 
-		this._nav = {};
-		this._nav.previous = {};
-		this._nav.next = {};
+    this._nav = {};
+    this._nav.previous = {};
+    this._nav.next = {};
 
-		// Slide Spacing
-		this.slide_spacing = 0;
+    // Slide Spacing
+    this.slide_spacing = 0;
 
-		// Slides Array
-		this._slides = [];
+    // Slides Array
+    this._slides = [];
 
-		// Swipe Object
-		this._swipable;
+    // Swipe Object
+    this._swipable;
 
-		// Preload Timer
-		this.preloadTimer;
+    // Preload Timer
+    this.preloadTimer;
 
-		// Message
-		this._message;
+    // Message
+    this._message;
 
-		// Current Slide
-		this.current_id = '';
+    // Current Slide
+    this.current_id = '';
 
-		// Data Object
-		this.data = {};
+    // Data Object
+    this.data = {};
 
-		this.options = {
-			id: 					"",
-			layout: 				"portrait",
-			width: 					600,
-			height: 				600,
-			default_bg_color: 		{r:255, g:255, b:255},
-			slide_padding_lr: 		40, 			// padding on slide of slide
-			start_at_slide: 		1,
-			slide_default_fade: 	"0%", 			// landscape fade
-			// animation
-			duration: 				1000,
-			ease: 					TL.Ease.easeInOutQuint,
-			// interaction
-			dragging: 				true,
-			trackResize: 			true
-		};
+    this.options = {
+      id: 					"",
+      layout: 				"portrait",
+      width: 					600,
+      height: 				600,
+      default_bg_color: 		{r:255, g:255, b:255},
+      slide_padding_lr: 		40, 			// padding on slide of slide
+      start_at_slide: 		1,
+      slide_default_fade: 	"0%", 			// landscape fade
+      // animation
+      duration: 				1000,
+      ease: 					TL.Ease.easeInOutQuint,
+      // interaction
+      dragging: 				true,
+      trackResize: 			true
+    };
 
-		// Main element ID
-		if (typeof elem === 'object') {
-			this._el.container = elem;
-			this.options.id = TL.Util.unique_ID(6, "tl");
-		} else {
-			this.options.id = elem;
-			this._el.container = TL.Dom.get(elem);
-		}
+    // Main element ID
+    if (typeof elem === 'object') {
+      this._el.container = elem;
+      this.options.id = TL.Util.unique_ID(6, "tl");
+    } else {
+      this.options.id = elem;
+      this._el.container = TL.Dom.get(elem);
+    }
 
-		if (!this._el.container.id) {
-			this._el.container.id = this.options.id;
-		}
+    if (!this._el.container.id) {
+      this._el.container.id = this.options.id;
+    }
 
-		// Animation Object
-		this.animator = null;
+    // Animation Object
+    this.animator = null;
 
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		TL.Util.mergeData(this.data, data);
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+    TL.Util.mergeData(this.data, data);
 
-		if (init) {
-			this.init();
-		}
-	},
+    if (init) {
+      this.init();
+    }
+  },
 
-	init: function() {
-		this._initLayout();
-		this._initEvents();
-		this._initData();
-		this._updateDisplay();
+  init: function() {
+    this._initLayout();
+    this._initEvents();
+    this._initData();
+    this._updateDisplay();
 
-		// Go to initial slide
-		this.goTo(this.options.start_at_slide);
+    // Go to initial slide
+    this.goTo(this.options.start_at_slide);
 
-		this._onLoaded();
-	},
+    this._onLoaded();
+  },
 
-	/* Slides
-	================================================== */
-	_addSlide:function(slide) {
-		slide.addTo(this._el.slider_item_container);
-		slide.on('added', this._onSlideAdded, this);
-		slide.on('background_change', this._onBackgroundChange, this);
-	},
+  /* Slides
+  ================================================== */
+  _addSlide:function(slide) {
+    slide.addTo(this._el.slider_item_container);
+    slide.on('added', this._onSlideAdded, this);
+    slide.on('background_change', this._onBackgroundChange, this);
+  },
 
-	_createSlide: function(d, title_slide, n) {
-		var slide = new TL.Slide(d, this.options, title_slide);
-		this._addSlide(slide);
-		if(n < 0) {
-		    this._slides.push(slide);
-		} else {
-		    this._slides.splice(n, 0, slide);
-		}
-	},
+  _createSlide: function(d, title_slide, n) {
+    var slide = new TL.Slide(d, this.options, title_slide);
+    this._addSlide(slide);
+    if(n < 0) {
+        this._slides.push(slide);
+    } else {
+        this._slides.splice(n, 0, slide);
+    }
+  },
 
-	_createSlides: function(array) {
-		for (var i = 0; i < array.length; i++) {
-			if (array[i].unique_id == "") {
-				array[i].unique_id = TL.Util.unique_ID(6, "tl-slide");
-			}
+  _createSlides: function(array) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i].unique_id == "") {
+        array[i].unique_id = TL.Util.unique_ID(6, "tl-slide");
+      }
             this._createSlide(array[i], false, -1);
-		}
-	},
+    }
+  },
 
-	_removeSlide: function(slide) {
-		slide.removeFrom(this._el.slider_item_container);
-		slide.off('added', this._onSlideRemoved, this);
-		slide.off('background_change', this._onBackgroundChange);
-	},
+  _removeSlide: function(slide) {
+    slide.removeFrom(this._el.slider_item_container);
+    slide.off('added', this._onSlideRemoved, this);
+    slide.off('background_change', this._onBackgroundChange);
+  },
 
-	_destroySlide: function(n) {
-		this._removeSlide(this._slides[n]);
-		this._slides.splice(n, 1);
-	},
+  _destroySlide: function(n) {
+    this._removeSlide(this._slides[n]);
+    this._slides.splice(n, 1);
+  },
 
     _findSlideIndex: function(n) {
         var _n = n;
-		if (typeof n == 'string' || n instanceof String) {
-			_n = TL.Util.findArrayNumberByUniqueID(n, this._slides, "unique_id");
-		}
-		return _n;
+    if (typeof n == 'string' || n instanceof String) {
+      _n = TL.Util.findArrayNumberByUniqueID(n, this._slides, "unique_id");
+    }
+    return _n;
     },
 
-	/*	Public
-	================================================== */
-	updateDisplay: function(w, h, a, l) {
-		this._updateDisplay(w, h, a, l);
-	},
+  /*	Public
+  ================================================== */
+  updateDisplay: function(w, h, a, l) {
+    this._updateDisplay(w, h, a, l);
+  },
 
-	// Create a slide
-	createSlide: function(d, n) {
-		this._createSlide(d, false, n);
-	},
+  // Create a slide
+  createSlide: function(d, n) {
+    this._createSlide(d, false, n);
+  },
 
-	// Create Many Slides from an array
-	createSlides: function(array) {
-		this._createSlides(array);
-	},
+  // Create Many Slides from an array
+  createSlides: function(array) {
+    this._createSlides(array);
+  },
 
-	// Destroy slide by index
-	destroySlide: function(n) {
-	    this._destroySlide(n);
-	},
+  // Destroy slide by index
+  destroySlide: function(n) {
+      this._destroySlide(n);
+  },
 
-	// Destroy slide by id
-	destroySlideId: function(id) {
-	    this.destroySlide(this._findSlideIndex(id));
-	},
+  // Destroy slide by id
+  destroySlideId: function(id) {
+      this.destroySlide(this._findSlideIndex(id));
+  },
 
-	/*	Navigation
-	================================================== */
-	goTo: function(n, fast, displayupdate) {
-		n = parseInt(n);
-		if (isNaN(n)) n = 0;
+  /*	Navigation
+  ================================================== */
+  goTo: function(n, fast, displayupdate) {
+    n = parseInt(n);
+    if (isNaN(n)) n = 0;
 
-		var self = this;
+    var self = this;
 
-		this.changeBackground({color_value:"", image:false});
+    this.changeBackground({color_value:"", image:false});
 
-		// Clear Preloader Timer
-		if (this.preloadTimer) {
-			clearTimeout(this.preloadTimer);
-		}
+    // Clear Preloader Timer
+    if (this.preloadTimer) {
+      clearTimeout(this.preloadTimer);
+    }
 
-		// Set Slide Active State
-		for (var i = 0; i < this._slides.length; i++) {
-			this._slides[i].setActive(false);
-		}
+    // Set Slide Active State
+    for (var i = 0; i < this._slides.length; i++) {
+      this._slides[i].setActive(false);
+    }
 
-		if (n < this._slides.length && n >= 0) {
-			this.current_id = this._slides[n].data.unique_id;
+    if (n < this._slides.length && n >= 0) {
+      this.current_id = this._slides[n].data.unique_id;
 
-			// Stop animation
-			if (this.animator) {
-				this.animator.stop();
-			}
-			if (this._swipable) {
-				this._swipable.stopMomentum();
-			}
+      // Stop animation
+      if (this.animator) {
+        this.animator.stop();
+      }
+      if (this._swipable) {
+        this._swipable.stopMomentum();
+      }
 
-			if (fast) {
-				this._el.slider_container.style.left = -(this.slide_spacing * n) + "px";
-				this._onSlideChange(displayupdate);
-			} else {
-				this.animator = TL.Animate(this._el.slider_container, {
-					left: 		-(this.slide_spacing * n) + "px",
-					duration: 	this.options.duration,
-					easing: 	this.options.ease,
-					complete: 	this._onSlideChange(displayupdate)
-				});
-			}
+      if (fast) {
+        this._el.slider_container.style.left = -(this.slide_spacing * n) + "px";
+        this._onSlideChange(displayupdate);
+      } else {
+        this.animator = TL.Animate(this._el.slider_container, {
+          left: 		-(this.slide_spacing * n) + "px",
+          duration: 	this.options.duration,
+          easing: 	this.options.ease,
+          complete: 	this._onSlideChange(displayupdate)
+        });
+      }
 
-			// Set Slide Active State
-			this._slides[n].setActive(true);
+      // Set Slide Active State
+      this._slides[n].setActive(true);
 
-			// Update Navigation and Info
-			if (this._slides[n + 1]) {
-				this.showNav(this._nav.next, true);
-				this._nav.next.update(this._slides[n + 1]);
-			} else {
-				this.showNav(this._nav.next, false);
-			}
-			if (this._slides[n - 1]) {
-				this.showNav(this._nav.previous, true);
-				this._nav.previous.update(this._slides[n - 1]);
-			} else {
-				this.showNav(this._nav.previous, false);
-			}
+      // Update Navigation and Info
+      if (this._slides[n + 1]) {
+        this.showNav(this._nav.next, true);
+        this._nav.next.update(this._slides[n + 1]);
+      } else {
+        this.showNav(this._nav.next, false);
+      }
+      if (this._slides[n - 1]) {
+        this.showNav(this._nav.previous, true);
+        this._nav.previous.update(this._slides[n - 1]);
+      } else {
+        this.showNav(this._nav.previous, false);
+      }
 
-			// Preload Slides
-			this.preloadTimer = setTimeout(function() {
-				self.preloadSlides(n);
-			}, this.options.duration);
-		}
-	},
+      // Preload Slides
+      this.preloadTimer = setTimeout(function() {
+        self.preloadSlides(n);
+      }, this.options.duration);
+    }
+  },
 
-	goToId: function(id, fast, displayupdate) {
-		this.goTo(this._findSlideIndex(id), fast, displayupdate);
-	},
+  goToId: function(id, fast, displayupdate) {
+    this.goTo(this._findSlideIndex(id), fast, displayupdate);
+  },
 
-	preloadSlides: function(n) {
-		if (this._slides[n + 1]) {
-			this._slides[n + 1].loadMedia();
-			this._slides[n + 1].scrollToTop();
-		}
-		if (this._slides[n + 2]) {
-			this._slides[n + 2].loadMedia();
-			this._slides[n + 2].scrollToTop();
-		}
-		if (this._slides[n - 1]) {
-			this._slides[n - 1].loadMedia();
-			this._slides[n - 1].scrollToTop();
-		}
-		if (this._slides[n - 2]) {
-			this._slides[n - 2].loadMedia();
-			this._slides[n - 2].scrollToTop();
-		}
-	},
+  preloadSlides: function(n) {
+    if (this._slides[n + 1]) {
+      this._slides[n + 1].loadMedia();
+      this._slides[n + 1].scrollToTop();
+    }
+    if (this._slides[n + 2]) {
+      this._slides[n + 2].loadMedia();
+      this._slides[n + 2].scrollToTop();
+    }
+    if (this._slides[n - 1]) {
+      this._slides[n - 1].loadMedia();
+      this._slides[n - 1].scrollToTop();
+    }
+    if (this._slides[n - 2]) {
+      this._slides[n - 2].loadMedia();
+      this._slides[n - 2].scrollToTop();
+    }
+  },
 
-	next: function() {
-	    var n = this._findSlideIndex(this.current_id);
-		if ((n + 1) < (this._slides.length)) {
-			this.goTo(n + 1);
-		} else {
-			this.goTo(n);
-		}
-	},
+  next: function() {
+      var n = this._findSlideIndex(this.current_id);
+    if ((n + 1) < (this._slides.length)) {
+      this.goTo(n + 1);
+    } else {
+      this.goTo(n);
+    }
+  },
 
-	previous: function() {
-	    var n = this._findSlideIndex(this.current_id);
-		if (n - 1 >= 0) {
-			this.goTo(n - 1);
-		} else {
-			this.goTo(n);
-		}
-	},
+  previous: function() {
+      var n = this._findSlideIndex(this.current_id);
+    if (n - 1 >= 0) {
+      this.goTo(n - 1);
+    } else {
+      this.goTo(n);
+    }
+  },
 
-	showNav: function(nav_obj, show) {
+  showNav: function(nav_obj, show) {
 
-		if (this.options.width <= 500 && TL.Browser.mobile) {
+    if (this.options.width <= 500 && TL.Browser.mobile) {
 
-		} else {
-			if (show) {
-				nav_obj.show();
-			} else {
-				nav_obj.hide();
-			}
+    } else {
+      if (show) {
+        nav_obj.show();
+      } else {
+        nav_obj.hide();
+      }
 
-		}
-	},
-
-
-
-	changeBackground: function(bg) {
-		var bg_color = {r:256, g:256, b:256},
-			bg_color_rgb;
-
-		if (bg.color_value && bg.color_value != "") {
-			bg_color = TL.Util.hexToRgb(bg.color_value);
-			if (!bg_color) {
-				trace("Invalid color value " + bg.color_value);
-				bg_color = this.options.default_bg_color;
-			}
-		} else {
-			bg_color = this.options.default_bg_color;
-			bg.color_value = "rgb(" + bg_color.r + " , " + bg_color.g + ", " + bg_color.b + ")";
-		}
-
-		bg_color_rgb 	= bg_color.r + "," + bg_color.g + "," + bg_color.b;
-		this._el.background.style.backgroundImage = "none";
+    }
+  },
 
 
-		if (bg.color_value) {
-			this._el.background.style.backgroundColor = bg.color_value;
-		} else {
-			this._el.background.style.backgroundColor = "transparent";
-		}
 
-		if (bg_color.r < 255 || bg_color.g < 255 || bg_color.b < 255 || bg.image) {
-			this._nav.next.setColor(true);
-			this._nav.previous.setColor(true);
-		} else {
-			this._nav.next.setColor(false);
-			this._nav.previous.setColor(false);
-		}
-	},
-	/*	Private Methods
-	================================================== */
+  changeBackground: function(bg) {
+    var bg_color = {r:256, g:256, b:256},
+      bg_color_rgb;
 
-	// Update Display
-	_updateDisplay: function(width, height, animate, layout) {
-		var nav_pos, _layout;
+    if (bg.color_value && bg.color_value != "") {
+      bg_color = TL.Util.hexToRgb(bg.color_value);
+      if (!bg_color) {
+        trace("Invalid color value " + bg.color_value);
+        bg_color = this.options.default_bg_color;
+      }
+    } else {
+      bg_color = this.options.default_bg_color;
+      bg.color_value = "rgb(" + bg_color.r + " , " + bg_color.g + ", " + bg_color.b + ")";
+    }
 
-		if(typeof layout === 'undefined'){
-			_layout = this.options.layout;
-		} else {
-			_layout = layout;
-		}
-
-		this.options.layout = _layout;
-
-		this.slide_spacing = this.options.width*2;
-
-		if (width) {
-			this.options.width = width;
-		} else {
-			this.options.width = this._el.container.offsetWidth;
-		}
-
-		if (height) {
-			this.options.height = height;
-		} else {
-			this.options.height = this._el.container.offsetHeight;
-		}
-
-		//this._el.container.style.height = this.options.height;
-
-		// position navigation
-		nav_pos = (this.options.height/2);
-		this._nav.next.setPosition({top:nav_pos});
-		this._nav.previous.setPosition({top:nav_pos});
+    bg_color_rgb 	= bg_color.r + "," + bg_color.g + "," + bg_color.b;
+    this._el.background.style.backgroundImage = "none";
 
 
-		// Position slides
-		for (var i = 0; i < this._slides.length; i++) {
-			this._slides[i].updateDisplay(this.options.width, this.options.height, _layout);
-			this._slides[i].setPosition({left:(this.slide_spacing * i), top:0});
+    if (bg.color_value) {
+      this._el.background.style.backgroundColor = bg.color_value;
+    } else {
+      this._el.background.style.backgroundColor = "transparent";
+    }
 
-		};
+    if (bg_color.r < 255 || bg_color.g < 255 || bg_color.b < 255 || bg.image) {
+      this._nav.next.setColor(true);
+      this._nav.previous.setColor(true);
+    } else {
+      this._nav.next.setColor(false);
+      this._nav.previous.setColor(false);
+    }
+  },
+  /*	Private Methods
+  ================================================== */
 
-		// Go to the current slide
-		this.goToId(this.current_id, true, true);
-	},
+  // Update Display
+  _updateDisplay: function(width, height, animate, layout) {
+    var nav_pos, _layout;
 
-	// Reposition and redraw slides
+    if(typeof layout === 'undefined'){
+      _layout = this.options.layout;
+    } else {
+      _layout = layout;
+    }
+
+    this.options.layout = _layout;
+
+    this.slide_spacing = this.options.width*2;
+
+    if (width) {
+      this.options.width = width;
+    } else {
+      this.options.width = this._el.container.offsetWidth;
+    }
+
+    if (height) {
+      this.options.height = height;
+    } else {
+      this.options.height = this._el.container.offsetHeight;
+    }
+
+    //this._el.container.style.height = this.options.height;
+
+    // position navigation
+    nav_pos = (this.options.height/2);
+    this._nav.next.setPosition({top:nav_pos});
+    this._nav.previous.setPosition({top:nav_pos});
+
+
+    // Position slides
+    for (var i = 0; i < this._slides.length; i++) {
+      this._slides[i].updateDisplay(this.options.width, this.options.height, _layout);
+      this._slides[i].setPosition({left:(this.slide_spacing * i), top:0});
+
+    };
+
+    // Go to the current slide
+    this.goToId(this.current_id, true, true);
+  },
+
+  // Reposition and redraw slides
     _updateDrawSlides: function() {
-	    var _layout = this.options.layout;
+      var _layout = this.options.layout;
 
-		for (var i = 0; i < this._slides.length; i++) {
-			this._slides[i].updateDisplay(this.options.width, this.options.height, _layout);
-			this._slides[i].setPosition({left:(this.slide_spacing * i), top:0});
-		};
+    for (var i = 0; i < this._slides.length; i++) {
+      this._slides[i].updateDisplay(this.options.width, this.options.height, _layout);
+      this._slides[i].setPosition({left:(this.slide_spacing * i), top:0});
+    };
 
-		this.goToId(this.current_id, true, false);
-	},
-
-
-	/*	Init
-	================================================== */
-	_initLayout: function () {
-
-		TL.DomUtil.addClass(this._el.container, 'tl-storyslider');
-
-		// Create Layout
-		this._el.slider_container_mask		= TL.Dom.create('div', 'tl-slider-container-mask', this._el.container);
-		this._el.background 				= TL.Dom.create('div', 'tl-slider-background tl-animate', this._el.container);
-		this._el.slider_container			= TL.Dom.create('div', 'tl-slider-container tlanimate', this._el.slider_container_mask);
-		this._el.slider_item_container		= TL.Dom.create('div', 'tl-slider-item-container', this._el.slider_container);
+    this.goToId(this.current_id, true, false);
+  },
 
 
-		// Update Size
-		this.options.width = this._el.container.offsetWidth;
-		this.options.height = this._el.container.offsetHeight;
+  /*	Init
+  ================================================== */
+  _initLayout: function () {
 
-		// Create Navigation
-		this._nav.previous = new TL.SlideNav({title: "Previous", description: "description"}, {direction:"previous"});
-		this._nav.next = new TL.SlideNav({title: "Next",description: "description"}, {direction:"next"});
+    TL.DomUtil.addClass(this._el.container, 'tl-storyslider');
 
-		// add the navigation to the dom
-		this._nav.next.addTo(this._el.container);
-		this._nav.previous.addTo(this._el.container);
-
-
-
-		this._el.slider_container.style.left="0px";
-
-		if (TL.Browser.touch) {
-			//this._el.slider_touch_mask = TL.Dom.create('div', 'tl-slider-touch-mask', this._el.slider_container_mask);
-			this._swipable = new TL.Swipable(this._el.slider_container_mask, this._el.slider_container, {
-				enable: {x:true, y:false},
-				snap: 	true
-			});
-			this._swipable.enable();
-
-			// Message
-			this._message = new TL.Message({}, {
-				message_class: 		"tl-message-full",
-				message_icon_class: "tl-icon-swipe-left"
-			});
-			this._message.updateMessage(this._("swipe_to_navigate"));
-			this._message.addTo(this._el.container);
-		}
-
-	},
-
-	_initEvents: function () {
-		this._nav.next.on('clicked', this._onNavigation, this);
-		this._nav.previous.on('clicked', this._onNavigation, this);
-
-		if (this._message) {
-			this._message.on('clicked', this._onMessageClick, this);
-		}
-
-		if (this._swipable) {
-			this._swipable.on('swipe_left', this._onNavigation, this);
-			this._swipable.on('swipe_right', this._onNavigation, this);
-			this._swipable.on('swipe_nodirection', this._onSwipeNoDirection, this);
-		}
+    // Create Layout
+    this._el.slider_container_mask		= TL.Dom.create('div', 'tl-slider-container-mask', this._el.container);
+    this._el.background 				= TL.Dom.create('div', 'tl-slider-background tl-animate', this._el.container);
+    this._el.slider_container			= TL.Dom.create('div', 'tl-slider-container tlanimate', this._el.slider_container_mask);
+    this._el.slider_item_container		= TL.Dom.create('div', 'tl-slider-item-container', this._el.slider_container);
 
 
-	},
+    // Update Size
+    this.options.width = this._el.container.offsetWidth;
+    this.options.height = this._el.container.offsetHeight;
 
-	_initData: function() {
-	    if(this.data.title) {
-	        this._createSlide(this.data.title, true, -1);
-	    }
+    // Create Navigation
+    this._nav.previous = new TL.SlideNav({title: "Previous", description: "description"}, {direction:"previous"});
+    this._nav.next = new TL.SlideNav({title: "Next",description: "description"}, {direction:"next"});
+
+    // add the navigation to the dom
+    this._nav.next.addTo(this._el.container);
+    this._nav.previous.addTo(this._el.container);
+
+
+
+    this._el.slider_container.style.left="0px";
+
+    if (TL.Browser.touch) {
+      //this._el.slider_touch_mask = TL.Dom.create('div', 'tl-slider-touch-mask', this._el.slider_container_mask);
+      this._swipable = new TL.Swipable(this._el.slider_container_mask, this._el.slider_container, {
+        enable: {x:true, y:false},
+        snap: 	true
+      });
+      this._swipable.enable();
+
+      // Message
+      this._message = new TL.Message({}, {
+        message_class: 		"tl-message-full",
+        message_icon_class: "tl-icon-swipe-left"
+      });
+      this._message.updateMessage(this._("swipe_to_navigate"));
+      this._message.addTo(this._el.container);
+    }
+
+  },
+
+  _initEvents: function () {
+    this._nav.next.on('clicked', this._onNavigation, this);
+    this._nav.previous.on('clicked', this._onNavigation, this);
+
+    if (this._message) {
+      this._message.on('clicked', this._onMessageClick, this);
+    }
+
+    if (this._swipable) {
+      this._swipable.on('swipe_left', this._onNavigation, this);
+      this._swipable.on('swipe_right', this._onNavigation, this);
+      this._swipable.on('swipe_nodirection', this._onSwipeNoDirection, this);
+    }
+
+
+  },
+
+  _initData: function() {
+      if(this.data.title) {
+          this._createSlide(this.data.title, true, -1);
+      }
         this._createSlides(this.data.events);
-	},
+  },
 
-	/*	Events
-	================================================== */
-	_onBackgroundChange: function(e) {
-	    var n = this._findSlideIndex(this.current_id);
-		var slide_background = this._slides[n].getBackground();
-		this.changeBackground(e);
-		this.fire("colorchange", slide_background);
-	},
+  /*	Events
+  ================================================== */
+  _onBackgroundChange: function(e) {
+      var n = this._findSlideIndex(this.current_id);
+    var slide_background = this._slides[n].getBackground();
+    this.changeBackground(e);
+    this.fire("colorchange", slide_background);
+  },
 
-	_onMessageClick: function(e) {
-		this._message.hide();
-	},
+  _onMessageClick: function(e) {
+    this._message.hide();
+  },
 
-	_onSwipeNoDirection: function(e) {
-		this.goToId(this.current_id);
-	},
+  _onSwipeNoDirection: function(e) {
+    this.goToId(this.current_id);
+  },
 
-	_onNavigation: function(e) {
+  _onNavigation: function(e) {
 
-		if (e.direction == "next" || e.direction == "left") {
-			this.next();
-		} else if (e.direction == "previous" || e.direction == "right") {
-			this.previous();
-		}
-		this.fire("nav_" + e.direction, this.data);
-	},
+    if (e.direction == "next" || e.direction == "left") {
+      this.next();
+    } else if (e.direction == "previous" || e.direction == "right") {
+      this.previous();
+    }
+    this.fire("nav_" + e.direction, this.data);
+  },
 
-	_onSlideAdded: function(e) {
-		trace("slideadded")
-		this.fire("slideAdded", this.data);
-	},
+  _onSlideAdded: function(e) {
+    trace("slideadded")
+    this.fire("slideAdded", this.data);
+  },
 
-	_onSlideRemoved: function(e) {
-		this.fire("slideRemoved", this.data);
-	},
+  _onSlideRemoved: function(e) {
+    this.fire("slideRemoved", this.data);
+  },
 
-	_onSlideChange: function(displayupdate) {
-		if (!displayupdate) {
-			this.fire("change", {unique_id: this.current_id});
-		}
-	},
+  _onSlideChange: function(displayupdate) {
+    if (!displayupdate) {
+      this.fire("change", {unique_id: this.current_id});
+    }
+  },
 
-	_onMouseClick: function(e) {
+  _onMouseClick: function(e) {
 
-	},
+  },
 
-	_fireMouseEvent: function (e) {
-		if (!this._loaded) {
-			return;
-		}
+  _fireMouseEvent: function (e) {
+    if (!this._loaded) {
+      return;
+    }
 
-		var type = e.type;
-		type = (type === 'mouseenter' ? 'mouseover' : (type === 'mouseleave' ? 'mouseout' : type));
+    var type = e.type;
+    type = (type === 'mouseenter' ? 'mouseover' : (type === 'mouseleave' ? 'mouseout' : type));
 
-		if (!this.hasEventListeners(type)) {
-			return;
-		}
+    if (!this.hasEventListeners(type)) {
+      return;
+    }
 
-		if (type === 'contextmenu') {
-			TL.DomEvent.preventDefault(e);
-		}
+    if (type === 'contextmenu') {
+      TL.DomEvent.preventDefault(e);
+    }
 
-		this.fire(type, {
-			latlng: "something", //this.mouseEventToLatLng(e),
-			layerPoint: "something else" //this.mouseEventToLayerPoint(e)
-		});
-	},
+    this.fire(type, {
+      latlng: "something", //this.mouseEventToLatLng(e),
+      layerPoint: "something else" //this.mouseEventToLayerPoint(e)
+    });
+  },
 
-	_onLoaded: function() {
-		this.fire("loaded", this.data);
-	}
+  _onLoaded: function() {
+    this.fire("loaded", this.data);
+  }
 
 
 });
@@ -10346,705 +10346,705 @@ TL.StorySlider = TL.Class.extend({
 
 TL.TimeNav = TL.Class.extend({
 
-	includes: [TL.Events, TL.DomMixins],
+  includes: [TL.Events, TL.DomMixins],
 
-	_el: {},
+  _el: {},
 
-	/*	Constructor
-	================================================== */
-	initialize: function (elem, timeline_config, options, init) {
-		// DOM ELEMENTS
-		this._el = {
-			parent: {},
-			container: {},
-			slider: {},
-			slider_background: {},
-			line: {},
-			marker_container_mask: {},
-			marker_container: {},
-			marker_item_container: {},
-			timeaxis: {},
-			timeaxis_background: {},
-			attribution: {}
-		};
+  /*	Constructor
+  ================================================== */
+  initialize: function (elem, timeline_config, options, init) {
+    // DOM ELEMENTS
+    this._el = {
+      parent: {},
+      container: {},
+      slider: {},
+      slider_background: {},
+      line: {},
+      marker_container_mask: {},
+      marker_container: {},
+      marker_item_container: {},
+      timeaxis: {},
+      timeaxis_background: {},
+      attribution: {}
+    };
 
-		this.collapsed = false;
+    this.collapsed = false;
 
-		if (typeof elem === 'object') {
-			this._el.container = elem;
-		} else {
-			this._el.container = TL.Dom.get(elem);
-		}
+    if (typeof elem === 'object') {
+      this._el.container = elem;
+    } else {
+      this._el.container = TL.Dom.get(elem);
+    }
 
-		this.config = timeline_config;
+    this.config = timeline_config;
 
-		//Options
-		this.options = {
-			width: 					600,
-			height: 				600,
-			duration: 				1000,
-			ease: 					TL.Ease.easeInOutQuint,
-			has_groups: 			false,
-			optimal_tick_width: 	50,
-			scale_factor: 			2, 				// How many screen widths wide should the timeline be
-			marker_padding: 		5,
-			timenav_height_min: 	150, 			// Minimum timenav height
-			marker_height_min: 		30, 			// Minimum Marker Height
-			marker_width_min: 		100, 			// Minimum Marker Width
-			zoom_sequence:          [0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89] // Array of Fibonacci numbers for TimeNav zoom levels http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibtable.html
-		};
+    //Options
+    this.options = {
+      width: 					600,
+      height: 				600,
+      duration: 				1000,
+      ease: 					TL.Ease.easeInOutQuint,
+      has_groups: 			false,
+      optimal_tick_width: 	50,
+      scale_factor: 			2, 				// How many screen widths wide should the timeline be
+      marker_padding: 		5,
+      timenav_height_min: 	150, 			// Minimum timenav height
+      marker_height_min: 		30, 			// Minimum Marker Height
+      marker_width_min: 		100, 			// Minimum Marker Width
+      zoom_sequence:          [0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89] // Array of Fibonacci numbers for TimeNav zoom levels http://www.maths.surrey.ac.uk/hosted-sites/R.Knott/Fibonacci/fibtable.html
+    };
 
-		// Animation
-		this.animator = null;
+    // Animation
+    this.animator = null;
 
-		// Ready state
-		this.ready = false;
+    // Ready state
+    this.ready = false;
 
-		// Markers Array
-		this._markers = [];
+    // Markers Array
+    this._markers = [];
 
-		// Eras Array
-		this._eras = [];
-		this.has_eras = false;
+    // Eras Array
+    this._eras = [];
+    this.has_eras = false;
 
-		// Groups Array
-		this._groups = [];
+    // Groups Array
+    this._groups = [];
 
-		// Row Height
-		this._calculated_row_height = 100;
+    // Row Height
+    this._calculated_row_height = 100;
 
-		// Current Marker
-		this.current_id = "";
+    // Current Marker
+    this.current_id = "";
 
-		// TimeScale
-		this.timescale = {};
+    // TimeScale
+    this.timescale = {};
 
-		// TimeAxis
-		this.timeaxis = {};
-		this.axishelper = {};
+    // TimeAxis
+    this.timeaxis = {};
+    this.axishelper = {};
 
-		// Max Rows
-		this.max_rows = 6;
+    // Max Rows
+    this.max_rows = 6;
 
-		// Animate CSS
-		this.animate_css = false;
+    // Animate CSS
+    this.animate_css = false;
 
-		// Swipe Object
-		this._swipable;
+    // Swipe Object
+    this._swipable;
 
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
 
-		if (init) {
-			this.init();
-		}
-	},
+    if (init) {
+      this.init();
+    }
+  },
 
-	init: function() {
-		this._initLayout();
-		this._initEvents();
-		this._initData();
-		this._updateDisplay();
+  init: function() {
+    this._initLayout();
+    this._initEvents();
+    this._initData();
+    this._updateDisplay();
 
-		this._onLoaded();
-	},
+    this._onLoaded();
+  },
 
-	/*	Public
-	================================================== */
-	positionMarkers: function() {
-		this._positionMarkers();
-	},
+  /*	Public
+  ================================================== */
+  positionMarkers: function() {
+    this._positionMarkers();
+  },
 
-	/*	Update Display
-	================================================== */
-	updateDisplay: function(w, h, a, l) {
-		this._updateDisplay(w, h, a, l);
-	},
+  /*	Update Display
+  ================================================== */
+  updateDisplay: function(w, h, a, l) {
+    this._updateDisplay(w, h, a, l);
+  },
 
 
-	/*	TimeScale
-	================================================== */
-	_getTimeScale: function() {
-		/* maybe the establishing config values (marker_height_min and max_rows) should be
-		separated from making a TimeScale object, which happens in another spot in this file with duplicate mapping of properties of this TimeNav into the TimeScale options object? */
-		// Set Max Rows
-		var marker_height_min = 0;
-		try {
-			marker_height_min = parseInt(this.options.marker_height_min);
-		} catch(e) {
-			trace("Invalid value for marker_height_min option.");
-			marker_height_min = 30;
-		}
-		if (marker_height_min == 0) {
-			trace("marker_height_min option must not be zero.")
-			marker_height_min = 30;
-		}
-		this.max_rows = Math.round((this.options.height - this._el.timeaxis_background.offsetHeight - (this.options.marker_padding)) / marker_height_min);
-		if (this.max_rows < 1) {
-			this.max_rows = 1;
-		}
-		return new TL.TimeScale(this.config, {
+  /*	TimeScale
+  ================================================== */
+  _getTimeScale: function() {
+    /* maybe the establishing config values (marker_height_min and max_rows) should be
+    separated from making a TimeScale object, which happens in another spot in this file with duplicate mapping of properties of this TimeNav into the TimeScale options object? */
+    // Set Max Rows
+    var marker_height_min = 0;
+    try {
+      marker_height_min = parseInt(this.options.marker_height_min);
+    } catch(e) {
+      trace("Invalid value for marker_height_min option.");
+      marker_height_min = 30;
+    }
+    if (marker_height_min == 0) {
+      trace("marker_height_min option must not be zero.")
+      marker_height_min = 30;
+    }
+    this.max_rows = Math.round((this.options.height - this._el.timeaxis_background.offsetHeight - (this.options.marker_padding)) / marker_height_min);
+    if (this.max_rows < 1) {
+      this.max_rows = 1;
+    }
+    return new TL.TimeScale(this.config, {
             display_width: this._el.container.offsetWidth,
             screen_multiplier: this.options.scale_factor,
             max_rows: this.max_rows
 
-		});
-	},
-
-	_updateTimeScale: function(new_scale) {
-		this.options.scale_factor = new_scale;
-		this._updateDrawTimeline();
-	},
-
-	zoomIn: function() { // move the the next "higher" scale factor
-		var new_scale = TL.Util.findNextGreater(this.options.zoom_sequence, this.options.scale_factor);
-		this.setZoomFactor(new_scale);
-	},
-
-	zoomOut: function() { // move the the next "lower" scale factor
-		var new_scale = TL.Util.findNextLesser(this.options.zoom_sequence, this.options.scale_factor);
-		this.setZoomFactor(new_scale);
-	},
-
-	setZoom: function(level) {
-		var zoom_factor = this.options.zoom_sequence[level];
-		if (typeof(zoom_factor) == 'number') {
-			this.setZoomFactor(zoom_factor);
-		} else {
-			console.warn("Invalid zoom level. Please use an index number between 0 and " + (this.options.zoom_sequence.length - 1));
-		}
-	},
-
-	setZoomFactor: function(factor) {
-		if (factor <= this.options.zoom_sequence[0]) {
-			this.fire("zoomtoggle", {zoom:"out", show:false});
-		} else {
-			this.fire("zoomtoggle", {zoom:"out", show:true});
-		}
-
-		if (factor >= this.options.zoom_sequence[this.options.zoom_sequence.length-1]) {
-			this.fire("zoomtoggle", {zoom:"in", show:false});
-		} else {
-			this.fire("zoomtoggle", {zoom:"in", show:true});
-		}
-
-		if (factor == 0) {
-			console.warn("Zoom factor must be greater than zero. Using 0.1");
-			factor = 0.1;
-		}
-		this.options.scale_factor = factor;
-		//this._updateDrawTimeline(true);
-		this.goToId(this.current_id, !this._updateDrawTimeline(true), true);
-	},
-
-	/*	Groups
-	================================================== */
-	_createGroups: function() {
-		var group_labels = this.timescale.getGroupLabels();
-
-		if (group_labels) {
-			this.options.has_groups = true;
-			for (var i = 0; i < group_labels.length; i++) {
-				this._createGroup(group_labels[i]);
-			}
-		}
-
-	},
-
-	_createGroup: function(group_label) {
-		var group = new TL.TimeGroup(group_label);
-		this._addGroup(group);
-		this._groups.push(group);
-	},
-
-	_addGroup:function(group) {
-		group.addTo(this._el.container);
-
-	},
-
-	_positionGroups: function() {
-		if (this.options.has_groups) {
-			var available_height 	= (this.options.height - this._el.timeaxis_background.offsetHeight ),
-				group_height 		= Math.floor((available_height /this.timescale.getNumberOfRows()) - this.options.marker_padding),
-				group_labels		= this.timescale.getGroupLabels();
-
-			for (var i = 0, group_rows = 0; i < this._groups.length; i++) {
-				var group_y = Math.floor(group_rows * (group_height + this.options.marker_padding));
-				var group_hide = false;
-				if (group_y > (available_height- this.options.marker_padding)) {
-					group_hide = true;
-				}
-
-				this._groups[i].setRowPosition(group_y, this._calculated_row_height + this.options.marker_padding/2);
-				this._groups[i].setAlternateRowColor(TL.Util.isEven(i), group_hide);
-
-				group_rows += this._groups[i].data.rows;    // account for groups spanning multiple rows
-			}
-		}
-	},
-
-	/*	Markers
-	================================================== */
-	_addMarker:function(marker) {
-		marker.addTo(this._el.marker_item_container);
-		marker.on('markerclick', this._onMarkerClick, this);
-		marker.on('added', this._onMarkerAdded, this);
-	},
-
-	_createMarker: function(data, n) {
-		var marker = new TL.TimeMarker(data, this.options);
-		this._addMarker(marker);
-		if(n < 0) {
-		    this._markers.push(marker);
-		} else {
-		    this._markers.splice(n, 0, marker);
-		}
-	},
-
-	_createMarkers: function(array) {
-		for (var i = 0; i < array.length; i++) {
-			this._createMarker(array[i], -1);
-		}
-	},
-
-	_removeMarker: function(marker) {
-		marker.removeFrom(this._el.marker_item_container);
-		//marker.off('added', this._onMarkerRemoved, this);
-	},
-
-	_destroyMarker: function(n) {
-	    this._removeMarker(this._markers[n]);
-	    this._markers.splice(n, 1);
-	},
-
-	_positionMarkers: function(fast) {
-		// POSITION X
-		for (var i = 0; i < this._markers.length; i++) {
-			var pos = this.timescale.getPositionInfo(i);
-			if (fast) {
-				this._markers[i].setClass("tl-timemarker tl-timemarker-fast");
-			} else {
-				this._markers[i].setClass("tl-timemarker");
-			}
-			this._markers[i].setPosition({left:pos.start});
-			this._markers[i].setWidth(pos.width);
-		};
-
-	},
-
-	_calculateMarkerHeight: function(h) {
-		return ((h /this.timescale.getNumberOfRows()) - this.options.marker_padding);
-	},
-
-	_calculateRowHeight: function(h) {
-		return (h /this.timescale.getNumberOfRows());
-	},
-
-	_calculateAvailableHeight: function() {
-		return (this.options.height - this._el.timeaxis_background.offsetHeight - (this.options.marker_padding));
-	},
-
-	_calculateMinimumTimeNavHeight: function() {
-		return (this.timescale.getNumberOfRows() * this.options.marker_height_min) + this._el.timeaxis_background.offsetHeight + (this.options.marker_padding);
-
-	},
-
-	getMinimumHeight: function() {
-		return this._calculateMinimumTimeNavHeight();
-	},
-
-	_assignRowsToMarkers: function() {
-		var available_height 	= this._calculateAvailableHeight(),
-			marker_height 		= this._calculateMarkerHeight(available_height);
-
-
-		this._positionGroups();
-
-		this._calculated_row_height = this._calculateRowHeight(available_height);
-
-		for (var i = 0; i < this._markers.length; i++) {
-
-			// Set Height
-			this._markers[i].setHeight(marker_height);
-
-			//Position by Row
-			var row = this.timescale.getPositionInfo(i).row;
-
-			var marker_y = Math.floor(row * (marker_height + this.options.marker_padding)) + this.options.marker_padding;
-
-			var remainder_height = available_height - marker_y + this.options.marker_padding;
-			this._markers[i].setRowPosition(marker_y, remainder_height);
-		};
-
-	},
-
-	_resetMarkersActive: function() {
-		for (var i = 0; i < this._markers.length; i++) {
-			this._markers[i].setActive(false);
-		};
-	},
-
-	_findMarkerIndex: function(n) {
-	    var _n = -1;
-		if (typeof n == 'string' || n instanceof String) {
-			_n = TL.Util.findArrayNumberByUniqueID(n, this._markers, "unique_id", _n);
-		}
-		return _n;
-	},
-
-	/*	ERAS
-	================================================== */
-	_createEras: function(array) {
-		for (var i = 0; i < array.length; i++) {
-			this._createEra(array[i], -1);
-		}
-	},
-
-	_createEra: function(data, n) {
-		var era = new TL.TimeEra(data, this.options);
-		this._addEra(era);
-		if(n < 0) {
-		    this._eras.push(era);
-		} else {
-		    this._eras.splice(n, 0, era);
-		}
-	},
-
-	_addEra:function(era) {
-		era.addTo(this._el.marker_item_container);
-		era.on('added', this._onEraAdded, this);
-	},
-
-	_removeEra: function(era) {
-		era.removeFrom(this._el.marker_item_container);
-		//marker.off('added', this._onMarkerRemoved, this);
-	},
-
-	_destroyEra: function(n) {
-	    this._removeEra(this._eras[n]);
-	    this._eras.splice(n, 1);
-	},
-
-	_positionEras: function(fast) {
-
-		var era_color = 0;
-		// POSITION X
-		for (var i = 0; i < this._eras.length; i++) {
-			var pos = {
-				start:0,
-				end:0,
-				width:0
-			};
-
-			pos.start = this.timescale.getPosition(this._eras[i].data.start_date.getTime());
-			pos.end = this.timescale.getPosition(this._eras[i].data.end_date.getTime());
-			pos.width = pos.end - pos.start;
-
-			if (fast) {
-				this._eras[i].setClass("tl-timeera tl-timeera-fast");
-			} else {
-				this._eras[i].setClass("tl-timeera");
-			}
-			this._eras[i].setPosition({left:pos.start});
-			this._eras[i].setWidth(pos.width);
-
-			era_color++;
-			if (era_color > 5) {
-				era_color = 0;
-			}
-			this._eras[i].setColor(era_color);
-		};
-
-	},
-
-	/*	Public
-	================================================== */
-
-	// Create a marker
-	createMarker: function(d, n) {
-	    this._createMarker(d, n);
-	},
-
-	// Create many markers from an array
-	createMarkers: function(array) {
-	    this._createMarkers(array);
-	},
-
-	// Destroy marker by index
-	destroyMarker: function(n) {
-	    this._destroyMarker(n);
-	},
-
-	// Destroy marker by id
-	destroyMarkerId: function(id) {
-	    this.destroyMarker(this._findMarkerIndex(id));
-	},
-
-	/*	Navigation
-	================================================== */
-	goTo: function(n, fast, css_animation) {
-		var self = 	this,
-			_ease = this.options.ease,
-			_duration = this.options.duration,
-			_n = (n < 0) ? 0 : n;
-
-		// Set Marker active state
-		this._resetMarkersActive();
-		if(n >= 0 && n < this._markers.length) {
-		    this._markers[n].setActive(true);
-		}
-		// Stop animation
-		if (this.animator) {
-			this.animator.stop();
-		}
-
-		if (fast) {
-			this._el.slider.className = "tl-timenav-slider";
-			this._el.slider.style.left = -this._markers[_n].getLeft() + (this.options.width/2) + "px";
-		} else {
-			if (css_animation) {
-				this._el.slider.className = "tl-timenav-slider tl-timenav-slider-animate";
-				this.animate_css = true;
-				this._el.slider.style.left = -this._markers[_n].getLeft() + (this.options.width/2) + "px";
-			} else {
-				this._el.slider.className = "tl-timenav-slider";
-				this.animator = TL.Animate(this._el.slider, {
-					left: 		-this._markers[_n].getLeft() + (this.options.width/2) + "px",
-					duration: 	_duration,
-					easing: 	_ease
-				});
-			}
-		}
-
-		if(n >= 0 && n < this._markers.length) {
-		    this.current_id = this._markers[n].data.unique_id;
-		} else {
-		    this.current_id = '';
-		}
-	},
-
-	goToId: function(id, fast, css_animation) {
-		this.goTo(this._findMarkerIndex(id), fast, css_animation);
-	},
-
-	/*	Events
-	================================================== */
-	_onLoaded: function() {
-		this.ready = true;
-		this.fire("loaded", this.config);
-	},
-
-	_onMarkerAdded: function(e) {
-		this.fire("dateAdded", this.config);
-	},
-
-	_onEraAdded: function(e) {
-		this.fire("eraAdded", this.config);
-	},
-
-	_onMarkerRemoved: function(e) {
-		this.fire("dateRemoved", this.config);
-	},
-
-	_onMarkerClick: function(e) {
-		// Go to the clicked marker
-		this.goToId(e.unique_id);
-		this.fire("change", {unique_id: e.unique_id});
-	},
-
-	_onMouseScroll: function(e) {
-
-		var delta		= 0,
-			scroll_to	= 0,
-			constraint 	= {
-				right: 	-(this.timescale.getPixelWidth() - (this.options.width/2)),
-				left: 	this.options.width/2
-			};
-		if (!e) {
-			e = window.event;
-		}
-		if (e.originalEvent) {
-			e = e.originalEvent;
-		}
-
-		// Webkit and browsers able to differntiate between up/down and left/right scrolling
-		if (typeof e.wheelDeltaX != 'undefined' ) {
-			delta = e.wheelDeltaY/6;
-			if (Math.abs(e.wheelDeltaX) > Math.abs(e.wheelDeltaY)) {
-				delta = e.wheelDeltaX/6;
-			} else {
-				//delta = e.wheelDeltaY/6;
-				delta = 0;
-			}
-		}
-		if (delta) {
-			if (e.preventDefault) {
-				 e.preventDefault();
-			}
-			e.returnValue = false;
-		}
-		// Stop from scrolling too far
-		scroll_to = parseInt(this._el.slider.style.left.replace("px", "")) + delta;
-
-
-		if (scroll_to > constraint.left) {
-			scroll_to = constraint.left;
-		} else if (scroll_to < constraint.right) {
-			scroll_to = constraint.right;
-		}
-
-		if (this.animate_css) {
-			this._el.slider.className = "tl-timenav-slider";
-			this.animate_css = false;
-		}
-
-		this._el.slider.style.left = scroll_to + "px";
-
-	},
-
-	_onDragMove: function(e) {
-		if (this.animate_css) {
-			this._el.slider.className = "tl-timenav-slider";
-			this.animate_css = false;
-		}
-
-	},
-
-	/*	Private Methods
-	================================================== */
-	// Update Display
-	_updateDisplay: function(width, height, animate) {
-
-		if (width) {
-			this.options.width = width;
-		}
-		if (height && height != this.options.height) {
-			this.options.height = height;
-			this.timescale = this._getTimeScale();
-		}
-
-		// Size Markers
-		this._assignRowsToMarkers();
-
-		// Size swipable area
-		this._el.slider_background.style.width = this.timescale.getPixelWidth() + this.options.width + "px";
-		this._el.slider_background.style.left = -(this.options.width/2) + "px";
-		this._el.slider.style.width = this.timescale.getPixelWidth() + this.options.width + "px";
-
-		// Update Swipable constraint
-		this._swipable.updateConstraint({top: false,bottom: false,left: (this.options.width/2),right: -(this.timescale.getPixelWidth() - (this.options.width/2))});
-
-		// Go to the current slide
-		this.goToId(this.current_id, true);
-	},
-
-	_drawTimeline: function(fast) {
-		this.timescale = this._getTimeScale();
-		this.timeaxis.drawTicks(this.timescale, this.options.optimal_tick_width);
-		this._positionMarkers(fast);
-		this._assignRowsToMarkers();
-		this._createGroups();
-		this._positionGroups();
-
-		if (this.has_eras) {
-
-			this._positionEras(fast);
-		}
-	},
-
-	_updateDrawTimeline: function(check_update) {
-		var do_update = false;
-
-		// Check to see if redraw is needed
-		if (check_update) {
-			/* keep this aligned with _getTimeScale or reduce code duplication */
-			var temp_timescale = new TL.TimeScale(this.config, {
-	            display_width: this._el.container.offsetWidth,
-	            screen_multiplier: this.options.scale_factor,
-	            max_rows: this.max_rows
-
-			});
-
-			if (this.timescale.getMajorScale() == temp_timescale.getMajorScale()
-			 && this.timescale.getMinorScale() == temp_timescale.getMinorScale()) {
-				do_update = true;
-			}
-		} else {
-			do_update = true;
-		}
-
-		// Perform update or redraw
-		if (do_update) {
-			this.timescale = this._getTimeScale();
-			this.timeaxis.positionTicks(this.timescale, this.options.optimal_tick_width);
-			this._positionMarkers();
-			this._assignRowsToMarkers();
-			this._positionGroups();
-			if (this.has_eras) {
-				this._positionEras();
-			}
-			this._updateDisplay();
-		} else {
-			this._drawTimeline(true);
-		}
-
-		return do_update;
-
-	},
-
-
-	/*	Init
-	================================================== */
-	_initLayout: function () {
-		// Create Layout
-		this._el.attribution 				= TL.Dom.create('div', 'tl-attribution', this._el.container);
-		this._el.line						= TL.Dom.create('div', 'tl-timenav-line', this._el.container);
-		this._el.slider						= TL.Dom.create('div', 'tl-timenav-slider', this._el.container);
-		this._el.slider_background			= TL.Dom.create('div', 'tl-timenav-slider-background', this._el.slider);
-		this._el.marker_container_mask		= TL.Dom.create('div', 'tl-timenav-container-mask', this._el.slider);
-		this._el.marker_container			= TL.Dom.create('div', 'tl-timenav-container', this._el.marker_container_mask);
-		this._el.marker_item_container		= TL.Dom.create('div', 'tl-timenav-item-container', this._el.marker_container);
-		this._el.timeaxis 					= TL.Dom.create('div', 'tl-timeaxis', this._el.slider);
-		this._el.timeaxis_background 		= TL.Dom.create('div', 'tl-timeaxis-background', this._el.container);
-
-
-		// Knight Lab Logo
-		this._el.attribution.innerHTML = "<a href='http://timeline.knightlab.com' target='_blank'><span class='tl-knightlab-logo'></span>Timeline JS</a>"
-
-		// Time Axis
-		this.timeaxis = new TL.TimeAxis(this._el.timeaxis, this.options);
-
-		// Swipable
-		this._swipable = new TL.Swipable(this._el.slider_background, this._el.slider, {
-			enable: {x:true, y:false},
-			constraint: {top: false,bottom: false,left: (this.options.width/2),right: false},
-			snap: 	false
-		});
-		this._swipable.enable();
-
-	},
-
-	_initEvents: function () {
-		// Drag Events
-		this._swipable.on('dragmove', this._onDragMove, this);
-
-		// Scroll Events
-		TL.DomEvent.addListener(this._el.container, 'mousewheel', this._onMouseScroll, this);
-		TL.DomEvent.addListener(this._el.container, 'DOMMouseScroll', this._onMouseScroll, this);
-	},
-
-	_initData: function() {
-		// Create Markers and then add them
-		this._createMarkers(this.config.events);
-
-		if (this.config.eras) {
-			this.has_eras = true;
-			this._createEras(this.config.eras);
-		}
-
-		this._drawTimeline();
-
-	}
+    });
+  },
+
+  _updateTimeScale: function(new_scale) {
+    this.options.scale_factor = new_scale;
+    this._updateDrawTimeline();
+  },
+
+  zoomIn: function() { // move the the next "higher" scale factor
+    var new_scale = TL.Util.findNextGreater(this.options.zoom_sequence, this.options.scale_factor);
+    this.setZoomFactor(new_scale);
+  },
+
+  zoomOut: function() { // move the the next "lower" scale factor
+    var new_scale = TL.Util.findNextLesser(this.options.zoom_sequence, this.options.scale_factor);
+    this.setZoomFactor(new_scale);
+  },
+
+  setZoom: function(level) {
+    var zoom_factor = this.options.zoom_sequence[level];
+    if (typeof(zoom_factor) == 'number') {
+      this.setZoomFactor(zoom_factor);
+    } else {
+      console.warn("Invalid zoom level. Please use an index number between 0 and " + (this.options.zoom_sequence.length - 1));
+    }
+  },
+
+  setZoomFactor: function(factor) {
+    if (factor <= this.options.zoom_sequence[0]) {
+      this.fire("zoomtoggle", {zoom:"out", show:false});
+    } else {
+      this.fire("zoomtoggle", {zoom:"out", show:true});
+    }
+
+    if (factor >= this.options.zoom_sequence[this.options.zoom_sequence.length-1]) {
+      this.fire("zoomtoggle", {zoom:"in", show:false});
+    } else {
+      this.fire("zoomtoggle", {zoom:"in", show:true});
+    }
+
+    if (factor == 0) {
+      console.warn("Zoom factor must be greater than zero. Using 0.1");
+      factor = 0.1;
+    }
+    this.options.scale_factor = factor;
+    //this._updateDrawTimeline(true);
+    this.goToId(this.current_id, !this._updateDrawTimeline(true), true);
+  },
+
+  /*	Groups
+  ================================================== */
+  _createGroups: function() {
+    var group_labels = this.timescale.getGroupLabels();
+
+    if (group_labels) {
+      this.options.has_groups = true;
+      for (var i = 0; i < group_labels.length; i++) {
+        this._createGroup(group_labels[i]);
+      }
+    }
+
+  },
+
+  _createGroup: function(group_label) {
+    var group = new TL.TimeGroup(group_label);
+    this._addGroup(group);
+    this._groups.push(group);
+  },
+
+  _addGroup:function(group) {
+    group.addTo(this._el.container);
+
+  },
+
+  _positionGroups: function() {
+    if (this.options.has_groups) {
+      var available_height 	= (this.options.height - this._el.timeaxis_background.offsetHeight ),
+        group_height 		= Math.floor((available_height /this.timescale.getNumberOfRows()) - this.options.marker_padding),
+        group_labels		= this.timescale.getGroupLabels();
+
+      for (var i = 0, group_rows = 0; i < this._groups.length; i++) {
+        var group_y = Math.floor(group_rows * (group_height + this.options.marker_padding));
+        var group_hide = false;
+        if (group_y > (available_height- this.options.marker_padding)) {
+          group_hide = true;
+        }
+
+        this._groups[i].setRowPosition(group_y, this._calculated_row_height + this.options.marker_padding/2);
+        this._groups[i].setAlternateRowColor(TL.Util.isEven(i), group_hide);
+
+        group_rows += this._groups[i].data.rows;    // account for groups spanning multiple rows
+      }
+    }
+  },
+
+  /*	Markers
+  ================================================== */
+  _addMarker:function(marker) {
+    marker.addTo(this._el.marker_item_container);
+    marker.on('markerclick', this._onMarkerClick, this);
+    marker.on('added', this._onMarkerAdded, this);
+  },
+
+  _createMarker: function(data, n) {
+    var marker = new TL.TimeMarker(data, this.options);
+    this._addMarker(marker);
+    if(n < 0) {
+        this._markers.push(marker);
+    } else {
+        this._markers.splice(n, 0, marker);
+    }
+  },
+
+  _createMarkers: function(array) {
+    for (var i = 0; i < array.length; i++) {
+      this._createMarker(array[i], -1);
+    }
+  },
+
+  _removeMarker: function(marker) {
+    marker.removeFrom(this._el.marker_item_container);
+    //marker.off('added', this._onMarkerRemoved, this);
+  },
+
+  _destroyMarker: function(n) {
+      this._removeMarker(this._markers[n]);
+      this._markers.splice(n, 1);
+  },
+
+  _positionMarkers: function(fast) {
+    // POSITION X
+    for (var i = 0; i < this._markers.length; i++) {
+      var pos = this.timescale.getPositionInfo(i);
+      if (fast) {
+        this._markers[i].setClass("tl-timemarker tl-timemarker-fast");
+      } else {
+        this._markers[i].setClass("tl-timemarker");
+      }
+      this._markers[i].setPosition({left:pos.start});
+      this._markers[i].setWidth(pos.width);
+    };
+
+  },
+
+  _calculateMarkerHeight: function(h) {
+    return ((h /this.timescale.getNumberOfRows()) - this.options.marker_padding);
+  },
+
+  _calculateRowHeight: function(h) {
+    return (h /this.timescale.getNumberOfRows());
+  },
+
+  _calculateAvailableHeight: function() {
+    return (this.options.height - this._el.timeaxis_background.offsetHeight - (this.options.marker_padding));
+  },
+
+  _calculateMinimumTimeNavHeight: function() {
+    return (this.timescale.getNumberOfRows() * this.options.marker_height_min) + this._el.timeaxis_background.offsetHeight + (this.options.marker_padding);
+
+  },
+
+  getMinimumHeight: function() {
+    return this._calculateMinimumTimeNavHeight();
+  },
+
+  _assignRowsToMarkers: function() {
+    var available_height 	= this._calculateAvailableHeight(),
+      marker_height 		= this._calculateMarkerHeight(available_height);
+
+
+    this._positionGroups();
+
+    this._calculated_row_height = this._calculateRowHeight(available_height);
+
+    for (var i = 0; i < this._markers.length; i++) {
+
+      // Set Height
+      this._markers[i].setHeight(marker_height);
+
+      //Position by Row
+      var row = this.timescale.getPositionInfo(i).row;
+
+      var marker_y = Math.floor(row * (marker_height + this.options.marker_padding)) + this.options.marker_padding;
+
+      var remainder_height = available_height - marker_y + this.options.marker_padding;
+      this._markers[i].setRowPosition(marker_y, remainder_height);
+    };
+
+  },
+
+  _resetMarkersActive: function() {
+    for (var i = 0; i < this._markers.length; i++) {
+      this._markers[i].setActive(false);
+    };
+  },
+
+  _findMarkerIndex: function(n) {
+      var _n = -1;
+    if (typeof n == 'string' || n instanceof String) {
+      _n = TL.Util.findArrayNumberByUniqueID(n, this._markers, "unique_id", _n);
+    }
+    return _n;
+  },
+
+  /*	ERAS
+  ================================================== */
+  _createEras: function(array) {
+    for (var i = 0; i < array.length; i++) {
+      this._createEra(array[i], -1);
+    }
+  },
+
+  _createEra: function(data, n) {
+    var era = new TL.TimeEra(data, this.options);
+    this._addEra(era);
+    if(n < 0) {
+        this._eras.push(era);
+    } else {
+        this._eras.splice(n, 0, era);
+    }
+  },
+
+  _addEra:function(era) {
+    era.addTo(this._el.marker_item_container);
+    era.on('added', this._onEraAdded, this);
+  },
+
+  _removeEra: function(era) {
+    era.removeFrom(this._el.marker_item_container);
+    //marker.off('added', this._onMarkerRemoved, this);
+  },
+
+  _destroyEra: function(n) {
+      this._removeEra(this._eras[n]);
+      this._eras.splice(n, 1);
+  },
+
+  _positionEras: function(fast) {
+
+    var era_color = 0;
+    // POSITION X
+    for (var i = 0; i < this._eras.length; i++) {
+      var pos = {
+        start:0,
+        end:0,
+        width:0
+      };
+
+      pos.start = this.timescale.getPosition(this._eras[i].data.start_date.getTime());
+      pos.end = this.timescale.getPosition(this._eras[i].data.end_date.getTime());
+      pos.width = pos.end - pos.start;
+
+      if (fast) {
+        this._eras[i].setClass("tl-timeera tl-timeera-fast");
+      } else {
+        this._eras[i].setClass("tl-timeera");
+      }
+      this._eras[i].setPosition({left:pos.start});
+      this._eras[i].setWidth(pos.width);
+
+      era_color++;
+      if (era_color > 5) {
+        era_color = 0;
+      }
+      this._eras[i].setColor(era_color);
+    };
+
+  },
+
+  /*	Public
+  ================================================== */
+
+  // Create a marker
+  createMarker: function(d, n) {
+      this._createMarker(d, n);
+  },
+
+  // Create many markers from an array
+  createMarkers: function(array) {
+      this._createMarkers(array);
+  },
+
+  // Destroy marker by index
+  destroyMarker: function(n) {
+      this._destroyMarker(n);
+  },
+
+  // Destroy marker by id
+  destroyMarkerId: function(id) {
+      this.destroyMarker(this._findMarkerIndex(id));
+  },
+
+  /*	Navigation
+  ================================================== */
+  goTo: function(n, fast, css_animation) {
+    var self = 	this,
+      _ease = this.options.ease,
+      _duration = this.options.duration,
+      _n = (n < 0) ? 0 : n;
+
+    // Set Marker active state
+    this._resetMarkersActive();
+    if(n >= 0 && n < this._markers.length) {
+        this._markers[n].setActive(true);
+    }
+    // Stop animation
+    if (this.animator) {
+      this.animator.stop();
+    }
+
+    if (fast) {
+      this._el.slider.className = "tl-timenav-slider";
+      this._el.slider.style.left = -this._markers[_n].getLeft() + (this.options.width/2) + "px";
+    } else {
+      if (css_animation) {
+        this._el.slider.className = "tl-timenav-slider tl-timenav-slider-animate";
+        this.animate_css = true;
+        this._el.slider.style.left = -this._markers[_n].getLeft() + (this.options.width/2) + "px";
+      } else {
+        this._el.slider.className = "tl-timenav-slider";
+        this.animator = TL.Animate(this._el.slider, {
+          left: 		-this._markers[_n].getLeft() + (this.options.width/2) + "px",
+          duration: 	_duration,
+          easing: 	_ease
+        });
+      }
+    }
+
+    if(n >= 0 && n < this._markers.length) {
+        this.current_id = this._markers[n].data.unique_id;
+    } else {
+        this.current_id = '';
+    }
+  },
+
+  goToId: function(id, fast, css_animation) {
+    this.goTo(this._findMarkerIndex(id), fast, css_animation);
+  },
+
+  /*	Events
+  ================================================== */
+  _onLoaded: function() {
+    this.ready = true;
+    this.fire("loaded", this.config);
+  },
+
+  _onMarkerAdded: function(e) {
+    this.fire("dateAdded", this.config);
+  },
+
+  _onEraAdded: function(e) {
+    this.fire("eraAdded", this.config);
+  },
+
+  _onMarkerRemoved: function(e) {
+    this.fire("dateRemoved", this.config);
+  },
+
+  _onMarkerClick: function(e) {
+    // Go to the clicked marker
+    this.goToId(e.unique_id);
+    this.fire("change", {unique_id: e.unique_id});
+  },
+
+  _onMouseScroll: function(e) {
+
+    var delta		= 0,
+      scroll_to	= 0,
+      constraint 	= {
+        right: 	-(this.timescale.getPixelWidth() - (this.options.width/2)),
+        left: 	this.options.width/2
+      };
+    if (!e) {
+      e = window.event;
+    }
+    if (e.originalEvent) {
+      e = e.originalEvent;
+    }
+
+    // Webkit and browsers able to differntiate between up/down and left/right scrolling
+    if (typeof e.wheelDeltaX != 'undefined' ) {
+      delta = e.wheelDeltaY/6;
+      if (Math.abs(e.wheelDeltaX) > Math.abs(e.wheelDeltaY)) {
+        delta = e.wheelDeltaX/6;
+      } else {
+        //delta = e.wheelDeltaY/6;
+        delta = 0;
+      }
+    }
+    if (delta) {
+      if (e.preventDefault) {
+         e.preventDefault();
+      }
+      e.returnValue = false;
+    }
+    // Stop from scrolling too far
+    scroll_to = parseInt(this._el.slider.style.left.replace("px", "")) + delta;
+
+
+    if (scroll_to > constraint.left) {
+      scroll_to = constraint.left;
+    } else if (scroll_to < constraint.right) {
+      scroll_to = constraint.right;
+    }
+
+    if (this.animate_css) {
+      this._el.slider.className = "tl-timenav-slider";
+      this.animate_css = false;
+    }
+
+    this._el.slider.style.left = scroll_to + "px";
+
+  },
+
+  _onDragMove: function(e) {
+    if (this.animate_css) {
+      this._el.slider.className = "tl-timenav-slider";
+      this.animate_css = false;
+    }
+
+  },
+
+  /*	Private Methods
+  ================================================== */
+  // Update Display
+  _updateDisplay: function(width, height, animate) {
+
+    if (width) {
+      this.options.width = width;
+    }
+    if (height && height != this.options.height) {
+      this.options.height = height;
+      this.timescale = this._getTimeScale();
+    }
+
+    // Size Markers
+    this._assignRowsToMarkers();
+
+    // Size swipable area
+    this._el.slider_background.style.width = this.timescale.getPixelWidth() + this.options.width + "px";
+    this._el.slider_background.style.left = -(this.options.width/2) + "px";
+    this._el.slider.style.width = this.timescale.getPixelWidth() + this.options.width + "px";
+
+    // Update Swipable constraint
+    this._swipable.updateConstraint({top: false,bottom: false,left: (this.options.width/2),right: -(this.timescale.getPixelWidth() - (this.options.width/2))});
+
+    // Go to the current slide
+    this.goToId(this.current_id, true);
+  },
+
+  _drawTimeline: function(fast) {
+    this.timescale = this._getTimeScale();
+    this.timeaxis.drawTicks(this.timescale, this.options.optimal_tick_width);
+    this._positionMarkers(fast);
+    this._assignRowsToMarkers();
+    this._createGroups();
+    this._positionGroups();
+
+    if (this.has_eras) {
+
+      this._positionEras(fast);
+    }
+  },
+
+  _updateDrawTimeline: function(check_update) {
+    var do_update = false;
+
+    // Check to see if redraw is needed
+    if (check_update) {
+      /* keep this aligned with _getTimeScale or reduce code duplication */
+      var temp_timescale = new TL.TimeScale(this.config, {
+              display_width: this._el.container.offsetWidth,
+              screen_multiplier: this.options.scale_factor,
+              max_rows: this.max_rows
+
+      });
+
+      if (this.timescale.getMajorScale() == temp_timescale.getMajorScale()
+       && this.timescale.getMinorScale() == temp_timescale.getMinorScale()) {
+        do_update = true;
+      }
+    } else {
+      do_update = true;
+    }
+
+    // Perform update or redraw
+    if (do_update) {
+      this.timescale = this._getTimeScale();
+      this.timeaxis.positionTicks(this.timescale, this.options.optimal_tick_width);
+      this._positionMarkers();
+      this._assignRowsToMarkers();
+      this._positionGroups();
+      if (this.has_eras) {
+        this._positionEras();
+      }
+      this._updateDisplay();
+    } else {
+      this._drawTimeline(true);
+    }
+
+    return do_update;
+
+  },
+
+
+  /*	Init
+  ================================================== */
+  _initLayout: function () {
+    // Create Layout
+    this._el.attribution 				= TL.Dom.create('div', 'tl-attribution', this._el.container);
+    this._el.line						= TL.Dom.create('div', 'tl-timenav-line', this._el.container);
+    this._el.slider						= TL.Dom.create('div', 'tl-timenav-slider', this._el.container);
+    this._el.slider_background			= TL.Dom.create('div', 'tl-timenav-slider-background', this._el.slider);
+    this._el.marker_container_mask		= TL.Dom.create('div', 'tl-timenav-container-mask', this._el.slider);
+    this._el.marker_container			= TL.Dom.create('div', 'tl-timenav-container', this._el.marker_container_mask);
+    this._el.marker_item_container		= TL.Dom.create('div', 'tl-timenav-item-container', this._el.marker_container);
+    this._el.timeaxis 					= TL.Dom.create('div', 'tl-timeaxis', this._el.slider);
+    this._el.timeaxis_background 		= TL.Dom.create('div', 'tl-timeaxis-background', this._el.container);
+
+
+    // Knight Lab Logo
+    this._el.attribution.innerHTML = "<a href='http://timeline.knightlab.com' target='_blank'><span class='tl-knightlab-logo'></span>Timeline JS</a>"
+
+    // Time Axis
+    this.timeaxis = new TL.TimeAxis(this._el.timeaxis, this.options);
+
+    // Swipable
+    this._swipable = new TL.Swipable(this._el.slider_background, this._el.slider, {
+      enable: {x:true, y:false},
+      constraint: {top: false,bottom: false,left: (this.options.width/2),right: false},
+      snap: 	false
+    });
+    this._swipable.enable();
+
+  },
+
+  _initEvents: function () {
+    // Drag Events
+    this._swipable.on('dragmove', this._onDragMove, this);
+
+    // Scroll Events
+    TL.DomEvent.addListener(this._el.container, 'mousewheel', this._onMouseScroll, this);
+    TL.DomEvent.addListener(this._el.container, 'DOMMouseScroll', this._onMouseScroll, this);
+  },
+
+  _initData: function() {
+    // Create Markers and then add them
+    this._createMarkers(this.config.events);
+
+    if (this.config.eras) {
+      this.has_eras = true;
+      this._createEras(this.config.eras);
+    }
+
+    this._drawTimeline();
+
+  }
 
 
 });
@@ -11060,302 +11060,302 @@ TL.TimeNav = TL.Class.extend({
 
 TL.TimeMarker = TL.Class.extend({
 
-	includes: [TL.Events, TL.DomMixins],
-
-	_el: {},
-
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options) {
-
-		// DOM Elements
-		this._el = {
-			container: {},
-			content_container: {},
-			media_container: {},
-			timespan: {},
-			line_left: {},
-			line_right: {},
-			content: {},
-			text: {},
-			media: {},
-		};
-
-		// Components
-		this._text			= {};
-
-		// State
-		this._state = {
-			loaded: 		false
-		};
-
-
-		// Data
-		this.data = {
-			unique_id: 			"",
-			background: 		null,
-			date: {
-				year:			0,
-				month:			0,
-				day: 			0,
-				hour: 			0,
-				minute: 		0,
-				second: 		0,
-				millisecond: 	0,
-				thumbnail: 		"",
-				format: 		""
-			},
-			text: {
-				headline: 		"",
-				text: 			""
-			},
-			media: 				null
-		};
-
-		// Options
-		this.options = {
-			duration: 			1000,
-			ease: 				TL.Ease.easeInSpline,
-			width: 				600,
-			height: 			600,
-			marker_width_min: 	100 			// Minimum Marker Width
-		};
-
-		// Actively Displaying
-		this.active = false;
-
-		// Animation Object
-		this.animator = {};
-
-		// End date
-		this.has_end_date = false;
-
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		TL.Util.mergeData(this.data, data);
-
-		this._initLayout();
-		this._initEvents();
-
-
-	},
-
-	/*	Adding, Hiding, Showing etc
-	================================================== */
-	show: function() {
-
-	},
-
-	hide: function() {
-
-	},
-
-	setActive: function(is_active) {
-		this.active = is_active;
-
-		if (this.active && this.has_end_date) {
-			this._el.container.className = 'tl-timemarker tl-timemarker-with-end tl-timemarker-active';
-		} else if (this.active){
-			this._el.container.className = 'tl-timemarker tl-timemarker-active';
-		} else if (this.has_end_date){
-			this._el.container.className = 'tl-timemarker tl-timemarker-with-end';
-		} else {
-			this._el.container.className = 'tl-timemarker';
-		}
-	},
-
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-	},
-
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-	},
-
-	updateDisplay: function(w, h) {
-		this._updateDisplay(w, h);
-	},
-
-	loadMedia: function() {
-
-		if (this._media && !this._state.loaded) {
-			this._media.loadMedia();
-			this._state.loaded = true;
-		}
-	},
-
-	stopMedia: function() {
-		if (this._media && this._state.loaded) {
-			this._media.stopMedia();
-		}
-	},
-
-	getLeft: function() {
-		return this._el.container.style.left.slice(0, -2);
-	},
-
-	getTime: function() { // TODO does this need to know about the end date?
-		return this.data.start_date.getTime();
-	},
-
-	getEndTime: function() {
-
-		if (this.data.end_date) {
-			return this.data.end_date.getTime();
-		} else {
-			return false;
-		}
-	},
-
-	setHeight: function(h) {
-		var text_line_height = 12,
-			text_lines = 1;
-
-		this._el.content_container.style.height = h  + "px";
-		this._el.timespan_content.style.height = h + "px";
-		// Handle Line height for better display of text
-		if (h <= 30) {
-			this._el.content.className = "tl-timemarker-content tl-timemarker-content-small";
-		} else {
-			this._el.content.className = "tl-timemarker-content";
-		}
-
-		if (h <= 56) {
-			TL.DomUtil.addClass(this._el.content_container, "tl-timemarker-content-container-small");
-		} else {
-			TL.DomUtil.removeClass(this._el.content_container, "tl-timemarker-content-container-small");
-		}
-
-		// Handle number of lines visible vertically
-
-		if (TL.Browser.webkit) {
-			text_lines = Math.floor(h / (text_line_height + 2));
-			if (text_lines < 1) {
-				text_lines = 1;
-			}
-			this._text.className = "tl-headline";
-			this._text.style.webkitLineClamp = text_lines;
-		} else {
-			text_lines = h / text_line_height;
-			if (text_lines > 1) {
-				this._text.className = "tl-headline tl-headline-fadeout";
-			} else {
-				this._text.className = "tl-headline";
-			}
-			this._text.style.height = (text_lines * text_line_height)  + "px";
-		}
-
-	},
-
-	setWidth: function(w) {
-		if (this.data.end_date) {
-			this._el.container.style.width = w + "px";
-
-			if (w > this.options.marker_width_min) {
-				this._el.content_container.style.width = w + "px";
-				this._el.content_container.className = "tl-timemarker-content-container tl-timemarker-content-container-long";
-			} else {
-				this._el.content_container.style.width = this.options.marker_width_min + "px";
-				this._el.content_container.className = "tl-timemarker-content-container";
-			}
-		}
-
-	},
-
-	setClass: function(n) {
-		this._el.container.className = n;
-	},
-
-	setRowPosition: function(n, remainder) {
-		this.setPosition({top:n});
-		this._el.timespan.style.height = remainder + "px";
-
-		if (remainder < 56) {
-			//TL.DomUtil.removeClass(this._el.content_container, "tl-timemarker-content-container-small");
-		}
-	},
-
-	/*	Events
-	================================================== */
-	_onMarkerClick: function(e) {
-		this.fire("markerclick", {unique_id:this.data.unique_id});
-	},
-
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		//trace(this.data)
-		// Create Layout
-		this._el.container 				= TL.Dom.create("div", "tl-timemarker");
-		if (this.data.unique_id) {
-			this._el.container.id 		= this.data.unique_id + "-marker";
-		}
-
-		if (this.data.end_date) {
-			this.has_end_date = true;
-			this._el.container.className = 'tl-timemarker tl-timemarker-with-end';
-		}
-
-		this._el.timespan				= TL.Dom.create("div", "tl-timemarker-timespan", this._el.container);
-		this._el.timespan_content		= TL.Dom.create("div", "tl-timemarker-timespan-content", this._el.timespan);
-		this._el.content_container		= TL.Dom.create("div", "tl-timemarker-content-container", this._el.container);
-
-		this._el.content				= TL.Dom.create("div", "tl-timemarker-content", this._el.content_container);
-
-		this._el.line_left				= TL.Dom.create("div", "tl-timemarker-line-left", this._el.timespan);
-		this._el.line_right				= TL.Dom.create("div", "tl-timemarker-line-right", this._el.timespan);
-
-		// Thumbnail or Icon
-		if (this.data.media) {
-			this._el.media_container	= TL.Dom.create("div", "tl-timemarker-media-container", this._el.content);
-
-			if (this.data.media.thumbnail && this.data.media.thumbnail != "") {
-				this._el.media				= TL.Dom.create("img", "tl-timemarker-media", this._el.media_container);
-				this._el.media.src			= TL.Util.transformImageURL(this.data.media.thumbnail);
-
-			} else {
-				var media_type = TL.MediaType(this.data.media).type;
-				this._el.media				= TL.Dom.create("span", "tl-icon-" + media_type, this._el.media_container);
-
-			}
-
-		}
-
-
-		// Text
-		this._el.text					= TL.Dom.create("div", "tl-timemarker-text", this._el.content);
-		this._text						= TL.Dom.create("h2", "tl-headline", this._el.text);
-		if (this.data.text.headline && this.data.text.headline != "") {
-			this._text.innerHTML		= TL.Util.unlinkify(this.data.text.headline);
-		} else if (this.data.text.text && this.data.text.text != "") {
-			this._text.innerHTML		= TL.Util.unlinkify(this.data.text.text);
-		} else if (this.data.media.caption && this.data.media.caption != "") {
-			this._text.innerHTML		= TL.Util.unlinkify(this.data.media.caption);
-		}
-
-
-
-		// Fire event that the slide is loaded
-		this.onLoaded();
-
-	},
-
-	_initEvents: function() {
-		TL.DomEvent.addListener(this._el.container, 'click', this._onMarkerClick, this);
-	},
-
-	// Update Display
-	_updateDisplay: function(width, height, layout) {
-
-		if (width) {
-			this.options.width 					= width;
-		}
-
-		if (height) {
-			this.options.height = height;
-		}
-
-	}
+  includes: [TL.Events, TL.DomMixins],
+
+  _el: {},
+
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options) {
+
+    // DOM Elements
+    this._el = {
+      container: {},
+      content_container: {},
+      media_container: {},
+      timespan: {},
+      line_left: {},
+      line_right: {},
+      content: {},
+      text: {},
+      media: {},
+    };
+
+    // Components
+    this._text			= {};
+
+    // State
+    this._state = {
+      loaded: 		false
+    };
+
+
+    // Data
+    this.data = {
+      unique_id: 			"",
+      background: 		null,
+      date: {
+        year:			0,
+        month:			0,
+        day: 			0,
+        hour: 			0,
+        minute: 		0,
+        second: 		0,
+        millisecond: 	0,
+        thumbnail: 		"",
+        format: 		""
+      },
+      text: {
+        headline: 		"",
+        text: 			""
+      },
+      media: 				null
+    };
+
+    // Options
+    this.options = {
+      duration: 			1000,
+      ease: 				TL.Ease.easeInSpline,
+      width: 				600,
+      height: 			600,
+      marker_width_min: 	100 			// Minimum Marker Width
+    };
+
+    // Actively Displaying
+    this.active = false;
+
+    // Animation Object
+    this.animator = {};
+
+    // End date
+    this.has_end_date = false;
+
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+    TL.Util.mergeData(this.data, data);
+
+    this._initLayout();
+    this._initEvents();
+
+
+  },
+
+  /*	Adding, Hiding, Showing etc
+  ================================================== */
+  show: function() {
+
+  },
+
+  hide: function() {
+
+  },
+
+  setActive: function(is_active) {
+    this.active = is_active;
+
+    if (this.active && this.has_end_date) {
+      this._el.container.className = 'tl-timemarker tl-timemarker-with-end tl-timemarker-active';
+    } else if (this.active){
+      this._el.container.className = 'tl-timemarker tl-timemarker-active';
+    } else if (this.has_end_date){
+      this._el.container.className = 'tl-timemarker tl-timemarker-with-end';
+    } else {
+      this._el.container.className = 'tl-timemarker';
+    }
+  },
+
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+  },
+
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+  },
+
+  updateDisplay: function(w, h) {
+    this._updateDisplay(w, h);
+  },
+
+  loadMedia: function() {
+
+    if (this._media && !this._state.loaded) {
+      this._media.loadMedia();
+      this._state.loaded = true;
+    }
+  },
+
+  stopMedia: function() {
+    if (this._media && this._state.loaded) {
+      this._media.stopMedia();
+    }
+  },
+
+  getLeft: function() {
+    return this._el.container.style.left.slice(0, -2);
+  },
+
+  getTime: function() { // TODO does this need to know about the end date?
+    return this.data.start_date.getTime();
+  },
+
+  getEndTime: function() {
+
+    if (this.data.end_date) {
+      return this.data.end_date.getTime();
+    } else {
+      return false;
+    }
+  },
+
+  setHeight: function(h) {
+    var text_line_height = 12,
+      text_lines = 1;
+
+    this._el.content_container.style.height = h  + "px";
+    this._el.timespan_content.style.height = h + "px";
+    // Handle Line height for better display of text
+    if (h <= 30) {
+      this._el.content.className = "tl-timemarker-content tl-timemarker-content-small";
+    } else {
+      this._el.content.className = "tl-timemarker-content";
+    }
+
+    if (h <= 56) {
+      TL.DomUtil.addClass(this._el.content_container, "tl-timemarker-content-container-small");
+    } else {
+      TL.DomUtil.removeClass(this._el.content_container, "tl-timemarker-content-container-small");
+    }
+
+    // Handle number of lines visible vertically
+
+    if (TL.Browser.webkit) {
+      text_lines = Math.floor(h / (text_line_height + 2));
+      if (text_lines < 1) {
+        text_lines = 1;
+      }
+      this._text.className = "tl-headline";
+      this._text.style.webkitLineClamp = text_lines;
+    } else {
+      text_lines = h / text_line_height;
+      if (text_lines > 1) {
+        this._text.className = "tl-headline tl-headline-fadeout";
+      } else {
+        this._text.className = "tl-headline";
+      }
+      this._text.style.height = (text_lines * text_line_height)  + "px";
+    }
+
+  },
+
+  setWidth: function(w) {
+    if (this.data.end_date) {
+      this._el.container.style.width = w + "px";
+
+      if (w > this.options.marker_width_min) {
+        this._el.content_container.style.width = w + "px";
+        this._el.content_container.className = "tl-timemarker-content-container tl-timemarker-content-container-long";
+      } else {
+        this._el.content_container.style.width = this.options.marker_width_min + "px";
+        this._el.content_container.className = "tl-timemarker-content-container";
+      }
+    }
+
+  },
+
+  setClass: function(n) {
+    this._el.container.className = n;
+  },
+
+  setRowPosition: function(n, remainder) {
+    this.setPosition({top:n});
+    this._el.timespan.style.height = remainder + "px";
+
+    if (remainder < 56) {
+      //TL.DomUtil.removeClass(this._el.content_container, "tl-timemarker-content-container-small");
+    }
+  },
+
+  /*	Events
+  ================================================== */
+  _onMarkerClick: function(e) {
+    this.fire("markerclick", {unique_id:this.data.unique_id});
+  },
+
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+    //trace(this.data)
+    // Create Layout
+    this._el.container 				= TL.Dom.create("div", "tl-timemarker");
+    if (this.data.unique_id) {
+      this._el.container.id 		= this.data.unique_id + "-marker";
+    }
+
+    if (this.data.end_date) {
+      this.has_end_date = true;
+      this._el.container.className = 'tl-timemarker tl-timemarker-with-end';
+    }
+
+    this._el.timespan				= TL.Dom.create("div", "tl-timemarker-timespan", this._el.container);
+    this._el.timespan_content		= TL.Dom.create("div", "tl-timemarker-timespan-content", this._el.timespan);
+    this._el.content_container		= TL.Dom.create("div", "tl-timemarker-content-container", this._el.container);
+
+    this._el.content				= TL.Dom.create("div", "tl-timemarker-content", this._el.content_container);
+
+    this._el.line_left				= TL.Dom.create("div", "tl-timemarker-line-left", this._el.timespan);
+    this._el.line_right				= TL.Dom.create("div", "tl-timemarker-line-right", this._el.timespan);
+
+    // Thumbnail or Icon
+    if (this.data.media) {
+      this._el.media_container	= TL.Dom.create("div", "tl-timemarker-media-container", this._el.content);
+
+      if (this.data.media.thumbnail && this.data.media.thumbnail != "") {
+        this._el.media				= TL.Dom.create("img", "tl-timemarker-media", this._el.media_container);
+        this._el.media.src			= TL.Util.transformImageURL(this.data.media.thumbnail);
+
+      } else {
+        var media_type = TL.MediaType(this.data.media).type;
+        this._el.media				= TL.Dom.create("span", "tl-icon-" + media_type, this._el.media_container);
+
+      }
+
+    }
+
+
+    // Text
+    this._el.text					= TL.Dom.create("div", "tl-timemarker-text", this._el.content);
+    this._text						= TL.Dom.create("h2", "tl-headline", this._el.text);
+    if (this.data.text.headline && this.data.text.headline != "") {
+      this._text.innerHTML		= TL.Util.unlinkify(this.data.text.headline);
+    } else if (this.data.text.text && this.data.text.text != "") {
+      this._text.innerHTML		= TL.Util.unlinkify(this.data.text.text);
+    } else if (this.data.media.caption && this.data.media.caption != "") {
+      this._text.innerHTML		= TL.Util.unlinkify(this.data.media.caption);
+    }
+
+
+
+    // Fire event that the slide is loaded
+    this.onLoaded();
+
+  },
+
+  _initEvents: function() {
+    TL.DomEvent.addListener(this._el.container, 'click', this._onMarkerClick, this);
+  },
+
+  // Update Display
+  _updateDisplay: function(width, height, layout) {
+
+    if (width) {
+      this.options.width 					= width;
+    }
+
+    if (height) {
+      this.options.height = height;
+    }
+
+  }
 
 });
 
@@ -11370,239 +11370,239 @@ TL.TimeMarker = TL.Class.extend({
 
 TL.TimeEra = TL.Class.extend({
 
-	includes: [TL.Events, TL.DomMixins],
+  includes: [TL.Events, TL.DomMixins],
 
-	_el: {},
+  _el: {},
 
-	/*	Constructor
-	================================================== */
-	initialize: function(data, options) {
+  /*	Constructor
+  ================================================== */
+  initialize: function(data, options) {
 
-		// DOM Elements
-		this._el = {
-			container: {},
-			background: {},
-			content_container: {},
-			content: {},
-			text: {}
-		};
+    // DOM Elements
+    this._el = {
+      container: {},
+      background: {},
+      content_container: {},
+      content: {},
+      text: {}
+    };
 
-		// Components
-		this._text			= {};
+    // Components
+    this._text			= {};
 
-		// State
-		this._state = {
-			loaded: 		false
-		};
-
-
-		// Data
-		this.data = {
-			unique_id: 			"",
-			date: {
-				year:			0,
-				month:			0,
-				day: 			0,
-				hour: 			0,
-				minute: 		0,
-				second: 		0,
-				millisecond: 	0,
-				thumbnail: 		"",
-				format: 		""
-			},
-			text: {
-				headline: 		"",
-				text: 			""
-			}
-		};
-
-		// Options
-		this.options = {
-			duration: 			1000,
-			ease: 				TL.Ease.easeInSpline,
-			width: 				600,
-			height: 			600,
-			marker_width_min: 	100 			// Minimum Marker Width
-		};
-
-		// Actively Displaying
-		this.active = false;
-
-		// Animation Object
-		this.animator = {};
-
-		// End date
-		this.has_end_date = false;
-
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-		TL.Util.mergeData(this.data, data);
-
-		this._initLayout();
-		this._initEvents();
+    // State
+    this._state = {
+      loaded: 		false
+    };
 
 
-	},
+    // Data
+    this.data = {
+      unique_id: 			"",
+      date: {
+        year:			0,
+        month:			0,
+        day: 			0,
+        hour: 			0,
+        minute: 		0,
+        second: 		0,
+        millisecond: 	0,
+        thumbnail: 		"",
+        format: 		""
+      },
+      text: {
+        headline: 		"",
+        text: 			""
+      }
+    };
 
-	/*	Adding, Hiding, Showing etc
-	================================================== */
-	show: function() {
+    // Options
+    this.options = {
+      duration: 			1000,
+      ease: 				TL.Ease.easeInSpline,
+      width: 				600,
+      height: 			600,
+      marker_width_min: 	100 			// Minimum Marker Width
+    };
 
-	},
+    // Actively Displaying
+    this.active = false;
 
-	hide: function() {
+    // Animation Object
+    this.animator = {};
 
-	},
+    // End date
+    this.has_end_date = false;
 
-	setActive: function(is_active) {
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+    TL.Util.mergeData(this.data, data);
 
-	},
-
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-	},
-
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-	},
-
-	updateDisplay: function(w, h) {
-		this._updateDisplay(w, h);
-	},
-
-	getLeft: function() {
-		return this._el.container.style.left.slice(0, -2);
-	},
-
-	getTime: function() { // TODO does this need to know about the end date?
-		return this.data.start_date.getTime();
-	},
-
-	getEndTime: function() {
-
-		if (this.data.end_date) {
-			return this.data.end_date.getTime();
-		} else {
-			return false;
-		}
-	},
-
-	setHeight: function(h) {
-		var text_line_height = 12,
-			text_lines = 1;
-
-		this._el.content_container.style.height = h  + "px";
-		this._el.content.className = "tl-timeera-content";
-
-		// Handle number of lines visible vertically
-
-		if (TL.Browser.webkit) {
-			text_lines = Math.floor(h / (text_line_height + 2));
-			if (text_lines < 1) {
-				text_lines = 1;
-			}
-			this._text.className = "tl-headline";
-			this._text.style.webkitLineClamp = text_lines;
-		} else {
-			text_lines = h / text_line_height;
-			if (text_lines > 1) {
-				this._text.className = "tl-headline tl-headline-fadeout";
-			} else {
-				this._text.className = "tl-headline";
-			}
-			this._text.style.height = (text_lines * text_line_height)  + "px";
-		}
-
-	},
-
-	setWidth: function(w) {
-		if (this.data.end_date) {
-			this._el.container.style.width = w + "px";
-
-			if (w > this.options.marker_width_min) {
-				this._el.content_container.style.width = w + "px";
-				this._el.content_container.className = "tl-timeera-content-container tl-timeera-content-container-long";
-			} else {
-				this._el.content_container.style.width = this.options.marker_width_min + "px";
-				this._el.content_container.className = "tl-timeera-content-container";
-			}
-		}
-
-	},
-
-	setClass: function(n) {
-		this._el.container.className = n;
-	},
-
-	setRowPosition: function(n, remainder) {
-		this.setPosition({top:n});
-
-		if (remainder < 56) {
-			//TL.DomUtil.removeClass(this._el.content_container, "tl-timeera-content-container-small");
-		}
-	},
-
-	setColor: function(color_num) {
-		this._el.container.className = 'tl-timeera tl-timeera-color' + color_num;
-	},
-
-	/*	Events
-	================================================== */
+    this._initLayout();
+    this._initEvents();
 
 
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		//trace(this.data)
-		// Create Layout
-		this._el.container 				= TL.Dom.create("div", "tl-timeera");
-		if (this.data.unique_id) {
-			this._el.container.id 		= this.data.unique_id + "-era";
-		}
+  },
 
-		if (this.data.end_date) {
-			this.has_end_date = true;
-			this._el.container.className = 'tl-timeera tl-timeera-with-end';
-		}
+  /*	Adding, Hiding, Showing etc
+  ================================================== */
+  show: function() {
 
-		this._el.content_container		= TL.Dom.create("div", "tl-timeera-content-container", this._el.container);
+  },
 
-		this._el.background 			= TL.Dom.create("div", "tl-timeera-background", this._el.content_container);
+  hide: function() {
 
-		this._el.content				= TL.Dom.create("div", "tl-timeera-content", this._el.content_container);
+  },
 
-		
+  setActive: function(is_active) {
 
-		// Text
-		this._el.text					= TL.Dom.create("div", "tl-timeera-text", this._el.content);
-		this._text						= TL.Dom.create("h2", "tl-headline", this._el.text);
-		if (this.data.text.headline && this.data.text.headline != "") {
-			this._text.innerHTML		= TL.Util.unlinkify(this.data.text.headline);
-		} 
+  },
+
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+  },
+
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+  },
+
+  updateDisplay: function(w, h) {
+    this._updateDisplay(w, h);
+  },
+
+  getLeft: function() {
+    return this._el.container.style.left.slice(0, -2);
+  },
+
+  getTime: function() { // TODO does this need to know about the end date?
+    return this.data.start_date.getTime();
+  },
+
+  getEndTime: function() {
+
+    if (this.data.end_date) {
+      return this.data.end_date.getTime();
+    } else {
+      return false;
+    }
+  },
+
+  setHeight: function(h) {
+    var text_line_height = 12,
+      text_lines = 1;
+
+    this._el.content_container.style.height = h  + "px";
+    this._el.content.className = "tl-timeera-content";
+
+    // Handle number of lines visible vertically
+
+    if (TL.Browser.webkit) {
+      text_lines = Math.floor(h / (text_line_height + 2));
+      if (text_lines < 1) {
+        text_lines = 1;
+      }
+      this._text.className = "tl-headline";
+      this._text.style.webkitLineClamp = text_lines;
+    } else {
+      text_lines = h / text_line_height;
+      if (text_lines > 1) {
+        this._text.className = "tl-headline tl-headline-fadeout";
+      } else {
+        this._text.className = "tl-headline";
+      }
+      this._text.style.height = (text_lines * text_line_height)  + "px";
+    }
+
+  },
+
+  setWidth: function(w) {
+    if (this.data.end_date) {
+      this._el.container.style.width = w + "px";
+
+      if (w > this.options.marker_width_min) {
+        this._el.content_container.style.width = w + "px";
+        this._el.content_container.className = "tl-timeera-content-container tl-timeera-content-container-long";
+      } else {
+        this._el.content_container.style.width = this.options.marker_width_min + "px";
+        this._el.content_container.className = "tl-timeera-content-container";
+      }
+    }
+
+  },
+
+  setClass: function(n) {
+    this._el.container.className = n;
+  },
+
+  setRowPosition: function(n, remainder) {
+    this.setPosition({top:n});
+
+    if (remainder < 56) {
+      //TL.DomUtil.removeClass(this._el.content_container, "tl-timeera-content-container-small");
+    }
+  },
+
+  setColor: function(color_num) {
+    this._el.container.className = 'tl-timeera tl-timeera-color' + color_num;
+  },
+
+  /*	Events
+  ================================================== */
+
+
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+    //trace(this.data)
+    // Create Layout
+    this._el.container 				= TL.Dom.create("div", "tl-timeera");
+    if (this.data.unique_id) {
+      this._el.container.id 		= this.data.unique_id + "-era";
+    }
+
+    if (this.data.end_date) {
+      this.has_end_date = true;
+      this._el.container.className = 'tl-timeera tl-timeera-with-end';
+    }
+
+    this._el.content_container		= TL.Dom.create("div", "tl-timeera-content-container", this._el.container);
+
+    this._el.background 			= TL.Dom.create("div", "tl-timeera-background", this._el.content_container);
+
+    this._el.content				= TL.Dom.create("div", "tl-timeera-content", this._el.content_container);
 
 
 
-		// Fire event that the slide is loaded
-		this.onLoaded();
+    // Text
+    this._el.text					= TL.Dom.create("div", "tl-timeera-text", this._el.content);
+    this._text						= TL.Dom.create("h2", "tl-headline", this._el.text);
+    if (this.data.text.headline && this.data.text.headline != "") {
+      this._text.innerHTML		= TL.Util.unlinkify(this.data.text.headline);
+    }
 
-	},
 
-	_initEvents: function() {
-		
-	},
 
-	// Update Display
-	_updateDisplay: function(width, height, layout) {
+    // Fire event that the slide is loaded
+    this.onLoaded();
 
-		if (width) {
-			this.options.width 					= width;
-		}
+  },
 
-		if (height) {
-			this.options.height = height;
-		}
+  _initEvents: function() {
 
-	}
+  },
+
+  // Update Display
+  _updateDisplay: function(width, height, layout) {
+
+    if (width) {
+      this.options.width 					= width;
+    }
+
+    if (height) {
+      this.options.height = height;
+    }
+
+  }
 
 });
 
@@ -11612,112 +11612,112 @@ TL.TimeEra = TL.Class.extend({
 ********************************************** */
 
 /*	TL.TimeGroup
-	
+
 ================================================== */
- 
+
 TL.TimeGroup = TL.Class.extend({
-	
-	includes: [TL.Events, TL.DomMixins],
-	
-	_el: {},
-	
-	/*	Constructor
-	================================================== */
-	initialize: function(data) {
-		
-		// DOM ELEMENTS
-		this._el = {
-			parent: {},
-			container: {},
-			message: {}
-		};
-		
-		//Options
-		this.options = {
-			width: 					600,
-			height: 				600
-		};
-		
-		// Data
-		this.data = {
-			label: "",
-			rows: 1
-		};
-		
-		
-		this._el.container = TL.Dom.create("div", "tl-timegroup"); 
-		
-		// Merge Data
-		TL.Util.mergeData(this.data, data);
-		
-		// Animation
-		this.animator = {};
-		
-		
-		this._initLayout();
-		this._initEvents();
-	},
-	
-	/*	Public
-	================================================== */
-	
-	
-	
-	/*	Update Display
-	================================================== */
-	updateDisplay: function(w, h) {
-		
-	},
-	
-	setRowPosition: function(n, h) {
-		// trace(n);
-		// trace(this._el.container)
-		this.options.height = h * this.data.rows;
-		this.setPosition({top:n});
-		this._el.container.style.height = this.options.height + "px";
-		
-	},
-	
-	setAlternateRowColor: function(alternate, hide) {
-		var class_name = "tl-timegroup";
-		if (alternate) {
-			class_name += " tl-timegroup-alternate";
-		}
-		if (hide) {
-			class_name += " tl-timegroup-hidden";
-		}
-		this._el.container.className = class_name;
-	},
-	
-	/*	Events
-	================================================== */
 
-	
-	_onMouseClick: function() {
-		this.fire("clicked", this.options);
-	},
+  includes: [TL.Events, TL.DomMixins],
 
-	
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		
-		// Create Layout
-		this._el.message = TL.Dom.create("div", "tl-timegroup-message", this._el.container);
-		this._el.message.innerHTML = this.data.label;
-		
-		
-	},
-	
-	_initEvents: function () {
-		TL.DomEvent.addListener(this._el.container, 'click', this._onMouseClick, this);
-	},
-	
-	// Update Display
-	_updateDisplay: function(width, height, animate) {
-		
-	}
-	
+  _el: {},
+
+  /*	Constructor
+  ================================================== */
+  initialize: function(data) {
+
+    // DOM ELEMENTS
+    this._el = {
+      parent: {},
+      container: {},
+      message: {}
+    };
+
+    //Options
+    this.options = {
+      width: 					600,
+      height: 				600
+    };
+
+    // Data
+    this.data = {
+      label: "",
+      rows: 1
+    };
+
+
+    this._el.container = TL.Dom.create("div", "tl-timegroup");
+
+    // Merge Data
+    TL.Util.mergeData(this.data, data);
+
+    // Animation
+    this.animator = {};
+
+
+    this._initLayout();
+    this._initEvents();
+  },
+
+  /*	Public
+  ================================================== */
+
+
+
+  /*	Update Display
+  ================================================== */
+  updateDisplay: function(w, h) {
+
+  },
+
+  setRowPosition: function(n, h) {
+    // trace(n);
+    // trace(this._el.container)
+    this.options.height = h * this.data.rows;
+    this.setPosition({top:n});
+    this._el.container.style.height = this.options.height + "px";
+
+  },
+
+  setAlternateRowColor: function(alternate, hide) {
+    var class_name = "tl-timegroup";
+    if (alternate) {
+      class_name += " tl-timegroup-alternate";
+    }
+    if (hide) {
+      class_name += " tl-timegroup-hidden";
+    }
+    this._el.container.className = class_name;
+  },
+
+  /*	Events
+  ================================================== */
+
+
+  _onMouseClick: function() {
+    this.fire("clicked", this.options);
+  },
+
+
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+
+    // Create Layout
+    this._el.message = TL.Dom.create("div", "tl-timegroup-message", this._el.container);
+    this._el.message.innerHTML = this.data.label;
+
+
+  },
+
+  _initEvents: function () {
+    TL.DomEvent.addListener(this._el.container, 'click', this._onMouseClick, this);
+  },
+
+  // Update Display
+  _updateDisplay: function(width, height, animate) {
+
+  }
+
 });
 
 /* **********************************************
@@ -12071,286 +12071,286 @@ TL.TimeScale = TL.Class.extend({
 ********************************************** */
 
 /*	TL.TimeAxis
-	Display element for showing timescale ticks
+  Display element for showing timescale ticks
 ================================================== */
 
 TL.TimeAxis = TL.Class.extend({
 
-	includes: [TL.Events, TL.DomMixins, TL.I18NMixins],
+  includes: [TL.Events, TL.DomMixins, TL.I18NMixins],
 
-	_el: {},
+  _el: {},
 
-	/*	Constructor
-	================================================== */
-	initialize: function(elem, options) {
-		// DOM Elements
-		this._el = {
-			container: {},
-			content_container: {},
-			major: {},
-			minor: {},
-		};
+  /*	Constructor
+  ================================================== */
+  initialize: function(elem, options) {
+    // DOM Elements
+    this._el = {
+      container: {},
+      content_container: {},
+      major: {},
+      minor: {},
+    };
 
-		// Components
-		this._text			= {};
+    // Components
+    this._text			= {};
 
-		// State
-		this._state = {
-			loaded: 		false
-		};
-
-
-		// Data
-		this.data = {};
-
-		// Options
-		this.options = {
-			duration: 				1000,
-			ease: 					TL.Ease.easeInSpline,
-			width: 					600,
-			height: 				600
-		};
-
-		// Actively Displaying
-		this.active = false;
-
-		// Animation Object
-		this.animator = {};
-
-		// Axis Helper
-		this.axis_helper = {};
-
-		// Minor tick dom element array
-		this.minor_ticks = [];
-
-		// Minor tick dom element array
-		this.major_ticks = [];
-
-		// Date Format Lookup, map TL.Date.SCALES names to...
-		this.dateformat_lookup = {
-	        millisecond: 'time_milliseconds',     // ...TL.Language.<code>.dateformats
-	        second: 'time_short',
-	        minute: 'time_no_seconds_short',
-	        hour: 'time_no_minutes_short',
-	        day: 'full_short',
-	        month: 'month_short',
-	        year: 'year',
-	        decade: 'year',
-	        century: 'year',
-	        millennium: 'year',
-	        age: 'compact',  // ...TL.Language.<code>.bigdateformats
-	        epoch: 'compact',
-	        era: 'compact',
-	        eon: 'compact',
-	        eon2: 'compact'
-	    }
-
-		// Main element
-		if (typeof elem === 'object') {
-			this._el.container = elem;
-		} else {
-			this._el.container = TL.Dom.get(elem);
-		}
-
-		// Merge Data and Options
-		TL.Util.mergeData(this.options, options);
-
-		this._initLayout();
-		this._initEvents();
-
-	},
-
-	/*	Adding, Hiding, Showing etc
-	================================================== */
-	show: function() {
-
-	},
-
-	hide: function() {
-
-	},
-
-	addTo: function(container) {
-		container.appendChild(this._el.container);
-	},
-
-	removeFrom: function(container) {
-		container.removeChild(this._el.container);
-	},
-
-	updateDisplay: function(w, h) {
-		this._updateDisplay(w, h);
-	},
-
-	getLeft: function() {
-		return this._el.container.style.left.slice(0, -2);
-	},
-
-	drawTicks: function(timescale, optimal_tick_width) {
-
-		var ticks = timescale.getTicks();
-
-		var controls = {
-			minor: {
-				el: this._el.minor,
-				dateformat: this.dateformat_lookup[ticks['minor'].name],
-				ts_ticks: ticks['minor'].ticks,
-				tick_elements: this.minor_ticks
-			},
-			major: {
-				el: this._el.major,
-				dateformat: this.dateformat_lookup[ticks['major'].name],
-				ts_ticks: ticks['major'].ticks,
-				tick_elements: this.major_ticks
-			}
-		}
-		// FADE OUT
-		this._el.major.className = "tl-timeaxis-major";
-		this._el.minor.className = "tl-timeaxis-minor";
-		this._el.major.style.opacity = 0;
-		this._el.minor.style.opacity = 0;
-
-		// CREATE MAJOR TICKS
-		this.major_ticks = this._createTickElements(
-			ticks['major'].ticks,
-			this._el.major,
-			this.dateformat_lookup[ticks['major'].name]
-		);
-
-		// CREATE MINOR TICKS
-		this.minor_ticks = this._createTickElements(
-			ticks['minor'].ticks,
-			this._el.minor,
-			this.dateformat_lookup[ticks['minor'].name],
-			ticks['major'].ticks
-		);
-
-		this.positionTicks(timescale, optimal_tick_width, true);
-
-		// FADE IN
-		this._el.major.className = "tl-timeaxis-major tl-animate-opacity tl-timeaxis-animate-opacity";
-		this._el.minor.className = "tl-timeaxis-minor tl-animate-opacity tl-timeaxis-animate-opacity";
-		this._el.major.style.opacity = 1;
-		this._el.minor.style.opacity = 1;
-	},
-
-	_createTickElements: function(ts_ticks,tick_element,dateformat,ticks_to_skip) {
-		tick_element.innerHTML = "";
-		var skip_times = {}
-		if (ticks_to_skip){
-			for (var i = 0; i < ticks_to_skip.length; i++) {
-				skip_times[ticks_to_skip[i].getTime()] = true;
-			}
-		}
-
-		var tick_elements = []
-		for (var i = 0; i < ts_ticks.length; i++) {
-			var ts_tick = ts_ticks[i];
-			if (!(ts_tick.getTime() in skip_times)) {
-				var tick = TL.Dom.create("div", "tl-timeaxis-tick", tick_element),
-					tick_text 	= TL.Dom.create("span", "tl-timeaxis-tick-text tl-animate-opacity", tick);
-
-				tick_text.innerHTML = ts_tick.getDisplayDate(this.getLanguage(), dateformat);
-
-				tick_elements.push({
-					tick:tick,
-					tick_text:tick_text,
-					display_date:ts_tick.getDisplayDate(this.getLanguage(), dateformat),
-					date:ts_tick
-				});
-			}
-		}
-		return tick_elements;
-	},
-
-	positionTicks: function(timescale, optimal_tick_width, no_animate) {
-
-		// Handle Animation
-		if (no_animate) {
-			this._el.major.className = "tl-timeaxis-major";
-			this._el.minor.className = "tl-timeaxis-minor";
-		} else {
-			this._el.major.className = "tl-timeaxis-major tl-timeaxis-animate";
-			this._el.minor.className = "tl-timeaxis-minor tl-timeaxis-animate";
-		}
-
-		this._positionTickArray(this.major_ticks, timescale, optimal_tick_width);
-		this._positionTickArray(this.minor_ticks, timescale, optimal_tick_width);
-
-	},
-
-	_positionTickArray: function(tick_array, timescale, optimal_tick_width) {
-		// Poition Ticks & Handle density of ticks
-		if (tick_array[1] && tick_array[0]) {
-			var distance = ( timescale.getPosition(tick_array[1].date.getMillisecond()) - timescale.getPosition(tick_array[0].date.getMillisecond()) ),
-				fraction_of_array = 1;
+    // State
+    this._state = {
+      loaded: 		false
+    };
 
 
-			if (distance < optimal_tick_width) {
-				fraction_of_array = Math.round(optimal_tick_width/timescale.getPixelsPerTick());
-			}
+    // Data
+    this.data = {};
 
-			var show = 1;
+    // Options
+    this.options = {
+      duration: 				1000,
+      ease: 					TL.Ease.easeInSpline,
+      width: 					600,
+      height: 				600
+    };
 
-			for (var i = 0; i < tick_array.length; i++) {
+    // Actively Displaying
+    this.active = false;
 
-				var tick = tick_array[i];
+    // Animation Object
+    this.animator = {};
 
-				// Poition Ticks
-				tick.tick.style.left = timescale.getPosition(tick.date.getMillisecond()) + "px";
-				tick.tick_text.innerHTML = tick.display_date;
+    // Axis Helper
+    this.axis_helper = {};
 
-				// Handle density of ticks
-				if (fraction_of_array > 1) {
-					if (show >= fraction_of_array) {
-						show = 1;
-						tick.tick_text.style.opacity = 1;
-						tick.tick.className = "tl-timeaxis-tick";
-					} else {
-						show++;
-						tick.tick_text.style.opacity = 0;
-						tick.tick.className = "tl-timeaxis-tick tl-timeaxis-tick-hidden";
-					}
-				} else {
-					tick.tick_text.style.opacity = 1;
-					tick.tick.className = "tl-timeaxis-tick";
-				}
+    // Minor tick dom element array
+    this.minor_ticks = [];
 
-			};
-		}
-	},
+    // Minor tick dom element array
+    this.major_ticks = [];
 
-	/*	Events
-	================================================== */
+    // Date Format Lookup, map TL.Date.SCALES names to...
+    this.dateformat_lookup = {
+          millisecond: 'time_milliseconds',     // ...TL.Language.<code>.dateformats
+          second: 'time_short',
+          minute: 'time_no_seconds_short',
+          hour: 'time_no_minutes_short',
+          day: 'full_short',
+          month: 'month_short',
+          year: 'year',
+          decade: 'year',
+          century: 'year',
+          millennium: 'year',
+          age: 'compact',  // ...TL.Language.<code>.bigdateformats
+          epoch: 'compact',
+          era: 'compact',
+          eon: 'compact',
+          eon2: 'compact'
+      }
+
+    // Main element
+    if (typeof elem === 'object') {
+      this._el.container = elem;
+    } else {
+      this._el.container = TL.Dom.get(elem);
+    }
+
+    // Merge Data and Options
+    TL.Util.mergeData(this.options, options);
+
+    this._initLayout();
+    this._initEvents();
+
+  },
+
+  /*	Adding, Hiding, Showing etc
+  ================================================== */
+  show: function() {
+
+  },
+
+  hide: function() {
+
+  },
+
+  addTo: function(container) {
+    container.appendChild(this._el.container);
+  },
+
+  removeFrom: function(container) {
+    container.removeChild(this._el.container);
+  },
+
+  updateDisplay: function(w, h) {
+    this._updateDisplay(w, h);
+  },
+
+  getLeft: function() {
+    return this._el.container.style.left.slice(0, -2);
+  },
+
+  drawTicks: function(timescale, optimal_tick_width) {
+
+    var ticks = timescale.getTicks();
+
+    var controls = {
+      minor: {
+        el: this._el.minor,
+        dateformat: this.dateformat_lookup[ticks['minor'].name],
+        ts_ticks: ticks['minor'].ticks,
+        tick_elements: this.minor_ticks
+      },
+      major: {
+        el: this._el.major,
+        dateformat: this.dateformat_lookup[ticks['major'].name],
+        ts_ticks: ticks['major'].ticks,
+        tick_elements: this.major_ticks
+      }
+    }
+    // FADE OUT
+    this._el.major.className = "tl-timeaxis-major";
+    this._el.minor.className = "tl-timeaxis-minor";
+    this._el.major.style.opacity = 0;
+    this._el.minor.style.opacity = 0;
+
+    // CREATE MAJOR TICKS
+    this.major_ticks = this._createTickElements(
+      ticks['major'].ticks,
+      this._el.major,
+      this.dateformat_lookup[ticks['major'].name]
+    );
+
+    // CREATE MINOR TICKS
+    this.minor_ticks = this._createTickElements(
+      ticks['minor'].ticks,
+      this._el.minor,
+      this.dateformat_lookup[ticks['minor'].name],
+      ticks['major'].ticks
+    );
+
+    this.positionTicks(timescale, optimal_tick_width, true);
+
+    // FADE IN
+    this._el.major.className = "tl-timeaxis-major tl-animate-opacity tl-timeaxis-animate-opacity";
+    this._el.minor.className = "tl-timeaxis-minor tl-animate-opacity tl-timeaxis-animate-opacity";
+    this._el.major.style.opacity = 1;
+    this._el.minor.style.opacity = 1;
+  },
+
+  _createTickElements: function(ts_ticks,tick_element,dateformat,ticks_to_skip) {
+    tick_element.innerHTML = "";
+    var skip_times = {}
+    if (ticks_to_skip){
+      for (var i = 0; i < ticks_to_skip.length; i++) {
+        skip_times[ticks_to_skip[i].getTime()] = true;
+      }
+    }
+
+    var tick_elements = []
+    for (var i = 0; i < ts_ticks.length; i++) {
+      var ts_tick = ts_ticks[i];
+      if (!(ts_tick.getTime() in skip_times)) {
+        var tick = TL.Dom.create("div", "tl-timeaxis-tick", tick_element),
+          tick_text 	= TL.Dom.create("span", "tl-timeaxis-tick-text tl-animate-opacity", tick);
+
+        tick_text.innerHTML = ts_tick.getDisplayDate(this.getLanguage(), dateformat);
+
+        tick_elements.push({
+          tick:tick,
+          tick_text:tick_text,
+          display_date:ts_tick.getDisplayDate(this.getLanguage(), dateformat),
+          date:ts_tick
+        });
+      }
+    }
+    return tick_elements;
+  },
+
+  positionTicks: function(timescale, optimal_tick_width, no_animate) {
+
+    // Handle Animation
+    if (no_animate) {
+      this._el.major.className = "tl-timeaxis-major";
+      this._el.minor.className = "tl-timeaxis-minor";
+    } else {
+      this._el.major.className = "tl-timeaxis-major tl-timeaxis-animate";
+      this._el.minor.className = "tl-timeaxis-minor tl-timeaxis-animate";
+    }
+
+    this._positionTickArray(this.major_ticks, timescale, optimal_tick_width);
+    this._positionTickArray(this.minor_ticks, timescale, optimal_tick_width);
+
+  },
+
+  _positionTickArray: function(tick_array, timescale, optimal_tick_width) {
+    // Poition Ticks & Handle density of ticks
+    if (tick_array[1] && tick_array[0]) {
+      var distance = ( timescale.getPosition(tick_array[1].date.getMillisecond()) - timescale.getPosition(tick_array[0].date.getMillisecond()) ),
+        fraction_of_array = 1;
 
 
-	/*	Private Methods
-	================================================== */
-	_initLayout: function () {
-		this._el.content_container		= TL.Dom.create("div", "tl-timeaxis-content-container", this._el.container);
-		this._el.major					= TL.Dom.create("div", "tl-timeaxis-major", this._el.content_container);
-		this._el.minor					= TL.Dom.create("div", "tl-timeaxis-minor", this._el.content_container);
+      if (distance < optimal_tick_width) {
+        fraction_of_array = Math.round(optimal_tick_width/timescale.getPixelsPerTick());
+      }
 
-		// Fire event that the slide is loaded
-		this.onLoaded();
-	},
+      var show = 1;
 
-	_initEvents: function() {
+      for (var i = 0; i < tick_array.length; i++) {
 
-	},
+        var tick = tick_array[i];
 
-	// Update Display
-	_updateDisplay: function(width, height, layout) {
+        // Poition Ticks
+        tick.tick.style.left = timescale.getPosition(tick.date.getMillisecond()) + "px";
+        tick.tick_text.innerHTML = tick.display_date;
 
-		if (width) {
-			this.options.width 					= width;
-		}
+        // Handle density of ticks
+        if (fraction_of_array > 1) {
+          if (show >= fraction_of_array) {
+            show = 1;
+            tick.tick_text.style.opacity = 1;
+            tick.tick.className = "tl-timeaxis-tick";
+          } else {
+            show++;
+            tick.tick_text.style.opacity = 0;
+            tick.tick.className = "tl-timeaxis-tick tl-timeaxis-tick-hidden";
+          }
+        } else {
+          tick.tick_text.style.opacity = 1;
+          tick.tick.className = "tl-timeaxis-tick";
+        }
 
-		if (height) {
-			this.options.height = height;
-		}
+      };
+    }
+  },
 
-	}
+  /*	Events
+  ================================================== */
+
+
+  /*	Private Methods
+  ================================================== */
+  _initLayout: function () {
+    this._el.content_container		= TL.Dom.create("div", "tl-timeaxis-content-container", this._el.container);
+    this._el.major					= TL.Dom.create("div", "tl-timeaxis-major", this._el.content_container);
+    this._el.minor					= TL.Dom.create("div", "tl-timeaxis-minor", this._el.content_container);
+
+    // Fire event that the slide is loaded
+    this.onLoaded();
+  },
+
+  _initEvents: function() {
+
+  },
+
+  // Update Display
+  _updateDisplay: function(width, height, layout) {
+
+    if (width) {
+      this.options.width 					= width;
+    }
+
+    if (height) {
+      this.options.height = height;
+    }
+
+  }
 
 });
 
@@ -12366,22 +12366,22 @@ TL.TimeAxis = TL.Class.extend({
 ================================================== */
 TL.AxisHelper = TL.Class.extend({
     initialize: function (options) {
-		if (options) {
+    if (options) {
             this.scale = options.scale;
-	        this.minor = options.minor;
-	        this.major = options.major;
-		} else {
+          this.minor = options.minor;
+          this.major = options.major;
+    } else {
             throw new TL.Error("axis_helper_no_options_err")
         }
-       
+
     },
-    
+
     getPixelsPerTick: function(pixels_per_milli) {
         return pixels_per_milli * this.minor.factor;
     },
 
     getMajorTicks: function(timescale) {
-		return this._getTicks(timescale, this.major)
+    return this._getTicks(timescale, this.major)
     },
 
     getMinorTicks: function(timescale) {
@@ -12410,10 +12410,10 @@ TL.AxisHelper = TL.Class.extend({
 (function(cls){ // add some class-level behavior
 
     var HELPERS = {};
-    
+
     var setHelpers = function(scale_type, scales) {
         HELPERS[scale_type] = [];
-        
+
         for (var idx = 0; idx < scales.length - 1; idx++) {
             var minor = scales[idx];
             var major = scales[idx+1];
@@ -12424,23 +12424,23 @@ TL.AxisHelper = TL.Class.extend({
             }));
         }
     };
-    
+
     setHelpers('human', TL.Date.SCALES);
     setHelpers('cosmological', TL.BigDate.SCALES);
-    
+
     cls.HELPERS = HELPERS;
-    
+
     cls.getBestHelper = function(ts,optimal_tick_width) {
         if (typeof(optimal_tick_width) != 'number' ) {
             optimal_tick_width = 100;
         }
         var ts_scale = ts.getScale();
         var helpers = HELPERS[ts_scale];
-        
+
         if (!helpers) {
             throw new TL.Error("axis_helper_scale_err", ts_scale);
         }
-        
+
         var prev = null;
         for (var idx = 0; idx < helpers.length; idx++) {
             var curr = helpers[idx];
@@ -12457,7 +12457,7 @@ TL.AxisHelper = TL.Class.extend({
             }
             prev = curr;
         }
-        return helpers[helpers.length - 1]; // last resort           
+        return helpers[helpers.length - 1]; // last resort
     }
 })(TL.AxisHelper);
 
@@ -12485,672 +12485,672 @@ https://incident57.com/codekit/
 ================================================== */
 
 // CORE
-	// @codekit-prepend "core/TL.js";
-	// @codekit-prepend "core/TL.Error.js";
-	// @codekit-prepend "core/TL.Util.js";
-	// @codekit-prepend "data/TL.Data.js";
-	// @codekit-prepend "core/TL.Class.js";
-	// @codekit-prepend "core/TL.Events.js";
-	// @codekit-prepend "core/TL.Browser.js";
-	// @codekit-prepend "core/TL.Load.js";
-	// @codekit-prepend "core/TL.TimelineConfig.js";
-	// @codekit-prepend "core/TL.ConfigFactory.js";
+  // @codekit-prepend "core/TL.js";
+  // @codekit-prepend "core/TL.Error.js";
+  // @codekit-prepend "core/TL.Util.js";
+  // @codekit-prepend "data/TL.Data.js";
+  // @codekit-prepend "core/TL.Class.js";
+  // @codekit-prepend "core/TL.Events.js";
+  // @codekit-prepend "core/TL.Browser.js";
+  // @codekit-prepend "core/TL.Load.js";
+  // @codekit-prepend "core/TL.TimelineConfig.js";
+  // @codekit-prepend "core/TL.ConfigFactory.js";
 
 
 // LANGUAGE
-	// @codekit-prepend "language/TL.Language.js";
-	// @codekit-prepend "language/TL.I18NMixins.js";
+  // @codekit-prepend "language/TL.Language.js";
+  // @codekit-prepend "language/TL.I18NMixins.js";
 
 // ANIMATION
-	// @codekit-prepend "animation/TL.Ease.js";
-	// @codekit-prepend "animation/TL.Animate.js";
+  // @codekit-prepend "animation/TL.Ease.js";
+  // @codekit-prepend "animation/TL.Animate.js";
 
 // DOM
-	// @codekit-prepend "dom/TL.Point.js";
-	// @codekit-prepend "dom/TL.DomMixins.js";
-	// @codekit-prepend "dom/TL.Dom.js";
-	// @codekit-prepend "dom/TL.DomUtil.js";
-	// @codekit-prepend "dom/TL.DomEvent.js";
-	// @codekit-prepend "dom/TL.StyleSheet.js";
+  // @codekit-prepend "dom/TL.Point.js";
+  // @codekit-prepend "dom/TL.DomMixins.js";
+  // @codekit-prepend "dom/TL.Dom.js";
+  // @codekit-prepend "dom/TL.DomUtil.js";
+  // @codekit-prepend "dom/TL.DomEvent.js";
+  // @codekit-prepend "dom/TL.StyleSheet.js";
 
 // Date
-	// @codekit-prepend "date/TL.Date.js";
-	// @codekit-prepend "date/TL.DateUtil.js";
+  // @codekit-prepend "date/TL.Date.js";
+  // @codekit-prepend "date/TL.DateUtil.js";
 
 // UI
-	// @codekit-prepend "ui/TL.Draggable.js";
-	// @codekit-prepend "ui/TL.Swipable.js";
-	// @codekit-prepend "ui/TL.MenuBar.js";
-	// @codekit-prepend "ui/TL.Message.js";
+  // @codekit-prepend "ui/TL.Draggable.js";
+  // @codekit-prepend "ui/TL.Swipable.js";
+  // @codekit-prepend "ui/TL.MenuBar.js";
+  // @codekit-prepend "ui/TL.Message.js";
 
 // MEDIA
-	// @codekit-prepend "media/TL.MediaType.js";
-	// @codekit-prepend "media/TL.Media.js";
+  // @codekit-prepend "media/TL.MediaType.js";
+  // @codekit-prepend "media/TL.Media.js";
 
 // MEDIA TYPES
-	// @codekit-prepend "media/types/TL.Media.Blockquote.js";
-	// @codekit-prepend "media/types/TL.Media.DailyMotion.js";
-	// @codekit-prepend "media/types/TL.Media.DocumentCloud.js";
-	// @codekit-prepend "media/types/TL.Media.Flickr.js";
-	// @codekit-prepend "media/types/TL.Media.GoogleDoc.js";
-	// @codekit-prepend "media/types/TL.Media.GooglePlus.js";
-	// @codekit-prepend "media/types/TL.Media.IFrame.js";
-	// @codekit-prepend "media/types/TL.Media.Image.js";
-	// @codekit-prepend "media/types/TL.Media.Imgur.js";
-	// @codekit-prepend "media/types/TL.Media.Instagram.js";
-	// @codekit-prepend "media/types/TL.Media.GoogleMap.js";
-	// @codekit-prepend "media/types/TL.Media.PDF.js";
-	// @codekit-prepend "media/types/TL.Media.Profile.js";
-	// @codekit-prepend "media/types/TL.Media.Slider.js";
-	// @codekit-prepend "media/types/TL.Media.SoundCloud.js";
-	// @codekit-prepend "media/types/TL.Media.Spotify.js";
-	// @codekit-prepend "media/types/TL.Media.Storify.js";
-	// @codekit-prepend "media/types/TL.Media.Text.js";
-	// @codekit-prepend "media/types/TL.Media.Twitter.js";
-	// @codekit-prepend "media/types/TL.Media.TwitterEmbed.js";
-	// @codekit-prepend "media/types/TL.Media.Vimeo.js";
-	// @codekit-prepend "media/types/TL.Media.Vine.js";
-	// @codekit-prepend "media/types/TL.Media.Website.js";
-	// @codekit-prepend "media/types/TL.Media.Wikipedia.js";
-	// @codekit-prepend "media/types/TL.Media.YouTube.js";
+  // @codekit-prepend "media/types/TL.Media.Blockquote.js";
+  // @codekit-prepend "media/types/TL.Media.DailyMotion.js";
+  // @codekit-prepend "media/types/TL.Media.DocumentCloud.js";
+  // @codekit-prepend "media/types/TL.Media.Flickr.js";
+  // @codekit-prepend "media/types/TL.Media.GoogleDoc.js";
+  // @codekit-prepend "media/types/TL.Media.GooglePlus.js";
+  // @codekit-prepend "media/types/TL.Media.IFrame.js";
+  // @codekit-prepend "media/types/TL.Media.Image.js";
+  // @codekit-prepend "media/types/TL.Media.Imgur.js";
+  // @codekit-prepend "media/types/TL.Media.Instagram.js";
+  // @codekit-prepend "media/types/TL.Media.GoogleMap.js";
+  // @codekit-prepend "media/types/TL.Media.PDF.js";
+  // @codekit-prepend "media/types/TL.Media.Profile.js";
+  // @codekit-prepend "media/types/TL.Media.Slider.js";
+  // @codekit-prepend "media/types/TL.Media.SoundCloud.js";
+  // @codekit-prepend "media/types/TL.Media.Spotify.js";
+  // @codekit-prepend "media/types/TL.Media.Storify.js";
+  // @codekit-prepend "media/types/TL.Media.Text.js";
+  // @codekit-prepend "media/types/TL.Media.Twitter.js";
+  // @codekit-prepend "media/types/TL.Media.TwitterEmbed.js";
+  // @codekit-prepend "media/types/TL.Media.Vimeo.js";
+  // @codekit-prepend "media/types/TL.Media.Vine.js";
+  // @codekit-prepend "media/types/TL.Media.Website.js";
+  // @codekit-prepend "media/types/TL.Media.Wikipedia.js";
+  // @codekit-prepend "media/types/TL.Media.YouTube.js";
 
 // STORYSLIDER
-	// @codekit-prepend "slider/TL.Slide.js";
-	// @codekit-prepend "slider/TL.SlideNav.js";
-	// @codekit-prepend "slider/TL.StorySlider.js";
+  // @codekit-prepend "slider/TL.Slide.js";
+  // @codekit-prepend "slider/TL.SlideNav.js";
+  // @codekit-prepend "slider/TL.StorySlider.js";
 
 // TIMENAV
-	// @codekit-prepend "timenav/TL.TimeNav.js";
-	// @codekit-prepend "timenav/TL.TimeMarker.js";
-	// @codekit-prepend "timenav/TL.TimeEra.js";
-	// @codekit-prepend "timenav/TL.TimeGroup.js";
-	// @codekit-prepend "timenav/TL.TimeScale.js";
-	// @codekit-prepend "timenav/TL.TimeAxis.js";
-	// @codekit-prepend "timenav/TL.AxisHelper.js";
+  // @codekit-prepend "timenav/TL.TimeNav.js";
+  // @codekit-prepend "timenav/TL.TimeMarker.js";
+  // @codekit-prepend "timenav/TL.TimeEra.js";
+  // @codekit-prepend "timenav/TL.TimeGroup.js";
+  // @codekit-prepend "timenav/TL.TimeScale.js";
+  // @codekit-prepend "timenav/TL.TimeAxis.js";
+  // @codekit-prepend "timenav/TL.AxisHelper.js";
 
 
 TL.Timeline = TL.Class.extend({
-	includes: [TL.Events, TL.I18NMixins],
-
-	/*  Private Methods
-	================================================== */
-	initialize: function (elem, data, options) {
-		var self = this;
-		if (!options) { options = {}};
-		// Version
-		this.version = "3.2.6";
-
-		// Ready
-		this.ready = false;
-
-		// DOM ELEMENTS
-		this._el = {
-			container: {},
-			storyslider: {},
-			timenav: {},
-			menubar: {}
-		};
-
-		// Determine Container Element
-		if (typeof elem === 'object') {
-			this._el.container = elem;
-		} else {
-			this._el.container = TL.Dom.get(elem);
-		}
-
-		// Slider
-		this._storyslider = {};
-
-		// Style Sheet
-		this._style_sheet = new TL.StyleSheet();
-
-		// TimeNav
-		this._timenav = {};
-
-		// Menu Bar
-		this._menubar = {};
-
-		// Loaded State
-		this._loaded = {storyslider:false, timenav:false};
-
-		// Data Object
-		this.config = null;
-
-		this.options = {
-			script_path: 				"",
-			height: 					this._el.container.offsetHeight,
-			width: 						this._el.container.offsetWidth,
-			debug: 						false,
-			is_embed: 					false,
-			is_full_embed: 				false,
-			hash_bookmark: false,
-			default_bg_color: 			{r:255, g:255, b:255},
-			scale_factor: 				2,						// How many screen widths wide should the timeline be
-			layout: 					"landscape",			// portrait or landscape
-			timenav_position: 			"bottom",				// timeline on top or bottom
-			optimal_tick_width: 		60,						// optimal distance (in pixels) between ticks on axis
-			base_class: 				"tl-timeline", 		// removing tl-timeline will break all default stylesheets...
-			timenav_height: 			null,
-			timenav_height_percentage: 	25,						// Overrides timenav height as a percentage of the screen
-			timenav_mobile_height_percentage: 40, 				// timenav height as a percentage on mobile devices
-			timenav_height_min: 		175,					// Minimum timenav height
-			marker_height_min: 			30,						// Minimum Marker Height
-			marker_width_min: 			100,					// Minimum Marker Width
-			marker_padding: 			5,						// Top Bottom Marker Padding
-			start_at_slide: 			0,
-			start_at_end: 				false,
-			menubar_height: 			0,
-			skinny_size: 				650,
-			medium_size: 				800,
-			relative_date: 				false,					// Use momentjs to show a relative date from the slide.text.date.created_time field
-			use_bc: 					false,					// Use declared suffix on dates earlier than 0
-			// animation
-			duration: 					1000,
-			ease: 						TL.Ease.easeInOutQuint,
-			// interaction
-			dragging: 					true,
-			trackResize: 				true,
-			map_type: 					"stamen:toner-lite",
-			slide_padding_lr: 			100,					// padding on slide of slide
-			slide_default_fade: 		"0%",					// landscape fade
-			zoom_sequence: 				[0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89], // Array of Fibonacci numbers for TimeNav zoom levels
-			language: 					"en",
-			ga_property_id: 			null,
-			track_events: 				['back_to_start','nav_next','nav_previous','zoom_in','zoom_out' ]
-		};
-
-		// Animation Objects
-		this.animator_timenav = null;
-		this.animator_storyslider = null;
-		this.animator_menubar = null;
-
-		// Add message to DOM
-		this.message = new TL.Message({}, {message_class: "tl-message-full"}, this._el.container);
-
-		// Merge Options
-		if (typeof(options.default_bg_color) == "string") {
-			var parsed = TL.Util.hexToRgb(options.default_bg_color); // will clear it out if its invalid
-			if (parsed) {
-				options.default_bg_color = parsed;
-			} else {
-				delete options.default_bg_color
-				trace("Invalid default background color. Ignoring.");
-			}
-		}
-		TL.Util.mergeData(this.options, options);
-
-		window.addEventListener("resize", function(e){
-			self.updateDisplay();
-		});
-
-		// Set Debug Mode
-		TL.debug = this.options.debug;
-
-		// Apply base class to container
-		TL.DomUtil.addClass(this._el.container, 'tl-timeline');
-
-		if (this.options.is_embed) {
-			TL.DomUtil.addClass(this._el.container, 'tl-timeline-embed');
-		}
-
-		if (this.options.is_full_embed) {
-			TL.DomUtil.addClass(this._el.container, 'tl-timeline-full-embed');
-		}
-
-		// Use Relative Date Calculations
-		// NOT YET IMPLEMENTED
-		if(this.options.relative_date) {
-			if (typeof(moment) !== 'undefined') {
-				self._loadLanguage(data);
-			} else {
-				TL.Load.js(this.options.script_path + "/library/moment.js", function() {
-					self._loadLanguage(data);
-					trace("LOAD MOMENTJS")
-				});
-			}
-		} else {
-			self._loadLanguage(data);
-		}
-
-	},
-	_translateError: function(e) {
-	    if(e.hasOwnProperty('stack')) {
-	        trace(e.stack);
-	    }
-	    if(e.message_key) {
-	        return this._(e.message_key) + (e.detail ? ' [' + e.detail +']' : '')
-	    }
-	    return e;
-	},
-
-	/*  Load Language
-	================================================== */
-	_loadLanguage: function(data) {
-		try {
-		    this.options.language = new TL.Language(this.options);
-		    this._initData(data);
-		} catch(e) {
-		    this.showMessage(this._translateError(e));
-		}
-	},
-
-
-	/*  Navigation
-	================================================== */
-
-	// Goto slide with id
-	goToId: function(id) {
-		if (this.current_id != id) {
-			this.current_id = id;
-			this._timenav.goToId(this.current_id);
-			this._storyslider.goToId(this.current_id, false, true);
-			this.fire("change", {unique_id: this.current_id}, this);
-		}
-	},
-
-	// Goto slide n
-	goTo: function(n) {
-		if(this.config.title) {
-			if(n == 0) {
-				this.goToId(this.config.title.unique_id);
-			} else {
-				this.goToId(this.config.events[n - 1].unique_id);
-			}
-		} else {
-			this.goToId(this.config.events[n].unique_id);
-		}
-	},
-
-	// Goto first slide
-	goToStart: function() {
-		this.goTo(0);
-	},
-
-	// Goto last slide
-	goToEnd: function() {
-		var _n = this.config.events.length - 1;
-		this.goTo(this.config.title ? _n + 1 : _n);
-	},
-
-	// Goto previous slide
-	goToPrev: function() {
-		this.goTo(this._getSlideIndex(this.current_id) - 1);
-	},
-
-	// Goto next slide
-	goToNext: function() {
-		this.goTo(this._getSlideIndex(this.current_id) + 1);
-	},
-
-	/* Event maniupluation
-	================================================== */
-
-	// Add an event
-	add: function(data) {
-		var unique_id = this.config.addEvent(data);
-
-		var n = this._getEventIndex(unique_id);
-		var d = this.config.events[n];
-
-		this._storyslider.createSlide(d, this.config.title ? n+1 : n);
-		this._storyslider._updateDrawSlides();
-
-		this._timenav.createMarker(d, n);
-		this._timenav._updateDrawTimeline(false);
-
-		this.fire("added", {unique_id: unique_id});
-	},
-
-	// Remove an event
-	remove: function(n) {
-		if(n >= 0  && n < this.config.events.length) {
-			// If removing the current, nav to new one first
-			if(this.config.events[n].unique_id == this.current_id) {
-				if(n < this.config.events.length - 1) {
-					this.goTo(n + 1);
-				} else {
-					this.goTo(n - 1);
-				}
-			}
-
-			var event = this.config.events.splice(n, 1);
-			delete this.config.event_dict[event[0].unique_id];
-			this._storyslider.destroySlide(this.config.title ? n+1 : n);
-			this._storyslider._updateDrawSlides();
-
-			this._timenav.destroyMarker(n);
-			this._timenav._updateDrawTimeline(false);
-
-			this.fire("removed", {unique_id: event[0].unique_id});
-		}
-	},
-
-	removeId: function(id) {
-		this.remove(this._getEventIndex(id));
-	},
-
-	/* Get slide data
-	================================================== */
-
-	getData: function(n) {
-		if(this.config.title) {
-			if(n == 0) {
-				return this.config.title;
-			} else if(n > 0 && n <= this.config.events.length) {
-				return this.config.events[n - 1];
-			}
-		} else if(n >= 0 && n < this.config.events.length) {
-			return this.config.events[n];
-		}
-		return null;
-	},
-
-	getDataById: function(id) {
-		return this.getData(this._getSlideIndex(id));
-	},
-
-	/* Get slide object
-	================================================== */
-
-	getSlide: function(n) {
-		if(n >= 0 && n < this._storyslider._slides.length) {
-			return this._storyslider._slides[n];
-		}
-		return null;
-	},
-
-	getSlideById: function(id) {
-		return this.getSlide(this._getSlideIndex(id));
-	},
-
-	getCurrentSlide: function() {
-		return this.getSlideById(this.current_id);
-	},
-
-
-	/*  Display
-	================================================== */
-	updateDisplay: function() {
-		if (this.ready) {
-			this._updateDisplay();
-		}
-	},
-
-  	/*
-  		Compute the height of the navigation section of the Timeline, taking into account
-  		the possibility of an explicit height or height percentage, but also honoring the
-  		`timenav_height_min` option value. If `timenav_height` is specified it takes precedence over `timenav_height_percentage` but in either case, if the resultant pixel height is less than `options.timenav_height_min` then the value of `options.timenav_height_min` will be returned. (A minor adjustment is made to the returned value to account for marker padding.)
-
-  		Arguments:
-  		@timenav_height (optional): an integer value for the desired height in pixels
-  		@timenav_height_percentage (optional): an integer between 1 and 100
-
-  	 */
-	_calculateTimeNavHeight: function(timenav_height, timenav_height_percentage) {
-
-		var height = 0;
-
-		if (timenav_height) {
-			height = timenav_height;
-		} else {
-			if (this.options.timenav_height_percentage || timenav_height_percentage) {
-				if (timenav_height_percentage) {
-					height = Math.round((this.options.height/100)*timenav_height_percentage);
-				} else {
-					height = Math.round((this.options.height/100)*this.options.timenav_height_percentage);
-				}
-
-			}
-		}
-
-		// Set new minimum based on how many rows needed
-		if (this._timenav.ready) {
-			if (this.options.timenav_height_min < this._timenav.getMinimumHeight()) {
-				this.options.timenav_height_min = this._timenav.getMinimumHeight();
-			}
-		}
-
-		// If height is less than minimum set it to minimum
-		if (height < this.options.timenav_height_min) {
-			height = this.options.timenav_height_min;
-		}
-
-		height = height - (this.options.marker_padding * 2);
-
-		return height;
-	},
-
-	/*  Private Methods
-	================================================== */
-
-	// Update View
-	_updateDisplay: function(timenav_height, animate, d) {
-		var duration    = this.options.duration,
-		display_class   = this.options.base_class,
-		menu_position   = 0,
-		self      = this;
-
-		if (d) {
-			duration = d;
-		}
-
-		// Update width and height
-		this.options.width = this._el.container.offsetWidth;
-		this.options.height = this._el.container.offsetHeight;
-
-		// Check if skinny
-		if (this.options.width <= this.options.skinny_size) {
-			display_class += " tl-skinny";
-			this.options.layout = "portrait";
-		} else if (this.options.width <= this.options.medium_size) {
-			display_class += " tl-medium";
-			this.options.layout = "landscape";
-		} else {
-			this.options.layout = "landscape";
-		}
-
-		// Detect Mobile and Update Orientation on Touch devices
-		if (TL.Browser.touch) {
-			this.options.layout = TL.Browser.orientation();
-		}
-
-		if (TL.Browser.mobile) {
-			display_class += " tl-mobile";
-			// Set TimeNav Height
-			this.options.timenav_height = this._calculateTimeNavHeight(timenav_height, this.options.timenav_mobile_height_percentage);
-		} else {
-			// Set TimeNav Height
-			this.options.timenav_height = this._calculateTimeNavHeight(timenav_height);
-		}
-
-		// LAYOUT
-		if (this.options.layout == "portrait") {
-			// Portrait
-			display_class += " tl-layout-portrait";
-
-		} else {
-			// Landscape
-			display_class += " tl-layout-landscape";
-
-		}
-
-		// Set StorySlider Height
-		this.options.storyslider_height = (this.options.height - this.options.timenav_height);
-
-		// Positon Menu
-		if (this.options.timenav_position == "top") {
-			menu_position = ( Math.ceil(this.options.timenav_height)/2 ) - (this._el.menubar.offsetHeight/2) - (39/2) ;
-		} else {
-			menu_position = Math.round(this.options.storyslider_height + 1 + ( Math.ceil(this.options.timenav_height)/2 ) - (this._el.menubar.offsetHeight/2) - (35/2));
-		}
-
-
-		if (animate) {
-
-			// Animate TimeNav
-
-			/*
-			if (this.animator_timenav) {
-			this.animator_timenav.stop();
-			}
-
-			this.animator_timenav = TL.Animate(this._el.timenav, {
-			height:   (this.options.timenav_height) + "px",
-			duration:   duration/4,
-			easing:   TL.Ease.easeOutStrong,
-			complete: function () {
-			//self._map.updateDisplay(self.options.width, self.options.timenav_height, animate, d, self.options.menubar_height);
-			}
-			});
-			*/
-
-			this._el.timenav.style.height = Math.ceil(this.options.timenav_height) + "px";
-
-			// Animate StorySlider
-			if (this.animator_storyslider) {
-				this.animator_storyslider.stop();
-			}
-			this.animator_storyslider = TL.Animate(this._el.storyslider, {
-				height:   this.options.storyslider_height + "px",
-				duration:   duration/2,
-				easing:   TL.Ease.easeOutStrong
-			});
-
-			// Animate Menubar
-			if (this.animator_menubar) {
-				this.animator_menubar.stop();
-			}
-
-			this.animator_menubar = TL.Animate(this._el.menubar, {
-				top:  menu_position + "px",
-				duration:   duration/2,
-				easing:   TL.Ease.easeOutStrong
-			});
-
-		} else {
-			// TimeNav
-			this._el.timenav.style.height = Math.ceil(this.options.timenav_height) + "px";
-
-			// StorySlider
-			this._el.storyslider.style.height = this.options.storyslider_height + "px";
-
-			// Menubar
-			this._el.menubar.style.top = menu_position + "px";
-		}
-
-		if (this.message) {
-			this.message.updateDisplay(this.options.width, this.options.height);
-		}
-		// Update Component Displays
-		this._timenav.updateDisplay(this.options.width, this.options.timenav_height, animate);
-		this._storyslider.updateDisplay(this.options.width, this.options.storyslider_height, animate, this.options.layout);
-
-		// Apply class
-		this._el.container.className = display_class;
-
-	},
-
-	// Update hashbookmark in the url bar
-	_updateHashBookmark: function(id) {
-		var hash = "#" + "event-" + id.toString();
-		if (window.location.protocol != 'file:') {
-			window.history.replaceState(null, "Browsing TimelineJS", hash);
-		}
-		this.fire("hash_updated", {unique_id:this.current_id, hashbookmark:"#" + "event-" + id.toString()}, this);
-	},
-
-	/*  Init
-	================================================== */
-	// Initialize the data
-	_initData: function(data) {
-		var self = this;
-
-		if (typeof data == 'string') {
-			var self = this;
-			TL.ConfigFactory.makeConfig(data, function(config) {
-				self.setConfig(config);
-			});
-		} else if (TL.TimelineConfig == data.constructor) {
-			this.setConfig(data);
-		} else {
-			this.setConfig(new TL.TimelineConfig(data));
-		}
-	},
-
-	setConfig: function(config) {
-		this.config = config;
-		this.config.validate();
-		this._validateOptions();
-		if (this.config.isValid()) {
-		    try {
-			    this._onDataLoaded();
-			} catch(e) {
-			    this.showMessage("<strong>"+ this._('error') +":</strong> " + this._translateError(e));
-			}
-		} else {
-		    var translated_errs = [];
-
-		    for(var i = 0, errs = this.config.getErrors(); i < errs.length; i++) {
-		        translated_errs.push(this._translateError(errs[i]));
-		    }
-
-			this.showMessage("<strong>"+ this._('error') +":</strong> " + translated_errs.join('<br>'));
-			// should we set 'self.ready'? if not, it won't resize,
-			// but most resizing would only work
-			// if more setup happens
-		}
-	},
-	_validateOptions: function() {
-		// assumes that this.options and this.config have been set.
-		var INTEGER_PROPERTIES = ['timenav_height', 'timenav_height_min', 'marker_height_min', 'marker_width_min', 'marker_padding', 'start_at_slide', 'slide_padding_lr'  ];
-
-		for (var i = 0; i < INTEGER_PROPERTIES.length; i++) {
-				var opt = INTEGER_PROPERTIES[i];
-				var value = this.options[opt];
-				valid = true;
-				if (typeof(value) == 'number') {
-					valid = (value == parseInt(value))
-				} else if (typeof(value) == "string") {
-					valid = (value.match(/^\s*(\-?\d+)?\s*$/));
-				}
-				if (!valid) {
-					this.config.logError({ message_key: 'invalid_integer_option', detail: opt });
-				}
-		}
-	},
-	// Initialize the layout
-	_initLayout: function () {
-		var self = this;
+  includes: [TL.Events, TL.I18NMixins],
+
+  /*  Private Methods
+  ================================================== */
+  initialize: function (elem, data, options) {
+    var self = this;
+    if (!options) { options = {}};
+    // Version
+    this.version = "3.2.6";
+
+    // Ready
+    this.ready = false;
+
+    // DOM ELEMENTS
+    this._el = {
+      container: {},
+      storyslider: {},
+      timenav: {},
+      menubar: {}
+    };
+
+    // Determine Container Element
+    if (typeof elem === 'object') {
+      this._el.container = elem;
+    } else {
+      this._el.container = TL.Dom.get(elem);
+    }
+
+    // Slider
+    this._storyslider = {};
+
+    // Style Sheet
+    this._style_sheet = new TL.StyleSheet();
+
+    // TimeNav
+    this._timenav = {};
+
+    // Menu Bar
+    this._menubar = {};
+
+    // Loaded State
+    this._loaded = {storyslider:false, timenav:false};
+
+    // Data Object
+    this.config = null;
+
+    this.options = {
+      script_path: 				"",
+      height: 					this._el.container.offsetHeight,
+      width: 						this._el.container.offsetWidth,
+      debug: 						true,
+      is_embed: 					false,
+      is_full_embed: 				false,
+      hash_bookmark: false,
+      default_bg_color: 			{r:255, g:255, b:255},
+      scale_factor: 				2,						// How many screen widths wide should the timeline be
+      layout: 					"landscape",			// portrait or landscape
+      timenav_position: 			"bottom",				// timeline on top or bottom
+      optimal_tick_width: 		60,						// optimal distance (in pixels) between ticks on axis
+      base_class: 				"tl-timeline", 		// removing tl-timeline will break all default stylesheets...
+      timenav_height: 			null,
+      timenav_height_percentage: 	25,						// Overrides timenav height as a percentage of the screen
+      timenav_mobile_height_percentage: 40, 				// timenav height as a percentage on mobile devices
+      timenav_height_min: 		175,					// Minimum timenav height
+      marker_height_min: 			30,						// Minimum Marker Height
+      marker_width_min: 			100,					// Minimum Marker Width
+      marker_padding: 			5,						// Top Bottom Marker Padding
+      start_at_slide: 			0,
+      start_at_end: 				false,
+      menubar_height: 			0,
+      skinny_size: 				650,
+      medium_size: 				800,
+      relative_date: 				false,					// Use momentjs to show a relative date from the slide.text.date.created_time field
+      use_bc: 					false,					// Use declared suffix on dates earlier than 0
+      // animation
+      duration: 					1000,
+      ease: 						TL.Ease.easeInOutQuint,
+      // interaction
+      dragging: 					true,
+      trackResize: 				true,
+      map_type: 					"stamen:toner-lite",
+      slide_padding_lr: 			100,					// padding on slide of slide
+      slide_default_fade: 		"0%",					// landscape fade
+      zoom_sequence: 				[0.5, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89], // Array of Fibonacci numbers for TimeNav zoom levels
+      language: 					"en",
+      ga_property_id: 			null,
+      track_events: 				['back_to_start','nav_next','nav_previous','zoom_in','zoom_out' ]
+    };
+
+    // Animation Objects
+    this.animator_timenav = null;
+    this.animator_storyslider = null;
+    this.animator_menubar = null;
+
+    // Add message to DOM
+    this.message = new TL.Message({}, {message_class: "tl-message-full"}, this._el.container);
+
+    // Merge Options
+    if (typeof(options.default_bg_color) == "string") {
+      var parsed = TL.Util.hexToRgb(options.default_bg_color); // will clear it out if its invalid
+      if (parsed) {
+        options.default_bg_color = parsed;
+      } else {
+        delete options.default_bg_color
+        trace("Invalid default background color. Ignoring.");
+      }
+    }
+    TL.Util.mergeData(this.options, options);
+
+    window.addEventListener("resize", function(e){
+      self.updateDisplay();
+    });
+
+    // Set Debug Mode
+    TL.debug = this.options.debug;
+
+    // Apply base class to container
+    TL.DomUtil.addClass(this._el.container, 'tl-timeline');
+
+    if (this.options.is_embed) {
+      TL.DomUtil.addClass(this._el.container, 'tl-timeline-embed');
+    }
+
+    if (this.options.is_full_embed) {
+      TL.DomUtil.addClass(this._el.container, 'tl-timeline-full-embed');
+    }
+
+    // Use Relative Date Calculations
+    // NOT YET IMPLEMENTED
+    if(this.options.relative_date) {
+      if (typeof(moment) !== 'undefined') {
+        self._loadLanguage(data);
+      } else {
+        TL.Load.js(this.options.script_path + "/library/moment.js", function() {
+          self._loadLanguage(data);
+          trace("LOAD MOMENTJS")
+        });
+      }
+    } else {
+      self._loadLanguage(data);
+    }
+
+  },
+  _translateError: function(e) {
+      if(e.hasOwnProperty('stack')) {
+          trace(e.stack);
+      }
+      if(e.message_key) {
+          return this._(e.message_key) + (e.detail ? ' [' + e.detail +']' : '')
+      }
+      return e;
+  },
+
+  /*  Load Language
+  ================================================== */
+  _loadLanguage: function(data) {
+    try {
+        this.options.language = new TL.Language(this.options);
+        this._initData(data);
+    } catch(e) {
+        this.showMessage(this._translateError(e));
+    }
+  },
+
+
+  /*  Navigation
+  ================================================== */
+
+  // Goto slide with id
+  goToId: function(id) {
+    if (this.current_id != id) {
+      this.current_id = id;
+      this._timenav.goToId(this.current_id);
+      this._storyslider.goToId(this.current_id, false, true);
+      this.fire("change", {unique_id: this.current_id}, this);
+    }
+  },
+
+  // Goto slide n
+  goTo: function(n) {
+    if(this.config.title) {
+      if(n == 0) {
+        this.goToId(this.config.title.unique_id);
+      } else {
+        this.goToId(this.config.events[n - 1].unique_id);
+      }
+    } else {
+      this.goToId(this.config.events[n].unique_id);
+    }
+  },
+
+  // Goto first slide
+  goToStart: function() {
+    this.goTo(0);
+  },
+
+  // Goto last slide
+  goToEnd: function() {
+    var _n = this.config.events.length - 1;
+    this.goTo(this.config.title ? _n + 1 : _n);
+  },
+
+  // Goto previous slide
+  goToPrev: function() {
+    this.goTo(this._getSlideIndex(this.current_id) - 1);
+  },
+
+  // Goto next slide
+  goToNext: function() {
+    this.goTo(this._getSlideIndex(this.current_id) + 1);
+  },
+
+  /* Event maniupluation
+  ================================================== */
+
+  // Add an event
+  add: function(data) {
+    var unique_id = this.config.addEvent(data);
+
+    var n = this._getEventIndex(unique_id);
+    var d = this.config.events[n];
+
+    this._storyslider.createSlide(d, this.config.title ? n+1 : n);
+    this._storyslider._updateDrawSlides();
+
+    this._timenav.createMarker(d, n);
+    this._timenav._updateDrawTimeline(false);
+
+    this.fire("added", {unique_id: unique_id});
+  },
+
+  // Remove an event
+  remove: function(n) {
+    if(n >= 0  && n < this.config.events.length) {
+      // If removing the current, nav to new one first
+      if(this.config.events[n].unique_id == this.current_id) {
+        if(n < this.config.events.length - 1) {
+          this.goTo(n + 1);
+        } else {
+          this.goTo(n - 1);
+        }
+      }
+
+      var event = this.config.events.splice(n, 1);
+      delete this.config.event_dict[event[0].unique_id];
+      this._storyslider.destroySlide(this.config.title ? n+1 : n);
+      this._storyslider._updateDrawSlides();
+
+      this._timenav.destroyMarker(n);
+      this._timenav._updateDrawTimeline(false);
+
+      this.fire("removed", {unique_id: event[0].unique_id});
+    }
+  },
+
+  removeId: function(id) {
+    this.remove(this._getEventIndex(id));
+  },
+
+  /* Get slide data
+  ================================================== */
+
+  getData: function(n) {
+    if(this.config.title) {
+      if(n == 0) {
+        return this.config.title;
+      } else if(n > 0 && n <= this.config.events.length) {
+        return this.config.events[n - 1];
+      }
+    } else if(n >= 0 && n < this.config.events.length) {
+      return this.config.events[n];
+    }
+    return null;
+  },
+
+  getDataById: function(id) {
+    return this.getData(this._getSlideIndex(id));
+  },
+
+  /* Get slide object
+  ================================================== */
+
+  getSlide: function(n) {
+    if(n >= 0 && n < this._storyslider._slides.length) {
+      return this._storyslider._slides[n];
+    }
+    return null;
+  },
+
+  getSlideById: function(id) {
+    return this.getSlide(this._getSlideIndex(id));
+  },
+
+  getCurrentSlide: function() {
+    return this.getSlideById(this.current_id);
+  },
+
+
+  /*  Display
+  ================================================== */
+  updateDisplay: function() {
+    if (this.ready) {
+      this._updateDisplay();
+    }
+  },
+
+    /*
+      Compute the height of the navigation section of the Timeline, taking into account
+      the possibility of an explicit height or height percentage, but also honoring the
+      `timenav_height_min` option value. If `timenav_height` is specified it takes precedence over `timenav_height_percentage` but in either case, if the resultant pixel height is less than `options.timenav_height_min` then the value of `options.timenav_height_min` will be returned. (A minor adjustment is made to the returned value to account for marker padding.)
+
+      Arguments:
+      @timenav_height (optional): an integer value for the desired height in pixels
+      @timenav_height_percentage (optional): an integer between 1 and 100
+
+     */
+  _calculateTimeNavHeight: function(timenav_height, timenav_height_percentage) {
+
+    var height = 0;
+
+    if (timenav_height) {
+      height = timenav_height;
+    } else {
+      if (this.options.timenav_height_percentage || timenav_height_percentage) {
+        if (timenav_height_percentage) {
+          height = Math.round((this.options.height/100)*timenav_height_percentage);
+        } else {
+          height = Math.round((this.options.height/100)*this.options.timenav_height_percentage);
+        }
+
+      }
+    }
+
+    // Set new minimum based on how many rows needed
+    if (this._timenav.ready) {
+      if (this.options.timenav_height_min < this._timenav.getMinimumHeight()) {
+        this.options.timenav_height_min = this._timenav.getMinimumHeight();
+      }
+    }
+
+    // If height is less than minimum set it to minimum
+    if (height < this.options.timenav_height_min) {
+      height = this.options.timenav_height_min;
+    }
+
+    height = height - (this.options.marker_padding * 2);
+
+    return height;
+  },
+
+  /*  Private Methods
+  ================================================== */
+
+  // Update View
+  _updateDisplay: function(timenav_height, animate, d) {
+    var duration    = this.options.duration,
+    display_class   = this.options.base_class,
+    menu_position   = 0,
+    self      = this;
+
+    if (d) {
+      duration = d;
+    }
+
+    // Update width and height
+    this.options.width = this._el.container.offsetWidth;
+    this.options.height = this._el.container.offsetHeight;
+
+    // Check if skinny
+    if (this.options.width <= this.options.skinny_size) {
+      display_class += " tl-skinny";
+      this.options.layout = "portrait";
+    } else if (this.options.width <= this.options.medium_size) {
+      display_class += " tl-medium";
+      this.options.layout = "landscape";
+    } else {
+      this.options.layout = "landscape";
+    }
+
+    // Detect Mobile and Update Orientation on Touch devices
+    if (TL.Browser.touch) {
+      this.options.layout = TL.Browser.orientation();
+    }
+
+    if (TL.Browser.mobile) {
+      display_class += " tl-mobile";
+      // Set TimeNav Height
+      this.options.timenav_height = this._calculateTimeNavHeight(timenav_height, this.options.timenav_mobile_height_percentage);
+    } else {
+      // Set TimeNav Height
+      this.options.timenav_height = this._calculateTimeNavHeight(timenav_height);
+    }
+
+    // LAYOUT
+    if (this.options.layout == "portrait") {
+      // Portrait
+      display_class += " tl-layout-portrait";
+
+    } else {
+      // Landscape
+      display_class += " tl-layout-landscape";
+
+    }
+
+    // Set StorySlider Height
+    this.options.storyslider_height = (this.options.height - this.options.timenav_height);
+
+    // Positon Menu
+    if (this.options.timenav_position == "top") {
+      menu_position = ( Math.ceil(this.options.timenav_height)/2 ) - (this._el.menubar.offsetHeight/2) - (39/2) ;
+    } else {
+      menu_position = Math.round(this.options.storyslider_height + 1 + ( Math.ceil(this.options.timenav_height)/2 ) - (this._el.menubar.offsetHeight/2) - (35/2));
+    }
+
+
+    if (animate) {
+
+      // Animate TimeNav
+
+      /*
+      if (this.animator_timenav) {
+      this.animator_timenav.stop();
+      }
+
+      this.animator_timenav = TL.Animate(this._el.timenav, {
+      height:   (this.options.timenav_height) + "px",
+      duration:   duration/4,
+      easing:   TL.Ease.easeOutStrong,
+      complete: function () {
+      //self._map.updateDisplay(self.options.width, self.options.timenav_height, animate, d, self.options.menubar_height);
+      }
+      });
+      */
+
+      this._el.timenav.style.height = Math.ceil(this.options.timenav_height) + "px";
+
+      // Animate StorySlider
+      if (this.animator_storyslider) {
+        this.animator_storyslider.stop();
+      }
+      this.animator_storyslider = TL.Animate(this._el.storyslider, {
+        height:   this.options.storyslider_height + "px",
+        duration:   duration/2,
+        easing:   TL.Ease.easeOutStrong
+      });
+
+      // Animate Menubar
+      if (this.animator_menubar) {
+        this.animator_menubar.stop();
+      }
+
+      this.animator_menubar = TL.Animate(this._el.menubar, {
+        top:  menu_position + "px",
+        duration:   duration/2,
+        easing:   TL.Ease.easeOutStrong
+      });
+
+    } else {
+      // TimeNav
+      this._el.timenav.style.height = Math.ceil(this.options.timenav_height) + "px";
+
+      // StorySlider
+      this._el.storyslider.style.height = this.options.storyslider_height + "px";
+
+      // Menubar
+      this._el.menubar.style.top = menu_position + "px";
+    }
+
+    if (this.message) {
+      this.message.updateDisplay(this.options.width, this.options.height);
+    }
+    // Update Component Displays
+    this._timenav.updateDisplay(this.options.width, this.options.timenav_height, animate);
+    this._storyslider.updateDisplay(this.options.width, this.options.storyslider_height, animate, this.options.layout);
+
+    // Apply class
+    this._el.container.className = display_class;
+
+  },
+
+  // Update hashbookmark in the url bar
+  _updateHashBookmark: function(id) {
+    var hash = "#" + "event-" + id.toString();
+    if (window.location.protocol != 'file:') {
+      window.history.replaceState(null, "Browsing TimelineJS", hash);
+    }
+    this.fire("hash_updated", {unique_id:this.current_id, hashbookmark:"#" + "event-" + id.toString()}, this);
+  },
+
+  /*  Init
+  ================================================== */
+  // Initialize the data
+  _initData: function(data) {
+    var self = this;
+
+    if (typeof data == 'string') {
+      var self = this;
+      TL.ConfigFactory.makeConfig(data, function(config) {
+        self.setConfig(config);
+      });
+    } else if (TL.TimelineConfig == data.constructor) {
+      this.setConfig(data);
+    } else {
+      this.setConfig(new TL.TimelineConfig(data));
+    }
+  },
+
+  setConfig: function(config) {
+    this.config = config;
+    this.config.validate();
+    this._validateOptions();
+    if (this.config.isValid()) {
+        try {
+          this._onDataLoaded();
+      } catch(e) {
+          this.showMessage("<strong>"+ this._('error') +":</strong> " + this._translateError(e));
+      }
+    } else {
+        var translated_errs = [];
+
+        for(var i = 0, errs = this.config.getErrors(); i < errs.length; i++) {
+            translated_errs.push(this._translateError(errs[i]));
+        }
+
+      this.showMessage("<strong>"+ this._('error') +":</strong> " + translated_errs.join('<br>'));
+      // should we set 'self.ready'? if not, it won't resize,
+      // but most resizing would only work
+      // if more setup happens
+    }
+  },
+  _validateOptions: function() {
+    // assumes that this.options and this.config have been set.
+    var INTEGER_PROPERTIES = ['timenav_height', 'timenav_height_min', 'marker_height_min', 'marker_width_min', 'marker_padding', 'start_at_slide', 'slide_padding_lr'  ];
+
+    for (var i = 0; i < INTEGER_PROPERTIES.length; i++) {
+        var opt = INTEGER_PROPERTIES[i];
+        var value = this.options[opt];
+        valid = true;
+        if (typeof(value) == 'number') {
+          valid = (value == parseInt(value))
+        } else if (typeof(value) == "string") {
+          valid = (value.match(/^\s*(\-?\d+)?\s*$/));
+        }
+        if (!valid) {
+          this.config.logError({ message_key: 'invalid_integer_option', detail: opt });
+        }
+    }
+  },
+  // Initialize the layout
+  _initLayout: function () {
+    var self = this;
 
         this.message.removeFrom(this._el.container);
-		this._el.container.innerHTML = "";
+    this._el.container.innerHTML = "";
 
-		// Create Layout
-		if (this.options.timenav_position == "top") {
-			this._el.timenav		= TL.Dom.create('div', 'tl-timenav', this._el.container);
-			this._el.storyslider	= TL.Dom.create('div', 'tl-storyslider', this._el.container);
-		} else {
-			this._el.storyslider  	= TL.Dom.create('div', 'tl-storyslider', this._el.container);
-			this._el.timenav		= TL.Dom.create('div', 'tl-timenav', this._el.container);
-		}
+    // Create Layout
+    if (this.options.timenav_position == "top") {
+      this._el.timenav		= TL.Dom.create('div', 'tl-timenav', this._el.container);
+      this._el.storyslider	= TL.Dom.create('div', 'tl-storyslider', this._el.container);
+    } else {
+      this._el.storyslider  	= TL.Dom.create('div', 'tl-storyslider', this._el.container);
+      this._el.timenav		= TL.Dom.create('div', 'tl-timenav', this._el.container);
+    }
 
-		this._el.menubar			= TL.Dom.create('div', 'tl-menubar', this._el.container);
+    this._el.menubar			= TL.Dom.create('div', 'tl-menubar', this._el.container);
 
 
-		// Initial Default Layout
-		this.options.width        = this._el.container.offsetWidth;
-		this.options.height       = this._el.container.offsetHeight;
-		this._el.storyslider.style.top  = "1px";
+    // Initial Default Layout
+    this.options.width        = this._el.container.offsetWidth;
+    this.options.height       = this._el.container.offsetHeight;
+    this._el.storyslider.style.top  = "1px";
 
-		// Set TimeNav Height
-		this.options.timenav_height = this._calculateTimeNavHeight(this.options.timenav_height);
+    // Set TimeNav Height
+    this.options.timenav_height = this._calculateTimeNavHeight(this.options.timenav_height);
 
-		// Create TimeNav
-		this._timenav = new TL.TimeNav(this._el.timenav, this.config, this.options);
-		this._timenav.on('loaded', this._onTimeNavLoaded, this);
-		this._timenav.on('update_timenav_min', this._updateTimeNavHeightMin, this);
-		this._timenav.options.height = this.options.timenav_height;
-		this._timenav.init();
+    // Create TimeNav
+    this._timenav = new TL.TimeNav(this._el.timenav, this.config, this.options);
+    this._timenav.on('loaded', this._onTimeNavLoaded, this);
+    this._timenav.on('update_timenav_min', this._updateTimeNavHeightMin, this);
+    this._timenav.options.height = this.options.timenav_height;
+    this._timenav.init();
 
         // intial_zoom cannot be applied before the timenav has been created
         if (this.options.initial_zoom) {
@@ -13158,230 +13158,229 @@ TL.Timeline = TL.Class.extend({
             this.setZoom(this.options.initial_zoom);
         }
 
-		// Create StorySlider
-		this._storyslider = new TL.StorySlider(this._el.storyslider, this.config, this.options);
-		this._storyslider.on('loaded', this._onStorySliderLoaded, this);
-		this._storyslider.init();
+    // Create StorySlider
+    this._storyslider = new TL.StorySlider(this._el.storyslider, this.config, this.options);
+    this._storyslider.on('loaded', this._onStorySliderLoaded, this);
+    this._storyslider.init();
 
-		// Create Menu Bar
-		this._menubar = new TL.MenuBar(this._el.menubar, this._el.container, this.options);
+    // Create Menu Bar
+    this._menubar = new TL.MenuBar(this._el.menubar, this._el.container, this.options);
 
-		// LAYOUT
-		if (this.options.layout == "portrait") {
-			this.options.storyslider_height = (this.options.height - this.options.timenav_height - 1);
-		} else {
-			this.options.storyslider_height = (this.options.height - 1);
-		}
+    // LAYOUT
+    if (this.options.layout == "portrait") {
+      this.options.storyslider_height = (this.options.height - this.options.timenav_height - 1);
+    } else {
+      this.options.storyslider_height = (this.options.height - 1);
+    }
 
 
-		// Update Display
-		this._updateDisplay(this._timenav.options.height, true, 2000);
+    // Update Display
+    this._updateDisplay(this._timenav.options.height, true, 2000);
 
-	},
+  },
 
   /* Depends upon _initLayout because these events are on things the layout initializes */
-	_initEvents: function () {
-		// TimeNav Events
-		this._timenav.on('change', this._onTimeNavChange, this);
-		this._timenav.on('zoomtoggle', this._onZoomToggle, this);
+  _initEvents: function () {
+    // TimeNav Events
+    this._timenav.on('change', this._onTimeNavChange, this);
+    this._timenav.on('zoomtoggle', this._onZoomToggle, this);
 
-		// StorySlider Events
-		this._storyslider.on('change', this._onSlideChange, this);
-		this._storyslider.on('colorchange', this._onColorChange, this);
-		this._storyslider.on('nav_next', this._onStorySliderNext, this);
-		this._storyslider.on('nav_previous', this._onStorySliderPrevious, this);
+    // StorySlider Events
+    this._storyslider.on('change', this._onSlideChange, this);
+    this._storyslider.on('colorchange', this._onColorChange, this);
+    this._storyslider.on('nav_next', this._onStorySliderNext, this);
+    this._storyslider.on('nav_previous', this._onStorySliderPrevious, this);
 
-		// Menubar Events
-		this._menubar.on('zoom_in', this._onZoomIn, this);
-		this._menubar.on('zoom_out', this._onZoomOut, this);
-		this._menubar.on('back_to_start', this._onBackToStart, this);
+    // Menubar Events
+    this._menubar.on('zoom_in', this._onZoomIn, this);
+    this._menubar.on('zoom_out', this._onZoomOut, this);
+    this._menubar.on('back_to_start', this._onBackToStart, this);
 
-	},
+  },
 
-	/* Analytics
-	================================================== */
-	_initGoogleAnalytics: function() {
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  /* Analytics
+  ================================================== */
+  _initGoogleAnalytics: function() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', this.options.ga_property_id, 'auto');
-	},
+    ga('create', this.options.ga_property_id, 'auto');
+  },
 
-	_initAnalytics: function() {
-		if (this.options.ga_property_id === null) { return; }
-		this._initGoogleAnalytics();
+  _initAnalytics: function() {
+    if (this.options.ga_property_id === null) { return; }
+    this._initGoogleAnalytics();
         ga('send', 'pageview');
-		var events = this.options.track_events;
-		for (i=0; i < events.length; i++) {
-			var event_ = events[i];
-			this.addEventListener(event_, function(e) {
-				ga('send', 'event', e.type, 'clicked');
-			});
-		}
-	},
+    var events = this.options.track_events;
+    for (i=0; i < events.length; i++) {
+      var event_ = events[i];
+      this.addEventListener(event_, function(e) {
+        ga('send', 'event', e.type, 'clicked');
+      });
+    }
+  },
 
-	_onZoomToggle: function(e) {
-		if (e.zoom == "in") {
-			this._menubar.toogleZoomIn(e.show);
-		} else if (e.zoom == "out") {
-			this._menubar.toogleZoomOut(e.show);
-		}
+  _onZoomToggle: function(e) {
+    if (e.zoom == "in") {
+      this._menubar.toogleZoomIn(e.show);
+    } else if (e.zoom == "out") {
+      this._menubar.toogleZoomOut(e.show);
+    }
 
-	},
+  },
 
-	/* Get index of event by id
-	================================================== */
-	_getEventIndex: function(id) {
-		for(var i = 0; i < this.config.events.length; i++) {
-			if(id == this.config.events[i].unique_id) {
-				return i;
-			}
-		}
-		return -1;
-	},
+  /* Get index of event by id
+  ================================================== */
+  _getEventIndex: function(id) {
+    for(var i = 0; i < this.config.events.length; i++) {
+      if(id == this.config.events[i].unique_id) {
+        return i;
+      }
+    }
+    return -1;
+  },
 
-	/*  Get index of slide by id
-	================================================== */
-	_getSlideIndex: function(id) {
-		if(this.config.title && this.config.title.unique_id == id) {
-			return 0;
-		}
-		for(var i = 0; i < this.config.events.length; i++) {
-			if(id == this.config.events[i].unique_id) {
-				return this.config.title ? i+1 : i;
-			}
-		}
-		return -1;
-	},
+  /*  Get index of slide by id
+  ================================================== */
+  _getSlideIndex: function(id) {
+    if(this.config.title && this.config.title.unique_id == id) {
+      return 0;
+    }
+    for(var i = 0; i < this.config.events.length; i++) {
+      if(id == this.config.events[i].unique_id) {
+        return this.config.title ? i+1 : i;
+      }
+    }
+    return -1;
+  },
 
-	/*  Events
-	================================================== */
+  /*  Events
+  ================================================== */
 
-	_onDataLoaded: function(e) {
-		this.fire("dataloaded");
-		this._initLayout();
-		this._initEvents();
-		this._initAnalytics();
-		if (this.message) {
-			this.message.hide();
-		}
+  _onDataLoaded: function(e) {
+    this.fire("dataloaded");
+    this._initLayout();
+    this._initEvents();
+    this._initAnalytics();
+    if (this.message) {
+      this.message.hide();
+    }
 
-		this.ready = true;
+    this.ready = true;
 
-	},
+  },
 
-	showMessage: function(msg) {
-		if (this.message) {
-			this.message.updateMessage(msg);
-		} else {
-			trace("No message display available.")
-			trace(msg);
-		}
-	},
+  showMessage: function(msg) {
+    if (this.message) {
+      this.message.updateMessage(msg);
+    } else {
+      trace("No message display available.")
+      trace(msg);
+    }
+  },
 
-	_onColorChange: function(e) {
-		this.fire("color_change", {unique_id:this.current_id}, this);
-		if (e.color || e.image) {
+  _onColorChange: function(e) {
+    this.fire("color_change", {unique_id:this.current_id}, this);
+    if (e.color || e.image) {
 
-		} else {
+    } else {
 
-		}
-	},
+    }
+  },
 
-	_onSlideChange: function(e) {
-		if (this.current_id != e.unique_id) {
-			this.current_id = e.unique_id;
-			this._timenav.goToId(this.current_id);
-			this._onChange(e);
-		}
-	},
+  _onSlideChange: function(e) {
+    if (this.current_id != e.unique_id) {
+      this.current_id = e.unique_id;
+      this._timenav.goToId(this.current_id);
+      this._onChange(e);
+    }
+  },
 
-	_onTimeNavChange: function(e) {
-		if (this.current_id != e.unique_id) {
-			this.current_id = e.unique_id;
-			this._storyslider.goToId(this.current_id);
-			this._onChange(e);
-		}
-	},
+  _onTimeNavChange: function(e) {
+    if (this.current_id != e.unique_id) {
+      this.current_id = e.unique_id;
+      this._storyslider.goToId(this.current_id);
+      this._onChange(e);
+    }
+  },
 
-	_onChange: function(e) {
-		this.fire("change", {unique_id:this.current_id}, this);
-		if (this.options.hash_bookmark && this.current_id) {
-			this._updateHashBookmark(this.current_id);
-		}
-	},
+  _onChange: function(e) {
+    this.fire("change", {unique_id:this.current_id}, this);
+    if (this.options.hash_bookmark && this.current_id) {
+      this._updateHashBookmark(this.current_id);
+    }
+  },
 
-	_onBackToStart: function(e) {
-		this._storyslider.goTo(0);
-		this.fire("back_to_start", {unique_id:this.current_id}, this);
-	},
+  _onBackToStart: function(e) {
+    this._storyslider.goTo(0);
+    this.fire("back_to_start", {unique_id:this.current_id}, this);
+  },
 
-	/**
-	 * Zoom in and zoom out should be part of the public API.
-	 */
-	zoomIn: function() {
-	    this._timenav.zoomIn();
-	},
-	zoomOut: function() {
-	    this._timenav.zoomOut();
-	},
+  /**
+   * Zoom in and zoom out should be part of the public API.
+   */
+  zoomIn: function() {
+      this._timenav.zoomIn();
+  },
+  zoomOut: function() {
+      this._timenav.zoomOut();
+  },
 
-	setZoom: function(level) {
-	    this._timenav.setZoom(level);
-	},
+  setZoom: function(level) {
+      this._timenav.setZoom(level);
+  },
 
-	_onZoomIn: function(e) {
-		this._timenav.zoomIn();
-		this.fire("zoom_in", {zoom_level:this._timenav.options.scale_factor}, this);
-	},
+  _onZoomIn: function(e) {
+    this._timenav.zoomIn();
+    this.fire("zoom_in", {zoom_level:this._timenav.options.scale_factor}, this);
+  },
 
-	_onZoomOut: function(e) {
-		this._timenav.zoomOut();
-		this.fire("zoom_out", {zoom_level:this._timenav.options.scale_factor}, this);
-	},
+  _onZoomOut: function(e) {
+    this._timenav.zoomOut();
+    this.fire("zoom_out", {zoom_level:this._timenav.options.scale_factor}, this);
+  },
 
-	_onTimeNavLoaded: function() {
-		this._loaded.timenav = true;
-		this._onLoaded();
-	},
+  _onTimeNavLoaded: function() {
+    this._loaded.timenav = true;
+    this._onLoaded();
+  },
 
-	_onStorySliderLoaded: function() {
-		this._loaded.storyslider = true;
-		this._onLoaded();
-	},
+  _onStorySliderLoaded: function() {
+    this._loaded.storyslider = true;
+    this._onLoaded();
+  },
 
-	_onStorySliderNext: function(e) {
-		this.fire("nav_next", e);
-	},
+  _onStorySliderNext: function(e) {
+    this.fire("nav_next", e);
+  },
 
-	_onStorySliderPrevious: function(e) {
-		this.fire("nav_previous", e);
-	},
+  _onStorySliderPrevious: function(e) {
+    this.fire("nav_previous", e);
+  },
 
-	_onLoaded: function() {
-		if (this._loaded.storyslider && this._loaded.timenav) {
-			this.fire("loaded", this.config);
-			// Go to proper slide
-			if (this.options.hash_bookmark && window.location.hash != "") {
-				this.goToId(window.location.hash.replace("#event-", ""));
-			} else {
-				if( TL.Util.isTrue(this.options.start_at_end) || this.options.start_at_slide > this.config.events.length ) {
-					this.goToEnd();
-				} else {
-					this.goTo(this.options.start_at_slide);
-				}
-				if (this.options.hash_bookmark ) {
-					this._updateHashBookmark(this.current_id);
-				}
-			}
+  _onLoaded: function() {
+    if (this._loaded.storyslider && this._loaded.timenav) {
+      this.fire("loaded", this.config);
+      // Go to proper slide
+      if (this.options.hash_bookmark && window.location.hash != "") {
+        this.goToId(window.location.hash.replace("#event-", ""));
+      } else {
+        if( TL.Util.isTrue(this.options.start_at_end) || this.options.start_at_slide > this.config.events.length ) {
+          this.goToEnd();
+        } else {
+          this.goTo(this.options.start_at_slide);
+        }
+        if (this.options.hash_bookmark ) {
+          this._updateHashBookmark(this.current_id);
+        }
+      }
 
-		}
-	}
+    }
+  }
 
 });
 
 TL.Timeline.source_path = (function() {
-	var script_tags = document.getElementsByTagName('script');
-	var src = script_tags[script_tags.length-1].src;
-	return src.substr(0,src.lastIndexOf('/'));
+  var script_tags = document.getElementsByTagName('script');
+  var src = script_tags[script_tags.length-1].src;
+  return src.substr(0,src.lastIndexOf('/'));
 })();
-

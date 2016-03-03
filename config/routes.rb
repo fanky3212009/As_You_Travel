@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-
+  root 'journeys#index'
 
   resources :journeys do
     resources :diary_entries do
       resources :tags, only: [:create, :destroy, :show]
+      resources :comments, only: [:show, :create, :destroy]
     end
     resources :tags, only: [:create, :destroy, :show]
+    resources :comments, only: [:show, :create, :destroy]
   end
 
   resources :tags, only: [:index]
-  
+
 
   resources :users do
     member do
@@ -17,7 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :photos
+  resources :photos do
+    resources :comments, only: [:show, :create, :destroy]
+  end
 
   resources :relationships, only: [:destroy, :create]
   resources :password_resets

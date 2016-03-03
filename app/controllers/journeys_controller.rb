@@ -18,6 +18,8 @@ class JourneysController < ApplicationController
   def show
     @journey = Journey.find(params[:id])
     @diary_entries = @journey.diary_entries
+    @comment = Comment.new
+
   end
 
   def edit

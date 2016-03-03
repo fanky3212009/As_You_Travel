@@ -84,8 +84,21 @@
       <br>
       <div class="dropzone-previews"></div>
       <br>
-
       <%= t.hidden_field :imageable_id, :value => @journey.id %>
      <%= t.hidden_field :imageable_type, :value => @journey.class %>
       <% end  %>
     </div>
+
+<h2>Add a comment:</h2>
+<%= form_for([@journey, @comment]) do |f| %>
+
+<div class="field">
+<%= f.label :comment %><br />
+<%= f.text_area :body %>
+<%= f.hidden_field :commentable_id, :value => @journey.id %>
+<%= f.hidden_field :commentable_type, :value => @journey.class %>
+</div>
+<div class="actions">
+<%= f.submit %>
+</div>
+<% end %>

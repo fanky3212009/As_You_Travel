@@ -26,7 +26,10 @@ class PhotosController < ApplicationController
     # end
 
 
-
+  def show
+    @photo = Photo.find()
+    #code
+  end
 
       #code
 
