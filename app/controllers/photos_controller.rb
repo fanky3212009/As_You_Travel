@@ -1,5 +1,9 @@
 class PhotosController < ApplicationController
 
+  def index
+    
+  end
+
   def create
     # if photo_params[:imageable_type] == DiaryEntry
     # @diary_entry = DiaryEntry.find(photo_params[:imageable_id])
@@ -11,19 +15,6 @@ class PhotosController < ApplicationController
 
     # redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry)
   end
-    # @photo.picture = params[:file]
-      #
-      # respond_to do |format|
-      #   if @photo.save
-      #     format.html
-      #     format.json { render json: @photo }
-      #   else
-      #     format.html
-      #     format.json
-      #   end
-      #
-      # end
-    # end
 
 
   def show

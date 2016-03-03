@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+
   root 'journeys#index'
+
+
 
   resources :journeys do
     resources :diary_entries do
@@ -17,11 +20,11 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers
     end
+    resources :photos do
+      resources :comments, only: [:show, :create, :destroy]
+    end
   end
 
-  resources :photos do
-    resources :comments, only: [:show, :create, :destroy]
-  end
 
   resources :relationships, only: [:destroy, :create]
   resources :password_resets

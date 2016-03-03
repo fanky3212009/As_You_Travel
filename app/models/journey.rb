@@ -3,5 +3,15 @@ class Journey < ActiveRecord::Base
   has_many :diary_entries
   has_many :photos, :as => :imageable
   has_many :tags, :as => :taggable
-  has_many has_many :comments, :as => :commentable
+  has_many :comments, :as => :commentable
+
+  def photo_gallery
+    @photo_gallery = []
+    @photo_gallery << self.photos
+      self.diary_entries.each do |y|
+       	@photo_gallery << y.photos
+      end
+    @photo_gallery  
+  end
+
 end
