@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  root 'journeys#index'
 
   resources :journeys do
     resources :diary_entries do
