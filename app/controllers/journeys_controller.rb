@@ -1,24 +1,21 @@
 class JourneysController < ApplicationController
-  before_action :set_journey, only: [:show, :edit, :update, :destroy]
+  before_action :set_journey, only: [:show, :edit, :update, :destroy, :gallery]
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
 
   def index
-    #code
     @journeys = Journey.all
   end
 
   def new
-    #code
     @journey = Journey.new
-
-    2.times { @journey.photos.build}
-
   end
 
   def show
-    @journey = Journey.find(params[:id])
     @diary_entries = @journey.diary_entries
     @comment = Comment.new
+  end
+
+  def gallery
 
   end
 

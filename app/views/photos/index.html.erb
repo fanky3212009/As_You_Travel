@@ -1,0 +1,11 @@
+<h1>Photo Gallery</h1>
+  <div class="gallerys-container">
+    <% @journeys.each do |f| %>
+      <div class="each-gallery">
+        <%= link_to gallery_journey_path(f) do %>
+          <%= f.title %>
+          <%= image_tag (f.photos.sample.picture.thumb.url) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
