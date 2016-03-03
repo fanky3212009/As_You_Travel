@@ -52,9 +52,9 @@
       });
     });
 
+
      $('#path_map>a').on('click', function (e) {
        e.preventDefault();
-
        $.ajax({
           url: $('#path_map>a').attr('href'),
           type: 'GET',
@@ -96,7 +96,7 @@
 
             map.setStyle("map_style");
 
-                console.log(data);
+                console.log(data[0].title);
 
             var latlngs = [];
             for (var i = 0; i < data.length; i++) {
@@ -112,7 +112,10 @@
               bounds.push(latlng);
               map.addMarker({
                 lat: latlngs[i].lat,
-                lng: latlngs[i].lng
+                lng: latlngs[i].lng,
+                icon: "<%= asset_path('tool.svg') %>",
+                
+                animation: google.maps.Animation.DROP
                 // icon: .
               }
             );
@@ -123,8 +126,12 @@
       });
     });
 
+    var callMap = function () {
+      $('#path_map>a').trigger('click');
+    }
+
      $("#demo01").animatedModal({
-    
+
         animatedIn:'lightSpeedIn',
         animatedOut:'bounceOutDown',
         color:'#3498db',
@@ -133,7 +140,7 @@
             console.log("The animation was called");
         },
         afterOpen: function() {
-            console.log("The animation is completed");
+            callMap();
         },
         beforeClose: function() {
             console.log("The animation was called");

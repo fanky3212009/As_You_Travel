@@ -10,6 +10,9 @@ class JourneysController < ApplicationController
   def new
     #code
     @journey = Journey.new
+
+    2.times { @journey.photos.build}
+
   end
 
   def show
@@ -56,6 +59,7 @@ class JourneysController < ApplicationController
 
   def journey_params
     params.require(:journey)
-          .permit(:title, :description, :location, :start_date, :end_date, :feat_img)
+          .permit(:title, :description, :location, :start_date, :end_date, :feat_img, :imageable_id, :imageable_type, :name, :picture, :file)
+
   end
 end

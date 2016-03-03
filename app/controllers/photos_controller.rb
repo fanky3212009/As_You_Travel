@@ -2,12 +2,14 @@ class PhotosController < ApplicationController
 
   def create
     # if photo_params[:imageable_type] == DiaryEntry
-    @diary_entry = DiaryEntry.find(photo_params[:imageable_id])
+    # @diary_entry = DiaryEntry.find(photo_params[:imageable_id])
     @photo = Photo.new(photo_params)
     @photo.picture = params[:file]
     @photo.save
 
-    redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry)
+    render nothing: true, status: 200
+
+    # redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry)
   end
     # @photo.picture = params[:file]
       #

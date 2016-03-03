@@ -17,10 +17,16 @@ $(document).on('ready page:load', function () {
 
   $('.add-new-tag').on('click', function (e) {
     e.preventDefault();
-    $('.tag-form').css("display", "block");
+    if ($('.tag-form').css("display") == "block") {
+      $('.tag-form').css("display", "none");
+    }
+    else {
+      $('.tag-form').css("display", "block");
+    }
   });
 
   $('#search_tag').on('submit', function (e) {
+    $('.search-tag-result').html(' ')
     e.preventDefault();
     $.ajax({
       url: $('#search_tag').attr('action'),

@@ -15,6 +15,20 @@
  }
 
  #path_map {
-   width: 700px;
-   height: 400px;
+   width: 1500px;
+   height: 500px;
  }
+
+
+#animatedModal {
+   position: fixed;
+   width: 100% !important;
+   height: 50% !important;
+   top: 150px !important;
+   left: 0px;
+   overflow-y: auto;
+   z-index: 9999;
+   opacity: 1;
+   animation-duration: 0.6s;
+   background-color: #03A9F4 !important;
+}

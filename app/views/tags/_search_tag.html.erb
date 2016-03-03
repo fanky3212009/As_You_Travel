@@ -1,5 +1,25 @@
+<ol>
 <% @search_results.each do |t| %>
-  <div class="tag-search-result">
-  <%= t.class.to_s  %> : <%= t.title %>
-  </div>
+  <% if t.class == DiaryEntry %>
+    <%= link_to [t.journey, t] do%>
+    <li>
+      <div class="tag-search-result">
+      <h4><%= t.class.to_s  %> :</h4>
+      <p><%= t.title %></p>
+      <p><%= t.location %></p>
+      </div>
+    </li>
+    <% end %>
+  <% else %>
+    <%= link_to t do%>
+    <li>
+      <div class="tag-search-result">
+      <h4><%= t.class.to_s  %> :</h4>
+      <p><%= t.title %></p>
+      <p><%= t.location %></p>
+      </div>
+    </li>
+    <% end %>
+  <% end %>
 <% end %>
+</ol>

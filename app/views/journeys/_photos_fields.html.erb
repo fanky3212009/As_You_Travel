@@ -1,0 +1,11 @@
+
+
+  <%= f.label :name  %>
+  <br>
+  <%= f.text_field :name %>
+  <br>
+  <div class="dropzone-previews"></div>
+  <br>
+
+  <%= f.hidden_field :imageable_id, :value => @journey.id %>
+  <%= f.hidden_field :imageable_type, :value => @journey.class %>

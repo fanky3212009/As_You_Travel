@@ -24,14 +24,17 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>
-
+    <!-- <%= f.fields_for :photos  do |builder| %>
+     <%= render "photos_fields", :f => builder %>
+    <% end %> -->
   <!-- <div class="field">
     <%= f.label :feature_image %>
     <%= f.text_field :feat_img%>
   </div> -->
 
-
-  <div class="field">
-    <%= f.submit %>
+  <div class="field" id="upload-photos">
+    <%= f.submit "Create" %>
   </div>
 <% end %>
+
+  
