@@ -6,9 +6,11 @@ Rails.application.routes.draw do
 
   resources :journeys do
     resources :diary_entries do
+      resources :favourites, only: [:create, :destroy]
       resources :tags, only: [:create, :destroy, :show]
       resources :comments, only: [:show, :create, :destroy]
     end
+    resources :favourites, only: [:create, :destroy]
     resources :tags, only: [:create, :destroy, :show]
     resources :comments, only: [:show, :create, :destroy]
     member do
@@ -31,7 +33,7 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:destroy, :create]
   resources :password_resets
-  
+
   resources :user_sessions
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout

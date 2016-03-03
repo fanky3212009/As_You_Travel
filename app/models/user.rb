@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :owend_journeys, class_name: "Journey", foreign_key: "owner_id"
   has_many :photos, :as => :imageable
+  has_many :favourites
 
 
   def as_json(options={})

@@ -2,15 +2,16 @@ class Journey < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   has_many :diary_entries
   has_many :photos, :as => :imageable
-
+  has_many :favourites, :as => :favourable
   has_many :tags, :as => :taggable
   has_many :comments, :as => :commentable
 
   def photo_gallery
     @photo_gallery = []
-    @photo_gallery << self.photos
+    @photo_gallery.concat(self.photos)
       self.diary_entries.each do |y|
-         @photo_gallery << y.photos
+         @photo_gallery.concat(y.photos)
+       end
       end
     @photo_gallery
   end

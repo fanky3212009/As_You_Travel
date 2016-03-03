@@ -1,7 +1,7 @@
 class DiaryEntry < ActiveRecord::Base
   belongs_to :journey
   has_many :photos, :as => :imageable
-
+  has_many :favourites, :as => :favourable
   has_many :tags, :as => :taggable
 
   has_many :comments, :as => :commentable
