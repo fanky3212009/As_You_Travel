@@ -29,22 +29,62 @@
   <div class="photo-form">
     <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
 
-    <%= t.label :name  %>
-    <br>
-    <%= t.text_field :name %>
-    <br>
-    <div class="dropzone-previews"></div>
-    <br>
-    <!-- <%= t.hidden_field :picture %> -->
-    <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
-    <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
-    <%= t.submit "Add", class: "submit-picture"  %>
-  <% end  %>
-
-
-
-
+      <%= t.label :name  %>
+      <br>
+      <%= t.text_field :name %>
+      <br>
+      <div class="dropzone-previews"></div>
+      <br>
+      <!-- <%= t.hidden_field :picture %> -->
+      <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
+      <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
+      <%= t.submit "Add", class: "submit-picture"  %>
+    <% end  %>
 
   </div>
+
+  <div class="comments">
+  <h4>Comments:</h4>
+
+    <% @diary_entry.comments.each do |comment| %>
+      <p>
+        <%= "#{comment.user.email}: #{comment.body}" %><br>
+        Added on: <%= comment.created_at %>
+      </p>
+    <% end %>
+  </div>
+
+
+  <% if current_user %>
+     <h4>Write a comment:</h4>
+
+    <%= form_for [@diary_entry.journey, @diary_entry, @comment], :html => {:class => "comment-form"} do |f| %>
+      <% if @comment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+              <ul>
+                      <% @comment.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+      <% end %>
+
+        <div class="field">
+        <%= f.label :comment %><br />
+        <%= f.text_area :body %>
+        <%= f.hidden_field :commentable_id, :value => @diary_entry.id %>
+        <%= f.hidden_field :commentable_type, :value => @diary_entry.class %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
+  <% end %>
+
+
+
   <div id="map"></div>
 </body>

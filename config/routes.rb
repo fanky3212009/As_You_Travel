@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
 
   resources :journeys do
-    resources :diary_entries
+    resources :diary_entries do
+      resources :comments, only: [:show, :create, :destroy]
+
+    end
+    resources :comments, only: [:show, :create, :destroy]
+
   end
 
   resources :users do
@@ -11,7 +16,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :photos
+  resources :photos do
+    resources :comments, only: [:show, :create, :destroy]
+  end
 
   resources :relationships, only: [:destroy, :create]
   resources :password_resets
