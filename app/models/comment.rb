@@ -4,7 +4,9 @@ class Comment < ActiveRecord::Base
 
   def as_json(options={})
     super(#:only => [:first_name,:last_name,:city,:state],
-          :include => :user
+          :include => [
+            :user #=> {:only => [:title, :description, :start_date, :end_date, :feat_img]}
+          ]
     )
   end
 end
