@@ -89,16 +89,18 @@
       <% end  %>
     </div>
 
-<h2>Add a comment:</h2>
-<%= form_for([@journey, @comment]) do |f| %>
 
-<div class="field">
-<%= f.label :comment %><br />
-<%= f.text_area :body %>
-<%= f.hidden_field :commentable_id, :value => @journey.id %>
-<%= f.hidden_field :commentable_type, :value => @journey.class %>
-</div>
-<div class="actions">
-<%= f.submit %>
-</div>
+<div id="path_map"><%= link_to 'My Path', journey_diary_entries_path(@journey) %></div>
+
+<%= render 'comments/list' %>
+
+<% if current_user %>
+  <h4>Write a comment:</h4>
+  <%= form_for [@journey, @comment], :html => {:class => "comment-form"} do |f| %>
+  <%= render partial: 'comments/form', locals: { f: f } %>
+  <% end %>
+
+<% else %>
+  <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
+
 <% end %>

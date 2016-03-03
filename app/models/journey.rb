@@ -2,6 +2,7 @@ class Journey < ActiveRecord::Base
   belongs_to :owner, class_name: "User"
   has_many :diary_entries
   has_many :photos, :as => :imageable
+
   has_many :tags, :as => :taggable
   has_many :comments, :as => :commentable
 
@@ -9,9 +10,9 @@ class Journey < ActiveRecord::Base
     @photo_gallery = []
     @photo_gallery << self.photos
       self.diary_entries.each do |y|
-       	@photo_gallery << y.photos
+         @photo_gallery << y.photos
       end
-    @photo_gallery  
+    @photo_gallery
   end
 
 end
