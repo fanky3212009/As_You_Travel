@@ -2,22 +2,29 @@
 // All this logic will automatically be available in application.js.
 
 
-Dropzone.options.photoDropzone = {
-  paramName: "picture",
-  maxFilesize: 5,
-  addRemoveLinks: true,
-  init: function() {
-    return this.on('removedfile', function(file) {
-      if (file.xhr) {
-        return $.ajax({
-          url: "" + ($(".picture-dropzone").attr("action")) + "/" + (JSON.parse(file.xhr.response).id),
-          type: 'DELETE'
-        });
-      }
-    });
-  }
-};
+$(document).on('ready page:load', function () {
 
+  Dropzone.options.myAwesomeDropzone = {
+
+    init: function() {
+        var submitButton = $(".submit-picture")
+            myDropzone = this; // closure
+
+        submitButton.on("click", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+        });
+
+        // You might want to show the submit button only when
+        // files are dropped here:
+        this.on("addedfile", function() {
+          // Show submit button here and/or inform user to click it.
+        });
+
+      }
+  };
+});
 
 
 // Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element

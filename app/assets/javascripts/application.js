@@ -10,11 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require timeline
-//= require gmaps
-//= require dropzone
 //= require jquery
 //= require jquery_ujs
+//= require dropzone
+//= require timeline
+//= require gmaps
 //= require animatedModal.min
 //= require turbolinks
 //= require_tree .

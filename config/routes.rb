@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
 
   resources :journeys do
-    resources :diary_entries
+    resources :diary_entries do
+      resources :tags, only: [:create, :destroy, :show]
+    end
+    resources :tags, only: [:create, :destroy, :show]
   end
+
+  resources :tags, only: [:index]
+  
 
   resources :users do
     member do

@@ -21,18 +21,23 @@
 
 <% end %>
 
-<!-- <p>
-  <strong>Crypted password:</strong>
-  <%= @user.crypted_password %>
-</p>
-
-<p>
-  <strong>Salt:</strong>
-  <%= @user.salt %>
-</p> -->
-<% @user.owend_journeys.each do |journey| %>
-  <%= link_to journey.title, journey %>
+<div class="search_by_tag">
+<%= form_tag tags_path, method: :get, id: "search_tag" do %>
+  <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
+  <%= submit_tag "Search" %>
 <% end %>
+</div>
+<div class="search-tag-results"></div>
+<br>
+<br>
+
+<div class="user-journey-list">
+<% @user.owend_journeys.each do |journey| %>
+  <div class="user-journey">
+  <%= link_to journey.title, journey %>
+  </div>
+<% end %>
+</div>
 
 <br>
 

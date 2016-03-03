@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301210801) do
+ActiveRecord::Schema.define(version: 20160302190836) do
 
   create_table "diary_entries", force: :cascade do |t|
     t.string   "title"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20160301210801) do
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
   add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "body"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "tags", ["taggable_type", "taggable_id"], name: "index_tags_on_taggable_type_and_taggable_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           null: false

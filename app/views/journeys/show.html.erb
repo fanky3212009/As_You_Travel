@@ -8,6 +8,38 @@
 <p>To: <%= @journey.end_date %></p>
 <p>Owner: <%= @journey.owner.email %></p>
 
+
+  <h4>Tags :</h4>
+    <div id="journey-tags-list" >
+
+        <% @journey.tags.each do |tag| %>
+          <div class="each-tag">
+            <%= tag.body %>
+          </div>
+        <% end  %>
+
+  </div>
+
+  <% if current_user == @journey.owner %>
+    <div class="add-new-tag">
+      <h4><%= link_to "Add Tags" %></h4>
+    </div>
+
+  <div class="tag-form">
+    <%= form_for [@journey, Tag.new] do |t| %>
+
+    <%= t.label :Description  %>
+    <%= t.text_field :body, :placeholder => 'Descripe Your Journey' %>
+    <%= t.hidden_field :taggable_id, :value => @journey.id %>
+    <%= t.hidden_field :taggable_type, :value => @journey.class %>
+    <%= t.submit "Add" %>
+    <% end  %>
+  </div>
+  <% end %>
+
+  <br>
+  <br>
+
 <h1>Diaries</h1>
 
 

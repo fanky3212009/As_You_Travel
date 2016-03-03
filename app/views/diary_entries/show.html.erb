@@ -17,6 +17,38 @@
   <br>
   <p>Content: <%= @diary_entry.content %></p>
 
+  <h4>Tags :</h4>
+    <div id="diary-tags-list" >
+
+        <% @diary_entry.tags.each do |tag| %>
+          <div class="each-tag">
+            <%= tag.body %>
+          </div>
+        <% end  %>
+
+  </div>
+
+  <% if current_user == @diary_entry.journey.owner %>
+    <div class="add-new-tag">
+      <h4><%= link_to "Add Tags" %></h4>
+    </div>
+
+  <div class="tag-form">
+    <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
+
+    <%= t.label :Description  %>
+    <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
+    <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
+    <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+    <%= t.submit "Add" %>
+    <% end  %>
+  </div>
+  <% end %>
+
+  <br>
+  <br>
+
+
 
   <a id="demo01" href="#animatedModal">DEMO01</a>
 
@@ -34,10 +66,11 @@
                     <% @diary_entry.photos.each do |p| %>
                     <%= image_tag "#{p.picture.url}" %>
                     <% end %>
+
+
                   </div>
         </div>
     </div>
-  <br>
 
 
 
@@ -54,12 +87,10 @@
     <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
     <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
     <%= t.submit "Add", class: "submit-picture"  %>
-  <% end  %>
-
-
-
-
-
+    <% end  %>
   </div>
+
+
+
   <div id="map"></div>
 </body>
