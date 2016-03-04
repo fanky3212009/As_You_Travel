@@ -14,5 +14,9 @@
  *= require_self
  *= require timeline
  *= require dropzone/dropzone
+ *= require diary_index/normalize
+ *= require diary_index/square-loader.min
+ *= require diary_index/diary_indexD
+ *= require diary_index/component
  *= require fonts/font.default.css
  */

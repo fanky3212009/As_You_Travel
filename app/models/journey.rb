@@ -12,7 +12,6 @@ class Journey < ActiveRecord::Base
       self.diary_entries.each do |y|
          @photo_gallery.concat(y.photos)
        end
-      end
     @photo_gallery
   end
 

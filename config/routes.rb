@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'journeys#index'
 
-  resources :photos, only: [:create, :show]
+  resources :photos, only: [:create, :show] do
+    resources :comments, only: [:show, :create, :destroy]
+  end
 
   resources :journeys do
     resources :diary_entries do
@@ -25,9 +27,7 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers
     end
-    resources :photos do
-      resources :comments, only: [:show, :create, :destroy]
-    end
+    resources :photos
   end
 
 

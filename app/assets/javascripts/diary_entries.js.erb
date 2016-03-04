@@ -102,7 +102,7 @@
             for (var i = 0; i < data.length; i++) {
               // latlngs[i].lat = data[i].latitude;
               // latlngs[i].lng = data[i].longitude;
-              latlngs.push({lat:data[i].latitude, lng:data[i].longitude})
+              latlngs.push({lat:data[i].latitude, lng:data[i].longitude, title:data[i].title})
 
             }
             var bounds = [];
@@ -114,7 +114,9 @@
                 lat: latlngs[i].lat,
                 lng: latlngs[i].lng,
                 icon: "<%= asset_path('tool.svg') %>",
-                
+                infoWindow: {
+                  content: latlngs[i].title + "<a href=/journeys/ > Go </a>"
+                },
                 animation: google.maps.Animation.DROP
                 // icon: .
               }
