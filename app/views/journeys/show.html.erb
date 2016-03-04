@@ -38,6 +38,12 @@
   <% end %>
 
   <br>
+  <div class="favourite-form">
+    <%= form_for [@journey, Favourite.new] do |f| %>
+    <%= f.button %>
+    <% end %>
+  </div>
+  <br>
   <br>
 
 <h1>Diaries</h1>

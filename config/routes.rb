@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     resources :photos
   end
 
+  resources :favourites, only: [:index]
+
+
 
   resources :relationships, only: [:destroy, :create]
   resources :password_resets
