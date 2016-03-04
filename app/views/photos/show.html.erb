@@ -1,2 +1,15 @@
   <%= image_tag (@photo.picture.url) %>
   <h3><%= @photo.name %></h3>
+
+  <%= render 'comments/list' %>
+
+  <% if current_user %>
+    <h4>Write a comment:</h4>
+    <%= form_for [@photo, @comment], :html => {:class => "comment-form"} do |f| %>
+    <%= render partial: 'comments/form', locals: { f: f } %>
+    <% end %>
+
+  <% else %>
+    <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
+
+  <% end %>

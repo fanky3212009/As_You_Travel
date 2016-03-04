@@ -3,8 +3,13 @@
     <% @journeys.each do |f| %>
       <div class="each-gallery">
         <%= link_to gallery_journey_path(f) do %>
+          <% if f.photo_gallery != [] %>
+            <%= image_tag (f.photo_gallery.sample.picture.thumb.url) %>
+          <% else %>
+            <%= 'Add a photo to this Journey!' %>
+          <% end %>
+          <br>
           <%= f.title %>
-          <%= image_tag (f.photos.sample.picture.thumb.url) %>
         <% end %>
       </div>
     <% end %>
