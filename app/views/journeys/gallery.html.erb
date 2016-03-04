@@ -1,16 +1,16 @@
 <h1><%= @journey.title %>'s Photo Gallery</h1>
   <h2><%= @journey.start_date %> - <%= @journey.end_date %></h2>
   <h2><%= @journey.location %></h2>
-
+  <p>Add a photo: </p>
   <div class="gallery-container">
     <% @journey.photo_gallery.each do |p| %>
-      <% p.each do |x| %>
+
         <div class="each-photo">
-          <%= link_to x do %>
-            <%= image_tag (x.picture.thumb.url) %>
-            <h4><%= x.name %></h4>
+          <%= link_to p do %>
+            <%= image_tag (p.picture.thumb.url) %>
+            <h4><%= p.name %></h4>
           <% end %>
         </div>
-      <% end %>
+
     <% end %>
   </div>

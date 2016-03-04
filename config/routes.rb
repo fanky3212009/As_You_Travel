@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'journeys#index'
 
-  resources :photos, only: [:create, :show]
+  resources :photos, only: [:create, :show] do
+    resources :comments, only: [:show, :create, :destroy]
+  end
 
   resources :journeys do
     resources :diary_entries do
@@ -23,15 +25,13 @@ Rails.application.routes.draw do
     member do
       get :followings, :followers
     end
-    resources :photos do
-      resources :comments, only: [:show, :create, :destroy]
-    end
+    resources :photos
   end
 
 
   resources :relationships, only: [:destroy, :create]
   resources :password_resets
-  
+
   resources :user_sessions
   get 'login' => 'user_sessions#new', :as => :login
   post 'logout' => 'user_sessions#destroy', :as => :logout

@@ -8,9 +8,9 @@ class Journey < ActiveRecord::Base
 
   def photo_gallery
     @photo_gallery = []
-    @photo_gallery << self.photos
+    @photo_gallery.concat(self.photos)
       self.diary_entries.each do |y|
-         @photo_gallery << y.photos
+         @photo_gallery.concat(y.photos)
       end
     @photo_gallery
   end
