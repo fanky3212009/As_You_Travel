@@ -115,7 +115,7 @@
                 lng: latlngs[i].lng,
                 icon: "<%= asset_path('tool.svg') %>",
                 infoWindow: {
-                  content: latlngs[i].title
+                  content: latlngs[i].title + "<a href=/journeys/ > Go </a>"
                 },
                 animation: google.maps.Animation.DROP
                 // icon: .
