@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'journeys#index'
+  root 'users#home'
 
   resources :photos, only: [:create, :show] do
     resources :comments, only: [:create, :destroy]

@@ -18,4 +18,28 @@ $(document).on('ready page:load', function () {
      }
   });
 
+    $('#search_nearby').on('click', function() {
+      if("geolocation" in navigator)  {
+        navigator.geolocation.getCurrentPosition(itWorked, itDidNotWork);
+      }
+    });
+
+
+
 });
+
+function itWorked(position){
+  var lat = position.coords.latitude;
+  var lon = position.coords.longitude;
+
+  $.ajax({
+    url: window.location.pathname,
+    method: 'get',
+    data: {latitude: lat, longitude: lon},
+    dataType: 'script'
+  })
+}
+
+function itDidNotWork(error){
+  console.log(error.message);
+}

@@ -1,0 +1,14 @@
+<h1>Home page</h1>
+
+
+<%= button_tag "Find stories happened near me", id: "search_nearby" %>
+<h4>Search near:</h4>
+<p>
+<%= form_tag root_path, method: :get do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Go!" %>
+<% end %>
+</p>
+
+<section id="search-results">
+</section>

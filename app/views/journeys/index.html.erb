@@ -1,16 +1,11 @@
-<%= button_tag "Find journeys Happened near me", id: "search_nearby" %>
-<h4>Search near:</h4>
-<p>
-<%= form_tag journeys_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Go!" %>
-<% end %>
-</p>
 
-<% if @journeys.any? %>
-  <ul>
-    <%= render @journeys %>
-  </ul>
-<% else %>
-  <h2>No journeys yet</h2>
-<% end %>
+
+<section id="journeys">
+  <% if @journeys.any? %>
+    <ul>
+      <%= render @journeys %>
+    </ul>
+  <% else %>
+    <h2>No journeys yet</h2>
+  <% end %>
+</section>

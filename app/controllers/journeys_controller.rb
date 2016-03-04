@@ -58,7 +58,7 @@ class JourneysController < ApplicationController
 
   def journey_params
     params.require(:journey)
-          .permit(:title, :description, :location, :start_date, :end_date, :feat_img, :imageable_id, :imageable_type, :name, :picture, :file)
+          .permit(:title, :description, :location, :start_date, :end_date, :feat_img, :imageable_id, :imageable_type, :name, :picture, :file, :latitude, :longitude)
 
   end
 end
