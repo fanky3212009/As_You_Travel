@@ -13,6 +13,10 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require diary_index/main.js
+//= require diary_index/classie.js
+//= require diary_index/dynamics.min.js
+//= require diary_index/imagesloaded.pkgd.min.js
 //= require dropzone
 //= require timeline
 //= require gmaps
