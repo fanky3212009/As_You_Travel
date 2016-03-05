@@ -90,12 +90,12 @@
 
   </div>
 
-  <%= render 'comments/list' %>
+  <%= render partial: 'comments/list', locals: { commentable: @diary_entry }  %>
 
   <% if current_user %>
     <h4>Write a comment:</h4>
     <%= form_for [@diary_entry.journey, @diary_entry, @comment], :html => {:class => "comment-form"} do |f| %>
-    <%= render partial: 'comments/form', locals: { f: f } %>
+    <%= render partial: 'comments/form', locals: { f: f, commentable: @diary_entry} %>
     <% end %>
 
   <% else %>

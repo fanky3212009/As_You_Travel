@@ -1,7 +1,11 @@
-<% if @journeys.any? %>
-  <ul>
-    <%= render @journeys %>
-  </ul>
-<% else %>
-  <h2>No journeys yet</h2>
-<% end %>
+
+
+<section id="journeys">
+  <% if @journeys.any? %>
+    <ul>
+      <%= render @journeys %>
+    </ul>
+  <% else %>
+    <h2>No journeys yet</h2>
+  <% end %>
+</section>

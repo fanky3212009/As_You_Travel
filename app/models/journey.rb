@@ -15,4 +15,7 @@ class Journey < ActiveRecord::Base
     @photo_gallery
   end
 
+  geocoded_by :location
+  after_validation :geocode
+
 end

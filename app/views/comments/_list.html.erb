@@ -1,7 +1,7 @@
 <div class="comments">
 <h4>Comments:</h4>
 
-  <% load_commentable.comments.each do |comment| %>
+  <% commentable.comments.each do |comment| %>
     <p>
       <%= "#{comment.user.email}: #{comment.body}" %><br>
       Added on: <%= comment.created_at %>

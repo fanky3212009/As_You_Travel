@@ -14,8 +14,8 @@
       <div class="field">
       <%= f.label :comment %><br />
       <%= f.text_area :body %>
-      <%= f.hidden_field :commentable_id, :value => load_commentable.id %>
-      <%= f.hidden_field :commentable_type, :value => load_commentable.class %>
+      <%= f.hidden_field :commentable_id, :value => commentable.id %>
+      <%= f.hidden_field :commentable_type, :value => commentable.class %>
     </div>
     <div class="actions">
       <%= f.submit %>

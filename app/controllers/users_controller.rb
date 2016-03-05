@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
 
   def show
-    # @journeys = @user.journeys
     respond_to do |format|
       format.html
       format.json
@@ -68,6 +67,18 @@ class UsersController < ApplicationController
   def followers
     @users = @user.followers
     render 'show_follow'
+  end
+
+  def home
+    @search_results = []
+
+    if params[:search]
+      @search_results = DiaryEntry.near(params[:search], 50, unit: :km)
+    elsif params[:latitude] && params[:longitude]
+      @search_results = DiaryEntry.near([params[:latitude], params[:longitude]], 50, unit: :km)
+    else
+      @search_results = []
+    end
   end
 
 

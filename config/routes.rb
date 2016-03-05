@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  root 'journeys#index'
+  root 'users#home'
 
   resources :photos, only: [:create, :show] do
-    resources :comments, only: [:show, :create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
 
   resources :journeys do
     resources :diary_entries do
       resources :favourites, only: [:create, :destroy]
       resources :tags, only: [:create, :destroy, :show]
-      resources :comments, only: [:show, :create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :favourites, only: [:create, :destroy]
     resources :tags, only: [:create, :destroy, :show]
-    resources :comments, only: [:show, :create, :destroy]
+    resources :comments, only: [:create, :destroy]
     member do
       get :gallery
     end
