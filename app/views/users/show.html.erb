@@ -50,7 +50,7 @@
   <div class="user-journey-list">
   <% @user.owend_journeys.each do |journey| %>
     <div class="user-journey">
-    <%= link_to journey.title, journey %>
+    <%= link_to journey.title, journey, :"data-no-turbolink" => true %>
     </div>
   <% end %>
   </div>
