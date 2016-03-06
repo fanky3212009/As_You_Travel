@@ -89,6 +89,9 @@
       <% end  %>
     </div>
 
+<div class="photo_gallery-button">
+  <%= link_to "Photo Gallery", gallery_journey_path(@journey) %>
+</div>
 
 <%= render partial: 'comments/list', locals: { commentable: @journey }  %>
 

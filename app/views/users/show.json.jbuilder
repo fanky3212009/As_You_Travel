@@ -6,7 +6,10 @@ json.title do
   end
 end
 json.events @user.owend_journeys do |journey|
-  # json.start_date journey.start_date
+  json.media do
+    json.url journey.feat_img
+  end
+
   json.start_date do
     json.year journey.start_date.strftime('%Y')
     json.month journey.start_date.strftime('%m')
@@ -15,5 +18,6 @@ json.events @user.owend_journeys do |journey|
   end
   json.text do
     json.headline journey.title
+    json.text journey.description
   end
 end
