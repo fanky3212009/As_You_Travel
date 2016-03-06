@@ -29,7 +29,13 @@ class FavouritesController < ApplicationController
   end
 
   def destroy
-    #code
+    @favourite = Favourite.find(params[:id])
+    @favourite.destroy
+    respond_to do |format|
+      format.html
+      format.json {render json: @favourite}
+  end
+
   end
 
   # private

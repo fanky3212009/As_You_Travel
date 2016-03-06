@@ -6,6 +6,8 @@ class Journey < ActiveRecord::Base
   has_many :tags, :as => :taggable
   has_many :comments, :as => :commentable
 
+  
+
   def photo_gallery
     @photo_gallery = []
     @photo_gallery.concat(self.photos)

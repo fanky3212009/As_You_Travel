@@ -38,11 +38,32 @@
   <% end %>
 
   <br>
-  <div class="favourite-form">
-    <%= form_for [@journey, Favourite.new] do |f| %>
-    <%= f.button %>
+
+
+<% if @journey.favourites.where(user_id: current_user.id).length > 0 %>
+  <button class="f-already">
+    <span class="fa fa-heart">
+      </span>
+  </button>
+  <div class="favourite-form-already">
+    <%= form_for [@journey, @journey.favourites.where(user_id: current_user.id)[0]], method: :delete do |f| %>
+    <%= f.button :class => "submit-already" %>
     <% end %>
   </div>
+<% else %>
+  <button class="no-f-yet">
+    <span class="fa fa-heart">
+      </span>
+  </button>
+  <div class="favourite-form">
+    <%= form_for [@journey, Favourite.new] do |f| %>
+    <%= f.button :class => "f-submit" %>
+    <% end %>
+  </div>
+<% end %>
+
+
+
   <br>
   <br>
 
