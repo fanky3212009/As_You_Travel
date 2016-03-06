@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     member do
       get :gallery
     end
+    resources :photos, only: [:show, :update]
   end
 
   resources :tags, only: [:index]

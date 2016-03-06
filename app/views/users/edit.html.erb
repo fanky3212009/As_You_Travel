@@ -14,10 +14,9 @@
     <br>
     <%= t.hidden_field :imageable_id, :value => @user.id %>
    <%= t.hidden_field :imageable_type, :value => @user.class %>
-   <%= @user.set_profile_img %>
     <% end %>
   </div>
 
 
-<%= link_to 'Show public profile', @user %> |
+<%= link_to 'Show public profile', user_path(@user) %> |
 <%= link_to 'Back', users_path %>
