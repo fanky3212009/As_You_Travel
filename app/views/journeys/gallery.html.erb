@@ -6,7 +6,7 @@
     <% @journey.photo_gallery.each do |p| %>
 
       <div class="each-photo">
-        <%= link_to p do %>
+        <%= link_to journey_photo_path(@journey, p) do %>
           <%= image_tag (p.picture.thumb.url) %>
           <h4><%= p.name %></h4>
         <% end %>

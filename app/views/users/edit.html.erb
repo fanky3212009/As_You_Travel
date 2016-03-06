@@ -2,5 +2,21 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @user %> |
+<h4>Add Photos</h4>
+  <div class="photo-form">
+    <%= form_for @user.photos.build, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+
+    <%= t.label :name  %>
+    <br>
+    <%= t.text_field :name %>
+    <br>
+    <div class="dropzone-previews"></div>
+    <br>
+    <%= t.hidden_field :imageable_id, :value => @user.id %>
+   <%= t.hidden_field :imageable_type, :value => @user.class %>
+    <% end %>
+  </div>
+
+
+<%= link_to 'Show public profile', user_path(@user) %> |
 <%= link_to 'Back', users_path %>
