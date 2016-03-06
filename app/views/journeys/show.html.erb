@@ -13,9 +13,11 @@
     <div id="journey-tags-list" >
 
         <% @journey.tags.each do |tag| %>
-          <div class="each-tag">
-            <%= tag.body %>
-          </div>
+          <% if tag.body != "recommended" %>
+            <div class="each-tag">
+              <%= tag.body %>
+            </div>
+          <% end %>
         <% end  %>
 
   </div>
@@ -36,7 +38,6 @@
     <% end  %>
   </div>
   <% end %>
-
   <br>
 
 
@@ -62,7 +63,18 @@
   </div>
 <% end %>
 
-
+<div class="recommend">
+  <% if current_user != @user %>
+  <div class="recommend-form">
+    <%= form_for [@journey, Tag.new] do |t| %>
+    <%= t.hidden_field :body, :value=> 'recommended' %>
+    <%= t.hidden_field :taggable_id, :value => @journey.id %>
+    <%= t.hidden_field :taggable_type, :value => @journey.class %>
+    <%= t.submit "Recommend" %>
+    <% end  %>
+  </div>
+  <% end %>
+</div>
 
   <br>
   <br>

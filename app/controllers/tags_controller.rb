@@ -23,11 +23,16 @@ class TagsController < ApplicationController
 
     if @tag.save
       # @tag_name = @tag.name
-      respond_to do |format|
+      if @tag.body != "recommended"
+        respond_to do |format|
         format.html
         format.js
+      end
+      else
+        render nothing: true
 
       end
+
     end
 
   end
