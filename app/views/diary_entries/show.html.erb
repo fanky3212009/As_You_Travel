@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <body>
 
 
@@ -49,6 +49,11 @@
   <br>
 
 
+    <li class="favourite-button">
+  		<button class="icobutton icobutton--heart"><span class="fa fa-heart"></span></button>
+  	</li>
+
+
 
   <a id="demo01" href="#animatedModal">DEMO01</a>
 
@@ -85,7 +90,6 @@
       <!-- <%= t.hidden_field :picture %> -->
       <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
       <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
-      <%= t.submit "Add", class: "submit-picture"  %>
     <% end  %>
 
   </div>
@@ -105,5 +109,10 @@
 
 
   <div id="map"></div>
+
+
+
+
+
 
 </body>

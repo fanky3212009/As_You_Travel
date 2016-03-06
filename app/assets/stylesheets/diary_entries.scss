@@ -32,3 +32,39 @@
    animation-duration: 0.6s;
    background-color: grey !important;
 }
+
+.f-already {
+  outline: none;
+	font-size: 2.5em;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	color: #FF6767;
+	border: 0;
+	background: none;
+	overflow: visible;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.no-f-yet {
+  outline: none;
+	font-size: 2.5em;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	color: grey;
+	border: 0;
+	background: none;
+	overflow: visible;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.icobutton .fa {
+	display: block;
+	padding: 0 0.1em;
+}
+
+.f-submit, .submit-already {
+
+  display: none;
+}

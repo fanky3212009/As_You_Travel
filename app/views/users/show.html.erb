@@ -22,7 +22,19 @@
   </div>
       <br>
       <br>
+  <h3>Friends' Recent</h3>
+  <% if @user == current_user %>
+    <% @user.followings.each do |friend| %>
+      <%= friend.email %> :
+      <br>
+      <%= friend.owend_journeys.last.diary_entries.last.title %>
+      <br>
+      <%= friend.owend_journeys.last.diary_entries.last.location %>
+      <br>
+    <% end %>
+  <% end %>
 
+  <br>
   <% if current_user %>
     <div class="follow-me">
       <%= render 'follow_form' %>
@@ -50,7 +62,7 @@
   <div class="user-journey-list">
   <% @user.owend_journeys.each do |journey| %>
     <div class="user-journey">
-    <%= link_to journey.title, journey %>
+    <%= link_to journey.title, journey, :"data-no-turbolink" => true %>
     </div>
   <% end %>
   </div>
