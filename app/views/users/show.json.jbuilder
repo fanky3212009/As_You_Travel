@@ -4,6 +4,10 @@ json.title do
   json.text do
     json.headline @user.email
   end
+
+  json.media do
+    json.url @user.profile_img
+  end
 end
 json.events @user.owend_journeys do |journey|
   json.media do

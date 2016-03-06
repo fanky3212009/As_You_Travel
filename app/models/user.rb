@@ -37,5 +37,11 @@ class User < ActiveRecord::Base
     self.followings.include?(another_user)
   end
 
+  def set_profile_img
+    if self.photos.last
+      self.profile_img = self.photos.last.picture.url
+    end
+    #code
+  end
 
 end

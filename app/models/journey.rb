@@ -15,6 +15,10 @@ class Journey < ActiveRecord::Base
     @photo_gallery
   end
 
+  def set_profile_img
+      self.feat_img = self.photo_gallery.sample.picture.url
+    end
+
   geocoded_by :location
   after_validation :geocode
 
