@@ -19,8 +19,10 @@
   </div>
 
 	<div class="hero-inner">
-    <a href="" class="hero-logo">
-    </a>
+    <div class="hero-logo">
+      <%= image_tag @user.profile_img %>
+      <!-- <%= image_tag ("profile-UserImage-1.png")  %> -->
+    </div>
 		<div class="hero-copy">
 			<h1>As You Travel!</h1>
 			<p>Who Am I</p>
@@ -31,24 +33,60 @@
 </div>
 
 <ul class="navigation">
-	<li><a href="#home">
-		<%= link_to "My Journey", user_journeys_path(current_user)  %>
-	</a></li>
-	<li><a href="#about">
-		<img src="./images/about.png" />
-	</a></li>
+  <li><a href="#about">
+    <span>
+    <%=  image_tag "MenuBar-icon-profile.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-profile-hover.png"%>
+      <p>My Profile</p>
+    </div>
+  </a></li>
+
+	<li>
+    <%= link_to user_journeys_path(@user) do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-Journey.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+        <p>My Journey</p>
+      </div>
+    <% end %>
+  </li>
+
 	<li><a href="#portfolio">
-		<img src="./images/portfolio.png" />
+    <span>
+    <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+      <p>Photo Gallery</p>
+    </div>
 	</a></li>
+
 	<li><a href="#blog">
-		<img src="./images/blog.png" />
+    <span>
+    <%=  image_tag "MenuBar-icon-timeline.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+      <p>My Timeline</p>
+    </div>
 	</a></li>
+
 	<li><a href="#services">
-		<img src="./images/services.png" />
+    <span>
+    <%=  image_tag "MenuBar-icon-favorites.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+      <p>Favourites</p>
+    </div>
 	</a></li>
-	<li><a href="#contact">
+	<!-- <li><a href="#contact">
 		<img src="./images/contact.png" />
-	</a></li>
+	</a></li> -->
 </ul>
 
 
@@ -67,33 +105,39 @@
     </div>
       <div class="grid-alligned-items">
         <a href="" class="grid-alligned-item">
-          <!-- <%= image_tag (@user.owend_journeys.first.diary_entries.first.photos.sample.picture.url)%> -->
+          <% if @user.owend_journeys.length > 0 %>
+          <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+            <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
-          <%= image_tag (@user.owend_journeys.first.diary_entries[1].photos.sample.picture.url)%>
+              <% if @user.owend_journeys.length > 0  %>
+              <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+            <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big">
-          <%= image_tag (@user.owend_journeys.first.photos.last.picture.gallery_wall.url)%>
+              <% if @user.owend_journeys.length >0%>
+              <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+          <% end %>
         </a>
         <a href="" class="grid-alligned-item">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
-          <h1>Last Grid Item</h1>
-          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+          <% if @user.owend_journeys.length >0 %>
+          <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+          <% end %>
         </a>
         <a href="" class="grid-alligned-item">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
-          <h1>Last Grid Item</h1>
-          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+          <% if @user.owend_journeys.length >0%>
+            <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+          <% end %>
         </a>
         <a href="" class="grid-alligned-item">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
-          <h1>A Grid Item</h1>
-          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+          <% if @user.owend_journeys.length >0 %>
+            <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+          <% end %>
         </a>
         <a href="" class="grid-alligned-item">
-          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="">
-          <h1>Item</h1>
-          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+          <% if @user.owend_journeys.length >0 %>
+            <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+          <% end %>
         </a>
 
 
@@ -123,17 +167,81 @@
     </div>
 
     <div class="userTimeline">
-      <%= image_tag ('profile-SectionTitiles-timeline.png') %>
+      <div class="userTimeline-image1">
+        <%= image_tag ('profile-SectionTitiles-timeline.png') %>
+      </div>
+      <div class="userTimeline-image2">
+        <%= image_tag ('profile-timeline-bg.jpg') %>
+      </div>
     </div>
 
-    <h3><%= link_to "My Favourites", favourites_path %></h3>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <div class="activity-stream">
+      <div class="activity-stream-img">
       <%= image_tag ('profile-SectionTitiles-activities.png') %>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>Trip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <div class="activity-tags">
+              <span>Tag</span>
+              <span>Tag</span>
+              <span>Tag</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>Trip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <div class="activity-tags">
+              <span>Tag</span>
+              <span>Tag</span>
+              <span>Tag</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>Trip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="activity-tags">
+            <span>Tag</span>
+            <span>Tag</span>
+            <span>Tag</span>
+        </div>
+        </div>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>ip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <div class="activity-tags">
+              <span>Tag</span>
+              <span>Tag</span>
+              <span>Tag</span>
+          </div>
+        </div>
+      </div>
     </div>
   </article>
 </section>
+
+<div class="footer">
+  <div class="footer-image">
+    <%= image_tag "profile-graphic_MountainLowPoy.png" %>
+  </div>
+</div>
 
 
   <div class="user-timeline">
@@ -182,3 +290,6 @@
   </div>
 
   <br>
+  <h3><%= link_to "My Favourites", favourites_path %></h3>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

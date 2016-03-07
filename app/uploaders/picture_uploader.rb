@@ -25,7 +25,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process resize_to_fit: [380, 380]
+  process resize_to_fit: [500, 500]
   #
   # def scale(width, height)
   #   # do something
@@ -37,7 +37,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   end
 
   version :gallery_wall do
-    process :resize_to_fit => [630, 630]
+    process :resize_to_fit => [465, 190]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
