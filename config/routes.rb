@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get :followings, :followers
     end
     resources :photos
+    resources :journeys, only: [:index]
   end
 
   resources :favourites, only: [:index]

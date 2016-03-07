@@ -13,3 +13,13 @@
 <section id="search-results">
   <%= render 'tags/search_tag' %>
 </section>
+
+<h4>Search Tag Related Diaries and Journeys</h4>
+  <div class="search_by_tag">
+  <%= form_tag tags_path, method: :get, id: "search_tag" do %>
+    <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
+    <%= submit_tag "Search" %>
+  <% end %>
+  </div>
+  <div class="search-tag-results"></div>
+  <br>

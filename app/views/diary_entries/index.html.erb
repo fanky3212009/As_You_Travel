@@ -40,8 +40,8 @@
           <% @diary_entries.each do |diary|%>
             <li class = "grid_item">
               <%= link_to [diary.journey, diary], class: "grid_link", :"data-no-turbolink" => true do %>
-                <% if diary.photos.length > 1 %>
-                  <%= image_tag(diary.photos.sample.picture.url, class: "grid__img") %>
+                <% if diary.photos.length > 0 %>
+                  <%= image_tag(diary.photos.sample.picture.thumb.url, class: "grid__img") %>
                 <% end %>
                   <h3 class="grid__item-title"><%= diary.title %></h3>
               <% end %>

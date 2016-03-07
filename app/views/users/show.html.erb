@@ -11,15 +11,141 @@
 
 </style>
 
-  <div id="user<%= @user.id %>-timeline">
+
+
+<div class="hero">
+  <div class="logo">
+    <%= image_tag ("logo-blue.png")  %>
   </div>
+
+	<div class="hero-inner">
+    <a href="" class="hero-logo">
+    </a>
+		<div class="hero-copy">
+			<h1>As You Travel!</h1>
+			<p>Who Am I</p>
+       <%= render 'stats' %>
+		</div>
+	</div>
+
+</div>
+
+<ul class="navigation">
+	<li><a href="#home">
+		<%= link_to "My Journey", user_journeys_path(current_user)  %>
+	</a></li>
+	<li><a href="#about">
+		<img src="./images/about.png" />
+	</a></li>
+	<li><a href="#portfolio">
+		<img src="./images/portfolio.png" />
+	</a></li>
+	<li><a href="#blog">
+		<img src="./images/blog.png" />
+	</a></li>
+	<li><a href="#services">
+		<img src="./images/services.png" />
+	</a></li>
+	<li><a href="#contact">
+		<img src="./images/contact.png" />
+	</a></li>
+</ul>
+
+
+
+<span class="nav-link">
+
+</span>
+
+
+<section>
+  <div class="empty-div"><p></p></div>
+  <aside>
+    <div class="about">
+      <%= image_tag ("profile-SectionTitiles-about.png") %>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+      <div class="grid-alligned-items">
+        <a href="" class="grid-alligned-item">
+          <!-- <%= image_tag (@user.owend_journeys.first.diary_entries.first.photos.sample.picture.url)%> -->
+        </a>
+        <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
+          <%= image_tag (@user.owend_journeys.first.diary_entries[1].photos.sample.picture.url)%>
+        </a>
+        <a href="" class="grid-alligned-item grid-alligned-item-big">
+          <%= image_tag (@user.owend_journeys.first.photos.last.picture.gallery_wall.url)%>
+        </a>
+        <a href="" class="grid-alligned-item">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
+          <h1>Last Grid Item</h1>
+          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+        </a>
+        <a href="" class="grid-alligned-item">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
+          <h1>Last Grid Item</h1>
+          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+        </a>
+        <a href="" class="grid-alligned-item">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3.png" alt="">
+          <h1>A Grid Item</h1>
+          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+        </a>
+        <a href="" class="grid-alligned-item">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="">
+          <h1>Item</h1>
+          <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
+        </a>
+
+
+        <div class="photo_gallery-button">
+          <%= link_to "Photo Gallery", user_photos_path(@user) %>
+        </div>
+
+    </div>
+  </aside>
+  <article>
+    <div class="overall">
+      <%= image_tag ('profile-SectionTitiles-overall.png') %>
+      <div class="couter">
+        <div class="counter1">
+          Traveled
+        </div>
+        <div class="counter1">
+          Wrote
+        </div>
+        <div class="counter1">
+          Captured
+        </div>
+        <div class="counter2">
+          Stayed
+        </div>
+      </div>
+    </div>
+
+    <div class="userTimeline">
+      <%= image_tag ('profile-SectionTitiles-timeline.png') %>
+    </div>
+
+    <h3><%= link_to "My Favourites", favourites_path %></h3>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div class="activity-stream">
+      <%= image_tag ('profile-SectionTitiles-activities.png') %>
+    </div>
+  </article>
+</section>
+
+
+  <div class="user-timeline">
+    <div id="user<%= @user.id %>-timeline" >
+    </div>
+  </div>
+
     <p>
       <strong>Email:</strong>
       <%= @user.email %>
     </p>
-  <div class="stats">
-   <%= render 'stats' %>
-  </div>
+
       <br>
       <br>
   <h3>Friends' Recent</h3>
@@ -41,22 +167,10 @@
     </div>
   <% end %>
 
-  <h3><%= link_to "My Favourites", favourites_path %></h3>
-
-  <div class="photo_gallery-button">
-    <%= link_to "Photo Gallery", user_photos_path(@user) %>
-  </div>
 
 
-  <h4>Search Tag Related Diaries and Journeys</h4>
-    <div class="search_by_tag">
-    <%= form_tag tags_path, method: :get, id: "search_tag" do %>
-      <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
-      <%= submit_tag "Search" %>
-    <% end %>
-    </div>
-    <div class="search-tag-results"></div>
-    <br>
+
+
     <br>
 
   <div class="user-journey-list">
@@ -68,6 +182,3 @@
   </div>
 
   <br>
-
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Back', users_path %>
