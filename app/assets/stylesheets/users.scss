@@ -271,6 +271,15 @@ section {
   img{
     transform: translate(-3em);
   }
+  .userTimeline-image2 {
+    img {
+      right: -3em;
+      position: relative;
+      width: 100%;
+      top: -3em;
+      z-index: -1;
+    }
+  }
 }
 
 .activity-stream {
@@ -314,12 +323,15 @@ ul.navigation{
         display: inline-block;
         /* margin-top: -8em; */
         transform: translateY(-0.6em);
-        padding: 1em;
+        padding: 0.38em 0.38em;
+        padding-top: 0.9em;
       }
       img {
         display: inline-block;
         width: auto;
         margin: 0;
+        position: relative;
+        top: -0.15em;
 
       }
     }
