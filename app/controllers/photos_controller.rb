@@ -24,6 +24,15 @@ class PhotosController < ApplicationController
 
   end
 
+  def update
+    @journey = Journey.find(params[:journey_id])
+    @photo = Photo.find(params[:id])
+    @journey.set_feat_img(@photo)
+    redirect_to @journey
+    #code
+  end
+
+
   def photo_params
     params.require(:photo).permit(:imageable_id, :imageable_type, :name, :picture)#code
   end

@@ -1,5 +1,8 @@
   <%= image_tag (@photo.picture.url) %>
   <h3><%= @photo.name %></h3>
+  <%= button_to "Set this photo as this journey's feature image", journey_photo_path(@photo.find_journey_of_photo, @photo), method: :put %>
+
+
 
   <%= render partial: 'comments/list', locals: { commentable: @photo } %>
 

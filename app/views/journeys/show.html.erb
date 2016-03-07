@@ -1,7 +1,7 @@
 <h1><%= @journey.title %></h1>
 
 
-<p>Feature Image: </p>
+<p>Feature Image: <%= image_tag @journey.feat_img %></p>
 <p>Description: <%= @journey.description %></p>
 <p>location: <%= @journey.location %></p>
 <p>From: <%= @journey.start_date %></p>
@@ -128,6 +128,9 @@
       <% end  %>
     </div>
 
+<div class="photo_gallery-button">
+  <%= link_to "Photo Gallery", gallery_journey_path(@journey) %>
+</div>
 
 <%= render partial: 'comments/list', locals: { commentable: @journey }  %>
 
