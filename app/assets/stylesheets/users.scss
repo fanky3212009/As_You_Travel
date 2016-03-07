@@ -55,9 +55,23 @@
 
   @include transform(translateY(50px));
 
-  .hero-logo img {
+  .hero-logo {
     margin-bottom: 1em;
-  }
+    border-radius: 50%;
+    color: grey;
+    background-color: #B5B5B5;
+    height: 10em;
+    margin: auto;
+    border: 2px solid;
+    width: 13%;
+    margin-top: -11em;
+    img {
+      margin-top: -0.3em;
+      height: 10.5em;
+      width: 10em;
+      }
+    }
+
 
   .logo {
     img {
@@ -74,6 +88,7 @@
 
     .hero-copy {
       text-align: center;
+      margin-top: 2em;
 
       h1 {
         color: $hero-color;
@@ -105,7 +120,11 @@ section {
   @include outer-container;
   .empty-div {@include span-columns(1); }
   aside { @include span-columns(9); }
-  article { @include span-columns(6); }
+  article {
+    @include span-columns(6);
+    position: relative;
+    left: 2em;
+  }
 }
 
 #nav-user-logout {
@@ -237,6 +256,7 @@ section {
   margin-bottom: 7em;
   position: relative;
   z-index: 99;
+
 }
 
 .overall {
@@ -255,13 +275,13 @@ section {
       height: 4.5em;
       width: 79%;
       margin: auto;
-      line-height: 7em;
+      line-height: 5em;
     }
     .counter2 {
       height: 4.5em;
       width: 79%;
       margin: auto;
-      line-height: 7em;
+      line-height: 5em;
     }
   }
 }
@@ -283,11 +303,57 @@ section {
 }
 
 .activity-stream {
-  transform: translate(-4em);
-  margin-top: 9em;
+  // transform: translate(-4em);
+  margin-top: 3em;
+  img {
+    width: 80%;
+  }
+  .activity-title {
+
+    color: #295ED5;
+    text-align: left;
+    margin-top: 3em;
+    margin-left: 5em;
+    .activity-tags {
+      width: 80%;
+      margin: 0;
+      text-align: center;
+      margin-top: 2em;
+      margin-left: -1em;
+    }
+    h2 {
+      font-size: 2em;
+
+    }
+    h3{
+      font-size: 1.1em;
+      margin-top: -0.5em;
+    }
+
+    span {
+      order: 2px solid;
+      height: -1em;
+      border: 2px solid;
+      /* text-align: left; */
+      margin: 0 1em;
+      padding: 0.8em 2em;
+      width: 10px;
+    }
+
+    p {
+      position: relative;
+      text-align: left;
+      height: 7em;
+      overflow: hidden;
+      width: 80%;
+    }
+  }
+
 }
 
 ul.navigation{
+  @include transition (all 0.5s ease-in-out);
+  // display: none;
   font: $moon-font;
 	list-style:none;
 	padding:0;
@@ -313,6 +379,7 @@ ul.navigation{
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
+
     .menu-out {
       display: none;
       p {
@@ -339,9 +406,9 @@ ul.navigation{
 
   li:hover {
       right: 100px;
-      transition: right 10s linear;
-      -webkit-transition: right 0.3s linear;
-      -moz-transition: right 0.3s linear;
+      // transition: right 0.5s $ease-in-quad;
+      // -webkit-transition: right 10s $ease-in-quad;
+      // -moz-transition: right 0.5s $ease-in-quad;
       .menu-out {
         display: block;
       }
@@ -355,5 +422,11 @@ ul.navigation{
     margin: 0;
     display: inline-block;
 
+  }
+}
+.footer {
+  margin-top: 8em;
+  img {
+    width: 100%;
   }
 }
