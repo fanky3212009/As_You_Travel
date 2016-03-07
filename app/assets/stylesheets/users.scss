@@ -41,19 +41,28 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image: 'https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png';
+  $background-image: 'profile-user-bg.jpg';
 
-  @include background(url($hero-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+  @include background(url($background-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 3em;
-  height: 40em;
+  height: 52em;
+  margin-top: -80px;
+  margin-bottom: 8em;
+
+  @include transform(translateY(50px));
 
   .hero-logo img {
-    height: 4em;
     margin-bottom: 1em;
+  }
+
+  .logo {
+    img {
+      margin:1.5em;
+    }
   }
 
   .hero-inner {
@@ -94,7 +103,8 @@ section {
   color: black;
   text-align: center;
   @include outer-container;
-  aside { @include span-columns(11); }
+  .empty-div {@include span-columns(1); }
+  aside { @include span-columns(9); }
   article { @include span-columns(5); }
 }
 
@@ -146,7 +156,7 @@ section {
     height: $grid-item-height;
     overflow: hidden;
     outline: none;
-    padding: 2em;
+    // padding: 2em;
     text-align: center;
     text-decoration: none;
     width: 100%;
@@ -175,8 +185,11 @@ section {
 
   .grid-alligned-item img {
     display: block;
-    height: 3em;
-    margin: 0 auto 1em;
+    height: auto;
+    margin: auto;
+    min-height: 12em;
+   display: table-cell;
+   vertical-align: middle;
   }
 
   .grid-alligned-item h1 {
@@ -213,5 +226,58 @@ section {
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+}
+
+
+.about {
+  height: 15em;
+  text-align: left;  
+  text-align: left;
+  margin-top: -10.5em;
+  margin-bottom: 7em;
+  position: relative;
+  z-index: 999;
+}
+
+ul.navigation{
+  font: $moon-font;
+	list-style:none;
+	padding:0;
+	margin:0;
+	position:fixed;
+	right: -100px;
+	top: 0px;
+
+
+  li{
+  	height:50px;
+  	width:150px;
+  	background: #7d7e7d; /* Old browsers */
+    background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
+    background: linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
+    padding:10px;
+    position:relative;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+  }
+
+  li:hover {
+      right: 100px;
+      transition: right 10s linear;
+      -webkit-transition: right 0.3s linear;
+      -moz-transition: right 0.3s linear;
+  }
+}
+.stats {
+  p {
+    margin: 0;
+    display: inline-block;
   }
 }
