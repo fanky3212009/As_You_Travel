@@ -50,7 +50,7 @@
   background-size: cover;
   padding-bottom: 3em;
   height: 52em;
-  margin-top: -80px;
+  margin-top: -6em;
   margin-bottom: 8em;
 
   @include transform(translateY(50px));
@@ -285,7 +285,7 @@ ul.navigation{
 	margin:0;
 	position:fixed;
 	right: -100px;
-	top: 0px;
+	top: 3em;
 
 
   li{
@@ -304,6 +304,25 @@ ul.navigation{
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
+    .menu-out {
+      display: none;
+      p {
+        margin: 0;
+        display: inline-block;
+        width: auto;
+        margin: 0;
+        display: inline-block;
+        /* margin-top: -8em; */
+        transform: translateY(-0.6em);
+        padding: 1em;
+      }
+      img {
+        display: inline-block;
+        width: auto;
+        margin: 0;
+
+      }
+    }
   }
 
   li:hover {
@@ -311,11 +330,18 @@ ul.navigation{
       transition: right 10s linear;
       -webkit-transition: right 0.3s linear;
       -moz-transition: right 0.3s linear;
+      .menu-out {
+        display: block;
+      }
+      span {
+        display: none;
+      }
   }
 }
 .stats {
   p {
     margin: 0;
     display: inline-block;
+
   }
 }
