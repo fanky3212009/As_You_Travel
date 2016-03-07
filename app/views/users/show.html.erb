@@ -18,37 +18,37 @@
     <%= image_tag ("logo-blue.png")  %>
   </div>
 
-	<div class="hero-inner">
+  <div class="hero-inner">
     <a href="" class="hero-logo">
     </a>
-		<div class="hero-copy">
-			<h1>As You Travel!</h1>
-			<p>Who Am I</p>
+    <div class="hero-copy">
+      <h1>As You Travel!</h1>
+      <p>Who Am I</p>
        <%= render 'stats' %>
-		</div>
-	</div>
+    </div>
+  </div>
 
 </div>
 
 <ul class="navigation">
-	<li><a href="#home">
-		<%= link_to "My Journey", user_journeys_path(current_user)  %>
-	</a></li>
-	<li><a href="#about">
-		<img src="./images/about.png" />
-	</a></li>
-	<li><a href="#portfolio">
-		<img src="./images/portfolio.png" />
-	</a></li>
-	<li><a href="#blog">
-		<img src="./images/blog.png" />
-	</a></li>
-	<li><a href="#services">
-		<img src="./images/services.png" />
-	</a></li>
-	<li><a href="#contact">
-		<img src="./images/contact.png" />
-	</a></li>
+  <li><a href="#home">
+    <%= link_to "My Journey", user_journeys_path(current_user)  %>
+  </a></li>
+  <li><a href="#about">
+    <img src="./images/about.png" />
+  </a></li>
+  <li><a href="#portfolio">
+    <img src="./images/portfolio.png" />
+  </a></li>
+  <li><a href="#blog">
+    <img src="./images/blog.png" />
+  </a></li>
+  <li><a href="#services">
+    <img src="./images/services.png" />
+  </a></li>
+  <li><a href="#contact">
+    <img src="./images/contact.png" />
+  </a></li>
 </ul>
 
 
@@ -67,13 +67,16 @@
     </div>
       <div class="grid-alligned-items">
         <a href="" class="grid-alligned-item">
-          <!-- <%= image_tag (@user.owend_journeys.first.diary_entries.first.photos.sample.picture.url)%> -->
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
+          <% if @user.owend_journeys.first.diary_entries[1].photos != [] %>
           <%= image_tag (@user.owend_journeys.first.diary_entries[1].photos.sample.picture.url)%>
+          <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big">
+          <% if @user.owend_journeys.first.diary_entries[1].photos != [] %>
           <%= image_tag (@user.owend_journeys.first.photos.last.picture.gallery_wall.url)%>
+          <% end %>
         </a>
         <a href="" class="grid-alligned-item">
           <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="">
