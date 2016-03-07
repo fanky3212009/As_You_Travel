@@ -105,7 +105,7 @@ section {
   @include outer-container;
   .empty-div {@include span-columns(1); }
   aside { @include span-columns(9); }
-  article { @include span-columns(5); }
+  article { @include span-columns(6); }
 }
 
 #nav-user-logout {
@@ -143,6 +143,7 @@ section {
 
   @include clearfix;
   margin: 0.5em 0.5em;
+  position: relative;
 
   .grid-alligned-item {
     @include transition (all 0.2s ease-in-out);
@@ -160,7 +161,7 @@ section {
     text-align: center;
     text-decoration: none;
     width: 100%;
-
+    // position: relative;
 
     @include media($large-screen) {
       @include grid-item-columns($grid-item-columns);
@@ -187,9 +188,7 @@ section {
     display: block;
     height: auto;
     margin: auto;
-    min-height: 12em;
-   display: table-cell;
-   vertical-align: middle;
+    background-position: center;
   }
 
   .grid-alligned-item h1 {
@@ -232,12 +231,51 @@ section {
 
 .about {
   height: 15em;
-  text-align: left;  
+  text-align: left;
   text-align: left;
   margin-top: -10.5em;
   margin-bottom: 7em;
   position: relative;
-  z-index: 999;
+  z-index: 99;
+}
+
+.overall {
+  height: 15em;
+  text-align: right;
+  margin-top: -15.5em;
+  margin-bottom: 7em;
+  position: relative;
+  z-index: 99;
+  .couter {
+    background-color: #b6d2f4;
+    border-left: 2em solid #7ca7e5;
+    text-align: left;
+    .counter1 {
+      border-bottom: 1px solid white;
+      height: 4.5em;
+      width: 79%;
+      margin: auto;
+      line-height: 7em;
+    }
+    .counter2 {
+      height: 4.5em;
+      width: 79%;
+      margin: auto;
+      line-height: 7em;
+    }
+  }
+}
+
+.userTimeline {
+  margin-top: 15em;
+  img{
+    transform: translate(-3em);
+  }
+}
+
+.activity-stream {
+  transform: translate(-4em);
+  margin-top: 9em;
 }
 
 ul.navigation{
