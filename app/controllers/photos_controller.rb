@@ -28,6 +28,7 @@ class PhotosController < ApplicationController
     @journey = Journey.find(params[:journey_id])
     @photo = Photo.find(params[:id])
     @journey.set_feat_img(@photo)
+    @journey.save
     redirect_to @journey
     #code
   end

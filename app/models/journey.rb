@@ -6,7 +6,7 @@ class Journey < ActiveRecord::Base
   has_many :tags, :as => :taggable
   has_many :comments, :as => :commentable
 
-  
+
 
   def photo_gallery
     @photo_gallery = []
@@ -19,7 +19,7 @@ class Journey < ActiveRecord::Base
 
   def set_feat_img(photo)
       self.feat_img = photo.picture.url
-    end
+  end
 
   geocoded_by :location
   after_validation :geocode
