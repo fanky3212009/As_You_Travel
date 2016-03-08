@@ -15,12 +15,14 @@
 
 
 
+
+
 <span class="nav-link">
 
 </span>
 
 
-<section>
+<div class="profile-wrapper">
   <div class="empty-div"><p></p></div>
   <aside>
     <div class="about">
@@ -29,16 +31,18 @@
     </div>
       <div class="grid-alligned-items">
         <a href="" class="grid-alligned-item">
+          <% if @user.owend_journeys.length > 0 %>
+          <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+            <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
-          <% if @user.owend_journeys.first.diary_entries[0].photos != [] %>
-          <%= image_tag (@user.owend_journeys.first.diary_entries[0].photos.sample.picture.url)%>
-          <% end %>
+              <% if @user.owend_journeys.length > 0  %>
+              <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+            <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big">
-          <% if @user.owend_journeys.first.diary_entries[0].photos != [] %>
-          <%= image_tag (@user.owend_journeys.first.photos.last.picture.gallery_wall.url)%>
-
+              <% if @user.owend_journeys.length >0%>
+              <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
           <% end %>
         </a>
         <a href="" class="grid-alligned-item">
@@ -68,6 +72,19 @@
         </div>
 
     </div>
+
+        <!-- <div class="recommendation-body">
+          <% @user.find_recommended.each do |r| %>
+            <h3>  <%= r.title %> </h3>
+              <% if r.class == Journey %>
+              <strong>  <%= r.owner.email %> </strong>
+                <%= r.description %>
+              <% else %>
+              <strong>  <%= r.journey.owner.email%><strong>
+                <%= r.content %>
+            <% end %>
+          <% end %>
+        </div> -->
   </aside>
   <article>
     <div class="overall">
@@ -156,8 +173,10 @@
         </div>
       </div>
     </div>
+
+
   </article>
-</section>
+</div>
 
 <div class="footer">
   <div class="footer-image">
