@@ -9,7 +9,7 @@ class FavouritesController < ApplicationController
   def create
     @user = current_user
     if params[:diary_entry_id]
-      @diary_entry = DiaryEntry.find(parmas[:diary_entry_id])
+      @diary_entry = DiaryEntry.find(params[:diary_entry_id])
       @favourite = @diary_entry.favourites.build
 
     else

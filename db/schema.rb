@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306183517) do
+ActiveRecord::Schema.define(version: 20160307221038) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -93,9 +93,11 @@ ActiveRecord::Schema.define(version: 20160306183517) do
     t.string   "taggable_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   add_index "tags", ["taggable_type", "taggable_id"], name: "index_tags_on_taggable_type_and_taggable_id"
+  add_index "tags", ["user_id"], name: "index_tags_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           null: false

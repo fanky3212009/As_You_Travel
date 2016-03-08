@@ -7,7 +7,7 @@
 
       <div class="each-photo">
         <%= link_to journey_photo_path(@journey, p) do %>
-          <%= image_tag (p.picture.thumb.url) %>
+          <%= image_tag (p.picture.url) %>
           <h4><%= p.name %></h4>
         <% end %>
       </div>
