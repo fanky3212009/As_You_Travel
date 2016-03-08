@@ -64,12 +64,13 @@
     border: 2px solid;
     width: 13%;
     margin-top: -11em;
+    overflow: hidden;
     img {
       margin-top: -0.3em;
       height: 10.5em;
       width: 10em;
-      }
     }
+  }
 
 
   .logo {
@@ -115,7 +116,6 @@
 
 section {
   color: black;
-  text-align: center;
   @include outer-container;
   .empty-div {@include span-columns(1); }
   aside { @include span-columns(9); }
@@ -285,10 +285,12 @@ section {
   }
 }
 
-.userTimeline {
+.user-Timeline-section {
   margin-top: 15em;
   img{
     transform: translate(-3em);
+    display: block;
+    margin: 0 auto;
   }
   .userTimeline-image2 {
     img {
@@ -354,18 +356,18 @@ ul.navigation{
   @include transition (all 0.5s ease-in-out);
   // display: none;
   font: $moon-font;
-	list-style:none;
-	padding:0;
-	margin:0;
-	position:fixed;
-	right: -100px;
-	top: 3em;
+  list-style:none;
+  padding:0;
+  margin:0;
+  position:fixed;
+  right: -100px;
+  top: 3em;
 
 
   li{
-  	height:50px;
-  	width:150px;
-  	background: #7d7e7d; /* Old browsers */
+    height:50px;
+    width:150px;
+    background: #7d7e7d; /* Old browsers */
     background: -moz-linear-gradient(top, #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
@@ -423,6 +425,114 @@ ul.navigation{
 
   }
 }
+
+
+.recomms{
+  position: relative;
+}
+
+.recomm {
+width: 26em;
+background-color: #F4F4F4;
+margin: auto;
+position: relative;
+margin-bottom: -4em;
+  hr {
+    width: 26.3em;
+    margin-bottom: auto;
+  }
+  p {
+    padding: 1em;
+  }
+}
+
+.recomm:nth-child(2n-1) {
+right: 14em;
+
+}
+
+.recomm:nth-child(2n) {
+left: 14em;
+  hr {
+    position: relative;
+    left: -1em;
+  }
+}
+
+.recomm-name {
+padding-left: 5em;
+padding-right: 5em;
+margin: auto;
+color: #354CD6;
+
+}
+
+#middle-vertical-line {
+transform:rotate(90deg);
+border-color: #80B3F0;
+border-width: 1px;
+border-style: solid;
+position: relative;
+width: 36em;
+top: 19.5em;
+left: 9.3em;
+
+}
+
+.recomm-underline{
+border: 5px solid #80B3F0;
+}
+
+.follow-button-container{
+  position: relative;
+  left: -6em;
+  top: -3em;
+
+}
+
+.photo-gallery-button-container{
+  position: relative;
+  margin-left: 21em;
+  margin-top: 4em;
+  margin-bottom: 13em;
+
+}
+
+.timeline-button-container{
+  position: relative;
+  margin-left: 8em;
+  top: -11em;
+  margin-bottom: 13em;
+
+}
+
+.profile-button {
+    border: none;
+    padding: 8px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    background-color: #FFD400;
+    color: black;
+
+}
+
+.button-border {
+    border: 2px solid black;
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    transform: translate(.4em, .4em);
+    color: rgba(0, 0, 0, 0);
+}
+
 .footer {
   margin-top: 8em;
   img {

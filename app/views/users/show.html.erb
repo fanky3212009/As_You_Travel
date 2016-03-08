@@ -18,14 +18,7 @@
     <%= image_tag ("logo-blue.png")  %>
   </div>
 
-<<<<<<< HEAD
-  <div class="hero-inner">
-    <a href="" class="hero-logo">
-    </a>
-    <div class="hero-copy">
-      <h1>As You Travel!</h1>
-      <p>Who Am I</p>
-=======
+
   <div class="hero-inner">
     <div class="hero-logo">
       <%= image_tag @user.profile_img %>
@@ -33,35 +26,18 @@
     </div>
     <div class="hero-copy">
       <h1>As You Travel!</h1>
-      <p>Who Am I</p>
->>>>>>> a1df51fda1a7c29fd5cad24d1d9260891d3986b2
        <%= render 'stats' %>
+    </div>
+    <div class="follow-button-container">
+      <button class="profile-button">FOLLOW</button>
+      <div class = "button-border">FOLLOW</div>
     </div>
   </div>
 
 </div>
 
 <ul class="navigation">
-<<<<<<< HEAD
-  <li><a href="#home">
-    <%= link_to "My Journey", user_journeys_path(current_user)  %>
-  </a></li>
-  <li><a href="#about">
-    <img src="./images/about.png" />
-  </a></li>
-  <li><a href="#portfolio">
-    <img src="./images/portfolio.png" />
-  </a></li>
-  <li><a href="#blog">
-    <img src="./images/blog.png" />
-  </a></li>
-  <li><a href="#services">
-    <img src="./images/services.png" />
-  </a></li>
-  <li><a href="#contact">
-    <img src="./images/contact.png" />
-  </a></li>
-=======
+
   <li><a href="#about">
     <span>
     <%=  image_tag "MenuBar-icon-profile.png"  %>
@@ -116,7 +92,6 @@
   <!-- <li><a href="#contact">
     <img src="./images/contact.png" />
   </a></li> -->
->>>>>>> a1df51fda1a7c29fd5cad24d1d9260891d3986b2
 </ul>
 
 
@@ -126,13 +101,14 @@
 </span>
 
 
-<section>
+<section id="page-content">
   <div class="empty-div"><p></p></div>
   <aside>
     <div class="about">
       <%= image_tag ("profile-SectionTitiles-about.png") %>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
+
       <div class="grid-alligned-items">
         <a href="" class="grid-alligned-item">
         </a>
@@ -168,12 +144,45 @@
           <% end %>
         </a>
 
+      </div>
 
-        <div class="photo_gallery-button">
-          <%= link_to "Photo Gallery", user_photos_path(@user) %>
+      <div class="photo-gallery-button-container">
+        <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
+        <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
+      </div>
+
+      <div class="recomms">
+        <%= image_tag ("profile-SectionTitiles-recommendations.png") %>
+
+        <hr id="middle-vertical-line">
+        <div class="recomm">
+          <h4 class="recomm-name">Recommendation 1</h4>
+          <hr class="recomm-underline">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
         </div>
 
+        <div class="recomm">
+          <h4 class="recomm-name">Recommendation 2</h4>
+          <hr class="recomm-underline">
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+        </div>
+
+        <div class="recomm">
+          <h4 class="recomm-name">Recommendtion 3</h4>
+          <hr class="recomm-underline">
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+        </div>
+
+        <div class="recomm">
+          <h4 class="recomm-name">Recommendation 4</h4>
+          <hr class="recomm-underline">
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+        </div>
     </div>
+
   </aside>
   <article>
     <div class="overall">
@@ -194,12 +203,16 @@
       </div>
     </div>
 
-    <div class="userTimeline">
+    <div class="user-Timeline-section">
       <div class="userTimeline-image1">
         <%= image_tag ('profile-SectionTitiles-timeline.png') %>
       </div>
       <div class="userTimeline-image2">
         <%= image_tag ('profile-timeline-bg.jpg') %>
+      </div>
+      <div class="timeline-button-container">
+        <button class="profile-button">VIEW TIMELINE</button>
+        <div class = "button-border timeline-button-border" >VIEW TIMELINE</div>
       </div>
     </div>
 
@@ -271,11 +284,6 @@
   </div>
 </div>
 
-
-  <div class="user-timeline">
-    <div id="user<%= @user.id %>-timeline" >
-    </div>
-  </div>
 
     <p>
       <strong>Email:</strong>

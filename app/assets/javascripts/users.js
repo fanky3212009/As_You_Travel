@@ -3,19 +3,22 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on('ready page:load', function () {
+  $('.timeline-button-border').on('click', function(e){
+    e.preventDefault();
+    alert('worked');
 
-  $.ajax({
-    url: window.location.pathname,
-    type: 'GET',
-    dataType: 'json',
-    success: function (data) {
-
-       var timeline = new TL.Timeline('user'+data.id+'-timeline', data,
-       {
-         theme_color: "#288EC3",
-         ga_property_id: "UA-27829802-4"
-       });
-     }
+    $.ajax({
+      url: window.location.pathname,
+      type: 'GET',
+      dataType: 'json',
+      success: function (data) {
+        var timeline = new TL.Timeline('page-content', data,
+        {
+          theme_color: "#288EC3",
+          ga_property_id: "UA-27829802-4"
+        });
+      }
+    });
   });
 
     $('#search_nearby').on('click', function() {
