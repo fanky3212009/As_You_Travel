@@ -513,6 +513,13 @@ border: 5px solid #80B3F0;
 
 }
 
+.activity-button-container{
+  position: relative;
+  margin-left: 12em;
+  margin-top: 4em;
+}
+
+
 .profile-button {
     border: none;
     padding: 8px 50px;
@@ -541,7 +548,7 @@ border: 5px solid #80B3F0;
 }
 
 .footer {
-  margin-top: 8em;
+  // margin-top: 8em;
   img {
     width: 100%;
   }
