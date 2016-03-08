@@ -1,11 +1,12 @@
 class Journey < ActiveRecord::Base
-  
+
   belongs_to :owner, class_name: "User"
   has_many :diary_entries
   has_many :photos, :as => :imageable
   has_many :favourites, :as => :favourable
   has_many :tags, :as => :taggable
   has_many :comments, :as => :commentable
+  # validates :title, :description, :location, presence: true
 
 
 
@@ -21,6 +22,13 @@ class Journey < ActiveRecord::Base
   def set_feat_img(photo)
       self.feat_img = photo.picture.url
   end
+
+  def set_description
+    @journey = Journey.last
+    @journey.description = params[:description]
+    @journey.save
+  end
+
 
   geocoded_by :location
   after_validation :geocode

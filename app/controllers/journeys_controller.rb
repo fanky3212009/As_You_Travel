@@ -5,13 +5,14 @@ class JourneysController < ApplicationController
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
 
   def index
-    @journeys = Journey.all
-    @user = User.find(params[:user_id])
+      @journeys = Journey.all
+      @user = User.find(params[:user_id])
+
   end
 
   def new
     @journey = Journey.new
-      @user = @journey.owner
+    @user =  current_user
   end
 
   def show
@@ -28,15 +29,22 @@ class JourneysController < ApplicationController
   end
 
   def create
+    if journey_params.has_key?("description")
+      @journey = Journey.last
+      @journey.update_attributes(journey_params)
+      @journey.save
+      render nothing: true, status: 200
+    else
 
-    if current_user
-      @user = current_user
-      @journey = @user.owend_journeys.build(journey_params)
+      if current_user
+        @user = current_user
+        @journey = @user.owend_journeys.build(journey_params)
 
-      if @journey.save
-        redirect_to @user, notice: "Journey successfully created!"
-      else
-        render :new
+        if @journey.save
+          redirect_to @user, notice: "Journey successfully created!"
+        else
+          render :new
+        end
       end
     end
   end

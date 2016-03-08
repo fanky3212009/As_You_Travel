@@ -41,7 +41,7 @@
   <% end %>
   <br>
 
-
+  <% if current_user != @user %>
 <% if @journey.favourites.where(user_id: current_user.id).length > 0 %>
   <button class="f-already">
     <span class="fa fa-heart">
@@ -62,6 +62,7 @@
     <%= f.button :class => "f-submit" %>
     <% end %>
   </div>
+<% end %>
 <% end %>
 
 <div class="recommend">
@@ -110,9 +111,8 @@
 
         <div class="modal-content">
                   <!--Your modal content goes here-->
-
-
                   <div id="path_map"><%= link_to 'My Path', journey_diary_entries_path(@journey) %></div>
+
         </div>
     </div>
   <h4>Add Photos</h4>
