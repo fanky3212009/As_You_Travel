@@ -13,84 +13,6 @@
 
 
 
-<div class="hero">
-  <div class="logo">
-    <%= image_tag ("logo-blue.png")  %>
-  </div>
-
-  <div class="hero-inner">
-    <div class="hero-logo">
-      <%= image_tag @user.profile_img %>
-      <!-- <%= image_tag ("profile-UserImage-1.png")  %> -->
-    </div>
-    <div class="hero-copy">
-      <h1>As You Travel!</h1>
-      <p>Who Am I</p>
-       <%= render 'stats' %>
-    </div>
-  </div>
-
-</div>
-
-<ul class="navigation">
-  <li><a href="#about">
-    <span>
-    <%=  image_tag "MenuBar-icon-profile.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-profile-hover.png"%>
-      <p>My Profile</p>
-    </div>
-  </a></li>
-
-  <li>
-    <%= link_to user_journeys_path(@user) do %>
-      <span>
-      <%=  image_tag "MenuBar-icon-Journey.png"  %>
-      </span>
-      <div class="menu-out">
-        <%= image_tag "MenuBar-icon-Journey-hover.png"%>
-        <p>My Journey</p>
-      </div>
-    <% end %>
-  </li>
-
-  <li><a href="#portfolio">
-    <span>
-    <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
-      <p>Photo Gallery</p>
-    </div>
-  </a></li>
-
-  <li><a href="#blog">
-    <span>
-    <%=  image_tag "MenuBar-icon-timeline.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-timeline-hover.png"%>
-      <p>My Timeline</p>
-    </div>
-  </a></li>
-
-  <li><a href="#services">
-    <span>
-    <%=  image_tag "MenuBar-icon-favorites.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-favorites-hover.png"%>
-      <p>Favourites</p>
-    </div>
-  </a></li>
-  <!-- <li><a href="#contact">
-    <img src="./images/contact.png" />
-  </a></li> -->
-
-</ul>
-
-
 
 <span class="nav-link">
 
@@ -108,12 +30,12 @@
         <a href="" class="grid-alligned-item">
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
-          <% if @user.owend_journeys.first.diary_entries[1].photos != [] %>
-          <%= image_tag (@user.owend_journeys.first.diary_entries[1].photos.sample.picture.url)%>
+          <% if @user.owend_journeys.first.diary_entries[0].photos != [] %>
+          <%= image_tag (@user.owend_journeys.first.diary_entries[0].photos.sample.picture.url)%>
           <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big">
-          <% if @user.owend_journeys.first.diary_entries[1].photos != [] %>
+          <% if @user.owend_journeys.first.diary_entries[0].photos != [] %>
           <%= image_tag (@user.owend_journeys.first.photos.last.picture.gallery_wall.url)%>
 
           <% end %>
