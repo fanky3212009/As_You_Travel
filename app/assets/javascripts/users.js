@@ -5,7 +5,6 @@
 $(document).on('ready page:load', function () {
   $('.timeline-button-border').on('click', function(e){
     e.preventDefault();
-    alert('worked');
 
     $.ajax({
       url: window.location.pathname,

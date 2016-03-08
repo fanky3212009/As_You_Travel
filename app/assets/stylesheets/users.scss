@@ -308,13 +308,12 @@
 
 .activity-stream {
   // transform: translate(-4em);
-  margin-top: 3em;
   img {
-    width: 80%;
+    margin-left: 6em;
   }
   .activity-title {
 
-    color: #295ED5;
+    color: #354CD6;
     text-align: left;
     margin-top: 3em;
     margin-left: 5em;
@@ -374,13 +373,13 @@ ul.navigation{
     height:50px;
     width:150px;
     background: #7d7e7d; /* Old browsers */
-    background: -moz-linear-gradient(top, #295ED5 0%, #295ED5 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#295ED5), color-stop(100%,#295ED5)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #295ED5 0%,#295ED5 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #295ED5 0%,#295ED5 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #295ED5 0%,#295ED5 100%); /* IE10+ */
-    background: linear-gradient(top, #295ED5 0%,#295ED5 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#295ED5', endColorstr='#295ED5',GradientType=0 ); /* IE6-9 */
+    background: -moz-linear-gradient(top, #354CD6 0%, #354CD6 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#354CD6), color-stop(100%,#354CD6)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #354CD6 0%,#354CD6 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #354CD6 0%,#354CD6 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #354CD6 0%,#354CD6 100%); /* IE10+ */
+    background: linear-gradient(top, #354CD6 0%,#354CD6 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#354CD6', endColorstr='#354CD6',GradientType=0 ); /* IE6-9 */
     padding:10px;
     position:relative;
     border-radius:3px;
@@ -509,7 +508,6 @@ border: 5px solid #80B3F0;
   position: relative;
   margin-left: 8em;
   top: -11em;
-  margin-bottom: 13em;
 
 }
 
@@ -536,7 +534,7 @@ border: 5px solid #80B3F0;
 
 .button-border {
     border: 2px solid black;
-    padding: 10px 50px;
+    padding: 6px 51px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -567,4 +565,38 @@ border: 5px solid #80B3F0;
   }
 
 
+}
+
+.tl-timenav-line{
+  background-color: #FFD400 !important;
+  z-index: 17 !important;
+  position: absolute !important;
+  top: 0px !important;
+  left: 49.7% !important;
+  width: 4px !important;
+  height: 7.85em !important;
+  display: block !important;
+}
+
+// .tl-timenav .tl-timenav-line:before, .tl-timenav .tl-timenav-line:after {
+//   display: none;
+// }
+
+.tl-timemarker.tl-timemarker .tl-timemarker-content-container {
+  color: white;
+  background-color: black;
+
+}
+.tl-timemarker.tl-timemarker-active .tl-timemarker-content-container {
+  color: white;
+  background-color: #364DD9;
+}
+
+.tl-timenav .tl-timenav-line:after{
+  display:none;
+}
+
+.tl-timemarker:hover .tl-timemarker-content-container .tl-timemarker-content .tl-timemarker-text h2.tl-headline {
+    color: white !important;
+    font-size: 0.8em !important;
 }
