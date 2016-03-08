@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :owend_journeys, class_name: "Journey", foreign_key: "owner_id"
   has_many :photos, :as => :imageable
   has_many :favourites
+  has_many :tags
 
 
   def as_json(options={})
@@ -44,6 +45,13 @@ class User < ActiveRecord::Base
       self.save
     end
     #code
+  end
+
+  def find_recommended
+    @recommendation = self.tags.where(body: "recommended")
+    @reco_array = []
+    @recommendation.each { |x| @reco_array << x.taggable}
+    @reco_array
   end
 
 end

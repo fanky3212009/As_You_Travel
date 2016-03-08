@@ -1,4 +1,5 @@
 class DiaryEntriesController < ApplicationController
+  # layout "profile", only: [:index]
   before_action :find_journey
 
   def new
@@ -20,6 +21,7 @@ class DiaryEntriesController < ApplicationController
   end
 
   def index
+    @user = @journey.owner
     # @journey = Journey.find(params[:journey_id])
     @diary_entries = @journey.diary_entries
 

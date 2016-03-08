@@ -42,7 +42,7 @@ class TagsController < ApplicationController
 
   private
   def tag_params
-    params.require(:tag).permit(:body, :taggable_id, :taggable_type)
+    params.require(:tag).permit(:body, :taggable_id, :taggable_type, :user_id)
     #code
   end
 
