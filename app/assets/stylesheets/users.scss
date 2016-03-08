@@ -104,7 +104,8 @@
       p {
         color: $hero-color;
         line-height: 1.4em;
-        margin: 0 auto 3em auto;
+        margin: 0 auto 0 auto;
+
 
         @include media($large-screen) {
           font-size: 1.1em;
@@ -491,8 +492,8 @@ border: 5px solid #80B3F0;
 
 .follow-button-container{
   position: relative;
-  left: -6em;
-  top: -3em;
+  left: 49em;
+  top: -27em;
 
 }
 
