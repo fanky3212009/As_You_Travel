@@ -40,6 +40,7 @@
     <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
     <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
     <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+    <%= t.hidden_field :user_id, :value => current_user.id %>
     <%= t.submit "Add" %>
     <% end  %>
   </div>
@@ -49,33 +50,43 @@
   <br>
 
 
-    <li class="favourite-button">
-  		<button class="icobutton icobutton--heart"><span class="fa fa-heart"></span></button>
-  	</li>
-
-
-
-  <a id="demo01" href="#animatedModal">DEMO01</a>
-
-    <!--DEMO01-->
-    <div id="animatedModal">
-        <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-        <div class="close-animatedModal">
-            CLOSE MODAL
-        </div>
-
-        <div class="modal-content">
-                  <!--Your modal content goes here-->
-                  <label id="photos-list">My Photos</label>
-                  <div class="-diary_photos">
-                    <% @diary_entry.photos.each do |p| %>
-                    <%= image_tag "#{p.picture.url}" %>
-                    <% end %>
-
-
-                  </div>
-        </div>
+<div class="favourite-diary">
+  <% if @diary_entry.favourites.where(user_id: current_user.id).length > 0 %>
+    <button class="f-already">
+      <span class="fa fa-heart">
+        </span>
+    </button>
+    <div class="favourite-form-already">
+      <%= form_for [@diary_entry.journey, @diary_entry, @diary_entry.favourites.where(user_id: current_user.id)[0]], method: :delete do |f| %>
+      <%= f.button :class => "submit-already" %>
+      <% end %>
     </div>
+  <% else %>
+    <button class="no-f-yet">
+      <span class="fa fa-heart">
+        </span>
+    </button>
+    <div class="favourite-form">
+      <%= form_for [@diary_entry.journey, @diary_entry, Favourite.new] do |f| %>
+      <%= f.button :class => "f-submit" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+  <div class="recommend">
+    <% if current_user != @diary_entry.journey.owner_id && current_user.tags.where(body: "recommended", taggable_id: @diary_entry.id) == [] %>
+    <div class="recommend-form">
+      <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
+      <%= t.hidden_field :body, :value=> 'recommended' %>
+      <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
+      <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+      <%= t.hidden_field :user_id, :value => current_user.id %>
+      <%= t.submit "Recommend" %>
+      <% end  %>
+    </div>
+    <% end %>
+  </div>
 
 
 

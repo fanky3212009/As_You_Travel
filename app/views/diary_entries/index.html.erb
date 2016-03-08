@@ -13,37 +13,26 @@
 	</head>
 	<body>
 		<div class="view">
-			<header class="header">
-				<div class="codrops-links">
-					<a class="codrops-icon codrops-icon--prev"  title="Previous Demo"><span>Previous Demo</span></a>
-					<a class="codrops-icon codrops-icon--drop"  title="Back to the article"><span>Back to the Codrops article</span></a>
-				</div>
-				<nav class="demos">
-					<a class="demos__item demos__item--current" href="index.html">Default</a>
-					<a class="demos__item" >Spring</a>
-				</nav>
-			</header>
 			<section class="page page--mover">
 				<div class="la-square-loader"><div></div></div>
 			</section>
 			<div class="title-wrap">
 				<h1 class="title title--main">OH<em>!</em>SNAP</h1>
-				<p class="title title--sub">Smart Auto-Filtering for your shots.</p>
+				<p class="title title--sub"></p>
 			</div>
 			<section class="page page--static">
 				<div class="page__title">
-					<h2 class="page__title-main">Polaroid Stack to Grid Intro Animation</h2>
-					<p class="page__title-sub">Recreating the effect seen on the <a href="http://www.takeitapp.co/en">takeit</a> website</p>
+					<h2 class="page__title-main">Journeys</h2>
 				</div>
 
         <ul class="grid">
-          <% @diary_entries.each do |diary|%>
+          <% @journey.photos.each do |p|%>
             <li class = "grid_item">
-              <%= link_to [diary.journey, diary], class: "grid_link", :"data-no-turbolink" => true do %>
-                <% if diary.photos.length > 0 %>
-                  <%= image_tag(diary.photos.sample.picture.thumb.url, class: "grid__img") %>
+              <%= link_to p, class: "grid_link", :"data-no-turbolink" => true do %>
+                <% if p %>
+                  <%= image_tag(p.picture.url, class: "grid__img") %>
                 <% end %>
-                  <h3 class="grid__item-title"><%= diary.title %></h3>
+                  <h3 class="grid__item-title"><%= p.name %></h3>
               <% end %>
             </li>
           <% end %>

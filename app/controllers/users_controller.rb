@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "profile", except: [:index, :home]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers]
   before_action :require_login, only: [:index, :edit, :update, :destroy, :following, :followers]
 

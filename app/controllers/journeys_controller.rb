@@ -1,22 +1,27 @@
 class JourneysController < ApplicationController
+  layout "profile"
+  # except: [:index]
   before_action :set_journey, only: [:show, :edit, :update, :destroy, :gallery]
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
 
   def index
     @journeys = Journey.all
+    @user = User.find(params[:user_id])
   end
 
   def new
     @journey = Journey.new
+      @user = @journey.owner
   end
 
   def show
     @diary_entries = @journey.diary_entries
     @comment = Comment.new
+    @user = @journey.owner
   end
 
   def gallery
-
+    @user = @journey.owner
   end
 
   def edit

@@ -18,7 +18,7 @@
 
 <body>
 
-    <div id="nav-user-logout">
+    <div id="nav-user-logout-application">
       <% if current_user %>
         Logined as <%= current_user.email %> | <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
         <%= link_to "Logout", :logout, method: :post %>
@@ -31,9 +31,9 @@
       <p id="notice"><%= flash[:notice] %></p>
       <p id="alert"><%= flash[:alert] %></p>
     </div>
-  <% if current_user %>
+  <!-- <% if current_user %>
     <%= link_to 'Add New Journey', new_journey_path %>
-  <% end %>
+  <% end %> -->
 <%= yield %>
 
 </body>

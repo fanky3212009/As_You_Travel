@@ -34,6 +34,7 @@
     <%= t.text_field :body, :placeholder => 'Descripe Your Journey' %>
     <%= t.hidden_field :taggable_id, :value => @journey.id %>
     <%= t.hidden_field :taggable_type, :value => @journey.class %>
+    <%= t.hidden_field :user_id, :value => current_user.id %>
     <%= t.submit "Add" %>
     <% end  %>
   </div>
@@ -70,6 +71,7 @@
     <%= t.hidden_field :body, :value=> 'recommended' %>
     <%= t.hidden_field :taggable_id, :value => @journey.id %>
     <%= t.hidden_field :taggable_type, :value => @journey.class %>
+    <%= t.hidden_field :user_id, :value => current_user.id %>
     <%= t.submit "Recommend" %>
     <% end  %>
   </div>
