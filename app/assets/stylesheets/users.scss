@@ -596,7 +596,17 @@ border: 5px solid #80B3F0;
   display:none;
 }
 
-.tl-timemarker:hover .tl-timemarker-content-container .tl-timemarker-content .tl-timemarker-text h2.tl-headline {
+.tl-timemarker .tl-timemarker-content-container .tl-timemarker-content .tl-timemarker-text h2.tl-headline {
     color: white !important;
     font-size: 0.8em !important;
+}
+
+.vco-slider .slider-item .content .content-container .text .container h2.date {
+  font-size: 60px;
+  line-height: 60px;
+  padding-bottom: 0.2em;
+  font-weight: 100;
+  font-family: "proxima-nova",sans-serif;
+  text-transform: uppercase;
+  color: #324DD6;
 }
