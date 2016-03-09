@@ -42,6 +42,7 @@
   $gradient-angle: 10deg;
   $background-image: 'profile-user-bg.jpg';
 
+
   @include background(url($background-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
@@ -308,12 +309,13 @@
 
 .activity-stream {
   // transform: translate(-4em);
+  margin-top: 3em;
   img {
-    margin-left: 6em;
+    width: 80%;
   }
   .activity-title {
 
-    color: #354CD6;
+    color: #295ED5;
     text-align: left;
     margin-top: 3em;
     margin-left: 5em;
@@ -373,13 +375,13 @@ ul.navigation{
     height:50px;
     width:150px;
     background: #7d7e7d; /* Old browsers */
-    background: -moz-linear-gradient(top, #354CD6 0%, #354CD6 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#354CD6), color-stop(100%,#354CD6)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #354CD6 0%,#354CD6 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #354CD6 0%,#354CD6 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #354CD6 0%,#354CD6 100%); /* IE10+ */
-    background: linear-gradient(top, #354CD6 0%,#354CD6 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#354CD6', endColorstr='#354CD6',GradientType=0 ); /* IE6-9 */
+    background: -moz-linear-gradient(top, #295ED5 0%, #295ED5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#295ED5), color-stop(100%,#295ED5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #295ED5 0%,#295ED5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #295ED5 0%,#295ED5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #295ED5 0%,#295ED5 100%); /* IE10+ */
+    background: linear-gradient(top, #295ED5 0%,#295ED5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#295ED5', endColorstr='#295ED5',GradientType=0 ); /* IE6-9 */
     padding:10px;
     position:relative;
     border-radius:3px;
@@ -508,6 +510,7 @@ border: 5px solid #80B3F0;
   position: relative;
   margin-left: 8em;
   top: -11em;
+  margin-bottom: 13em;
 
 }
 
@@ -520,7 +523,7 @@ border: 5px solid #80B3F0;
 
 .profile-button {
     border: none;
-    padding: 8px 50px;
+    padding: 13px 50px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -534,7 +537,7 @@ border: 5px solid #80B3F0;
 
 .button-border {
     border: 2px solid black;
-    padding: 6px 51px;
+    padding: 10px 50px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -565,74 +568,4 @@ border: 5px solid #80B3F0;
   }
 
 
-}
-
-.tl-timenav-line{
-  background-color: #FFD400 !important;
-  z-index: 17 !important;
-  position: absolute !important;
-  top: 0px !important;
-  left: 49.9% !important;
-  width: 4px !important;
-  height: 7.85em !important;
-  display: block !important;
-}
-
-.tl-timenav .tl-timenav-line:after{
-  display:none;
-}
-
-
-.tl-timemarker.tl-timemarker .tl-timemarker-content-container {
-  color: white;
-  background-color: black;
-
-}
-.tl-timemarker.tl-timemarker-active .tl-timemarker-content-container {
-  color: white;
-  background-color: #364DD9;
-}
-
-
-.tl-timemarker .tl-timemarker-content-container .tl-timemarker-content .tl-timemarker-text h2.tl-headline {
-    color: white !important;
-    font-size: 0.8em !important;
-}
-
-.vco-slider .slider-item .content .content-container .text .container h2.date {
-  font-size: 60px;
-  line-height: 60px;
-  padding-bottom: 0.2em;
-  font-weight: 100;
-  font-family: "proxima-nova",sans-serif;
-  text-transform: uppercase;
-  color: #324DD6;
-}
-
-.tl-timemarker .tl-timemarker-content-container {
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-}
-
-.tl-text .tl-headline-date, .tl-text h3.tl-headline-date {
-  font-size: 4em;
-  color: #324DD6;
-  padding-bottom: 0.5em;
-}
-
-.tl-headline {
-  text-transform: capitalize !important;
-  font-size: 2em !important;
-  color: #B0D1F6 !important;
-}
-.tl-media-image {
-  border: 12px solid #EFEDE8;
-  border-bottom: 55px solid #EFEDE8;
-  transform: rotate(-2deg);
-
-}
-
-div.tl-media-content-container {
-  margin-right: 3em !important;
 }
