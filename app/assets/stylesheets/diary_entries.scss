@@ -35,33 +35,33 @@
 
 .f-already {
   outline: none;
-	font-size: 2.5em;
-	position: relative;
-	margin: 0;
-	padding: 0;
-	color: #FF6767;
-	border: 0;
-	background: none;
-	overflow: visible;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-size: 2.5em;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: #FF6767;
+  border: 0;
+  background: none;
+  overflow: visible;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .no-f-yet {
   outline: none;
-	font-size: 2.5em;
-	position: relative;
-	margin: 0;
-	padding: 0;
-	color: grey;
-	border: 0;
-	background: none;
-	overflow: visible;
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+  font-size: 2.5em;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: grey;
+  border: 0;
+  background: none;
+  overflow: visible;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .icobutton .fa {
-	display: block;
-	padding: 0 0.1em;
+  display: block;
+  padding: 0 0.1em;
 }
 
 .f-submit, .submit-already {
@@ -273,7 +273,7 @@ $red: #F97E76;
   padding-bottom: 3em;
   height: 52em;
   margin-top: -6em;
-  margin-bottom: 8em;
+  margin-bottom: 4em;
 
   @include transform(translateY(50px));
 
@@ -351,3 +351,30 @@ $red: #F97E76;
 }
 
 .diary-picture img {margin-left: 3em;}
+
+.diary-picture-stat-section {
+  height: 100vh;
+  background-image:url(lined_paper_@2X.png);
+  background-repeat:repeat;
+}
+
+.diary-content-picture-section {
+  height: 100vh;
+  background-image:url(ricepaper_v3_@2X.png);
+  background-repeat:repeat;
+}
+
+.comment-form-list-section {
+  height: 100vh;
+  background-image:url(photography_@2X.png);
+  background-repeat:repeat;
+}
+
+.commenter-name {
+  color: #314CD7;
+  margin-right: 1em;
+  font-size: 2em;
+}
+.commenter-name, .commenter-info {
+  display: inline-block;
+}
