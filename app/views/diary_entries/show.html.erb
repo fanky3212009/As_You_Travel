@@ -97,10 +97,30 @@
         <%= image_tag ('Entries_icon_tag.png') %>
         <h3 class="diary-stat-name">TAGS</h3>
         <div class="activity-tags">
-            <span>Tag</span>
-            <span>Tag</span>
-            <span>Tag</span>
-            <span>+</span>
+           <% @diary_entry.tags.each do |tag| %>
+              <% if tag.body != "recommended" %>
+              <span>
+                  <%= tag.body %>
+              </span>
+                <% end %>
+          <% end %>
+
+          <% if current_user == @diary_entry.journey.owner %>
+            <span class="add-new-tag"><%= link_to "Add Tags" %></span>
+
+
+
+          <div class="diary-tag-form">
+            <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
+
+            <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
+            <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
+            <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+            <%= t.hidden_field :user_id, :value => current_user.id %>
+            <%= t.submit "Add" %>
+            <% end  %>
+          </div>
+          <% end %>
         </div>
 
       </div>
@@ -216,10 +236,10 @@
     <div id="diary-tags-list" >
 
         <% @diary_entry.tags.each do |tag| %>
-          <div class="each-tag">
             <%= tag.body %>
-          </div>
         <% end  %>
+      </div>
+        <div class="each-tag">
 
   </div>
 

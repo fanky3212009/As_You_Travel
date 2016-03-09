@@ -17,11 +17,11 @@ $(document).on('ready page:load', function () {
 
   $('.add-new-tag').on('click', function (e) {
     e.preventDefault();
-    if ($('.tag-form').css("display") == "block") {
-      $('.tag-form').css("display", "none");
+    if ($('.diary-tag-form').css("display") == "block") {
+      $('.diary-tag-form').css("display", "none");
     }
     else {
-      $('.tag-form').css("display", "block");
+      $('.diary-tag-form').css("display", "block");
     }
   });
 
