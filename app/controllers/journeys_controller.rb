@@ -8,6 +8,11 @@ class JourneysController < ApplicationController
       @journeys = Journey.all
       @user = User.find(params[:user_id])
 
+      respond_to do |format|
+        format.html
+        format.json { render json: @journeys }
+      end
+
   end
 
   def new
