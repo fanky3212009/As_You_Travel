@@ -247,3 +247,107 @@ $red: #F97E76;
   }
 
 }
+
+
+
+
+
+
+
+.back-img-diary {
+  $base-border-radius: 3px !default;
+  $action-color: #477DCA !default;
+  $large-screen: em(860) !default;
+  $hero-background-top: #7F99BE;
+  $hero-background-bottom: #20392B;
+  $hero-color: white;
+  $gradient-angle: 10deg;
+  $background-image: 'Entries_slider_bg.jpg';
+
+
+  @include background(url($background-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+  background-color: #324766;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 3em;
+  height: 52em;
+  margin-top: -6em;
+  margin-bottom: 8em;
+
+  @include transform(translateY(50px));
+
+  .hero-logo {
+    margin-bottom: 1em;
+    border-radius: 50%;
+    color: grey;
+    background-color: #B5B5B5;
+    height: 10em;
+    margin: auto;
+    border: 2px solid;
+    width: 13%;
+    margin-top: -11em;
+    overflow: hidden;
+    img {
+      margin-top: -0.3em;
+      height: 10.5em;
+      width: 10em;
+    }
+  }
+
+
+  .logo {
+    img {
+      margin:1.5em;
+      transform: translateY(1em);
+    }
+  }
+
+  .hero-inner {
+    @include outer-container;
+    @include clearfix;
+    margin: auto;
+    padding: 10em;
+    text-align: center;
+
+    .hero-copy {
+      text-align: center;
+      margin-top: 2em;
+
+      h1 {
+        color: $hero-color;
+        font-size: 1.6em;
+        margin-bottom: 0.5em;
+
+        @include media($large-screen) {
+          font-size: 1.8em;
+        }
+      }
+
+      p {
+        color: $hero-color;
+        line-height: 1.4em;
+        margin: 0 auto 0 auto;
+
+
+        @include media($large-screen) {
+          font-size: 1.1em;
+          max-width: 40%;
+        }
+      }
+    }
+  }
+}
+
+.diary-wrapper {
+  color: black;
+  @include outer-container;
+  .diary_aside { @include span-columns(8); }
+  .diary_article {
+    @include span-columns(8);
+    position: relative;
+    left: 2em;
+  }
+}
+
+.diary-picture img {margin-left: 3em;}

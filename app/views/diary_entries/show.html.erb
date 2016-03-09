@@ -1,6 +1,197 @@
 <!DOCTYPE html>
 <body>
 
+    <div class="back-img-diary">
+      <div class="logo">
+        <%= image_tag ("logo-blue.png")  %>
+      </div>
+    	<div class="hero-inner">
+    		<div class="hero-copy">
+    			<h1>As You Travel!</h1>
+    		    <h2>Written by Who</h2>
+
+    		</div>
+    	</div>
+
+    </div>
+
+    <ul class="navigation">
+      <li>
+        <%= link_to @user, :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-profile.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-profile-hover.png"%>
+          <p>My Profile</p>
+        </div>
+      <% end %>
+    </li>
+
+    	<li>
+        <%= link_to user_journeys_path(@user) do %>
+          <span>
+          <%=  image_tag "MenuBar-icon-Journey.png"  %>
+          </span>
+          <div class="menu-out">
+            <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+            <p>My Journey</p>
+          </div>
+        <% end %>
+      </li>
+
+    	<li><a href="#portfolio">
+        <span>
+        <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+          <p>Gallery</p>
+        </div>
+    	</a></li>
+
+    	<li><a href="#blog">
+        <span>
+        <%=  image_tag "MenuBar-icon-timeline.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+          <p>My Timeline</p>
+        </div>
+    	</a></li>
+
+    	<li><a href="#services">
+        <span>
+        <%=  image_tag "MenuBar-icon-favorites.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+          <p>Favourites</p>
+        </div>
+    	</a></li>
+    	<!-- <li><a href="#contact">
+    		<img src="./images/contact.png" />
+    	</a></li> -->
+    </ul>
+
+
+
+<div class="diary-wrapper">
+  <div class="diary_aside">
+    <div class="diary-first-section">
+      <div class="diary-picture">
+        <%= image_tag ('Entries_image_1.png') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="diary_section">
+    <!-- <div class="overall">
+      <%= image_tag ('profile-SectionTitiles-overall.png') %>
+      <div class="couter">
+        <div class="counter1">
+          Traveled
+        </div>
+        <div class="counter1">
+          Wrote
+        </div>
+        <div class="counter1">
+          Captured
+        </div>
+        <div class="counter2">
+          Stayed
+        </div>
+      </div>
+    </div>
+
+    <div class="user-Timeline-section">
+      <div class="userTimeline-image1">
+        <%= image_tag ('profile-SectionTitiles-timeline.png') %>
+      </div>
+      <div class="userTimeline-image2">
+        <%= image_tag ('profile-timeline-bg.jpg') %>
+      </div>
+      <div class="timeline-button-container">
+        <button class="profile-button">VIEW TIMELINE</button>
+        <div class = "button-border timeline-button-border" >VIEW TIMELINE</div>
+      </div>
+    </div>
+
+
+    <div class="activity-stream">
+      <div class="activity-stream-img">
+      <%= image_tag ('profile-SectionTitiles-activities.png') %>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>Trip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <div class="activity-tags">
+              <span>Tag</span>
+              <span>Tag</span>
+              <span>Tag</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>Trip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <div class="activity-tags">
+              <span>Tag</span>
+              <span>Tag</span>
+              <span>Tag</span>
+          </div>
+
+        </div>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>Trip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="activity-tags">
+            <span>Tag</span>
+            <span>Tag</span>
+            <span>Tag</span>
+        </div>
+        </div>
+      </div>
+      <div class="user-diary-activity">
+        <div class="activity-title">
+          <h2>ip to India</h2>
+          <h3>Location, Date</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+          <div class="activity-tags">
+              <span>Tag</span>
+              <span>Tag</span>
+              <span>Tag</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="activity-button-container">
+      <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
+      <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
+    </div> -->
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
 
 <h1><%= link_to @diary_entry.title, journey_diary_entry_path(@diary_entry.journey, @diary_entry) %></a></h1>
 
@@ -90,7 +281,7 @@
 
 
 
-  <div class="photo-form">
+  <!-- <div class="photo-form">
     <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
       <%= t.label :name  %>
       <br>
@@ -98,12 +289,12 @@
       <br>
       <div class="dropzone-previews"></div>
       <br>
-      <!-- <%= t.hidden_field :picture %> -->
+
       <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
       <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
     <% end  %>
 
-  </div>
+  </div> -->
 
   <%= render partial: 'comments/list', locals: { commentable: @diary_entry }  %>
 
