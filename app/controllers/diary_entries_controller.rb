@@ -44,6 +44,7 @@ class DiaryEntriesController < ApplicationController
 
   def show
     @diary_entry = @journey.diary_entries.find(params[:id])
+    @user = @journey.owner
     @comment = Comment.new
     respond_to do |format|
       format.html
