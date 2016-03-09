@@ -316,7 +316,7 @@ $red: #F97E76;
 
       h1 {
         color: $hero-color;
-        font-size: 1.6em;
+        font-size: 4.8em;
         margin-bottom: 0.5em;
 
         @include media($large-screen) {
@@ -339,10 +339,15 @@ $red: #F97E76;
   }
 }
 
+
+
 .diary-wrapper {
   color: black;
   @include outer-container;
-  .diary_aside { @include span-columns(8); }
+  .diary_aside {
+    @include span-columns(8);
+    margin-right: 0;
+  }
   .diary_article {
     @include span-columns(8);
     position: relative;
@@ -377,4 +382,146 @@ $red: #F97E76;
 }
 .commenter-name, .commenter-info {
   display: inline-block;
+}
+.diary-stat {
+    margin: 1em;
+    .activity-tags {
+      margin-bottom: 3em;
+      margin-left: 3em;
+      margin-top: -1em;
+      span {
+        margin: 0 1em;
+        border: 1px solid #295ED5;
+        padding: 6px 25px;
+      }
+    }
+}
+
+.diary-stat-name {
+    display: inline-block;
+}
+
+.diary-stat-content {}
+
+.diary-picture-stat-section {
+    height: 56em;
+}
+
+.diary-picture.diary_aside {
+    margin-top: 9em;
+}
+
+.diary-stats.diary_article {
+    margin-top: 7em;
+    margin-left: -4em;
+}
+
+.diary-picture img {
+    margin-left: 6em;
+}
+
+.diary-stat-name {
+    margin-left: 0.3em;
+    transform: translateY(-0.5em);
+    margin-bottom: 1.5em;
+    font-size: 20px;
+}
+
+.diary-stat-content {transform: translateY(-1em);margin-left: 3em;}
+
+.diary-stat:last-child img {
+    margin-left: 0.5em;
+}
+
+.diary-stat:nth-child(3) h3 {
+    margin-left: 0;
+    transform: translateY(-10px);
+}
+
+.diary-content-picture-section .diary-picture img {
+    margin-top: 9em;
+
+}
+
+.diary-content-picture-section {
+    height: 56em;
+}
+
+
+
+.diary-content.diary_aside {
+    transform: translateX(3em);
+    margin-top: 17em;
+    font-size: 15px;
+    width: 49%;
+}
+
+.comment-form.diary_aside {
+    margin-left: 7em;
+    margin-top: 7em;
+    width: 41%;
+}
+
+.comment-form-list-section .comment-form textarea#body {
+    height: 235px;
+}
+
+.comment-form-list-section {
+    height: 56em;
+}
+
+.comment-list-item {
+}
+
+.comment-list.diary_article {
+    margin-top: 9em;
+    width: 42%;
+}
+
+comment-list-item img {
+    margin-top: 2em;
+}
+
+.comment-form.diary_aside {
+    margin-left: 7em;
+    margin-top: 7em;
+    width: 41%;
+}
+
+.comment-form-list-section .comment-form textarea#body {
+    height: 235px;
+}
+
+.comment-form-list-section {
+    height: 56em;
+}
+
+.comment-list-item {
+}
+
+.comment-list.diary_article {
+    margin-top: 9em;
+    width: 42%;
+}
+
+hr.recomm-underline {
+    /* margin: 0; */
+}
+
+comment-list-item img {
+    margin-top: 2em;
+}
+
+h2.commenter-name {
+    display: inline-block;
+    margin-left: 0.8em;
+    transform: translateY(0em);
+}
+
+.comment-list-item img {
+    transform: translateY(2em);
+}
+.diary-content button.no-f-yet {
+    margin-left: 9em;
+    margin-top: 5em;
 }
