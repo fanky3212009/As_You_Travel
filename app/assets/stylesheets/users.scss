@@ -178,7 +178,7 @@
     height: $grid-item-height;
     overflow: hidden;
     outline: none;
-    // padding: 2em;
+    // padding: ;adding: 2em;
     text-align: center;
     text-decoration: none;
     width: 100%;
@@ -633,4 +633,8 @@ border: 5px solid #80B3F0;
 
 div.tl-media-content-container {
   margin-right: 3em !important;
+}
+
+.tl-credit {
+    font-size: 1em !important;
 }
