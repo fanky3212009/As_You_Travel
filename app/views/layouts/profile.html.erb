@@ -53,7 +53,7 @@
 
   <ul class="navigation">
     <li>
-      <%= link_to @user, :"data-no-turbolink" => true do %>
+      <%= link_to current_user, :"data-no-turbolink" => true do %>
       <span>
       <%=  image_tag "MenuBar-icon-profile.png"  %>
       </span>
@@ -65,7 +65,7 @@
   </li>
 
   	<li>
-      <%= link_to user_journeys_path(@user) do %>
+      <%= link_to user_journeys_path(current_user) do %>
         <span>
         <%=  image_tag "MenuBar-icon-Journey.png"  %>
         </span>
