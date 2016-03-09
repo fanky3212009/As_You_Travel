@@ -143,6 +143,17 @@
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
       <p><%= @diary_entry.content %></p>
+        <div class="recommend diary-content">
+          <div class="recommend-form">
+            <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
+            <%= t.hidden_field :body, :value=> 'recommended' %>
+            <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
+            <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+            <%= t.hidden_field :user_id, :value => current_user.id %>
+            <%= t.submit "Recommend" %>
+            <% end  %>
+          </div>
+      </div>
       <div class="favourite-diary">
         <% if @diary_entry.favourites.where(user_id: current_user.id).length > 0 %>
           <button class="f-already">
@@ -177,7 +188,16 @@
   <div class="comment-form-list-section">
     <div class="comment-form diary_aside">
       <%= image_tag ("Entries_SectionTitle_Comments.png") %>
-      <%= text_area_tag 'body', nil, rows: 10, cols: 25 , class: "comment-form" %>
+      <% if current_user %>
+
+        <%= form_for [@diary_entry.journey, @diary_entry, @comment], :html => {:class => "comment-form"} do |f| %>
+        <%= render partial: 'comments/form', locals: { f: f, commentable: @diary_entry} %>
+        <% end %>
+      <% else %>
+        <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
+      <% end %>
+
+      <!-- <%= text_area_tag 'body', nil, rows: 10, cols: 25 , class: "comment-form" %> -->
       <div class="submit-comment-button-container">
         <button class="profile-button" href="<%= user_photos_path(@user) %>">SUBMIT</button>
         <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >SUBMIT</div></a>
