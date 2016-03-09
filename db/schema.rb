@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307221038) do
+ActiveRecord::Schema.define(version: 20160308225120) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -55,11 +55,11 @@ ActiveRecord::Schema.define(version: 20160307221038) do
     t.string   "title"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.text     "description"
-    t.string   "feat_img"
+    t.string   "description", default: ""
+    t.string   "feat_img",    default: ""
     t.string   "location"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "owner_id"
     t.float    "latitude"
     t.float    "longitude"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20160307221038) do
   add_index "tags", ["user_id"], name: "index_tags_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                           null: false
+    t.string   "email",                                        null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20160307221038) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.string   "name"
-    t.string   "profile_img"
+    t.string   "profile_img",                     default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
