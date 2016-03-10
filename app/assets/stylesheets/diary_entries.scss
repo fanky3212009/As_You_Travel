@@ -359,13 +359,13 @@ $red: #F97E76;
 
 .diary-picture-stat-section {
   height: 100vh;
-  background-image:url(lined_paper_@2X.png);
+  background-image: url(lined_paper_@2X.png);
   background-repeat:repeat;
 }
 
 .diary-content-picture-section {
   height: 100vh;
-  background-image:url(ricepaper_v3_@2X.png);
+  background-image: url(ricepaper_v3_@2X.png);
   background-repeat:repeat;
 }
 
@@ -389,6 +389,7 @@ $red: #F97E76;
       margin-bottom: 3em;
       margin-left: 3em;
       margin-top: -1em;
+      color: #295ED5;
       span {
         margin: 0 1em;
         border: 1px solid #295ED5;
@@ -397,9 +398,6 @@ $red: #F97E76;
     }
 }
 
-.diary-stat-name {
-    display: inline-block;
-}
 
 .diary-stat-content {}
 
@@ -421,6 +419,8 @@ $red: #F97E76;
 }
 
 .diary-stat-name {
+    display: inline-block;
+    color: #374BD9;
     margin-left: 0.3em;
     transform: translateY(-0.5em);
     margin-bottom: 1.5em;
