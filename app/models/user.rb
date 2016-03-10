@@ -54,4 +54,50 @@ class User < ActiveRecord::Base
     @reco_array
   end
 
+  def latest_recommendation
+    @tags = self.tags.where(body: "recommended").last(4)
+    @tags.map!.each do |r|
+        r = r.taggable
+    end
+    @tags
+  end
+
+  def count_places
+    diaryArray = []
+    self.owend_journeys.each do |x|
+      diaryArray.concat(x.diary_entries)
+    end
+    diaryLocation = []
+    diaryArray.each do |d|
+      diaryLocation << d.location
+    end
+    diaryArray.uniq!
+    places_sum = diaryArray.count
+    places_sum
+
+  end
+
+  def count_diaries
+    diaryArray = []
+    self.owend_journeys.each do |x|
+      diaryArray.concat(x.diary_entries)
+    end
+    diaryArray.count
+  end
+
+  def count_photos
+    photosArray = []
+    self.owend_journeys.each { |j| photosArray.concat(j.photo_gallery) }
+    photosArray.count
+  end
+
+  def count_days
+    days = 0
+    self.owend_journeys.each do |j|
+      each_days = ((j.end_date - j.start_date) / 1.day).ceil
+      days += each_days
+    end
+    days
+  end
+
 end

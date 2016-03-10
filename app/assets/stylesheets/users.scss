@@ -276,15 +276,39 @@
     .counter1 {
       border-bottom: 1px solid white;
       height: 4.5em;
-      width: 79%;
+      width: 76%;
       margin: auto;
-      line-height: 5em;
+      line-height: 4em;
+      font-family: fantasy;
+      font-size: 17px;
+      padding: 1em;
+      color: white;
+      font-size: large;
+
+      strong {
+        margin: 0 1em;
+        color: #295ED5;
+        font-family: monospace;
+        font-size: 2em;
+      }
     }
     .counter2 {
+      border-bottom: 1px solid white;
       height: 4.5em;
-      width: 79%;
+      width: 76%;
       margin: auto;
-      line-height: 5em;
+      line-height: 4em;
+      font-family: fantasy;
+      font-size: 17px;
+      padding: 1em;
+      color: white;
+      font-size: large;
+      strong {
+        margin: 0 1em;
+        color: #295ED5;
+        font-family: monospace;
+        font-size: 2em;
+      }
     }
   }
 }
@@ -342,7 +366,7 @@
       border: 1.5px solid;
       /* text-align: left; */
       margin: 0 1em;
-      padding: 0.8em 2em;
+      padding: 0.8em 0.5em;
       width: 10px;
     }
 

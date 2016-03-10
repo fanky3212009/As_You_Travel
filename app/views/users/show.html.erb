@@ -142,9 +142,9 @@
 
         <hr id="middle-vertical-line">
         <div class="recomm">
-          <h4 class="recomm-name">Recommendation 1</h4>
+          <h4 class="recomm-name"><%= @user.latest_recommendation.first.title %></h4>
           <hr class="recomm-underline">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+          <p><%= truncate(@user.latest_recommendation.first.content, length: 160) %></p>
         </div>
 
         <div class="recomm">
@@ -187,16 +187,16 @@
       <%= image_tag ('profile-SectionTitiles-overall.png') %>
       <div class="couter">
         <div class="counter1">
-          Traveled
+          Traveled <strong><%= @user.count_places %></strong> Places
         </div>
         <div class="counter1">
-          Wrote
+          Wrote <strong><%= @user.count_diaries %></strong> Diaries
         </div>
         <div class="counter1">
-          Captured
+          Captured <strong><%= @user.count_photos %></strong> Moments
         </div>
         <div class="counter2">
-          Stayed
+          Stayed <strong><%= @user.count_days %></strong> On The Road
         </div>
       </div>
     </div>
@@ -219,20 +219,25 @@
       <div class="activity-stream-img">
       <%= image_tag ('profile-SectionTitiles-activities.png') %>
       </div>
+      <% @user.owend_journeys.first.diary_entries.last(4).each do |d|%>
       <div class="user-diary-activity">
         <div class="activity-title">
-          <h2>Trip to India</h2>
-          <h3>Location, Date</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h2><%= d.title %></h2>
+          <h3><%= d.location%> | <%=d.date %></h3>
+          <p><%= d.content %></p>
 
           <div class="activity-tags">
-              <span>Tag</span>
-              <span>Tag</span>
-              <span>Tag</span>
+          <%   d.tags.last(3).each do |t| %>
+              <span><%= t.body %></span>
+          <% end %>
+              <!-- <span>Tag</span>
+              <span>Tag</span> -->
           </div>
 
         </div>
       </div>
+      <% end %>
+<!--
       <div class="user-diary-activity">
         <div class="activity-title">
           <h2>Trip to India</h2>
@@ -272,7 +277,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="activity-button-container">
       <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
       <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>

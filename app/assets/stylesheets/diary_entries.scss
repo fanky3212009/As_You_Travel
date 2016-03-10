@@ -314,9 +314,13 @@ $red: #F97E76;
       text-align: center;
       margin-top: 2em;
 
+      .diary-title {
+        font-size: 4.8em;
+      }
+
       h1 {
         color: $hero-color;
-        font-size: 4.8em;
+        font-size: 1.6em;
         margin-bottom: 0.5em;
 
         @include media($large-screen) {
@@ -410,7 +414,7 @@ $red: #F97E76;
 }
 
 .diary-stats.diary_article {
-    margin-top: 7em;
+    margin-top: 5em;
     margin-left: -4em;
 }
 
@@ -521,7 +525,21 @@ h2.commenter-name {
 .comment-list-item img {
     transform: translateY(2em);
 }
-.diary-content button.no-f-yet {
+.diary-content .favourite-diary {
+  .no-f-yet {
     margin-left: 9em;
     margin-top: 5em;
+  }
+  .f-already {
+    margin-left: 9em;
+    margin-top: 5em;
+  }
+}
+.diary-stat {
+  .diary-tag-form {
+    width: 25%;
+    transform: translateY(2em);
+    margin-left: 1em;
+    display: none;
+  }
 }
