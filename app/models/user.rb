@@ -100,4 +100,29 @@ class User < ActiveRecord::Base
     days
   end
 
+  def self.most_favourable_user
+    most_favourable_stat = Favourite.group(:favourable_type, :favourable_id).order("count_all DESC").count.first
+    most_favourable_class = most_favourable_stat[0][0].constantize
+    most_favourable_obj = most_favourable_class.find(most_favourable_stat[0][1])
+    if most_favourable_class == Journey
+      most_favourable_user = most_favourable_obj.owner
+    elsif most_favourable_class == DiaryEntry
+      most_favourable_user = most_favourable_obj.journey.owner
+    end
+    count = most_favourable_stat[1]
+    return [most_favourable_user, count]
+  end
+
+  def self.most_recommended_user
+    most_recommended_stat = Tag.where("body LIKE ?", "recommended").group(:taggable_type, :taggable_id).count().sort_by{|k, v| v}.reverse.first
+    most_recommended_class = eval(most_recommended_stat[0][0])
+    most_recommended_obj = most_recommended_class.find(most_recommended_stat[0][1])
+    most_recommended_user = most_recommended_obj.owner
+    count = most_recommended_stat[1]
+    return [most_recommended_user, count]
+  end
+
+  def most_followed_user
+  end
+
 end

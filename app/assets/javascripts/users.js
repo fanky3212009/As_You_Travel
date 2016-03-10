@@ -3,6 +3,11 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on('ready page:load', function () {
+
+  $('.relationship-button-border').on('click', function () {
+    $('.edit_relationship, .new_relationship').submit();
+  });
+
   $('.timeline-button-border').on('click', function(e){
     e.preventDefault();
 
