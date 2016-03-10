@@ -20,7 +20,8 @@
 
 <ul class="navigation">
 
-  <li><a href="#about">
+  <li>
+    <%= link_to user_url(current_user) do %>
     <span>
     <%=  image_tag "MenuBar-icon-profile.png"  %>
     </span>
@@ -28,10 +29,11 @@
       <%= image_tag "MenuBar-icon-profile-hover.png"%>
       <p>My Profile</p>
     </div>
-  </a></li>
+    <% end %>
+  </li>
 
   <li>
-    <%= link_to user_journeys_path(@user) do %>
+    <%= link_to user_journeys_path(current_user) do %>
       <span>
       <%=  image_tag "MenuBar-icon-Journey.png"  %>
       </span>
@@ -42,7 +44,8 @@
     <% end %>
   </li>
 
-  <li><a href="#portfolio">
+  <li>
+    <%= link_to user_photos_path(current_user) do %>
     <span>
     <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
     </span>
@@ -50,7 +53,8 @@
       <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
       <p>Gallery</p>
     </div>
-  </a></li>
+    <% end %>
+  </li>
 
   <li><a href="#blog">
     <span>

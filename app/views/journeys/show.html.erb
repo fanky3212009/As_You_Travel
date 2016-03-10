@@ -1,7 +1,197 @@
+<!DOCTYPE html>
+<body>
+
+    <div class="back-img-journey">
+      <div class="logo">
+        <%= image_tag ("logo-blue.png")  %>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1 class="journey-title"><%= @journey.title %></h1>
+            <h2>Written by <%= @user.email %></h2>
+
+        </div>
+      </div>
+
+    </div>
+
+    <ul class="navigation">
+      <li>
+        <%= link_to @user, :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-profile.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-profile-hover.png"%>
+          <p>My Profile</p>
+        </div>
+      <% end %>
+    </li>
+
+      <li>
+        <%= link_to user_journeys_path(@user) do %>
+          <span>
+          <%=  image_tag "MenuBar-icon-Journey.png"  %>
+          </span>
+          <div class="menu-out">
+            <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+            <p>My Journey</p>
+          </div>
+        <% end %>
+      </li>
+
+      <li><a href="#portfolio">
+        <span>
+        <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+          <p>Gallery</p>
+        </div>
+      </a></li>
+
+      <li><a href="#blog">
+        <span>
+        <%=  image_tag "MenuBar-icon-timeline.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+          <p>My Timeline</p>
+        </div>
+      </a></li>
+
+      <li><a href="#services">
+        <span>
+        <%=  image_tag "MenuBar-icon-favorites.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+          <p>Favourites</p>
+        </div>
+      </a></li>
+      <!-- <li><a href="#contact">
+        <img src="./images/contact.png" />
+      </a></li> -->
+    </ul>
+
+
+
+<div class="journey-wrapper">
+  <div class="journey-picture-stat-section">
+    <div class="journey-picture journey_aside">
+      <%= image_tag @journey.feat_img %>
+    </div>
+
+    <div class="journey-stats journey_article">
+      <div class="journey-stat">
+        <%= image_tag ('Entries_icon_location.png') %>
+        <h3 class="journey-stat-name">LOCATION</h3>
+        <p class="journey-stat-content"><%= @journey.location %></p>
+      </div>
+      <div class="journey-stat">
+        <%= image_tag ('Entries_icon_time.png') %>
+        <h3 class="journey-stat-name">DATES</h3>
+        <p class="journey-stat-content">
+          <%= "#{@journey.start_date} - #{@journey.end_date}" %>
+        </p>
+      </div>
+      <div class="journey-stat">
+        <%= image_tag ('Entries_icon_tag.png') %>
+        <h3 class="journey-stat-name">TAGS</h3>
+        <div class="activity-tags">
+           <% @journey.tags.each do |tag| %>
+              <% if tag.body != "recommended" %>
+              <span>
+                  <%= tag.body %>
+              </span>
+                <% end %>
+          <% end %>
+
+          <% if current_user == @journey.owner %>
+            <span class="add-new-tag"><%= link_to "Add Tags" %></span>
+
+
+
+          <div class="journey-tag-form">
+            <%= form_for [@journey, Tag.new] do |t| %>
+
+            <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
+            <%= t.hidden_field :taggable_id, :value => @journey.id %>
+            <%= t.hidden_field :taggable_type, :value => @journey.class %>
+            <%= t.hidden_field :user_id, :value => current_user.id %>
+            <%= t.submit "Add" %>
+            <% end  %>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="journey-diaries-section">
+    <h1>Diaries</h1>
+
+    <%= link_to 'New Diary', new_journey_diary_entry_path(@journey) %>
+
+      <% if @journey.diary_entries.any? %>
+          <%= render @diary_entries %>
+      <% else %>
+        <h2>No diary yet</h2>
+      <% end %>
+
+  </div>
+
+  <div class="comment-form-list-section">
+    <div class="comment-form journey_aside">
+      <%= image_tag ("Entries_SectionTitle_Comments.png") %>
+      <% if current_user %>
+
+        <%= form_for [@journey, @comment], :html => {:class => "comment-form"} do |f| %>
+        <%= render partial: 'comments/form', locals: { f: f, commentable: @journey} %>
+        <% end %>
+      <% else %>
+        <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
+      <% end %>
+
+      <!-- <%= text_area_tag 'body', nil, rows: 10, cols: 25 , class: "comment-form" %> -->
+      <div class="submit-comment-button-container">
+        <button class="profile-button" href="<%= user_photos_path(@user) %>">SUBMIT</button>
+        <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >SUBMIT</div></a>
+      </div>
+    </div>
+    <div class="comment-list journey_article">
+      <div class="comment-list-item">
+        <%= image_tag ("profile-UserImage-1.png") %>
+        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
+          <hr class="recomm-underline">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+
+      </div>
+
+      <div class="comment-list-item">
+        <%= image_tag ("profile-UserImage-1.png") %>
+        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
+          <hr class="recomm-underline">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+
+      </div>
+
+      <div class="comment-list-button-container">
+        <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW MORE</button>
+        <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW MORE</div></a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
 <h1><%= @journey.title %></h1>
 
 
-<p>Feature Image: <%= image_tag @journey.feat_img %></p>
 <p>Description: <%= @journey.description %></p>
 <p>location: <%= @journey.location %></p>
 <p>From: <%= @journey.start_date %></p>
@@ -146,3 +336,5 @@
   <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
 
 <% end %>
+
+</body>

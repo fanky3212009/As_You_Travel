@@ -143,16 +143,16 @@
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
       <p><%= @diary_entry.content %></p>
-        <div class="recommend diary-content">
-          <div class="recommend-form">
-            <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
-            <%= t.hidden_field :body, :value=> 'recommended' %>
-            <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
-            <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
-            <%= t.hidden_field :user_id, :value => current_user.id %>
-            <%= t.submit "Recommend" %>
-            <% end  %>
-          </div>
+      <div class="recommend diary-content">
+        <div class="recommend-form">
+          <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
+          <%= t.hidden_field :body, :value=> 'recommended' %>
+          <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
+          <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+          <%= t.hidden_field :user_id, :value => current_user.id %>
+          <%= t.submit "Recommend" %>
+          <% end  %>
+        </div>
       </div>
       <div class="favourite-diary">
         <% if @diary_entry.favourites.where(user_id: current_user.id).length > 0 %>
@@ -303,7 +303,7 @@
 
 
 
-  <!-- <div class="photo-form">
+  <div class="photo-form">
     <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
       <%= t.label :name  %>
       <br>
@@ -316,7 +316,7 @@
       <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
     <% end  %>
 
-  </div> -->
+  </div>
 
   <%= render partial: 'comments/list', locals: { commentable: @diary_entry }  %>
 
