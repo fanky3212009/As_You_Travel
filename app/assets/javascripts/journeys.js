@@ -23,7 +23,8 @@ $(document).on('ready page:load', function() {
     $('button[data-func="save"]').click(function(){
       $content = $('.editor').html();
       localStorage.setItem("wysiwyg", $content);
-      dataText = JSON.parse($('.editor').html());
+      dataText = JSON.stringify($('.editor').html());
+      // dataText = ActiveSupport::JSON.decode("{\"content\": $('.editor').html()}")
       $.ajax({
         url: $('.new_diary_entry').attr('action'),
         type: 'POST',
