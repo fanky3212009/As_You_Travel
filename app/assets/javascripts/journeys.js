@@ -23,9 +23,16 @@ $(document).on('ready page:load', function() {
     $('button[data-func="save"]').click(function(){
       $content = $('.editor').html();
       localStorage.setItem("wysiwyg", $content);
-      $('.editor').append('<span class="saved"><i class="fa fa-check"></i></span>').fadeIn(function(){
-        $(this).find('.saved').fadeOut(500);
+      dataText = JSON.parse($('.editor').html());
+      $.ajax({
+        url: $('.new_diary_entry').attr('action'),
+        type: 'POST',
+        dataType: 'json',
+        data: { "content": dataText},
       });
+      // $('.editor').append('<span class="saved"><i class="fa fa-check"></i></span>').fadeIn(function(){
+      //   $(this).find('.saved').fadeOut(500);
+      // });
     });
 
     $('button[data-func="clear"]').click(function(){
@@ -34,7 +41,26 @@ $(document).on('ready page:load', function() {
     });
   }
 
+  $('#first_diary').on('click', function (e) {
+    e.preventDefault();
 
+    $.ajax({
+      url: $('.new_diary_entry').attr('action'),
+      type: 'POST',
+      dataType: 'json',
+      data: $('.new_diary_entry').serialize(),
+    });
+  });
+
+  $('#second_diary').on('click', function (e) {
+    e.preventDefault();
+    $('button[data-func="save"]').click();
+  });
+
+  $('#final_diary').on('click', function (e) {
+    e.preventDefault();
+    $(".h-link").find("a")[0].click();
+  });
 
 //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets

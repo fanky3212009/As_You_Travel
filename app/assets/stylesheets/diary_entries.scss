@@ -77,6 +77,7 @@
 
 .text-editor {
   background: #E9F0F4;
+  margin-top: -5em;
 }
 
 $blueLight: #C1CFD9;
@@ -84,7 +85,7 @@ $blueDark: #2E3641;
 $red: #F97E76;
 
 .newPost {
-  margin: 50px auto;
+  margin: -40px auto;
   padding: 50px 40px;
   width: 100%;
   max-width: 800px;
@@ -204,16 +205,18 @@ $red: #F97E76;
 
     button {
       float: left;
-      width: 120px;
-      height: 45px;
+      width: 102px;
+      /* height: 45px; */
       border: none;
       color: #FFF;
       text-transform: uppercase;
       outline: none;
       margin-right: 20px;
       font-weight: bold;
-      background: $blueLight;
+      background: #C1CFD9;
+      margin-left: 14em;
       text-decoration: none;
+      margin-top: -0.5em;
 
       &:last-of-type {
         margin-right: 0px;
@@ -542,4 +545,137 @@ h2.commenter-name {
     margin-left: 1em;
     display: none;
   }
+}
+
+
+#diary-last-step {
+  left: -54% !important;
+  transform: translateX(10em);
+  height: 28em !important;
+  #photo-last-step {
+    width: 56em;
+    height: auto;
+  }
+}
+#msform {
+width: 400px;
+margin: 50px auto;
+text-align: center;
+position: relative;
+}
+#msform {
+  .diary-form fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 150%;
+  margin: 0 -26%;
+  height: 47em;
+  position: relative;
+  .new_diary_entry .field {
+    height: 8em;
+    }
+  }
+}
+
+.fieldset1 {width: 67em !important;transform: translateX(-9em);}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+padding: 15px;
+border: 1px solid #ccc;
+border-radius: 3px;
+margin-bottom: 10px;
+width: 100%;
+box-sizing: border-box;
+font-family: montserrat;
+color: #2C3E50;
+font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+width: 100px;
+background: #295ED5;
+font-weight: bold;
+color: white;
+border: 0 none;
+border-radius: 1px;
+cursor: pointer;
+padding: 10px 5px;
+margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+box-shadow: 0 0 0 2px white, 0 0 0 3px #295ED5;
+}
+/*headings*/
+.fs-title {
+font-size: 15px;
+text-transform: uppercase;
+color: #2C3E50;
+margin-bottom: 10px;
+}
+.fs-subtitle {
+font-weight: normal;
+font-size: 13px;
+color: #666;
+margin-bottom: 20px;
+}
+
+
+/*progressbar-diary-diary*/
+#progressbar-diary {
+  margin-bottom: 30px;
+  overflow: hidden;
+  counter-reset: step;
+  width: 74em;
+  margin-left: -22em;
+
+}
+#progressbar-diary li {
+list-style-type: none;
+color: white;
+text-transform: uppercase;
+font-size: 16px;
+width: 33.33%;
+float: left;
+position: relative;
+}
+#progressbar-diary li:before {
+content: counter(step);
+counter-increment: step;
+width: 40px;
+line-height: 40px;
+display: block;
+font-size: 10px;
+color: #333;
+background: white;
+border-radius: 3px;
+margin: 0 auto 5px auto;
+}
+/*progressbar-diary connectors*/
+#progressbar-diary li:after {
+content: '';
+width: 100%;
+height: 2px;
+background: white;
+position: absolute;
+left: -50%;
+top: 9px;
+z-index: -1; /*put it behind the numbers*/
+}
+#progressbar-diary li:first-child:after {
+/*connector not needed before the first step*/
+content: none;
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar-diary li.active:before,  #progressbar-diary li.active:after{
+background: #295ED5;
+color: white;
 }

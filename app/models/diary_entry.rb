@@ -5,6 +5,7 @@ class DiaryEntry < ActiveRecord::Base
   has_many :tags, :as => :taggable
 
   has_many :comments, :as => :commentable
+  validates :title, :location, :date, :recommendation, presence: true
 
   # attr_accessor :location, :longitude, :latitude
   geocoded_by :location

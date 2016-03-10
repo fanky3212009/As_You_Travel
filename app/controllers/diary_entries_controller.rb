@@ -9,13 +9,31 @@ class DiaryEntriesController < ApplicationController
 
 
   def create
-    # @journey = Journey.find(params[:journey_id])
-    @diary_entry = @journey.diary_entries.build(diary_entry_params)
-
-    if @diary_entry.save
-      redirect_to journey_diary_entries_path, notice: "Diary successfully created!"
+    if params.has_key?("content")
+      @diary_entry = DiaryEntry.last
+      @diary_entry.update_attributes({:content => params[:content]})
+      @diary_entry.save
+      render nothing: true, status: 200
     else
-      render :new
+        if diary_entry_params[:imageable_type]
+          @diary_entry = DiaryEntry.last
+          @photo = @diary_entry.photos.build(diary_entry_params)
+          @photo.picture = params[:file]
+          @photo.save
+          render nothing: true, status: 200
+        else
+          @diary_entry = @journey.diary_entries.build(diary_entry_params)
+
+          if @diary_entry.save
+            respond_to do |format|
+              format.html {redirect_to journey_diary_entries_path, notice: "Diary successfully created!"}
+              format.json { render nothing: true, status: 200}
+            end
+
+          else
+          render :new
+          end
+      end
     end
 
   end
@@ -24,17 +42,6 @@ class DiaryEntriesController < ApplicationController
     @user = @journey.owner
     # @journey = Journey.find(params[:journey_id])
     @diary_entries = @journey.diary_entries
-
-    #
-    # @diary_entry1 = DiaryEntry.find(6)
-    # @diary_entry2 = DiaryEntry.find(8)
-    # @diary_entry3 = DiaryEntry.find(7)
-    #
-    # @diary_entryA = []
-    #
-    # @diary_entryA.push(@diary_entry1)
-    # @diary_entryA.push(@diary_entry2)
-    # @diary_entryA.push(@diary_entry3)
 
     respond_to do |format|
       format.html
@@ -82,6 +89,6 @@ class DiaryEntriesController < ApplicationController
   private
   def diary_entry_params
     params.require(:diary_entry)
-          .permit(:title, :location, :date, :content, :recommendation, :latitude, :longitude)
+          .permit(:title, :location, :date, :content, :recommendation, :latitude, :longitude, :imageable_id, :imageable_type)
   end
 end

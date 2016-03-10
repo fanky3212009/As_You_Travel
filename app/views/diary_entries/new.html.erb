@@ -1,64 +1,208 @@
-<!-- <h1>DiaryEntries#new</h1>
-<p>Find me in app/views/diary_entries/new.html.erb</p> -->
+
+
+<style media="screen">
+
+
+html {
+height: 100%;
+/*Image only BG fallback*/
+background: url('http://thecodeplayer.com/uploads/media/gs.png');
+/*background = gradient + image pattern combo*/
+background:
+  linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
+  url('http://thecodeplayer.com/uploads/media/gs.png');
+}
+
+body {
+font-family: montserrat, arial, verdana;
+}
+
+</style>
+
+
+<ul class="navigation">
+  <li>
+    <%= link_to current_user, :"data-no-turbolink" => true do %>
+    <span>
+    <%=  image_tag "MenuBar-icon-profile.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-profile-hover.png"%>
+      <p>My Profile</p>
+    </div>
+  <% end %>
+</li>
+
+  <li>
+    <%= link_to user_journeys_path(current_user) do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-Journey.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+        <p>My Journey</p>
+      </div>
+    <% end %>
+  </li>
+
+  <li><a href="#portfolio">
+    <span>
+    <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+      <p>Gallery</p>
+    </div>
+  </a></li>
+
+  <li><a href="#blog">
+    <span>
+    <%=  image_tag "MenuBar-icon-timeline.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+      <p>My Timeline</p>
+    </div>
+  </a></li>
+
+  <li><a href="#services">
+    <span>
+    <%=  image_tag "MenuBar-icon-favorites.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+      <p>Favourites</p>
+    </div>
+  </a></li>
+  <!-- <li><a href="#contact">
+    <img src="./images/contact.png" />
+  </a></li> -->
+</ul>
+
+
+
 
 <% if current_user.id == @diary_entry.journey.owner_id %>
 
-  <h1>New Diary</h1>
 
-  <%= render 'form' %>
-<div class="text-editor">
-    <div class="newPost">
-    <h3>Write Your Diary</h3>
-    <input type="text" placeholder="Enter title here">
-    <div class="toolbar">
-      <button type="button" data-func="bold"><i class="fa fa-bold"></i></button>
-      <button type="button" data-func="italic"><i class="fa fa-italic"></i></button>
-      <button type="button" data-func="underline"><i class="fa fa-underline"></i></button>
-      <button type="button" data-func="justifyleft"><i class="fa fa-align-left"></i></button>
-      <button type="button" data-func="justifycenter"><i class="fa fa-align-center"></i></button>
-      <button type="button" data-func="justifyright"><i class="fa fa-align-right"></i></button>
-      <button type="button" data-func="insertunorderedlist"><i class="fa fa-list-ul"></i></button>
-      <button type="button" data-func="insertorderedlist"><i class="fa fa-list-ol"></i></button>
-      <div class="customSelect">
-        <select data-func="fontname">
-          <optgroup label="Serif Fonts">
-            <option value="Bree Serif">Bree Serif</option>
-            <option value="Georgia">Georgia</option>
-             <option value="Palatino Linotype">Palatino Linotype</option>
-            <option value="Times New Roman">Times New Roman</option>
-          </optgroup>
-          <optgroup label="Sans Serif Fonts">
-            <option value="Arial">Arial</option>
-            <option value="Arial Black">Arial Black</option>
-            <option value="Asap" selected>Asap</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Impact">Impact</option>
-            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Trebuchet MS">Trebuchet MS</option>
-            <option value="Verdana">Verdana</option>
-          </optgroup>
-          <optgroup label="Monospace Fonts">
-            <option value="Courier New">Courier New</option>
-            <option value="Lucida Console">Lucida Console</option>
-          </optgroup>
-        </select>
-      </div>
-      <div class="customSelect">
-        <select data-func="formatblock">
-          <option value="h1">Heading 1</option>
-          <option value="h2">Heading 2</option>
-          <option value="h4">Subtitle</option>
-          <option value="p" selected>Paragraph</option>
-        </select>
+<h1>New Diary</h1>
+<!-- multistep form -->
+<div id="msform">
+  <div class="diary-form">
+	<!-- progressbar -->
+	<ul id="progressbar-diary">
+		<li class="active">Basic Info</li>
+		<li>About this Diary </li>
+		<li>Photo Collection</li>
+	</ul>
+	<!-- fieldsets -->
+	<fieldset>
+		<h2 class="fs-title">Create your Diary</h2>
+		<h3 class="fs-subtitle">Step One</h3>
+	  <%= render 'form' %>
+		<input type="button" name="next" class="next action-button" value="Next" id="first_diary" />
+	</fieldset>
+	<fieldset class="fieldset1">
+		<h2 class="fs-title">Desciption</h2>
+		<h3 class="fs-subtitle">Descripe this journey</h3>
+
+		<!-- <input type="text" name="twitter" placeholder="Twitter" />
+		<input type="text" name="facebook" placeholder="Facebook" />
+		<input type="text" name="gplus" placeholder="Google Plus" /> -->
+
+    <div class="text-editor">
+      <div class="newPost">
+        <!-- <h3>Write Your Diary</h3> -->
+        <!-- <input type="text" placeholder="Enter title here"> -->
+        <div class="toolbar">
+          <button type="button" data-func="bold"><i class="fa fa-bold"></i></button>
+          <button type="button" data-func="italic"><i class="fa fa-italic"></i></button>
+          <button type="button" data-func="underline"><i class="fa fa-underline"></i></button>
+          <button type="button" data-func="justifyleft"><i class="fa fa-align-left"></i></button>
+          <button type="button" data-func="justifycenter"><i class="fa fa-align-center"></i></button>
+          <button type="button" data-func="justifyright"><i class="fa fa-align-right"></i></button>
+          <button type="button" data-func="insertunorderedlist"><i class="fa fa-list-ul"></i></button>
+          <button type="button" data-func="insertorderedlist"><i class="fa fa-list-ol"></i></button>
+          <div class="customSelect">
+            <select data-func="fontname">
+              <optgroup label="Serif Fonts">
+                <option value="Bree Serif">Bree Serif</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Palatino Linotype">Palatino Linotype</option>
+                <option value="Times New Roman">Times New Roman</option>
+              </optgroup>
+              <optgroup label="Sans Serif Fonts">
+                <option value="Arial">Arial</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="Asap" selected>Asap</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Impact">Impact</option>
+                <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Verdana">Verdana</option>
+              </optgroup>
+              <optgroup label="Monospace Fonts">
+                <option value="Courier New">Courier New</option>
+                <option value="Lucida Console">Lucida Console</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="customSelect">
+            <select data-func="formatblock">
+              <option value="h1">Heading 1</option>
+              <option value="h2">Heading 2</option>
+              <option value="h4">Subtitle</option>
+              <option value="p" selected>Paragraph</option>
+            </select>
+          </div>
+        </div>
+        <div class="editor" contenteditable></div>
+        <div class="buttons">
+          <!--<button type="button">save draft</button>-->
+          <button data-func="clear" type="button" >clear</button>
+          <button data-func="save" type="button" style="visibility:hidden">save</button>
+        </div>
       </div>
     </div>
-    <div class="editor" contenteditable></div>
-    <div class="buttons">
-      <!--<button type="button">save draft</button>-->
-      <button data-func="clear" type="button">clear</button>
-      <button data-func="save" type="button">save</button>
+
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+		<input type="button" id="second_diary" name="next" class="next action-button" value="Next" />
+	</fieldset>
+
+	<fieldset id="diary-last-step">
+		<h2 class="fs-title">Photos</h2>
+		<h3 class="fs-subtitle">
+      <p>Upload your photos here</p>
+      <p>(feature image can be set in the gallery)</p>
+    </h3>
+    <div class="photo-form" id="photo-last-step">
+      <%= form_for [@journey, DiaryEntry.new], html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+
+
+
+      <div class="dropzone-previews"></div>
+      <br>
+      <%= t.hidden_field :imageable_id, :value => @diary_entry.id %>
+     <%= t.hidden_field :imageable_type, :value => @diary_entry.class %>
+      <% end  %>
+		<!-- <input type="text" name="fname" placeholder="First Name" />
+		<input type="text" name="lname" placeholder="Last Name" />
+		<input type="text" name="phone" placeholder="Phone" />
+		<textarea name="address" placeholder="Address"></textarea> -->
     </div>
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="submit" name="submit" class="submit action-button" value="Submit" id="final_diary" />
+	</fieldset>
   </div>
 </div>
+
+<!-- <div class="h-link">
+  <%= link_to "", user_journeys_path(current_user)%>
+</div> -->
+
+
+
+
+
 <% end %>
