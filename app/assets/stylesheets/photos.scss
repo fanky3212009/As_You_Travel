@@ -2,5 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .each-gallery {
-    padding: 30px;
+  margin: 30px;
+  display: inline-table;
+  border: 2px solid;
+  text-align: center;
+  -webkit-box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
+  box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
+  img {
+    display: block;
+    margin: auto;
+  }
 }

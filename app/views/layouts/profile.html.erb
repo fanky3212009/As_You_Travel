@@ -37,17 +37,17 @@
       <%= image_tag ("logo-blue.png")  %>
     </div>
 
-  	<div class="hero-inner">
+    <div class="hero-inner">
       <div class="hero-logo">
         <%= image_tag @user.profile_img %>
         <!-- <%= image_tag ("profile-UserImage-1.png")  %> -->
       </div>
-  		<div class="hero-copy">
-  			<h1>As You Travel!</h1>
-  			<p>Who Am I</p>
+      <div class="hero-copy">
+        <h1>As You Travel!</h1>
+        <p>Who Am I</p>
          <%= render 'users/stats' %>
-  		</div>
-  	</div>
+      </div>
+    </div>
 
   </div>
 
@@ -64,7 +64,7 @@
     <% end %>
   </li>
 
-  	<li>
+    <li>
       <%= link_to user_journeys_path(current_user) do %>
         <span>
         <%=  image_tag "MenuBar-icon-Journey.png"  %>
@@ -76,7 +76,8 @@
       <% end %>
     </li>
 
-  	<li><a href="#portfolio">
+    <li>
+      <%= link_to user_photos_path(current_user) do %>
       <span>
       <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
       </span>
@@ -84,9 +85,10 @@
         <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
         <p>Gallery</p>
       </div>
-  	</a></li>
+      <% end %>
+    </li>
 
-  	<li><a href="#blog">
+    <li><a href="#blog">
       <span>
       <%=  image_tag "MenuBar-icon-timeline.png"  %>
       </span>
@@ -94,9 +96,9 @@
         <%= image_tag "MenuBar-icon-timeline-hover.png"%>
         <p>My Timeline</p>
       </div>
-  	</a></li>
+    </a></li>
 
-  	<li><a href="#services">
+    <li><a href="#services">
       <span>
       <%=  image_tag "MenuBar-icon-favorites.png"  %>
       </span>
@@ -104,10 +106,10 @@
         <%= image_tag "MenuBar-icon-favorites-hover.png"%>
         <p>Favourites</p>
       </div>
-  	</a></li>
-  	<!-- <li><a href="#contact">
-  		<img src="./images/contact.png" />
-  	</a></li> -->
+    </a></li>
+    <!-- <li><a href="#contact">
+      <img src="./images/contact.png" />
+    </a></li> -->
   </ul>
 
 <%= yield %>
