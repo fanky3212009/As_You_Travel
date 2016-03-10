@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-
+  layout 'profile', only: [:index]
   def index
     @user = current_user
     @favourites = @user.favourites

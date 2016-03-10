@@ -66,7 +66,8 @@
     </div>
   </a></li>
 
-  <li><a href="#services">
+  <li>
+    <%= link_to user_favourites_path(current_user) do %>
     <span>
     <%=  image_tag "MenuBar-icon-favorites.png"  %>
     </span>
@@ -74,7 +75,8 @@
       <%= image_tag "MenuBar-icon-favorites-hover.png"%>
       <p>Favourites</p>
     </div>
-  </a></li>
+    <% end %>
+  </li>
   <!-- <li><a href="#contact">
     <img src="./images/contact.png" />
   </a></li> -->
@@ -340,7 +342,7 @@
   </div>
 
   <br>
-  <h3><%= link_to "My Favourites", favourites_path %></h3>
+  <h3><%= link_to "My Favourites", user_favourites_path(current_user) %></h3>
   <a id="demo01" href="#animatedModal">My Path</a>
 
     <!--DEMO01-->

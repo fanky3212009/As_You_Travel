@@ -30,9 +30,9 @@ Rails.application.routes.draw do
     end
     resources :photos
     resources :journeys, only: [:index]
+    resources :favourites, only: [:index]
   end
 
-  resources :favourites, only: [:index]
 
 
 

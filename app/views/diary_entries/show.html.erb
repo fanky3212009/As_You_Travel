@@ -142,7 +142,7 @@
 
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
-      <p><%= @diary_entry.content %></p>
+      <p><%= raw @diary_entry.content %></p>
       <div class="recommend diary-content">
         <div class="recommend-form">
           <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
