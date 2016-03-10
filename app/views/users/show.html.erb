@@ -12,13 +12,14 @@
 </style>
 
 <div class="follow-button-container">
-  <button class="profile-button">FOLLOW</button>
-  <div class = "button-border">FOLLOW</div>
+  <% if current_user %>
+      <%= render 'follow_form' %>
+  <% end %>
 </div>
 
 </div>
 
-<ul class="navigation">
+<!-- <ul class="navigation">
 
   <li>
     <%= link_to user_url(current_user) do %>
@@ -78,7 +79,7 @@
   <!-- <li><a href="#contact">
     <img src="./images/contact.png" />
   </a></li> -->
-</ul>
+</ul> -->
 
 
 
@@ -319,11 +320,6 @@
   <% end %>
 
   <br>
-  <% if current_user %>
-    <div class="follow-me">
-      <%= render 'follow_form' %>
-    </div>
-  <% end %>
 
 
 
