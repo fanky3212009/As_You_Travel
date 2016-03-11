@@ -134,7 +134,7 @@
     <h1>Diaries</h1>
 
       <div class="diary_entry_block new_diary_entry_block">
-        <%= link_to new_journey_diary_entry_path(@journey) do %>
+        <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
           <h2>New Diary</h2>
         <% end %>
       </div>

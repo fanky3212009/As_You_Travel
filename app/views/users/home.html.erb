@@ -260,7 +260,7 @@ font-size: 300;
       <div class="first-left-text">
         <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
 
-        <h3><%= Favourite.most_favourited_diaries.first.journey.owner.email %></h3>
+        <h3><%= Favourite.most_favourited_diaries.first.journey.owner.name %></h3>
           <p><%= truncate(Favourite.most_favourited_diaries.first.content, length: 150) %></p>
       </div>
       <div class="activity-button-container">
@@ -312,15 +312,15 @@ font-size: 300;
     <div class="down-left">
       <div class="feature-user">
         <div class="feature-user-info">
-        <%= image_tag ('profile-UserImage-1.png') %>
-        <h3><%= Favourite.most_favourable_user[0].email %></h3>
+        <%= image_tag Favourite.most_favourable_user[0].profile_img %>
+        <h3><%= Favourite.most_favourable_user[0].name%></h3>
         </div>
         <p>Most favourable</p>
       </div>
       <div class="feature-user">
         <div class="feature-user-info">
-          <%= image_tag ('profile-UserImage-1.png') %>
-        <h3><%= Tag.most_recommended_user[0].email %></h3>
+          <%= image_tag Tag.most_recommended_user[0].profile_img %>
+        <h3><%= Tag.most_recommended_user[0].name %></h3>
         </div>
         <p>Most Recommend</p>
       </div>
@@ -328,12 +328,12 @@ font-size: 300;
         <% if Relationship.most_followed_user != nil %>
         <div class="feature-user-info">
         <%= image_tag(Relationship.most_followed_user[0].profile_img) %>
-        <h3><%= Relationship.most_followed_user[0].email %></h3>
+        <h3><%= Relationship.most_followed_user[0].name %></h3>
         </div>
         <p>King of Followers (<%= Relationship.most_followed_user[1] %>)</p>
         <% else %>
         <div class="feature-user-info">
-        <%= image_tag ('profile-UserImage-1.png') %>
+        <%= image_tag ('Relationship.most_followed_user[0].profile_img') %>
         <h3>User Name</h3>
         </div>
         <p>King of Followers </p>
@@ -449,35 +449,68 @@ font-size: 300;
             </div>
           </div>
       </li>
+        <% end %>
+        <% end %>
+      <% else %>
+
+      <% DiaryEntry.all.last(4).each do |d| %>
+        <li class="current-slide">
+          <div class="diary-wrapper">
+            <div class="diary-picture-stat-section" id="homepage-friend-background">
+              <div class="diary-picture diary_aside" id="friend-diary-photo">
+                <%= image_tag ('Entries_image_1.png') %>
+              </div>
+              <div class="diary-stats homepage-slider">
+                <div class="diary-stat homepage-stat friend-photo">
+                  <%= image_tag("profile-UserImage-1.png") %>
+                  <strong class="friend-name"><%= d.journey.owner.email %></strong>
+                </div>
+
+                <div class="homepage-location-date">
+                <div class="diary-stat homepage-stat location-date">
+                  <%= image_tag ('Entries_icon_location.png') %>
+                  <h3 class="diary-stat-name">LOCATION</h3>
+                  <p class="diary-stat-content"><%= d.location %></p>
+                </div>
+                <div class="diary-stat homepage-stat location-date">
+                  <%= image_tag ('Entries_icon_time.png') %>
+                  <h3 class="diary-stat-name">DATE</h3>
+                  <p class="diary-stat-content"><%= d.date %></p>
+                </div>
+              </div>
+                <div class="diary-stat homepage-stat">
+                  <%= image_tag ('Entries_icon_tag.png') %>
+                  <h3 class="diary-stat-name">TAGS</h3>
+                  <div class="activity-tags">
+                     <% d.tags.each do |tag| %>
+                        <% if tag.body != "recommended" %>
+                        <span>
+                            <%= tag.body %>
+                        </span>
+                          <% end %>
+                    <% end %>
+
+                  </div>
+
+                </div>
+                <div class="diary-stat homepage-stat content">
+                  <p class="diary-stat-content"><%= d.content %> </p>
+                  <div class="recommend-button-container homepage-friend-button">
+                    <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
+                    <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
+                  </div>
+                  <div class="like-button-container homepage-friend-button">
+                    <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
+                    <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </li>
       <% end %>
       <% end %>
-      <% end %>
-    <li>
-      <img src="http://i9.photobucket.com/albums/a88/creaticode/2_zps6ccd36bd.jpg" title="" alt="">
 
-      <div class="caption">
-        <h2 class="slider-title">Diseño Responsive</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo iusto placeat aliquid tempore harum, similique!</p>
-      </div>
-    </li>
 
-    <li>
-      <img src="http://i9.photobucket.com/albums/a88/creaticode/4_zps611bc9f9.jpg" title="" alt="">
-
-      <div class="caption">
-        <h2 class="slider-title">Identidad Corporativa</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dicta laudantium voluptatem minima! Dolorum tempore dolores excepturi omnis provident. Commodi quis aperiam maiores, dolore a perferendis!</p>
-      </div>
-    </li>
-
-    <li>
-      <img src="http://i9.photobucket.com/albums/a88/creaticode/3_zps70e4fcc5.jpg" title="" alt="">
-
-      <div class="caption">
-        <h2 class="slider-title">Desarrollo Web</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolore dignissimos laudantium.</p>
-      </div>
-    </li>
     </ul>
     <!-- Sombras -->
     <div class="slider-shadow"></div>

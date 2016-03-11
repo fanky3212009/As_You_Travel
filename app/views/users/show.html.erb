@@ -246,7 +246,9 @@
         <% @user.owend_journeys.first.diary_entries.last(4).each do |d|%>
         <div class="user-diary-activity">
           <div class="activity-title">
+            <%= link_to journey_diary_entry_path(d.journey, d), :"data-no-turbolink" => true do%>
             <h2><%= d.title %></h2>
+            <% end %>
             <h3><%= d.location%> | <%=d.date %></h3>
             <p><%= d.content %></p>
 
@@ -326,23 +328,7 @@
     </p>
 
       <br>
-      <br>
-  <h3>News Feed</h3>
-  <% if @user == current_user %>
-    <% @user.followings.each do |following| %>
-      <% if following.owend_journeys.last.diary_entries.last %>
-        <%= following.email %> :
-        <br>
-        <%= following.owend_journeys.last.diary_entries.last.title %>
-        <br>
-        <%= followng.owend_journeys.last.diary_entries.last.location %>
-        <br>
-      <% end %>
-    <% end %>
-  <% end %>
-
-  <br>
-
+    
 
 
 

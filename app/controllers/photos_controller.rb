@@ -28,6 +28,7 @@ class PhotosController < ApplicationController
 
 
   def show
+    @user = Journey.find(params[:journey_id]).owner
     @photo = Photo.find(params[:id])
     @comment = Comment.new
 
