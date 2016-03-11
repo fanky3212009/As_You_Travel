@@ -6,6 +6,17 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if params[:search]
+      @search_results = DiaryEntry.where("title like ?", params[:search].downcase)
+      @search_results = @search_results.concat(Journey.where("title like ?", params[:search].downcase))
+      @search_results.sort_by! {|result| result.created_at }
+      @search_results.reverse!
+
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
@@ -76,6 +87,7 @@ class UsersController < ApplicationController
     @search_results = []
 
     if params[:search]
+
       @search_results = DiaryEntry.near(params[:search], 50, unit: :km)
     elsif params[:latitude] && params[:longitude]
       @search_results = DiaryEntry.near([params[:latitude], params[:longitude]], 50, unit: :km)

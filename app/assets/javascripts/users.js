@@ -4,6 +4,7 @@
 
 $(document).on('ready page:change', function () {
 
+
   $('.new_relationship .relationship-button-border').on('click', function () {
     $('.follow-button').submit();
   });
