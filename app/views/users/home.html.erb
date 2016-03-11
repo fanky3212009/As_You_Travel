@@ -256,12 +256,12 @@ font-size: 300;
         <h2>DIARIES OF THE WEEK</h2>
       </div>
       <div class="first-left-text">
-
+        <% if Favourite.most_favourited_diaries.first != nil %>
         <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
 
         <h3><%= Favourite.most_favourited_diaries.first.journey.owner.name %></h3>
           <p><%= truncate(Favourite.most_favourited_diaries.first.content, length: 150) %></p>
-
+        <% end %>
       </div>
       <div class="activity-button-container">
         <button class="profile-button" href="<%=  %>">VIEW ALL</button>
@@ -419,7 +419,7 @@ font-size: 300;
                 <%= image_tag("profile-UserImage-1.png") %>
 
                 <strong class="friend-name"><%= d.journey.owner.name %></strong>
-        
+
               </div>
 
               <div class="homepage-location-date">
