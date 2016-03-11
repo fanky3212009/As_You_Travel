@@ -739,24 +739,25 @@ div.tl-media-content-container {
       float: left;
     }
   }
-.stream-picture {
-  width: 9%;
-  margin: 0;
-  float: left;
-  position: relative;
-  left: -1em;
-  display: inline-block;
-  top: 8em;
-  img {
-    margin: 0
+  .stream-picture {
+    width: 9%;
+    margin: 0;
+    float: left;
+    position: relative;
+    left: -1em;
+    display: inline-block;
+    top: 8em;
+    img {
+      margin: 0;
+    }
   }
-}
-.map-button-container {
-  position: relative;
-transform: translateY(-18em);
-left: 13em;
+  .map-button-container {
+    position: relative;
+  transform: translateY(-18em);
+  left: 13em;
 
-}
-.hidden-map {
-  display: none;
+  }
+  .hidden-map {
+    display: none;
+  }
 }
