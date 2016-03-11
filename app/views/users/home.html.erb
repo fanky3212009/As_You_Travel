@@ -321,7 +321,7 @@ font-size: 300;
       <%= button_tag "Find stories happened near me", id: "search_nearby" %>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
         <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
-        <%= submit_tag "Search" %>
+        <%= submit_tag "Search", :style => "display: none;" %>
       <% end %>
 <ul class="accordion-tabs-minimal">
   <li class="tab-header-and-content">
