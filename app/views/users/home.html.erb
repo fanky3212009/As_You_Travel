@@ -412,7 +412,9 @@ font-size: 300;
             <div class="diary-stats homepage-slider">
               <div class="diary-stat homepage-stat friend-photo">
                 <%= image_tag("profile-UserImage-1.png") %>
+                <%= link_to d.journey.owner do  %>
                 <strong class="friend-name"><%= d.journey.owner.name %></strong>
+                <% end %>
               </div>
 
               <div class="homepage-location-date">
