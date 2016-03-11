@@ -407,7 +407,6 @@ font-size: 300;
   <section id="slider" class="container">
     <ul class="slider-wrapper">
   <% if current_user != nil %>
-    <% if current_user.owend_journeys.first %>
     <% current_user.news_feed.each do |d| %>
       <li class="current-slide">
         <div class="diary-wrapper">
@@ -536,7 +535,6 @@ font-size: 300;
               </div>
             </div>
         </li>
-      <% end %>
       <% end %>
 
 
