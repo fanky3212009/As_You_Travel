@@ -251,23 +251,30 @@ color: white;
 
 .journey-picture img {
   height: 30em;
-  margin-left: 3em;
+  margin-left: 6em;
+  margin-top: 9em;
+  border: 12px solid #EFEDE8;
+  border-bottom: 55px solid #EFEDE8;
+  transform: rotate(-2deg);
+  z-index: 1;
+  box-shadow: 0 12px 10px -10px rgba(0, 0, 0, 0.6);
+
 }
 
 .journey-picture-stat-section {
-  height: 100vh;
+  height: 56em;
   background-image: url(lined_paper_@2X.png);
   background-repeat:repeat;
 }
 
-.journey-content-picture-section {
-  height: 100vh;
-  background-image: url(ricepaper_v3_@2X.png);
-  background-repeat:repeat;
+.journey-diaries-section {
+  height: 56em;
+  background-image: url(brickwall_@2X.png);
+
 }
 
 .comment-form-list-section {
-  height: 100vh;
+  height: 56em;
   background-image:url(photography_@2X.png);
   background-repeat:repeat;
 }
@@ -297,9 +304,16 @@ color: white;
 
 .diary_entry_block {
   display: inline-block;
-  margin-right: 5em;
   width: 27em;
   border: 5px solid #555555;
+  text-align: center;
+  height: 18em;
+  margin: 2em;
+  h2 {
+    position: absolute;
+    margin: 2em;
+    font-size: 3em;
+  }
 }
 
 .diary_img_preview{
@@ -307,4 +321,34 @@ color: white;
 }
 .diary_text_preview {
   float: right;
+}
+
+.journey-stats {
+  margin-top: 5em;
+  margin-left: -4em;
+}
+
+.journey-stat-name {
+    display: inline-block;
+    color: #374BD9;
+    margin-left: 0.3em;
+    transform: translateY(-0.5em);
+    margin-bottom: 1.5em;
+    font-size: 20px;
+}
+
+.journey-stat-content {transform: translateY(-1em);margin-left: 3em;}
+
+.journey-stat:last-child img {
+    margin-left: 0.5em;
+}
+
+.journey-stat:nth-child(3) h3 {
+    margin-left: 0;
+    transform: translateY(-10px);
+}
+
+.new_diary_entry_block {
+  position: relative;
+  top: 2.5em;
 }
