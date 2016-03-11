@@ -2,6 +2,22 @@ class Favourite < ActiveRecord::Base
   belongs_to :favourable, polymorphic: true
   belongs_to :users
 
+
+  def self.most_favourited_diaries
+
+    diary_id_array = Favourite.where(favourable_type: DiaryEntry)
+                          .group(:favourable_id)
+                          .order("count_all DESC").count
+
+    @favourite_diaries = []
+
+    diary_id_array.each do |x|
+      @favourite_diaries << DiaryEntry.find(x[0])
+    end
+    @favourite_diaries
+  end
+
+
   def self.most_favourable_user
     most_favourable_stat = Favourite.group(:favourable_type, :favourable_id).order("count_all DESC").count.first
     most_favourable_class = most_favourable_stat[0][0].constantize
@@ -14,4 +30,5 @@ class Favourite < ActiveRecord::Base
     count = most_favourable_stat[1]
     return [most_favourable_user, count]
   end
+
 end

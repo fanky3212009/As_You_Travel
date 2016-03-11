@@ -16,21 +16,21 @@
 
  #path_map {
    width: 1500px;
-   height: 500px;
+   height: 750px;
  }
 
 
 #animatedModal {
    position: fixed;
    width: 100% !important;
-   height: 50% !important;
-   top: 150px !important;
+   height: 80% !important;
+   top: 50px !important;
    left: 0px;
    overflow-y: auto;
    z-index: 9999;
    opacity: 1;
    animation-duration: 0.6s;
-   background-color: grey !important;
+   background-color: white !important;
 }
 
 .f-already {

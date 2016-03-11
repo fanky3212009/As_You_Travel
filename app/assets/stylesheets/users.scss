@@ -393,6 +393,7 @@ ul.navigation{
   position:fixed;
   right: -102px;
   top: 3em;
+  z-index: 999;
 
 
   li{
@@ -738,4 +739,24 @@ div.tl-media-content-container {
       float: left;
     }
   }
+.stream-picture {
+  width: 9%;
+  margin: 0;
+  float: left;
+  position: relative;
+  left: -1em;
+  display: inline-block;
+  top: 8em;
+  img {
+    margin: 0
+  }
+}
+.map-button-container {
+  position: relative;
+transform: translateY(-18em);
+left: 13em;
+
+}
+.hidden-map {
+  display: none;
 }

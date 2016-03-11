@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user.set_profile_img
+
     respond_to do |format|
       format.html
       format.json
