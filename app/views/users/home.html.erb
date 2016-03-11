@@ -381,9 +381,10 @@ font-size: 300;
 
 
   <section id="slider" class="container">
-		<ul class="slider-wrapper">
+    <ul class="slider-wrapper">
+    <% if current_user.owend_journeys.first %>
     <% current_user.owend_journeys.first.diary_entries.each do |d| %>
-		  <li class="current-slide">
+      <li class="current-slide">
         <div class="diary-wrapper">
           <div class="diary-picture-stat-section">
             <div class="diary-picture diary_aside" id="friend-diary-photo">
@@ -449,42 +450,42 @@ font-size: 300;
               </div>
             </div>
           </div>
-  		</li>
+      </li>
       <% end %>
+      <% end %>
+    <li>
+      <img src="http://i9.photobucket.com/albums/a88/creaticode/2_zps6ccd36bd.jpg" title="" alt="">
 
-		<li>
-			<img src="http://i9.photobucket.com/albums/a88/creaticode/2_zps6ccd36bd.jpg" title="" alt="">
+      <div class="caption">
+        <h2 class="slider-title">Diseño Responsive</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo iusto placeat aliquid tempore harum, similique!</p>
+      </div>
+    </li>
 
-			<div class="caption">
-				<h2 class="slider-title">Diseño Responsive</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo iusto placeat aliquid tempore harum, similique!</p>
-			</div>
-		</li>
+    <li>
+      <img src="http://i9.photobucket.com/albums/a88/creaticode/4_zps611bc9f9.jpg" title="" alt="">
 
-		<li>
-			<img src="http://i9.photobucket.com/albums/a88/creaticode/4_zps611bc9f9.jpg" title="" alt="">
+      <div class="caption">
+        <h2 class="slider-title">Identidad Corporativa</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dicta laudantium voluptatem minima! Dolorum tempore dolores excepturi omnis provident. Commodi quis aperiam maiores, dolore a perferendis!</p>
+      </div>
+    </li>
 
-			<div class="caption">
-				<h2 class="slider-title">Identidad Corporativa</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dicta laudantium voluptatem minima! Dolorum tempore dolores excepturi omnis provident. Commodi quis aperiam maiores, dolore a perferendis!</p>
-			</div>
-		</li>
+    <li>
+      <img src="http://i9.photobucket.com/albums/a88/creaticode/3_zps70e4fcc5.jpg" title="" alt="">
 
-		<li>
-			<img src="http://i9.photobucket.com/albums/a88/creaticode/3_zps70e4fcc5.jpg" title="" alt="">
+      <div class="caption">
+        <h2 class="slider-title">Desarrollo Web</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolore dignissimos laudantium.</p>
+      </div>
+    </li>
+    </ul>
+    <!-- Sombras -->
+    <div class="slider-shadow"></div>
 
-			<div class="caption">
-				<h2 class="slider-title">Desarrollo Web</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolore dignissimos laudantium.</p>
-			</div>
-		</li>
-		</ul>
-		<!-- Sombras -->
-		<div class="slider-shadow"></div>
-
-		<!-- Controles de Navegacion -->
-		<ul id="control-buttons" class="control-buttons"></ul>
-	</section>
+    <!-- Controles de Navegacion -->
+    <ul id="control-buttons" class="control-buttons"></ul>
+  </section>
 
 
 
