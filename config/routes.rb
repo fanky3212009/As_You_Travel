@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :photos, only: [:create, :show] do
     resources :comments, only: [:create, :destroy]
+    resources :tags, only: [:create, :destroy, :show]
+
   end
 
   resources :journeys do

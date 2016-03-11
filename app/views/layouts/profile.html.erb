@@ -39,7 +39,7 @@
 
     <div class="hero-inner">
       <div class="hero-logo">
-        <%= image_tag @user.profile_img %>
+        <%= image_tag current_user.profile_img %>
         <!-- <%= image_tag ("profile-UserImage-1.png")  %> -->
       </div>
       <div class="hero-copy">
@@ -88,7 +88,7 @@
       <% end %>
     </li>
 
-    <li><a href="#blog">
+    <li>
       <span>
       <%=  image_tag "MenuBar-icon-timeline.png"  %>
       </span>
@@ -96,9 +96,9 @@
         <%= image_tag "MenuBar-icon-timeline-hover.png"%>
         <p>My Timeline</p>
       </div>
-    </a></li>
+  </li>
 
-    <li><a href="#services">
+    <li>
       <span>
       <%=  image_tag "MenuBar-icon-favorites.png"  %>
       </span>
@@ -106,7 +106,7 @@
         <%= image_tag "MenuBar-icon-favorites-hover.png"%>
         <p>Favourites</p>
       </div>
-    </a></li>
+  </li>
     <!-- <li><a href="#contact">
       <img src="./images/contact.png" />
     </a></li> -->

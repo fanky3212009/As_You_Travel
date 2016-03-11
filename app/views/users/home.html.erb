@@ -1,14 +1,367 @@
+<style media="screen">
+
+
+/*.clearfix:after {
+content: '';
+clear: both;
+display: block;
+height: 0;
+width: 0;
+}
+
+ul {
+list-style-type: none;
+}
+
+a {
+color: #00c5b9;
+text-decoration: none;
+}
+
+h1 {
+color: #FFF;
+text-align: center;
+margin-top: 30px;
+font-weight: 300;
+font-size: 2.4em;
+}*/
+
+/** ---------------------------------------
+* Slider
+----------------------------------------*/
+.container {
+width: 1000px;
+margin: 40px auto 0;
+}
+
+.slider-wrapper {
+  z-index: 500;
+  left: -10em;
+  position: relative;
+  width: 129%;
+  height: 646px;
+  background: #FFF;
+  border: 5px solid #4b5973;
+  overflow: hidden;
+}
+
+.slider-wrapper li {
+display: none;
+}
+
+.slider-wrapper .current-slide {
+display: block;
+}
+
+.slider-shadow {
+    width: 123%;
+    height: 15px;
+    position: relative;
+    left: -7em;
+}
+
+.slider-shadow:after, .slider-shadow:before {
+content: '';
+position: absolute;
+background: #171c24;
+height: 100%;
+width: 50%;
+left: 10px;
+top: -20px;
+-webkit-transform: rotate(-4deg);
+-ms-transform: rotate(-4deg);
+-o-transform: rotate(-4deg);
+transform: rotate(-4deg);
+-webkit-box-shadow: 0 0 15px 8px #171c24;
+box-shadow: 0 0 15px 8px #171c24;
+}
+
+.slider-shadow:before {
+right: 10px;
+left: auto;
+-webkit-transform: rotate(4deg);
+-ms-transform: rotate(4deg);
+-o-transform: rotate(4deg);
+transform: rotate(4deg);
+}
+
+.slider-wrapper img {
+position: relative;
+max-width: 100%;
+height: auto;
+top: 0;
+left: 0;
+}
+
+.diary-stat.homepage-stat:nth-child(2) {
+    width: -13em;
+}
+
+.diary-stat.homepage-stat {
+    font-size: 10px;
+    /* float: left; */
+    width: -6%;
+}
+
+.homepage-stat h3.diary-stat-name {
+    font-size: 16px;
+}
+/**
+* ---[Botones-Control] ----------------------
+**/
+.control-buttons {
+margin-top: 15px;
+text-align: center;
+}
+
+.control-buttons li {
+cursor: pointer;
+display: inline-block;
+background: #424f66;
+text-indent: -99999px;
+height: 12px;
+width: 12px;
+margin: 0 6px;
+-webkit-border-radius: 50%;
+-moz-border-radius: 50%;
+border-radius: 50%;
+}
+
+.control-buttons li.active {
+background: #00c5b9;
+}
+
+.authors {
+text-align: center;
+color: #7a8699;
+display: block;
+font-size: 1.6em;
+font-weight: 300;
+margin-top: 80px;
+font-size: 300;
+}
+
+.diary-stat.homepage-stat {
+    position: relative;
+    font-size: 10px;
+    top: 14em;
+}
+
+.homepage-stat .activity-tags {
+  position: relative;
+  left: 3em;
+  top: 2em;
+  .add-new-tag {
+    padding: 13px 25px;
+  }
+
+}
+.diary-stat.homepage-stat.location-date {
+    display: inline-block;
+    position: relative;
+    top: 16em;
+    left: -0.5em;
+}
+/** ---------------------------------------
+* Responsive
+----------------------------------------*/
+@media only screen and (max-width: 825px) {
+.container {
+  width: 500px;
+}
+
+.slider-wrapper {
+  height: 260px;
+}
+}
+
+@media only screen and (max-width: 535px) {
+.container {
+  padding: 5px;
+  width: 100%;
+  margin: 40px 0 0 0;
+}
+
+.slider-wrapper {
+  height: 200px;
+}
+
+.slider-wrapper .caption {
+  display: none;
+}
+
+}
+
+@media only screen and (max-width: 410px) {
+.slider-wrapper {
+  height: 160px;
+}
+}
+</style>
+
+
+<div class="home-slider">
+  <div class="logo">
+    <%= image_tag ("logo-blue.png")  %>
+  </div>
+  <!-- <div class="hero-inner">
+    <div class="hero-logo">
+
+    </div>
+    <div class="hero-copy">
+    </div>
+  </div> -->
+</div>
+
+<% if current_user  %>
+  <ul class="navigation">
+    <li>
+      <%= link_to current_user, :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-profile.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-profile-hover.png"%>
+        <p>My Profile</p>
+      </div>
+    <% end %>
+  </li>
+
+    <li>
+      <%= link_to user_journeys_path(current_user) do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-Journey.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+          <p>My Journey</p>
+        </div>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to user_photos_path(current_user) do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+        <p>Gallery</p>
+      </div>
+      <% end %>
+    </li>
+
+    <li>
+      <span>
+      <%=  image_tag "MenuBar-icon-timeline.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+        <p>My Timeline</p>
+      </div>
+  </li>
+
+    <li>
+      <span>
+      <%=  image_tag "MenuBar-icon-favorites.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+        <p>Favourites</p>
+      </div>
+  </li>
+    <!-- <li><a href="#contact">
+      <img src="./images/contact.png" />
+    </a></li> -->
+  </ul>
+<% end %>
+
+
+<div class="homepage-first-wrapper">
+  <div class="first-left">
+    <div class="first-text">
+      <div class="first-left-img">
+        <%= image_tag("hp-SectionTitle-TopPicks.png") %>
+        <h2>DIARIES OF THE WEEK</h2>
+      </div>
+      <div class="first-left-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+      <div class="activity-button-container">
+        <button class="profile-button" href="<%=  %>">VIEW ALL</button>
+        <a href="<%  %>">
+          <div class = "button-border" >VIEW ALL</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="first-right">
+    <div class="first-img">
+      <div class="img1">
+      <%= image_tag ("hp-TopPicks-img1.jpg") %>
+      </div>
+      <div class="img2">
+      <%= image_tag ("hp-TopPicks-img2.jpg") %>
+      </div>
+      <div class="img3">
+      <%= image_tag ("hp-TopPicks-img3.jpg") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="home-second-wrapper">
+  <div class="mid-section-up">
+    <div class="up-left">
+      <%= image_tag("hp-DividerSection-img1.jpg") %>
+    </div>
+    <div class="up-right">
+      <%= button_tag "Find stories happened near me", id: "search_nearby" %>
+      <h4>Search near:</h4>
+      <p>
+      <%= form_tag root_path, method: :get do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Go!" %>
+      <% end %>
+      </p>
+    </div>
+  </div>
+
+  <div class="mid-section-down">
+    <div class="down-left">
+      <div class="feature-user">
+        <%= image_tag current_user.profile_img %>
+
+      </div>
+      <div class="feature-user">
+        <%= image_tag current_user.profile_img %>
+
+      </div>
+      <div class="feature-user">
+        <%= image_tag current_user.profile_img %>
+
+      </div>
+    </div>
+    <div class="down-right">
+      <%= image_tag ("hp-DividerSection-img2.jpg") %>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 <h1>Home page</h1>
 
 
-<%= button_tag "Find stories happened near me", id: "search_nearby" %>
-<h4>Search near:</h4>
-<p>
-<%= form_tag root_path, method: :get do %>
-  <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag "Go!" %>
-<% end %>
-</p>
 
 <section id="search-results">
   <%= render 'tags/search_tag' %>
@@ -23,3 +376,216 @@
   </div>
   <div class="search-tag-results"></div>
   <br>
+
+
+
+
+  <section id="slider" class="container">
+		<ul class="slider-wrapper">
+    <% current_user.owend_journeys.first.diary_entries.each do |d| %>
+		  <li class="current-slide">
+        <div class="diary-wrapper">
+          <div class="diary-picture-stat-section">
+            <div class="diary-picture diary_aside" id="friend-diary-photo">
+              <%= image_tag ('Entries_image_1.png') %>
+            </div>
+            <div class="diary-stats homepage-slider">
+              <div class="diary-stat homepage-stat friend-photo">
+                <%= image_tag("profile-UserImage-1.png") %>
+                <strong class="friend-name"><%= d.journey.owner.email %></strong>
+              </div>
+
+              <div class="homepage-location-date">
+              <div class="diary-stat homepage-stat location-date">
+                <%= image_tag ('Entries_icon_location.png') %>
+                <h3 class="diary-stat-name">LOCATION</h3>
+                <p class="diary-stat-content"><%= d.location %></p>
+              </div>
+              <div class="diary-stat homepage-stat location-date">
+                <%= image_tag ('Entries_icon_time.png') %>
+                <h3 class="diary-stat-name">DATE</h3>
+                <p class="diary-stat-content"><%= d.date %></p>
+              </div>
+            </div>
+              <div class="diary-stat homepage-stat">
+                <%= image_tag ('Entries_icon_tag.png') %>
+                <h3 class="diary-stat-name">TAGS</h3>
+                <div class="activity-tags">
+                   <% d.tags.each do |tag| %>
+                      <% if tag.body != "recommended" %>
+                      <span>
+                          <%= tag.body %>
+                      </span>
+                        <% end %>
+                  <% end %>
+
+                  <% if current_user == @diary_entry.journey.owner %>
+                    <span class="add-new-tag"><%= link_to "Add Tags" %></span>
+
+                  <div class="diary-tag-form">
+                    <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
+
+                    <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
+                    <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
+                    <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
+                    <%= t.hidden_field :user_id, :value => current_user.id %>
+                    <%= t.submit "Add" %>
+                    <% end  %>
+                  </div>
+                  <% end %>
+                </div>
+
+              </div>
+              <div class="diary-stat homepage-stat content">
+                <p class="diary-stat-content"><%= d.content %> </p>
+                <div class="recommend-button-container homepage-friend-button">
+                  <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
+                  <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
+                </div>
+                <div class="like-button-container homepage-friend-button">
+                  <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
+                  <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
+                </div>
+              </div>
+            </div>
+          </div>
+  		</li>
+      <% end %>
+
+		<li>
+			<img src="http://i9.photobucket.com/albums/a88/creaticode/2_zps6ccd36bd.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Diseño Responsive</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo iusto placeat aliquid tempore harum, similique!</p>
+			</div>
+		</li>
+
+		<li>
+			<img src="http://i9.photobucket.com/albums/a88/creaticode/4_zps611bc9f9.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Identidad Corporativa</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dicta laudantium voluptatem minima! Dolorum tempore dolores excepturi omnis provident. Commodi quis aperiam maiores, dolore a perferendis!</p>
+			</div>
+		</li>
+
+		<li>
+			<img src="http://i9.photobucket.com/albums/a88/creaticode/3_zps70e4fcc5.jpg" title="" alt="">
+
+			<div class="caption">
+				<h2 class="slider-title">Desarrollo Web</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolore dignissimos laudantium.</p>
+			</div>
+		</li>
+		</ul>
+		<!-- Sombras -->
+		<div class="slider-shadow"></div>
+
+		<!-- Controles de Navegacion -->
+		<ul id="control-buttons" class="control-buttons"></ul>
+	</section>
+
+
+
+
+<script type="text/javascript">
+$(function() {
+
+ var SliderModule = (function() {
+  var pb = {};
+  pb.el = $('#slider');
+  pb.items = {
+    panels: pb.el.find('.slider-wrapper > li'),
+  }
+
+  // Interval del Slider
+  var SliderInterval,
+    currentSlider = 0,
+    nextSlider = 1,
+    lengthSlider = pb.items.panels.length;
+
+  // Constructor del Slider
+  pb.init = function(settings) {
+    this.settings = settings || {duration: 8000};
+    var items = this.items,
+      lengthPanels = items.panels.length,
+      output = '';
+
+    // Insertamos nuestros botones
+    for(var i = 0; i < lengthPanels; i++) {
+      if(i == 0) {
+        output += '<li class="active"></li>';
+      } else {
+        output += '<li></li>';
+      }
+    }
+
+    $('#control-buttons').html(output);
+
+    // Activamos nuestro Slider
+    activateSlider();
+    // Eventos para los controles
+    $('#control-buttons').on('click', 'li', function(e) {
+      var $this = $(this);
+      if(!(currentSlider === $this.index())) {
+        changePanel($this.index());
+      }
+    });
+
+  }
+
+  // Funcion para activar el Slider
+  var activateSlider = function() {
+    SliderInterval = setInterval(pb.startSlider, pb.settings.duration);
+  }
+
+  // Funcion para la Animacion
+  pb.startSlider = function() {
+    var items = pb.items,
+      controls = $('#control-buttons li');
+    // Comprobamos si es el ultimo panel para reiniciar el conteo
+    if(nextSlider >= lengthSlider) {
+      nextSlider = 0;
+      currentSlider = lengthSlider-1;
+    }
+
+    controls.removeClass('active').eq(nextSlider).addClass('active');
+    items.panels.eq(currentSlider).fadeOut('slow');
+    items.panels.eq(nextSlider).fadeIn('slow');
+
+    // Actualizamos los datos del slider
+    currentSlider = nextSlider;
+    nextSlider += 1;
+  }
+
+  // Funcion para Cambiar de Panel con Los Controles
+  var changePanel = function(id) {
+    clearInterval(SliderInterval);
+    var items = pb.items,
+      controls = $('#control-buttons li');
+    // Comprobamos si el ID esta disponible entre los paneles
+    if(id >= lengthSlider) {
+      id = 0;
+    } else if(id < 0) {
+      id = lengthSlider-1;
+    }
+
+    controls.removeClass('active').eq(id).addClass('active');
+    items.panels.eq(currentSlider).fadeOut('slow');
+    items.panels.eq(id).fadeIn('slow');
+
+    // Volvemos a actualizar los datos del slider
+    currentSlider = id;
+    nextSlider = id+1;
+    // Reactivamos nuestro slider -->
+    <!-- activateSlider();
+  }
+
+  return pb;
+ }());
+
+ SliderModule.init({duration: 4000});
+
+});
+</script>

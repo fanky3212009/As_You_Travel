@@ -42,13 +42,13 @@
           <% if @journeys.any? %>
 
           <ul class="grid">
-            <% @journeys.first.photos.each do |p|%>
+            <% @journeys.each do |j|%>
               <li class = "grid_item">
-                <%= link_to p, class: "grid_link", :"data-no-turbolink" => true do %>
-                  <% if p %>
-                    <%= image_tag(p.picture.url, class: "grid__img") %>
-                  <% end %>
-                    <h3 class="grid__item-title"><%= p.name %></h3>
+                <%= link_to j, class: "grid_link", :"data-no-turbolink" => true do %>
+
+                    <%= image_tag (j.feat_img) %>
+
+                    <h3 class="grid__item-title"><%= j.title %></h3>
                 <% end %>
               </li>
             <% end %>

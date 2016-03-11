@@ -82,6 +82,16 @@ class UsersController < ApplicationController
       @search_results = []
     end
 
+
+    @diary_entry = DiaryEntry.last
+    #
+    # current_user.followers.each do |f|
+    #   f.journeys.each do |j|
+    #     j.diary_entries.last
+    #   end
+
+    # end
+
   end
 
 
