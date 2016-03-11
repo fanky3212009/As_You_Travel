@@ -256,12 +256,12 @@ font-size: 300;
         <h2>DIARIES OF THE WEEK</h2>
       </div>
       <div class="first-left-text">
-
+        <% if Favourite.most_favourited_diaries.first != nil %>
         <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
 
         <h3><%= Favourite.most_favourited_diaries.first.journey.owner.name %></h3>
           <p><%= truncate(Favourite.most_favourited_diaries.first.content, length: 150) %></p>
-
+        <% end %>
       </div>
       <div class="activity-button-container">
         <button class="profile-button" href="<%=  %>">VIEW ALL</button>
@@ -333,23 +333,33 @@ font-size: 300;
     <div class="down-left">
       <div class="feature-user">
         <div class="feature-user-info">
+          <% if Favourite.most_favourable_user[0] != nil %>
         <%= image_tag Favourite.most_favourable_user[0].profile_img %>
+          <%= link_to Favourite.most_favourable_user[0] do  %>
         <h3><%= Favourite.most_favourable_user[0].name%></h3>
+        <% end %>
+        <% end %>
         </div>
         <p>Most favourable</p>
       </div>
       <div class="feature-user">
         <div class="feature-user-info">
+          <% if Tag.most_recommended_user[0] != nil %>
           <%= image_tag Tag.most_recommended_user[0].profile_img %>
+          <%= link_to Tag.most_recommended_user[0] do  %>
         <h3><%= Tag.most_recommended_user[0].name %></h3>
+          <% end %>
+        <% end %>
         </div>
         <p>Most Recommend</p>
       </div>
       <div class="feature-user">
-        <% if Relationship.most_followed_user != nil %>
+        <% if Relationship.most_followed_user[0] != nil %>
         <div class="feature-user-info">
         <%= image_tag(Relationship.most_followed_user[0].profile_img) %>
+          <%= link_to Relationship.most_followed_user[0] do %>
         <h3><%= Relationship.most_followed_user[0].name %></h3>
+        <% end %>
         </div>
         <p>King of Followers (<%= Relationship.most_followed_user[1] %>)</p>
         <% else %>
@@ -411,9 +421,9 @@ font-size: 300;
             <div class="diary-stats homepage-slider">
               <div class="diary-stat homepage-stat friend-photo">
                 <%= image_tag("profile-UserImage-1.png") %>
-                <%= link_to d.journey.owner do  %>
+
                 <strong class="friend-name"><%= d.journey.owner.name %></strong>
-                <% end %>
+
               </div>
 
               <div class="homepage-location-date">
