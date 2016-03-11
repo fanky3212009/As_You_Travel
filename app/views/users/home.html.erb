@@ -233,7 +233,6 @@ font-size: 300;
   </li>
 
     <li>
-      <%= link_to user_favourites_path(current_user) do %>
       <span>
       <%=  image_tag "MenuBar-icon-favorites.png"  %>
       </span>
@@ -241,7 +240,6 @@ font-size: 300;
         <%= image_tag "MenuBar-icon-favorites-hover.png"%>
         <p>Favourites</p>
       </div>
-      <% end %>
   </li>
     <!-- <li><a href="#contact">
       <img src="./images/contact.png" />
@@ -258,16 +256,11 @@ font-size: 300;
         <h2>DIARIES OF THE WEEK</h2>
       </div>
       <div class="first-left-text">
-        <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
-
-        <h3><%= Favourite.most_favourited_diaries.first.journey.owner.email %></h3>
-          <p><%= truncate(Favourite.most_favourited_diaries.first.content, length: 150) %></p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
       <div class="activity-button-container">
-
-
-        <button class="profile-button" href="<%= journey_diary_entry_path(Favourite.most_favourited_diaries.first.journey, Favourite.most_favourited_diaries.first) %>">VIEW ALL</button>
-        <a href="<%= journey_diary_entry_path(Favourite.most_favourited_diaries.first.journey, Favourite.most_favourited_diaries.first) %>">
+        <button class="profile-button" href="<%=  %>">VIEW ALL</button>
+        <a href="<%  %>">
           <div class = "button-border" >VIEW ALL</div>
         </a>
       </div>
@@ -281,7 +274,6 @@ font-size: 300;
       </div>
       <div class="img2">
       <%= image_tag ("hp-TopPicks-img2.jpg") %>
-      <!-- <%= image_tag (Favourite.most_favourited_diaries.first.photos.sample.picture.url) %> -->
       </div>
       <div class="img3">
       <%= image_tag ("hp-TopPicks-img3.jpg") %>
@@ -299,9 +291,8 @@ font-size: 300;
       <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
       <%= button_tag "Find stories happened near me", id: "search_nearby" %>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
-
-        <%= text_field_tag :search, params[:search], :placeholder => "Search" %>
-        <%= submit_tag "Search", id: "search_button", :style => "display: none;" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
+        <%= submit_tag "Search", :style => "display: none;" %>
       <% end %>
 <ul class="accordion-tabs-minimal">
   <li class="tab-header-and-content">
@@ -323,7 +314,7 @@ font-size: 300;
     </div>
   </li>
   <li class="tab-header-and-content">
-    <a href="#" class="tab-link">Location</a>
+    <a href="#" class="tab-link" action="/">Location</a>
     <div class="tab-content search-location-results">
 
     </div>
@@ -393,7 +384,7 @@ font-size: 300;
   <div class="search_by_tag">
   <%= form_tag tags_path, method: :get, id: "search_tag" do %>
     <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
-    <%= submit_tag "Search" :style => "display: none;" %>
+    <%= submit_tag "Search" %>
   <% end %>
   </div>
   <div class="search-tag-results"></div>
@@ -409,7 +400,7 @@ font-size: 300;
     <% current_user.owend_journeys.first.diary_entries.each do |d| %>
       <li class="current-slide">
         <div class="diary-wrapper">
-          <div class="diary-picture-stat-section" id="homepage-friend-background">
+          <div class="diary-picture-stat-section">
             <div class="diary-picture diary_aside" id="friend-diary-photo">
               <%= image_tag ('Entries_image_1.png') %>
             </div>
