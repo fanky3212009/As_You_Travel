@@ -5,14 +5,18 @@ class Tag < ActiveRecord::Base
 
   def self.most_recommended_user
     most_recommended_stat = Tag.where("body LIKE ?", "recommended").group(:taggable_type, :taggable_id).count().sort_by{|k, v| v}.reverse.first
-    most_recommended_class = eval(most_recommended_stat[0][0])
-    most_recommended_obj = most_recommended_class.find(most_recommended_stat[0][1])
-    if most_recommended_obj.class == Journey
-      most_recommended_user = most_recommended_obj.owner
+    if most_recommended_stat != nil
+      most_recommended_class = eval(most_recommended_stat[0][0])
+      most_recommended_obj = most_recommended_class.find(most_recommended_stat[0][1])
+      if most_recommended_obj.class == Journey
+        most_recommended_user = most_recommended_obj.owner
+      else
+        most_recommended_user = most_recommended_obj.journey.owner
+      end
+      count = most_recommended_stat[1]
+      [most_recommended_user, count]
     else
-      most_recommended_user = most_recommended_obj.journey.owner
+      []
     end
-    count = most_recommended_stat[1]
-    return [most_recommended_user, count]
   end
 end
