@@ -187,6 +187,8 @@
   float: left;
   img {
     width: 56em;
+    position: relative;
+    top: 10px;
   }
 }
 
@@ -209,7 +211,8 @@
 
 
 button#search_nearby {
-    margin-top: 10em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 .mid-section-down {
     display: inline-block;

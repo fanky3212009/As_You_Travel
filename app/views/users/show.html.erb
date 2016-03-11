@@ -243,15 +243,6 @@
             <h3><%= d.location%> | <%=d.date %></h3>
             <p><%= d.content %></p>
 
-            <div class="activity-tags">
-            <%   d.tags.last(3).each do |t| %>
-                <span><%= t.body %></span>
-            <% end %>
-                <!-- <span>Tag</span>
-                <span>Tag</span> -->
-            </div>
-
-<<<<<<< HEAD
           <div class="activity-tags">
           <%   d.tags.last(3).each do |t| %>
             <% if t.body != "recommended" %>
@@ -260,8 +251,7 @@
           <% end %>
               <!-- <span>Tag</span>
               <span>Tag</span> -->
-=======
->>>>>>> journey_style
+journey_style
           </div>
         </div>
         <% end %>
