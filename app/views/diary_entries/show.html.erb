@@ -3,8 +3,11 @@
 
     <div class="back-img-diary">
       <div class="logo">
+        <%= link_to root_url do%>
         <%= image_tag ("logo-blue.png")  %>
+        <% end %>
       </div>
+
       <div class="hero-inner">
         <div class="hero-copy">
           <h1 class="diary-title"><%= @diary_entry.title %></h1>
@@ -17,7 +20,7 @@
 
     <ul class="navigation">
       <li>
-        <%= link_to @user, :"data-no-turbolink" => true do %>
+        <%= link_to current_user, :"data-no-turbolink" => true do %>
         <span>
         <%=  image_tag "MenuBar-icon-profile.png"  %>
         </span>

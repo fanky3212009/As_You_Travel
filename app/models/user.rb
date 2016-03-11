@@ -88,11 +88,14 @@ class User < ActiveRecord::Base
   def news_feed
     following_diary_entries = []
     self.followings.each do |following|
-      following.journeys.each do |journey|
+      following.owend_journeys.each do |journey|
         following_diary_entries.concat(journey.diary_entries)
       end
     end
-    following_diary_entries.order("updated_at DESC").first(4)
+
+
+    following_diary_entries.sort!{ |x,y| y[:updated_at] <=> x[:updated_at] }
+    following_diary_entries.first(4)
   end
 
 

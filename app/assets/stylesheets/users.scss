@@ -740,19 +740,8 @@ div.tl-media-content-container {
       float: left;
     }
   }
-  .stream-picture {
-    width: 9%;
-    margin: 0;
-    float: left;
-    position: relative;
-    left: -1em;
-    display: inline-block;
-    top: 8em;
-    img {
-      margin: 0;
-    }
-  }
-  .map-button-container {
+}
+.map-button-container {
     position: relative;
   transform: translateY(-18em);
   left: 13em;
@@ -762,8 +751,20 @@ div.tl-media-content-container {
   color: white;
   position: fixed;
 
-  }
-  .hidden-map {
+}
+.hidden-map {
     display: none;
+}
+
+.stream-picture {
+  width: 9%;
+  margin: 0;
+  float: left;
+  position: relative;
+  left: -1em;
+  display: inline-block;
+  top: 8em;
+  img {
+    margin: 0;
   }
 }
