@@ -262,6 +262,7 @@ font-size: 300;
   </li>
 
     <li>
+      <%= link_to user_favourites_path(current_user) do %>
       <span>
       <%=  image_tag "MenuBar-icon-favorites.png"  %>
       </span>
@@ -269,6 +270,7 @@ font-size: 300;
         <%= image_tag "MenuBar-icon-favorites-hover.png"%>
         <p>Favourites</p>
       </div>
+      <% end %>
   </li>
     <!-- <li><a href="#contact">
       <img src="./images/contact.png" />

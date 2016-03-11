@@ -682,3 +682,12 @@ div.tl-media-content-container {
     margin: 0
   }
 }
+.map-button-container {
+  position: relative;
+transform: translateY(-18em);
+left: 13em;
+
+}
+.hidden-map {
+  display: none;
+}

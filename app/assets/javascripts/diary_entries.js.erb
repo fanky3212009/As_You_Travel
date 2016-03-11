@@ -152,7 +152,10 @@
         }
       });
 
-
+    $('.map-button-container').on('click', function(e) {
+      e.preventDefault();
+      $('#demo01').trigger('click');
+    });
 
 });
 
