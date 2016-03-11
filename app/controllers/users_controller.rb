@@ -8,6 +8,10 @@ class UsersController < ApplicationController
     @users = User.all
     if params[:search]
       @search_results = DiaryEntry.where("title like ?", params[:search].downcase)
+      @search_results = @search_results.concat(Journey.where("title like ?", params[:search].downcase))
+      @search_results.sort_by! {|result| result.created_at }
+      @search_results.reverse!
+
     end
     respond_to do |format|
       format.html
