@@ -15,7 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'geocoder'
 
-gem 'bourbon' 
+gem 'bourbon'
 
 gem 'neat'
 
@@ -67,4 +67,10 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :production do
+  gem 'rails_12factor'
+
+  gem 'puma'
 end
