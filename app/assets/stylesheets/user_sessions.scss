@@ -296,7 +296,11 @@ left: 0;
     width: -6%;
     .friend-photo {
     }
+    .diary-stat-content {
+      width: 90%;
+    }
 }
+
 
 .friend-name {
   font-size: 23px;
@@ -410,6 +414,40 @@ font-size: 300;
     position: relative;
     top: 2.5em;
     left: 16em;
+}
+.feature-user {
+    margin: 4.3em 1.7em;
+    width: 25%;
+    margin-left: 2em;
+    border: 3px solid #7CA7DE;
+    p {
+    font-family: fantasy;
+    font-size: 28px;
+    line-height: 43px;
+    text-align: center;
+    margin-top: 0.6em;
+    text-shadow: 7px 7px 8px rgba(144, 150, 150, 0.99);
+    color: black;
+    }
+}
+
+
+.feature-user-info {
+    border-bottom: 13px solid #7CA7DE;
+    img {
+      width: 60%;
+      position: relative;
+      left: 3em;
+      top: 1em;
+    }
+    h3 {
+      position: relative;
+      left: 2.2em;
+      top: 0.7em;
+      font-size: 18px;
+      margin-bottom: 2em;
+      color: #295ED5;
+    }
 }
 
 #homepage-friend-background {
