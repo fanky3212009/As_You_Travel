@@ -3,6 +3,15 @@ class FavouritesController < ApplicationController
   def index
     @user = current_user
     @favourites = @user.favourites
+    @search_results = Favourite.most_favourited_diaries
+    # if params[:search]
+    #   @search_results = @search_results.select {|d| d.title.include?params[:search]}
+    # end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
@@ -16,10 +25,11 @@ class FavouritesController < ApplicationController
       @journey = Journey.find(params[:journey_id])
       @favourite = @journey.favourites.build
     end
-      @favourite.user_id = @user.id
 
-      if @favourite.save
-        respond_to do |format|
+    @favourite.user_id = @user.id
+
+    if @favourite.save
+      respond_to do |format|
           format.html
           format.json {render json: @favourite}
       end

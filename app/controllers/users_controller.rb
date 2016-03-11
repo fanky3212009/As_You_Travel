@@ -6,6 +6,13 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if params[:search]
+      @search_results = DiaryEntry.where("title like ?", params[:search].downcase)
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 
@@ -76,6 +83,7 @@ class UsersController < ApplicationController
     @search_results = []
 
     if params[:search]
+
       @search_results = DiaryEntry.near(params[:search], 50, unit: :km)
     elsif params[:latitude] && params[:longitude]
       @search_results = DiaryEntry.near([params[:latitude], params[:longitude]], 50, unit: :km)

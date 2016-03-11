@@ -16,11 +16,11 @@ $(document).on('ready page:load', function () {
       $(this).next().toggleClass('is-open').toggle();
       accordionTabs.find('.is-active').removeClass('is-active');
       $(this).addClass('is-active');
-      $('#search_tag').trigger('submit');
 
     } else {
       event.preventDefault();
     }
+    $('#search_tag').trigger('submit');
   });
 
   $('.new_tag').on('submit', function (e) {
@@ -57,8 +57,15 @@ $(document).on('ready page:load', function () {
     }
     if ($('.is-active').html() == "Tag") {
       params.url = $('#search_tag').attr('action');
-    } else if ($('is-active').html() == "Location") {
+    } else if ($('.is-active').html() == "Location") {
+      console.log('Location works');
       params.url = '/';
+    } else if ($('.is-active').html() == "Top") {
+      console.log('Top work');
+      params.url = '/users/1/favourites';
+    } else if ($('.is-active').html() == "Name") {
+      console.log('Name work');
+      params.url = '/users';
     }
 
     $.ajax(params);
