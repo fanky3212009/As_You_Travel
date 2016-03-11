@@ -2,7 +2,15 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).on('ready page:load', function () {
+$(document).on('ready page:change', function () {
+
+  $('.new_relationship .relationship-button-border').on('click', function () {
+    $('.follow-button').submit();
+  });
+  $('.edit_relationship .relationship-button-border').on('click', function () {
+    $('.follow-button').submit();
+  });
+
   $('.timeline-button-border').on('click', function(e){
     e.preventDefault();
 

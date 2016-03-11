@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout "profile", except: [:index, :home]
+  layout "profile", except: [:index, :home, :new]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers]
   before_action :require_login, only: [:index, :edit, :update, :destroy, :following, :followers]
 
@@ -33,8 +33,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to root_url, notice: 'User was successfully created.' }
+        format.json { render :home, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -83,6 +83,7 @@ class UsersController < ApplicationController
       @search_results = []
     end
 
+
     @diary_entry = DiaryEntry.last
     #
     # current_user.followers.each do |f|
@@ -96,6 +97,7 @@ class UsersController < ApplicationController
 
 
   private
+
 
     def set_user
       @user = User.find(params[:id])

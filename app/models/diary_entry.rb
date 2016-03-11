@@ -12,4 +12,5 @@ class DiaryEntry < ActiveRecord::Base
   after_validation :geocode
 
 
+
 end

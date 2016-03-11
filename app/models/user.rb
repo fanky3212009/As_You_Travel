@@ -85,6 +85,17 @@ class User < ActiveRecord::Base
     diaryArray.count
   end
 
+  def news_feed
+    following_diary_entries = []
+    self.followings.each do |following|
+      following.journeys.each do |journey|
+        following_diary_entries.concat(journey.diary_entries)
+      end
+    end
+    following_diary_entries.order("updated_at DESC").first(4)
+  end
+
+
   def count_photos
     photosArray = []
     self.owend_journeys.each { |j| photosArray.concat(j.photo_gallery) }
