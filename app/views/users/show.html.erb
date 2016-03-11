@@ -222,6 +222,9 @@
 
 
     <div class="activity-stream">
+      <div class="stream-picture">
+        <%= image_tag("profile-activitystream.png") %>
+      </div>
       <div class="activity-stream-img">
       <%= image_tag ('profile-SectionTitiles-activities.png') %>
       </div>
@@ -287,8 +290,8 @@
       </div>
     </div> -->
     <div class="activity-button-container">
-      <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
-      <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
+      <button class="profile-button" href="<%= user_journeys_path(@user) %>">VIEW ALL</button>
+      <a href="<%= user_journeys_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
     </div>
 
 
@@ -351,7 +354,7 @@
     <div id="animatedModal">
         <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
         <div class="close-animatedModal">
-                Back
+              <Strong>Go Back!</Strong>
         </div>
 
         <div class="modal-content">
@@ -361,3 +364,4 @@
         </div>
     </div>
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<%= Favourite.most_favourited_diaries.first.title %>

@@ -100,4 +100,6 @@ class User < ActiveRecord::Base
     days
   end
 
+
+
 end

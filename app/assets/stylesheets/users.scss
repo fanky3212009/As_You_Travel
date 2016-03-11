@@ -393,6 +393,7 @@ ul.navigation{
   position:fixed;
   right: -102px;
   top: 3em;
+  z-index: 999;
 
 
   li{
@@ -665,4 +666,16 @@ div.tl-media-content-container {
 
 .tl-credit {
     font-size: 1em !important;
+}
+.stream-picture {
+  width: 9%;
+  margin: 0;
+  float: left;
+  position: relative;
+  left: -1em;
+  display: inline-block;
+  top: 8em;
+  img {
+    margin: 0
+  }
 }

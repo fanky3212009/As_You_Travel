@@ -389,6 +389,33 @@ font-size: 300;
 #friend-diary-photo {
   margin-top: 5em;
 }
+
+
+.first-left-text strong {
+  font-size: 29px;
+  color: black;
+  top: 39px;
+  outline: none;
+  position: relative;
+  left: 147px;
+  :focus {
+    outline: none;
+  }
+}
+
+.first-left-text h3 {
+    position: relative;
+    top: 2.5em;
+    left: 16em;
+}
+
+#homepage-friend-background {
+
+  position: relative;
+  background: url(crumpled_white_paper_texture_by_melemel.jpg) !important;
+  background-repeat: repeat;
+  top: -1em;
+}
 /** ---------------------------------------
 * Responsive
 ----------------------------------------*/
@@ -411,11 +438,11 @@ font-size: 300;
 
 .slider-wrapper {
   height: 200px;
+
 }
 
-.slider-wrapper .caption {
-  display: none;
-}
+
+
 
 }
 
