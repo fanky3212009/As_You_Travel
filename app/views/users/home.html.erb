@@ -333,24 +333,28 @@ font-size: 300;
     <div class="down-left">
       <div class="feature-user">
         <div class="feature-user-info">
+          <% if Favourite.most_favourable_user[0] != nil %>
         <%= image_tag Favourite.most_favourable_user[0].profile_img %>
           <%= link_to Favourite.most_favourable_user[0] do  %>
         <h3><%= Favourite.most_favourable_user[0].name%></h3>
+        <% end %>
         <% end %>
         </div>
         <p>Most favourable</p>
       </div>
       <div class="feature-user">
         <div class="feature-user-info">
+          <% if Tag.most_recommended_user[0] != nil %>
           <%= image_tag Tag.most_recommended_user[0].profile_img %>
           <%= link_to Tag.most_recommended_user[0] do  %>
         <h3><%= Tag.most_recommended_user[0].name %></h3>
+          <% end %>
         <% end %>
         </div>
         <p>Most Recommend</p>
       </div>
       <div class="feature-user">
-        <% if Relationship.most_followed_user != nil %>
+        <% if Relationship.most_followed_user[0] != nil %>
         <div class="feature-user-info">
         <%= image_tag(Relationship.most_followed_user[0].profile_img) %>
           <%= link_to Relationship.most_followed_user[0] do %>
