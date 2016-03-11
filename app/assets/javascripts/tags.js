@@ -25,6 +25,7 @@ $(document).on('ready page:load', function () {
     }
   });
 
+
   $('#search_tag').on('submit', function (e) {
     $('.search-tag-result').html(' ')
     e.preventDefault();
@@ -35,6 +36,12 @@ $(document).on('ready page:load', function () {
       dataType: 'script'
 
     })
-  })
+  });
 
+  $('.tab-link').on('click', function (e) {
+
+    if ($(this).html() == "Tag") {
+      $('#search_tag').trigger('submit');
+    }
+  });
 });
