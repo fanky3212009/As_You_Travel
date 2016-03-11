@@ -41,12 +41,12 @@
 
     <div class="hero-inner">
       <div class="hero-logo">
-        <%= image_tag current_user.profile_img %>
+        <%= image_tag @user.profile_img %>
         <!-- <%= image_tag ("profile-UserImage-1.png")  %> -->
       </div>
       <div class="hero-copy">
-        <h1>As You Travel!</h1>
-        <p>Who Am I</p>
+        <h1><%= @user.name %></h1>
+        <!-- <p>Who Am I</p> -->
          <%= render 'users/stats' %>
       </div>
     </div>

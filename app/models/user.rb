@@ -104,9 +104,12 @@ class User < ActiveRecord::Base
 
   def count_days
     days = 0
+
     self.owend_journeys.each do |j|
+      if j.start_date != nil
       each_days = ((j.end_date - j.start_date) / 1.day).ceil
       days += each_days
+      end
     end
     days
   end

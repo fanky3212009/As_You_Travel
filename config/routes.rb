@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   end
 
-  resources :journeys do
+  resources :journeys, except: [:index] do
     resources :diary_entries do
       resources :favourites, only: [:create, :destroy]
       resources :tags, only: [:create, :destroy, :show]

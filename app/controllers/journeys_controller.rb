@@ -5,8 +5,8 @@ class JourneysController < ApplicationController
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
 
   def index
-      @journeys = Journey.all
       @user = User.find(params[:user_id])
+      @journeys = @user.owend_journeys
 
       respond_to do |format|
         format.html

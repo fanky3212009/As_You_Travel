@@ -1,34 +1,5 @@
 <style media="screen">
 
-
-/*.clearfix:after {
-content: '';
-clear: both;
-display: block;
-height: 0;
-width: 0;
-}
-
-ul {
-list-style-type: none;
-}
-
-a {
-color: #00c5b9;
-text-decoration: none;
-}
-
-h1 {
-color: #FFF;
-text-align: center;
-margin-top: 30px;
-font-weight: 300;
-font-size: 2.4em;
-}*/
-
-/** ---------------------------------------
-* Slider
-----------------------------------------*/
 .container {
 width: 1000px;
 margin: 40px auto 0;
@@ -340,16 +311,33 @@ font-size: 300;
   <div class="mid-section-down">
     <div class="down-left">
       <div class="feature-user">
-        <%= image_tag current_user.profile_img %>
-
+        <div class="feature-user-info">
+        <%= image_tag ('profile-UserImage-1.png') %>
+        <h3><%= Favourite.most_favourable_user[0].email %></h3>
+        </div>
+        <p>Most favourable</p>
       </div>
       <div class="feature-user">
-        <%= image_tag current_user.profile_img %>
-
+        <div class="feature-user-info">
+          <%= image_tag ('profile-UserImage-1.png') %>
+        <h3><%= Tag.most_recommended_user[0].email %></h3>
+        </div>
+        <p>Most Recommend</p>
       </div>
       <div class="feature-user">
-        <%= image_tag current_user.profile_img %>
-
+        <% if Relationship.most_followed_user != nil %>
+        <div class="feature-user-info">
+        <%= image_tag(Relationship.most_followed_user[0].profile_img) %>
+        <h3><%= Relationship.most_followed_user[0].email %></h3>
+        </div>
+        <p>King of Followers (<%= Relationship.most_followed_user[1] %>)</p>
+        <% else %>
+        <div class="feature-user-info">
+        <%= image_tag ('profile-UserImage-1.png') %>
+        <h3>User Name</h3>
+        </div>
+        <p>King of Followers </p>
+        <% end %>
       </div>
     </div>
     <div class="down-right">
@@ -391,6 +379,7 @@ font-size: 300;
 
   <section id="slider" class="container">
     <ul class="slider-wrapper">
+  <% if current_user != nil %>
     <% if current_user.owend_journeys.first %>
     <% current_user.owend_journeys.first.diary_entries.each do |d| %>
       <li class="current-slide">
@@ -429,7 +418,7 @@ font-size: 300;
                         <% end %>
                   <% end %>
 
-                  <% if current_user == @diary_entry.journey.owner %>
+                  <!-- <% if current_user == @diary_entry.journey.owner %>
                     <span class="add-new-tag"><%= link_to "Add Tags" %></span>
 
                   <div class="diary-tag-form">
@@ -442,7 +431,7 @@ font-size: 300;
                     <%= t.submit "Add" %>
                     <% end  %>
                   </div>
-                  <% end %>
+                  <% end %> -->
                 </div>
 
               </div>
@@ -460,6 +449,7 @@ font-size: 300;
             </div>
           </div>
       </li>
+      <% end %>
       <% end %>
       <% end %>
     <li>
