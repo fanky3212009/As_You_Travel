@@ -234,7 +234,9 @@
 
           <div class="activity-tags">
           <%   d.tags.last(3).each do |t| %>
+            <% if t.body != "recommended" %>
               <span><%= t.body %></span>
+              <% end %>
           <% end %>
               <!-- <span>Tag</span>
               <span>Tag</span> -->
