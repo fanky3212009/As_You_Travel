@@ -1,10 +1,12 @@
 <div class="diary_entry_block">
-<%= link_to journey_diary_entry_path(diary_entry.journey, diary_entry), :"data-no-turbolink" => true do %>
-<span><%= image_tag (diary_entry.photos.first ? "#{diary_entry.photos.first.picture.url}" : ""),  :class => "diary_img_preview" %></span>
-<span class="diary_text_preview">
-<%= diary_entry.title %> <br>
-<%= "Day #{((diary_entry.date - diary_entry.journey.start_date) / 1.day).ceil + 1}" %> <br>
-<%= truncate(diary_entry.content, length: 50) %>
-<% end %>
-</span>
+  <%= link_to journey_diary_entry_path(diary_entry.journey, diary_entry), :"data-no-turbolink" => true do %>
+  <span>
+    <%= image_tag (diary_entry.photos.first ? "#{diary_entry.photos.first.picture.url}" : ""),  :class => "diary_img_preview" %>
+  </span>
+  <span class="diary_text_preview">
+  <%= diary_entry.title %> <br>
+  <%= "Day #{((diary_entry.date - diary_entry.journey.start_date) / 1.day).ceil + 1}" %> <br>
+  <%= truncate(diary_entry.content, length: 50) %>
+  </span>
+  <% end %>
 </div>

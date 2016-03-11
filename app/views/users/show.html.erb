@@ -148,11 +148,20 @@
         <%= image_tag ("profile-SectionTitiles-recommendations.png") %>
 
         <hr id="middle-vertical-line">
-        <div class="recomm">
-          <h4 class="recomm-name"><%= @user.latest_recommendation.first.title %></h4>
-          <hr class="recomm-underline">
-          <p><%= truncate(@user.latest_recommendation.first.content, length: 160) %></p>
-        </div>
+        <% if @user.latest_recommendation.first %>
+          <div class="recomm">
+            <h4 class="recomm-name"><%= @user.latest_recommendation.first.title %></h4>
+            <hr class="recomm-underline">
+            <p><%= truncate(@user.latest_recommendation.first.content, length: 160) %></p>
+          </div>
+        <% else %>
+          <div class="recomm">
+            <h4 class="recomm-name">Recommendation 1</h4>
+            <hr class="recomm-underline">
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+          </div>
+        <% end %>
 
         <div class="recomm">
           <h4 class="recomm-name">Recommendation 2</h4>
@@ -226,13 +235,23 @@
       <div class="activity-stream-img">
       <%= image_tag ('profile-SectionTitiles-activities.png') %>
       </div>
-      <% @user.owend_journeys.first.diary_entries.last(4).each do |d|%>
-      <div class="user-diary-activity">
-        <div class="activity-title">
-          <h2><%= d.title %></h2>
-          <h3><%= d.location%> | <%=d.date %></h3>
-          <p><%= d.content %></p>
+      <% if @user.owend_journeys.first %>
+        <% @user.owend_journeys.first.diary_entries.last(4).each do |d|%>
+        <div class="user-diary-activity">
+          <div class="activity-title">
+            <h2><%= d.title %></h2>
+            <h3><%= d.location%> | <%=d.date %></h3>
+            <p><%= d.content %></p>
 
+            <div class="activity-tags">
+            <%   d.tags.last(3).each do |t| %>
+                <span><%= t.body %></span>
+            <% end %>
+                <!-- <span>Tag</span>
+                <span>Tag</span> -->
+            </div>
+
+<<<<<<< HEAD
           <div class="activity-tags">
           <%   d.tags.last(3).each do |t| %>
             <% if t.body != "recommended" %>
@@ -241,10 +260,11 @@
           <% end %>
               <!-- <span>Tag</span>
               <span>Tag</span> -->
+=======
+>>>>>>> journey_style
           </div>
-
         </div>
-      </div>
+        <% end %>
       <% end %>
 <!--
       <div class="user-diary-activity">
@@ -311,15 +331,17 @@
 
       <br>
       <br>
-  <h3>Friends' Recent</h3>
+  <h3>News Feed</h3>
   <% if @user == current_user %>
-    <% @user.followings.each do |friend| %>
-      <%= friend.email %> :
-      <br>
-      <%= friend.owend_journeys.last.diary_entries.last.title %>
-      <br>
-      <%= friend.owend_journeys.last.diary_entries.last.location %>
-      <br>
+    <% @user.followings.each do |following| %>
+      <% if following.owend_journeys.last.diary_entries.last %>
+        <%= following.email %> :
+        <br>
+        <%= following.owend_journeys.last.diary_entries.last.title %>
+        <br>
+        <%= followng.owend_journeys.last.diary_entries.last.location %>
+        <br>
+      <% end %>
     <% end %>
   <% end %>
 

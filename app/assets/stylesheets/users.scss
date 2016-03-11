@@ -544,6 +544,10 @@ border: 5px solid #80B3F0;
   margin-top: 4em;
 }
 
+.follow-button-container {
+  background-color: #FFD400 !important;
+
+}
 
 .profile-button {
     border: none !important;
@@ -555,8 +559,7 @@ border: 5px solid #80B3F0;
     cursor: pointer !important;
     position: absolute !important;
     background-color: #FFD400 !important;
-    color: black;
-
+    color: black !important;
 }
 
 .button-border {

@@ -112,16 +112,16 @@
 
 
 
-          <div class="journey-tag-form">
-            <%= form_for [@journey, Tag.new] do |t| %>
+            <div class="journey-tag-form">
+              <%= form_for [@journey, Tag.new] do |t| %>
 
-            <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
-            <%= t.hidden_field :taggable_id, :value => @journey.id %>
-            <%= t.hidden_field :taggable_type, :value => @journey.class %>
-            <%= t.hidden_field :user_id, :value => current_user.id %>
-            <%= t.submit "Add" %>
-            <% end  %>
-          </div>
+              <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
+              <%= t.hidden_field :taggable_id, :value => @journey.id %>
+              <%= t.hidden_field :taggable_type, :value => @journey.class %>
+              <%= t.hidden_field :user_id, :value => current_user.id %>
+              <%= t.submit "Add" %>
+              <% end  %>
+            </div>
           <% end %>
         </div>
 
@@ -133,13 +133,16 @@
   <div class="journey-diaries-section">
     <h1>Diaries</h1>
 
-    <%= link_to 'New Diary', new_journey_diary_entry_path(@journey) %>
-
-      <% if @journey.diary_entries.any? %>
-          <%= render @diary_entries %>
-      <% else %>
-        <h2>No diary yet</h2>
-      <% end %>
+      <div class="diary_entry_block new_diary_entry_block">
+        <%= link_to new_journey_diary_entry_path(@journey) do %>
+          <h2>New Diary</h2>
+        <% end %>
+      </div>
+    <% if @journey.diary_entries.any? %>
+        <%= render @diary_entries %>
+    <% else %>
+      <h2>No diary yet</h2>
+    <% end %>
 
   </div>
 
