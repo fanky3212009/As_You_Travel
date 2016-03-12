@@ -150,6 +150,7 @@
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
       <p><%= raw @diary_entry.content %></p>
+      <% if current_user != @diary_entry.journey.owner%>
       <div class="recommend diary-content">
         <div class="recommend-form">
           <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
@@ -184,6 +185,7 @@
           </div>
         <% end %>
       </div>
+      <% end %>
     </div>
     <div class="diary-picture diary_article">
       <%= image_tag ('Entries_image_2.png') %>

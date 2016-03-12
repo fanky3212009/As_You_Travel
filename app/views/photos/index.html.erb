@@ -4,7 +4,7 @@
       <div class="each-gallery">
         <%= link_to gallery_journey_path(f) do %>
           <% if f.photo_gallery != [] %>
-            <%= image_tag (f.photo_gallery.sample.picture.thumb.url) %>
+            <%= image_tag (f.photo_gallery.sample.picture.url) %>
           <% else %>
             <%= 'Add a photo to this Journey!' %>
           <% end %>

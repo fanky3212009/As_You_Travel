@@ -296,7 +296,7 @@ font-size: 300;
       <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
       <%= button_tag "Find stories happened near me", id: "search_nearby" %>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Search" %>
         <%= submit_tag "Search", :style => "display: none;" %>
       <% end %>
 <ul class="accordion-tabs-minimal">
@@ -386,7 +386,7 @@ font-size: 300;
 
 
 
-
+<!--
 <h1>Home page</h1>
 
 
@@ -403,7 +403,7 @@ font-size: 300;
   <% end %>
   </div>
   <div class="search-tag-results"></div>
-  <br>
+  <br> -->
 
 
 
@@ -467,8 +467,8 @@ font-size: 300;
                 </div>
 
               </div>
-              <div class="diary-stat homepage-stat content">
-                <p class="diary-stat-content"><%= truncate(d.content, length: 150) %> </p>
+              <div class="diary-stat homepage-stat content slider-content">
+                <%= raw d.content%>
                 <div class="recommend-button-container homepage-friend-button">
                   <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
                   <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
@@ -482,8 +482,7 @@ font-size: 300;
           </div>
       </li>
         <% end %>
-        <% end %>
-      <% else %>
+    <% else %>
 
       <% DiaryEntry.all.last(4).each do |d| %>
         <li class="current-slide">
@@ -526,7 +525,7 @@ font-size: 300;
 
                 </div>
                 <div class="diary-stat homepage-stat content">
-                  <p class="diary-stat-content"><%= d.content %> </p>
+                  <p class="diary-stat-content"><%= (d.content).truncate(150)%> </p>
                   <div class="recommend-button-container homepage-friend-button">
                     <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
                     <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
@@ -540,7 +539,7 @@ font-size: 300;
             </div>
         </li>
       <% end %>
-
+    <% end %>
 
     </ul>
     <!-- Sombras -->

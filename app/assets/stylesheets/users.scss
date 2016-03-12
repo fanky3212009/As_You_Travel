@@ -592,6 +592,7 @@ border: 5px solid #80B3F0;
   position: fixed;
   z-index: 1;
   color: black;
+  top: 0.5em;
   a {
     color: black;
   }
@@ -650,6 +651,7 @@ border: 5px solid #80B3F0;
   font-size: 4em;
   color: #324DD6;
   padding-bottom: 0.5em;
+  width: 8em;
 }
 
 .tl-headline {
@@ -752,10 +754,6 @@ div.tl-media-content-container {
   position: fixed;
 
 }
-.hidden-map {
-    display: none;
-}
-
 .stream-picture {
   width: 9%;
   margin: 0;
@@ -767,4 +765,8 @@ div.tl-media-content-container {
   img {
     margin: 0;
   }
+}
+.follow-container {
+  font-size: 30px;
+  margin: 1em;
 }
