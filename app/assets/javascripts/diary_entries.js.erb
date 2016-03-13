@@ -102,7 +102,7 @@
             for (var i = 0; i < data.length; i++) {
               // latlngs[i].lat = data[i].latitude;
               // latlngs[i].lng = data[i].longitude;
-              latlngs.push({lat:data[i].latitude, lng:data[i].longitude, title:data[i].title})
+              latlngs.push({lat:data[i].latitude, lng:data[i].longitude, title:data[i].title, id:data[i].id, description:data[i].description})
 
             }
             var bounds = [];
@@ -115,7 +115,9 @@
                 lng: latlngs[i].lng,
                 icon: "<%= asset_path('Map-marker-2-1.png') %>",
                 infoWindow: {
-                  content: latlngs[i].title + "<a href=/journeys/ > Go </a>"
+                  content: "<a href= /journeys/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
+                  + '<div class="map-journey-title">' + latlngs[i].title
+                  + "<span> GO!</span> </div>"+ "</a>" + "<div class='journey-map-content'>" + latlngs[i].description.substring(0, 150) + "</div>"
                 },
                 animation: google.maps.Animation.DROP
                 // icon: .
