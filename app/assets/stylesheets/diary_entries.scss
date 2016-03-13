@@ -486,13 +486,17 @@ $red: #F97E76;
 .comment-list.diary_article {
     margin-top: 9em;
     width: 42%;
+    overflow: hidden;
+    height: 84%;
+    overflow: scroll;
+
 }
 
 comment-list-item img {
     margin-top: 2em;
 }
 
-.comment-form.diary_aside {
+.diary-comment-form.diary_aside {
     margin-left: 7em;
     margin-top: 7em;
     width: 41%;
@@ -681,4 +685,7 @@ content: none;
 #progressbar-diary li.active:before,  #progressbar-diary li.active:after{
 background: #295ED5;
 color: white;
+}
+h4.commenter-info {
+    margin-top: 1.5em;
 }
