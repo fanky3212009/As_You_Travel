@@ -10,11 +10,3 @@ json.comment do
     json.profile_img @comment.user.profile_img
   end
 end
-
-
-
-# json.comment.created_at @comment.created_at.strftime('%e %b %Y %H :%M :%S %p')
-# # json.comment.created_at @comment.created_at.strftime('%e %b %Y %H :%M :%S %p')
-# json.set! :comment do
-#   json.set! :created_at, @comment.created_at.strftime('%e %b %Y %H :%M :%S %p')
-# end
