@@ -353,7 +353,7 @@ $red: #F97E76;
   @include outer-container(100%);
   .diary_aside {
     @include span-columns(8);
-    margin-left: 6em;
+    margin-left: 9em;
     margin-right: -8em;
   }
   .diary_article {
