@@ -360,7 +360,10 @@ color: white;
 }
 
 #comment_body {
-  height:5em;
+  background-color: transparent;
+  border: 1px solid #98B7EF;
+  height: 25em;
+  width: 80%;
 }
 
 .comment-list.journey_article {
