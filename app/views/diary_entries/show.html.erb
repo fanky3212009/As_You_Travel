@@ -212,22 +212,25 @@
         <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >SUBMIT</div></a>
       </div>
     </div>
+
     <div class="comment-list diary_article">
+      <% @diary_entry.comments.last(2).each do |c| %>
       <div class="comment-list-item">
+        <%= image_tag ("profile-UserImage-1.png") %>
+        <h2 class="commenter-name"><%= c.user.name %> </h2><h4 class="commenter-info"><%= ((Time.now-c.created_at)/1.day).ceil %> days ago</h4>
+          <hr class="recomm-underline">
+          <p><%= c.body %></p>
+
+      </div>
+      <% end %>
+
+      <!-- <div class="comment-list-item">
         <%= image_tag ("profile-UserImage-1.png") %>
         <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
           <hr class="recomm-underline">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
 
-      </div>
-
-      <div class="comment-list-item">
-        <%= image_tag ("profile-UserImage-1.png") %>
-        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
-          <hr class="recomm-underline">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
-
-      </div>
+      </div> -->
 
       <div class="comment-list-button-container">
         <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW MORE</button>
