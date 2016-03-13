@@ -11,6 +11,8 @@ class DiaryEntry < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode
 
-
+  def show_time(created_at)
+    created_at.strftime('%e %b %Y %H :%M :%S %p')
+  end
 
 end
