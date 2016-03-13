@@ -135,14 +135,7 @@
         <%= image_tag ('Entries_icon_tips.png') %>
         <h3 class="diary-stat-name">TIPS</h3>
         <p class="diary-stat-content"><%= @diary_entry.recommendation %> </p>
-        <div class="recommend-button-container">
-          <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
-          <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
-        </div>
-        <div class="like-button-container">
-          <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
-          <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
-        </div>
+
       </div>
     </div>
   </div>
