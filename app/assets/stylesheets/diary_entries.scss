@@ -268,7 +268,7 @@ $red: #F97E76;
   $background-image: 'Entries_slider_bg.jpg';
 
 
-  @include background(url($background-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+  @include background(url(asset-path($background-image)), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
   background-repeat: no-repeat;
@@ -350,15 +350,15 @@ $red: #F97E76;
 
 .diary-wrapper {
   color: black;
-  @include outer-container;
+  @include outer-container(100%);
   .diary_aside {
     @include span-columns(8);
-    margin-right: 0;
+    margin-left: 9em;
+    margin-right: -8em;
   }
   .diary_article {
     @include span-columns(8);
     position: relative;
-    left: 2em;
   }
 }
 
@@ -410,13 +410,13 @@ $red: #F97E76;
     height: 56em;
 }
 
+
 .diary-picture.diary_aside {
     margin-top: 9em;
 }
 
 .diary-stats.diary_article {
-    margin-top: 5em;
-    margin-left: -4em;
+  margin-top: 8em;
 }
 
 .diary-picture img {
@@ -455,10 +455,13 @@ $red: #F97E76;
 
 
 .diary-content.diary_aside {
-    transform: translateX(3em);
+
     margin-top: 17em;
     font-size: 15px;
     width: 49%;
+    p {
+      width: 80%;
+    }
     .recommend.diary-content {
     margin-left: 5em;
     position: relative;
@@ -467,9 +470,8 @@ $red: #F97E76;
 }
 
 .comment-form.diary_aside {
-    margin-left: 7em;
+    margin-left: 9em;
     margin-top: 7em;
-    width: 41%;
 }
 
 .comment-form-list-section .comment-form textarea#body {
@@ -486,17 +488,16 @@ $red: #F97E76;
 .comment-list.diary_article {
     margin-top: 9em;
     width: 42%;
+    overflow: hidden;
+    height: 84%;
+    overflow: scroll;
+
 }
 
 comment-list-item img {
     margin-top: 2em;
 }
 
-.comment-form.diary_aside {
-    margin-left: 7em;
-    margin-top: 7em;
-    width: 41%;
-}
 
 .comment-form-list-section .comment-form textarea#body {
     height: 235px;
@@ -681,4 +682,25 @@ content: none;
 #progressbar-diary li.active:before,  #progressbar-diary li.active:after{
 background: #295ED5;
 color: white;
+}
+h4.commenter-info {
+    margin-top: 1.5em;
+}
+
+.map-journey-title {
+    font-size: 17px;
+    font-family: cursive;
+    font-weight: bold;
+    span {
+      margin-left: 2.5em;
+      position: relative;
+     top: 0.5em;
+     color: #295ED5;
+    }
+}
+.journey-map-content {
+    margin-top: 1em;
+    font-size: 15px;
+    color: black;
+
 }

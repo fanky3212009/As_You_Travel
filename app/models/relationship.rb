@@ -7,9 +7,11 @@ class Relationship < ActiveRecord::Base
   def self.most_followed_user
     most_followed_stat = Relationship.group(:followed_id).order("count_all DESC").count.first
     if most_followed_stat!= nil
-    most_followed_user = User.find(most_followed_stat[0])
-    followed_number = most_followed_stat[1]
-    [most_followed_user, followed_number]
+      most_followed_user = User.find(most_followed_stat[0])
+      followed_number = most_followed_stat[1]
+      [most_followed_user, followed_number]
+    else
+      []
     end
   end
 end

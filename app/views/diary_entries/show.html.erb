@@ -135,14 +135,7 @@
         <%= image_tag ('Entries_icon_tips.png') %>
         <h3 class="diary-stat-name">TIPS</h3>
         <p class="diary-stat-content"><%= @diary_entry.recommendation %> </p>
-        <div class="recommend-button-container">
-          <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
-          <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
-        </div>
-        <div class="like-button-container">
-          <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW ALL</button>
-          <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW ALL</div></a>
-        </div>
+
       </div>
     </div>
   </div>
@@ -150,6 +143,7 @@
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
       <p><%= raw @diary_entry.content %></p>
+      <% if current_user != @diary_entry.journey.owner%>
       <div class="recommend diary-content">
         <div class="recommend-form">
           <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
@@ -184,6 +178,7 @@
           </div>
         <% end %>
       </div>
+      <% end %>
     </div>
     <div class="diary-picture diary_article">
       <%= image_tag ('Entries_image_2.png') %>
@@ -193,7 +188,7 @@
   </div>
 
   <div class="comment-form-list-section">
-    <div class="comment-form diary_aside">
+    <div class="diary-comment-form diary_aside">
       <%= image_tag ("Entries_SectionTitle_Comments.png") %>
       <% if current_user %>
 
@@ -205,32 +200,35 @@
       <% end %>
 
       <!-- <%= text_area_tag 'body', nil, rows: 10, cols: 25 , class: "comment-form" %> -->
-      <div class="submit-comment-button-container">
+      <!-- <div class="submit-comment-button-container">
         <button class="profile-button" href="<%= user_photos_path(@user) %>">SUBMIT</button>
         <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >SUBMIT</div></a>
-      </div>
+      </div> -->
     </div>
+
     <div class="comment-list diary_article">
+      <% @diary_entry.comments.reverse.each do |c| %>
       <div class="comment-list-item">
+        <%= image_tag ("profile-UserImage-1.png") %>
+        <h2 class="commenter-name"><%= c.user.name %> </h2><h4 class="commenter-info"><%= @diary_entry.show_time(c.created_at) %></h4>
+          <hr class="recomm-underline">
+          <p><%= c.body %></p>
+
+      </div>
+      <% end %>
+
+      <!-- <div class="comment-list-item">
         <%= image_tag ("profile-UserImage-1.png") %>
         <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
           <hr class="recomm-underline">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
 
-      </div>
-
-      <div class="comment-list-item">
-        <%= image_tag ("profile-UserImage-1.png") %>
-        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
-          <hr class="recomm-underline">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
-
-      </div>
-
+      </div> -->
+<!--
       <div class="comment-list-button-container">
         <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW MORE</button>
         <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW MORE</div></a>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -241,7 +239,7 @@
 
 
 
-
+<!--
 
 
 <h1><%= link_to @diary_entry.title, journey_diary_entry_path(@diary_entry.journey, @diary_entry) %></a></h1>
@@ -343,7 +341,7 @@
 
 
 
-
+ -->
 
 
 </body>

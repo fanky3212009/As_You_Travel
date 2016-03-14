@@ -81,7 +81,7 @@
   <!-- <li><a href="#contact">
     <img src="./images/contact.png" />
   </a></li> -->
-</ul> -->
+<!-- </ul> -->
 
 
 
@@ -103,12 +103,13 @@
       <div class="grid-alligned-items">
         <a href="" class="grid-alligned-item">
           <% if @user.owend_journeys.length > 0 %>
-          <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+          <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url) if @user.owend_journeys.first.photos.sample %>
             <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
-              <% if @user.owend_journeys.length > 0  %>
-              <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+            <% if @user.owend_journeys.length > 0  %>
+              <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 464, :height => 182,
+               :crop => :fill) %>
             <% end %>
         </a>
         <a href="" class="grid-alligned-item grid-alligned-item-big">
@@ -133,7 +134,8 @@
         </a>
         <a href="" class="grid-alligned-item">
           <% if @user.owend_journeys.length >0 %>
-            <%= image_tag (@user.owend_journeys.first.photos.sample.picture.url)%>
+            <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
+             :crop => :crop) %>
           <% end %>
         </a>
 
@@ -225,8 +227,8 @@
         <%= image_tag ('profile-timeline-bg.jpg') %>
       </div>
       <div class="timeline-button-container">
-        <button class="profile-button">VIEW TIMELINE</button>
-        <div class = "button-border timeline-button-border" >VIEW TIMELINE</div>
+        <button class="profile-button timeline-button-border">VIEW TIMELINE</button>
+        <div class = "button-border" >VIEW TIMELINE</div>
       </div>
       <div class="map-button-container">
         <button class="profile-button">VIEW MAP</button>
@@ -330,7 +332,7 @@
     </p>
 
       <br>
-    
+
 
 
 

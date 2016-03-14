@@ -61,10 +61,8 @@ $(document).on('ready page:load', function () {
       console.log('Location works');
       params.url = '/';
     } else if ($('.is-active').html() == "Top") {
-      console.log('Top work');
       params.url = '/users/1/favourites';
     } else if ($('.is-active').html() == "Name") {
-      console.log('Name work');
       params.url = '/users';
     }
 

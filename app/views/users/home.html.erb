@@ -256,12 +256,12 @@ font-size: 300;
         <h2>DIARIES OF THE WEEK</h2>
       </div>
       <div class="first-left-text">
-
+        <% if Favourite.most_favourited_diaries.first != nil %>
         <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
 
         <h3><%= Favourite.most_favourited_diaries.first.journey.owner.name %></h3>
           <p><%= truncate(Favourite.most_favourited_diaries.first.content, length: 150) %></p>
-
+        <% end %>
       </div>
       <div class="activity-button-container">
         <button class="profile-button" href="<%=  %>">VIEW ALL</button>
@@ -296,7 +296,7 @@ font-size: 300;
       <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
       <%= button_tag "Find stories happened near me", id: "search_nearby" %>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
-        <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
+        <%= text_field_tag :search, params[:search], :placeholder => "Search" %>
         <%= submit_tag "Search", :style => "display: none;" %>
       <% end %>
 <ul class="accordion-tabs-minimal">
@@ -333,23 +333,33 @@ font-size: 300;
     <div class="down-left">
       <div class="feature-user">
         <div class="feature-user-info">
+          <% if Favourite.most_favourable_user[0] != nil %>
         <%= image_tag Favourite.most_favourable_user[0].profile_img %>
+          <%= link_to Favourite.most_favourable_user[0] do  %>
         <h3><%= Favourite.most_favourable_user[0].name%></h3>
+        <% end %>
+        <% end %>
         </div>
         <p>Most favourable</p>
       </div>
       <div class="feature-user">
         <div class="feature-user-info">
+          <% if Tag.most_recommended_user[0] != nil %>
           <%= image_tag Tag.most_recommended_user[0].profile_img %>
+          <%= link_to Tag.most_recommended_user[0] do  %>
         <h3><%= Tag.most_recommended_user[0].name %></h3>
+          <% end %>
+        <% end %>
         </div>
         <p>Most Recommend</p>
       </div>
       <div class="feature-user">
-        <% if Relationship.most_followed_user != nil %>
+        <% if Relationship.most_followed_user[0] != nil %>
         <div class="feature-user-info">
         <%= image_tag(Relationship.most_followed_user[0].profile_img) %>
+          <%= link_to Relationship.most_followed_user[0] do %>
         <h3><%= Relationship.most_followed_user[0].name %></h3>
+        <% end %>
         </div>
         <p>King of Followers (<%= Relationship.most_followed_user[1] %>)</p>
         <% else %>
@@ -376,7 +386,7 @@ font-size: 300;
 
 
 
-
+<!--
 <h1>Home page</h1>
 
 
@@ -393,7 +403,7 @@ font-size: 300;
   <% end %>
   </div>
   <div class="search-tag-results"></div>
-  <br>
+  <br> -->
 
 
 
@@ -401,7 +411,6 @@ font-size: 300;
   <section id="slider" class="container">
     <ul class="slider-wrapper">
   <% if current_user != nil %>
-    <% if current_user.owend_journeys.first %>
     <% current_user.news_feed.each do |d| %>
       <li class="current-slide">
         <div class="diary-wrapper">
@@ -412,7 +421,9 @@ font-size: 300;
             <div class="diary-stats homepage-slider">
               <div class="diary-stat homepage-stat friend-photo">
                 <%= image_tag("profile-UserImage-1.png") %>
+
                 <strong class="friend-name"><%= d.journey.owner.name %></strong>
+
               </div>
 
               <div class="homepage-location-date">
@@ -456,8 +467,8 @@ font-size: 300;
                 </div>
 
               </div>
-              <div class="diary-stat homepage-stat content">
-                <p class="diary-stat-content"><%= truncate(d.content, length: 150) %> </p>
+              <div class="diary-stat homepage-stat content slider-content">
+                <%= raw d.content%>
                 <div class="recommend-button-container homepage-friend-button">
                   <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
                   <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
@@ -471,8 +482,7 @@ font-size: 300;
           </div>
       </li>
         <% end %>
-        <% end %>
-      <% else %>
+    <% else %>
 
       <% DiaryEntry.all.last(4).each do |d| %>
         <li class="current-slide">
@@ -515,7 +525,7 @@ font-size: 300;
 
                 </div>
                 <div class="diary-stat homepage-stat content">
-                  <p class="diary-stat-content"><%= d.content %> </p>
+                  <p class="diary-stat-content"><%= (d.content).truncate(150)%> </p>
                   <div class="recommend-button-container homepage-friend-button">
                     <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
                     <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
@@ -529,8 +539,7 @@ font-size: 300;
             </div>
         </li>
       <% end %>
-      <% end %>
-
+    <% end %>
 
     </ul>
     <!-- Sombras -->
