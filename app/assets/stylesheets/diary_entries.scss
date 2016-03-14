@@ -693,6 +693,9 @@ h4.commenter-info {
     font-weight: bold;
     span {
       margin-left: 2.5em;
+      position: relative;
+     top: 0.5em;
+     color: #295ED5;
     }
 }
 .journey-map-content {

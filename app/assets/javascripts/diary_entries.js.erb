@@ -117,7 +117,8 @@
                 infoWindow: {
                   content: "<a href= /journeys/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
                   + '<div class="map-journey-title">' + latlngs[i].title
-                  + "<span> GO!</span> </div>"+ "</a>" + "<div class='journey-map-content'>" + latlngs[i].description.substring(0, 150) + "</div>"
+                  + "<span> GO!</span> </div>"+ "</a>" + "<div class='journey-map-content'>" + latlngs[i].description.substring(0, 150) + "</div>",
+                  maxWidth: 200
                 },
                 animation: google.maps.Animation.DROP
                 // icon: .
