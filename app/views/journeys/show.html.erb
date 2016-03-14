@@ -60,7 +60,8 @@
         </div>
       </a></li>
 
-      <li><a href="#services">
+      <li>
+        <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
         <span>
         <%=  image_tag "MenuBar-icon-favorites.png"  %>
         </span>
@@ -68,7 +69,8 @@
           <%= image_tag "MenuBar-icon-favorites-hover.png"%>
           <p>Favourites</p>
         </div>
-      </a></li>
+        <% end %>
+    </li>
       <!-- <li><a href="#contact">
         <img src="./images/contact.png" />
       </a></li> -->
