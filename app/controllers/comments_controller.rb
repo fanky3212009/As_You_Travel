@@ -15,10 +15,6 @@ class CommentsController < ApplicationController
         format.html
         format.json
       end
-
-
-    else
-      render @commentable
     end
 
   end

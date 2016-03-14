@@ -17,6 +17,8 @@ gem 'geocoder'
 
 gem 'bourbon'
 
+gem "figaro"
+
 gem 'neat'
 
 gem 'dropzonejs-rails'
