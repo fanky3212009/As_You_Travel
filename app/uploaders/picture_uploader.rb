@@ -8,7 +8,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   def public_id
-    return model.name
+    Cloudinary::PreloadedFile.split_format(original_filename).first + "_" + Cloudinary::Utils.random_public_id[0,6]
   end
   # Choose what kind of storage to use for this uploader:
   # storage :file
