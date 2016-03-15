@@ -4,24 +4,31 @@ class FavouritesController < ApplicationController
 
   def index
 
-    @search_results = Favourite.most_favourited_diaries
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      if current_user == @user
-        @user = current_user
-        @favourites = @user.favourites
-        # if params[:search]
-        #   @search_results = @search_results.select {|d| d.title.include?params[:search]}
-        # end
-        respond_to do |format|
-          format.html
-          format.js
+    if params[:search]
+      @search_results = Favourite.most_favourited_diaries
+      respond_to do |format|
+        format.js
+      end
+    else
+
+      if params[:user_id]
+        @user = User.find(params[:user_id])
+        if current_user == @user
+          @user = current_user
+          @favourites = @user.favourites
+          # if params[:search]
+          #   @search_results = @search_results.select {|d| d.title.include?params[:search]}
+          # end
+          respond_to do |format|
+            format.html
+            format.js
+          end
+
+        else
+          render file: "#{Rails.root}/public/404.html", layout: false, status: 404
         end
-      else
-        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
       end
     end
-
 
   end
 
