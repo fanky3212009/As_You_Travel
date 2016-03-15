@@ -1,9 +1,36 @@
+<style media="screen">
+  .img_large{
+    display: none;
+  }
+  a:hover{
+  color:none;
+  background: transparent;
+  opacity: 1.0;
+  }
+  a.fancybox-nav.fancybox-next {
+
+  height: 24em;
+  top: 3%;
+  position: absolute
+  }
+a.fancybox-nav.fancybox-prev {
+  height: 24em;
+  top: 3%;
+  position: absolute;
+}
+
+
+
+
+</style>
+
+
 <h1><%= @journey.title %>'s Photo Gallery</h1>
   <h2><%= @journey.start_date %> - <%= @journey.end_date %></h2>
   <h2><%= @journey.location %></h2>
   <p>Add a photo: </p>
   <div class="gallery-container">
-    <% @journey.photo_gallery.each do |p| %>
+    <!-- <% @journey.photo_gallery.each do |p| %>
 
       <div class="each-photo">
         <%= link_to journey_photo_path(@journey, p) do %>
@@ -12,5 +39,60 @@
         <% end %>
       </div>
 
+    <% end %> -->
+
+
+
+  <% @journey.photo_gallery.each do |p| %>
+  <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= image_tag (p.picture.thumb.url) %></a>
+
+
+  <div class="img_large" id="inline<%= p.id %>">
+    <%= image_tag (p.picture.url) %>
+    <h3><%= p.name %></h3>
+    <%= button_to "Set as journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
+
+    <%= render partial: 'comments/list', locals: { commentable: p } %>
+
+    <% if current_user %>
+      <!-- <h4>Write a comment:</h4> -->
+      <div id="gallery-comment-form">
+      <%= form_for [p, @comment], :html => {:class => "comment-form"} do |f| %>
+      <%= render partial: 'comments/form', locals: { f: f, commentable: p} %>
+      <% end %>
+      </div>
+    <% else %>
+      <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
+
     <% end %>
-  </div>
+
+</div>
+
+<% end %>
+</div>
+<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+$(".fancybox-effects-d").fancybox({
+  padding: 0,
+
+  openEffect : 'elastic',
+  openSpeed  : 150,
+
+  closeEffect : 'elastic',
+  closeSpeed  : 150,
+
+  closeClick : true,
+
+  helpers : {
+    overlay : null
+  }
+});
+
+});
+</script>

@@ -14,3 +14,56 @@
     margin: auto;
   }
 }
+
+#gallery-comment-form #comment_body {
+    background-color: transparent;
+    border: 1px solid #98B7EF;
+    height: 4em;
+    width: 100%;
+    margin-top: 2em;
+}
+#gallery-comment-form {
+  input.button-border{
+    width: 8em !important;
+    left: -1em !important;
+  }
+  .profile-button {
+    width: 7em !important;
+    margin-top: -2px !important;
+    height: 7.5% !important;
+  }
+
+}
+
+.img_large img {
+  margin: auto;
+  display: block;
+}
+.button_to {
+  input[type="submit"]{
+    float: right;
+    margin-top: -3px;
+  }
+}
+
+.img_large {
+  .comments {
+    h4 {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: -12px;
+    }
+  }
+}
+
+.img_small img {
+    margin: 0.7em;
+    border: 2px solid white;
+    -webkit-box-shadow: -4px 10px 17px 0px rgba(50, 50, 50, 0.35);
+    -moz-box-shadow: -4px 10px 17px 0px rgba(50, 50, 50, 0.35);
+    box-shadow: 5px 12px 8px -1px rgba(50, 50, 50, 0.35);
+}
+
+.gallery-container {
+    margin: 10em;
+}
