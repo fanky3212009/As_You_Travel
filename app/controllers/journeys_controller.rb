@@ -1,10 +1,7 @@
 class JourneysController < ApplicationController
-<<<<<<< HEAD
+
   layout "profile", only: [:index, :gallery]  # except: [:index]
-=======
-  layout "profile", only: [:index, :gallery]
-  # except: [:index]
->>>>>>> home_page_search
+
   before_action :set_journey, only: [:show, :edit, :update, :destroy, :gallery]
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
 
