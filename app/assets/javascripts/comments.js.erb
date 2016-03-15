@@ -5,6 +5,7 @@ $(document).on('ready page:load', function () {
 
   $('.comment-form').submit(function(event) {
     event.preventDefault();
+    var commentList = $(this).parent().siblings('.comment-list')[0];
     $.ajax({
       url: $(this).attr('action'),
       type: 'POST',
@@ -12,12 +13,12 @@ $(document).on('ready page:load', function () {
       data: $(this).serialize(),
 
       success: function (data) {
-        console.log(data);
+        console.log(this);
 
         var comment = '<div class="comment-list-item">' + '<img src=' + data.comment.user.profile_img + '>'+ '<h2 class="commenter-name">' + data.comment.user.name + '</h2> <h4 class="commenter-info">' +
                       data.comment.created_at + '</h4>' + '<hr class="recomm-underline">' + '<p>' +
                      data.comment.body + '</p>'+ '</div>';
-        $('.comment-list').prepend(comment);
+        $(commentList).append(comment);
 
        }
     });

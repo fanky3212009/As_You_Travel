@@ -83,66 +83,13 @@
 
 
 <div class="journey-wrapper">
-  <div class="journey-picture-stat-section">
-    <div class="journey-picture journey_aside">
-      <%= image_tag @journey.feat_img %>
-    </div>
-
-    <div class="journey-stats journey_article">
-      <div class="journey-stat">
-        <%= image_tag ('Entries_icon_location.png') %>
-        <h3 class="journey-stat-name">LOCATION</h3>
-        <p class="journey-stat-content"><%= @journey.location %></p>
-      </div>
-      <div class="journey-stat">
-        <%= image_tag ('Entries_icon_time.png') %>
-        <h3 class="journey-stat-name">DATES</h3>
-        <p class="journey-stat-content">
-          <%= "#{@journey.start_date} - #{@journey.end_date}" %>
-        </p>
-      </div>
-      <div class="journey-stat">
-        <%= image_tag ('Entries_icon_tag.png') %>
-        <h3 class="journey-stat-name">TAGS</h3>
-        <div class="activity-tags">
-           <% @journey.tags.each do |tag| %>
-              <% if tag.body != "recommended" %>
-              <span>
-                  <%= tag.body %>
-              </span>
-                <% end %>
-          <% end %>
-
-          <% if current_user == @journey.owner %>
-            <span class="add-new-tag"><%= link_to "Add Tags" %></span>
-
-
-
-            <div class="journey-tag-form">
-              <%= form_for [@journey, Tag.new] do |t| %>
-
-              <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
-              <%= t.hidden_field :taggable_id, :value => @journey.id %>
-              <%= t.hidden_field :taggable_type, :value => @journey.class %>
-              <%= t.hidden_field :user_id, :value => current_user.id %>
-              <%= t.submit "Add" %>
-              <% end  %>
-            </div>
-          <% end %>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
 
   <div class="journey-diaries-section">
     <h1>Diaries</h1>
 
+    <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
       <div class="diary_entry_block new_diary_entry_block">
-        <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
-          <h2>New Diary</h2>
-        <% end %>
+    <% end %>
       </div>
     <% if @journey.diary_entries.any? %>
         <%= render @diary_entries %>
@@ -151,6 +98,8 @@
     <% end %>
 
   </div>
+
+  <div id="journey_path_map" data-diaries="<%=@journey.diary_entries.to_json%>"></div>
 
   <div class="comment-form-list-section">
     <div class="comment-form journey_aside">
@@ -336,10 +285,3 @@
 <% end %>
 
 </body>
-
-
-
-
-
-
-<div id="journey_path_map" data-diaries="<%=@journey.diary_entries.to_json%>"></div>

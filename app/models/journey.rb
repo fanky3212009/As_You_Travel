@@ -20,7 +20,7 @@ class Journey < ActiveRecord::Base
   end
 
   def set_feat_img(photo)
-      self.feat_img = photo.picture.url
+      self.feat_img = photo.picture.public_id
   end
 
   def set_description
