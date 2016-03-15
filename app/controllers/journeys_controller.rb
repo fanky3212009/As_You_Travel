@@ -1,6 +1,5 @@
 class JourneysController < ApplicationController
-  layout "profile", only: [:index]
-  # except: [:index]
+  layout "profile", only: [:index, :gallery]  # except: [:index]
   before_action :set_journey, only: [:show, :edit, :update, :destroy, :gallery]
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
 
@@ -28,7 +27,6 @@ class JourneysController < ApplicationController
 
   def gallery
     @user = @journey.owner
-    @comment=Comment.new
   end
 
   def edit
