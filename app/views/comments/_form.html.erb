@@ -12,10 +12,10 @@
     <% end %>
 
       <div class="field">
-      <%= f.label :comment %><br />
+      <!-- <%= f.label :comment %><br /> -->
       <%= f.text_area :body %>
       <%= f.hidden_field :commentable_id, :value => commentable.id %>
       <%= f.hidden_field :commentable_type, :value => commentable.class %>
     </div>
-      <%= f.submit "Create", class: "profile-button" %>
-      <div class ="button-border">Submit</div>
+      <%= f.submit "Create", class: "button-border" %>
+      <div class ="profile-button">Submit</div>

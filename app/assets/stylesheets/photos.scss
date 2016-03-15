@@ -14,3 +14,243 @@
     margin: auto;
   }
 }
+
+#gallery-comment-form #comment_body {
+    background-color: transparent;
+    border: 1px solid #98B7EF;
+    height: 4em;
+    width: 100%;
+    margin-top: 2em;
+}
+#gallery-comment-form {
+  input.button-border{
+    width: 8em !important;
+    left: -1em !important;
+  }
+  .profile-button {
+    width: 7em !important;
+    margin-top: -2px !important;
+    height: 7.5% !important;
+  }
+
+}
+
+.img_large img {
+  margin: auto;
+  display: block;
+}
+.button_to {
+  input[type="submit"]{
+    float: right;
+    margin-top: -3px;
+  }
+}
+
+.img_large {
+  .comments {
+    h4 {
+    font-size: 16px;
+    margin-top: 50px;
+    margin-bottom: 6px;
+    }
+  }
+}
+
+.img_small img {
+    margin: 0.7em;
+    border: 2px solid white;
+    -webkit-box-shadow: -4px 10px 17px 0px rgba(50, 50, 50, 0.35);
+    -moz-box-shadow: -4px 10px 17px 0px rgba(50, 50, 50, 0.35);
+    box-shadow: 5px 12px 8px -1px rgba(50, 50, 50, 0.35);
+    position: relative;
+    left: 6%;
+}
+
+.gallery-container {
+    margin: 10em;
+    margin-top: 4em
+}
+
+.img_large{
+  display: none;
+}
+
+a.fancybox-nav.fancybox-next {
+
+height: 24em;
+top: 3%;
+position: absolute
+}
+a.fancybox-nav.fancybox-prev {
+height: 24em;
+top: 3%;
+position: absolute;
+}
+
+.photo-gallery-title {
+    /* display: block; */
+    /* margin: auto; */
+    text-align: center;
+    margin-top: 7%;
+    font-size: 18px;
+    color: #0350A2;
+}
+
+.modal {
+  $base-border-color: #dcdcdc !default;
+  $base-border-radius: 3px !default;
+  $base-background-color: #fff !default;
+  $base-font-size: 1em !default;
+  $base-line-height: 1.5em !default;
+  $action-color: #477dca !default;
+  $dark-gray: #333 !default;
+  $light-gray: #ddd !default;
+  $medium-screen: em(640) !default;
+  $large-screen: em(860) !default;
+  $base-font-color: $dark-gray !default;
+  $modal-padding: 3em;
+  $modal-background: $base-background-color;
+  $modal-close-color: $light-gray;
+  $modal-image-height: 135px;
+  $modal-image-width: $modal-image-height;
+  $modal-trigger-image-width: 300px;
+
+  label {
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+
+  label img {
+    border-radius: $modal-trigger-image-width / 2;
+    display: block;
+    max-width: $modal-trigger-image-width;
+  }
+
+  .modal-state {
+    display: none;
+  }
+
+  .modal-trigger {
+      text-align: right;
+      margin: 0 15em;
+      font-size: 19px;
+      color: #191709;
+  }
+
+  .modal-fade-screen { // overlay
+    @include transition(opacity 0.25s ease);
+    @include position(fixed, 0);
+    background-color: rgba(#000, 0.85);
+    opacity: 0;
+    padding-top: 0.6em;
+    text-align: left;
+    visibility: hidden;
+    z-index: 99999999999;
+
+    @include media($large-screen) {
+      padding-top: 10em;
+    }
+
+    .modal-bg {
+      @include position(absolute, 0);
+      cursor: pointer;
+    }
+  }
+
+  .modal-close {
+    @include position(absolute, ($modal-padding /2) ($modal-padding /2) null null);
+    @include size(1.5em);
+    background: $modal-background;
+    cursor: pointer;
+
+    &:after,
+    &:before {
+      @include position(absolute, 3px 3px 0 50%);
+      @include transform(rotate(45deg));
+      @include size(0.15em 1.5em);
+      background: $modal-close-color;
+      content: '';
+      display: block;
+      margin: -3px 0 0 -1px;
+    }
+
+    &:hover:after,
+    &:hover:before {
+      background: darken($modal-close-color, 10%);
+    }
+
+    &:before {
+      @include transform(rotate(-45deg));
+    }
+  }
+
+  .modal-inner {
+    @include transition(opacity 0.25s ease);
+    background: $modal-background;
+    border-radius: $base-border-radius;
+    margin-top: 0;
+    margin: auto;
+    max-height: 95%;
+    overflow: auto;
+    padding: $modal-padding / 2;
+    position: relative;
+    width: 95%;
+
+    @include media($medium-screen) {
+      max-height: 70%;
+      padding: $modal-padding;
+      width: 60%;
+    }
+
+    @include media($large-screen) {
+      width: 50%;
+    }
+
+    h1 {
+      color: $base-font-color;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    p {
+      color: $base-font-color;
+      line-height: $base-line-height;
+    }
+
+    .modal-intro {
+      margin-bottom: 1em;
+    }
+
+    .modal-content {
+      color: $base-font-color;
+
+      @include media($medium-screen) {
+        @include columns(2 8em);
+      }
+    }
+
+    a.cta {
+      color: $base-background-color;
+      display: inline-block;
+      margin-right: 0.5em;
+      margin-top: 1em;
+
+      &:last-child {
+        padding: 0 2em;
+      }
+    }
+  }
+
+  .modal-state:checked + .modal-fade-screen {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-state:checked + .modal-fade-screen .modal-inner {
+    top: 0.5em;
+  }
+}
+
+.modal-open {
+  overflow: hidden;
+}

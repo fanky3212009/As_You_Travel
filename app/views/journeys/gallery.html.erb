@@ -1,16 +1,70 @@
-<h1><%= @journey.title %>'s Photo Gallery</h1>
-  <h2><%= @journey.start_date %> - <%= @journey.end_date %></h2>
-  <h2><%= @journey.location %></h2>
-  <p>Add a photo: </p>
-  <div class="gallery-container">
-    <% @journey.photo_gallery.each do |p| %>
+<style media="screen">
+a:hover{
+color:none;
+background: transparent;
+opacity: 1.0;
+}
+</style>
 
-      <div class="each-photo">
-        <%= link_to journey_photo_path(@journey, p) do %>
-          <%= image_tag (p.picture.url) %>
-          <h4><%= p.name %></h4>
-        <% end %>
+
+<div class="photo-gallery-title">
+  <h1><%= @journey.title %>'s Photo Gallery</h1>
+  <h2><%= @journey.show_time(@journey.start_date) %> - <%= @journey.show_time(@journey.end_date) %></h2>
+  <h2><%= @journey.location %></h2>
+</div>
+
+<div class="modal">
+  <label for="modal-1">
+    <div class="modal-trigger">Add Photos</div>
+  </label>
+  <input class="modal-state" id="modal-1" type="checkbox" />
+  <div class="modal-fade-screen">
+    <div class="modal-inner">
+      <div class="modal-close" for="modal-1"></div>
+      <h1>Click to Add</h1>
+      <div class="photo-form">
+        <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+
+        <!-- <%= t.label :name  %>
+        <br>
+        <%= t.text_field :name %> -->
+        <div class="dropzone-previews"></div>
+        <br>
+        <%= t.hidden_field :imageable_id, :value => @journey.id %>
+         <%= t.hidden_field :imageable_type, :value => @journey.class %>
+        <% end  %>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="gallery-container">
+  <% @journey.photo_gallery.each do |p| %>
+  <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= image_tag (p.picture.thumb.url) %></a>
+
+
+  <div class="img_large" id="inline<%= p.id %>">
+    <%= image_tag (p.picture.url) %>
+    <h3><%= p.name %></h3>
+    <%= button_to "Set as journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
+
+    <%= render partial: 'comments/list', locals: { commentable: p } %>
+
+    <% if current_user %>
+      <!-- <h4>Write a comment:</h4> -->
+      <div id="gallery-comment-form">
+      <%= form_for [p, @comment], :html => {:class => "comment-form"} do |f| %>
+      <%= render partial: 'comments/form', locals: { f: f, commentable: p} %>
+      <% end %>
+      </div>
+    <% else %>
+      <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
 
     <% end %>
-  </div>
+
+</div>
+
+<% end %>
+</div>

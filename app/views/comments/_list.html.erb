@@ -3,8 +3,8 @@
 
   <% commentable.comments.each do |comment| %>
     <p>
-      <%= "#{comment.user.email}: #{comment.body}" %><br>
-      Added on: <%= comment.created_at %>
+      <%= "#{comment.user.name}: #{comment.body}" %><br>
+      <%= comment.show_time(comment.created_at) %>
     </p>
   <% end %>
 </div>

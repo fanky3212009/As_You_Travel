@@ -1,29 +1,45 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+$(document).on('ready page:load', function() {
 
-$(document).on('ready page:load', function () {
-  // 
-  // Dropzone.options.myAwesomeDropzone = {
-  //
-  //   init: function() {
-  //       var submitButton = $(".upload-photos")
-  //           myDropzone = this; // closure
-  //
-  //       submitButton.on("click", function(e) {
-  //         e.preventDefault();
-  //         e.stopPropagation();
-  //         myDropzone.processQueue(); // Tell Dropzone to process all queued files.
-  //       });
-  //
-  //       // You might want to show the submit button only when
-  //       // files are dropped here:
-  //       this.on("addedfile", function() {
-  //         // Show submit button here and/or inform user to click it.
-  //       });
-  //
-  //     }
-  // };
+  $('.fancybox').fancybox();
+
+  $(".fancybox-effects-d").fancybox({
+    padding: 0,
+
+    openEffect : 'elastic',
+    openSpeed  : 150,
+
+    closeEffect : 'elastic',
+    closeSpeed  : 150,
+
+    closeClick : true,
+
+    helpers : {
+      overlay : null
+    }
+  });
+
+
+
+    $("#modal-1").on("change", function() {
+      if ($(this).is(":checked")) {
+        $("body").addClass("modal-open");
+      } else {
+        $("body").removeClass("modal-open");
+      }
+    });
+
+    $(".modal-fade-screen, .modal-close").on("click", function() {
+      $(".modal-state:checked").prop("checked", false).change();
+    });
+
+    $(".modal-inner").on("click", function(e) {
+      e.stopPropagation();
+    });
+
+
 });
 
 

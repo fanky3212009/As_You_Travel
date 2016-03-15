@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require timeline
+//= require fancybox.js
 //= require diary_index/main.js
 //= require diary_index/classie.js
 //= require diary_index/dynamics.min.js
