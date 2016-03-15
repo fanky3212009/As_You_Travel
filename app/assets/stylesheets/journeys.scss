@@ -154,10 +154,10 @@ color: white;
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $background-image: 'Banner_Journey.jpg';
+  $background-image: 'SingleJourney-slider-bg.jpg';
 
 
-  @include background(url($background-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+  @include background(url(asset-path($background-image)), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
   background-repeat: no-repeat;
@@ -192,22 +192,27 @@ color: white;
     img {
       margin:1.5em;
       transform: translateY(1em);
+      float: left;
     }
   }
 
-  .hero-inner {
+  .journey-header-inner {
     @include outer-container;
     @include clearfix;
     margin: auto;
-    padding: 10em;
+    padding: 5.5em;
     text-align: center;
 
-    .hero-copy {
+
+
+    .journey-header-copy {
       text-align: center;
       margin-top: 2em;
 
-      .diary-title {
-        font-size: 4.8em;
+
+      .journey-title {
+        font-size: 38px;
+        color: #295ED5;
       }
 
       h1 {
@@ -221,14 +226,14 @@ color: white;
       }
 
       p {
-        color: $hero-color;
-        line-height: 1.4em;
+        font-size: 15px;
+        color: #87B5ED;
         margin: 0 auto 0 auto;
 
 
         @include media($large-screen) {
           font-size: 1.1em;
-          max-width: 40%;
+          max-width: 82%;
         }
       }
     }
@@ -388,4 +393,25 @@ color: white;
     font-family: cursive;
     font-weight: bold;
     height: 3em;
+}
+.journey-location-date {
+  @include outer-container;
+  @include clearfix;
+  text-align: center;
+  .first-book {
+    @include span-columns(4);
+    display: block;
+    margin: 4em;
+  }
+  .second-book {
+    @include span-columns(4);
+    display: block;
+    margin: 4em;
+  }
+  .third-book {
+    @include span-columns(4);
+    display: block;
+  margin: 4em;
+  }
+
 }

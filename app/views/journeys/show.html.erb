@@ -6,11 +6,25 @@
       <div class="logo">
         <%= image_tag ("logo-blue.png")  %>
       </div>
-      <div class="hero-inner">
-        <div class="hero-copy">
+      <div class="journey-header-inner">
+        <div class="journey-header-copy">
           <h1 class="journey-title"><%= @journey.title %></h1>
-            <h2>Written by <%= @user.email %></h2>
+            <p class="journey-content"><%= @journey.description %></p>
+        </div>
 
+        <div class="journey-location-date">
+          <div class="first-book">
+            <%=  image_tag "SingleJourney-location-bg.png"  %>
+
+          </div>
+          <div class="second-book">
+            <%=  image_tag "SingleJourney-startdate-bg.png"  %>
+
+          </div>
+          <div class="third-book">
+            <%=  image_tag "SingleJourney-enddate-bg.png"  %>
+
+          </div>
         </div>
       </div>
 
