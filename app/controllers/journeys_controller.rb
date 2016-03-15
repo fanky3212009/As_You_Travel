@@ -27,6 +27,7 @@ class JourneysController < ApplicationController
 
   def gallery
     @user = @journey.owner
+    @comment = Comment.new
   end
 
   def edit
