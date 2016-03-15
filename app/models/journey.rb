@@ -29,6 +29,9 @@ class Journey < ActiveRecord::Base
     @journey.save
   end
 
+  def show_time(created_at)
+    created_at.strftime('%b %e %Y')
+  end
 
   geocoded_by :location
   after_validation :geocode

@@ -1,48 +1,46 @@
 <style media="screen">
-  .img_large{
-    display: none;
-  }
-  a:hover{
-  color:none;
-  background: transparent;
-  opacity: 1.0;
-  }
-  a.fancybox-nav.fancybox-next {
-
-  height: 24em;
-  top: 3%;
-  position: absolute
-  }
-a.fancybox-nav.fancybox-prev {
-  height: 24em;
-  top: 3%;
-  position: absolute;
+a:hover{
+color:none;
+background: transparent;
+opacity: 1.0;
 }
-
-
-
-
 </style>
 
 
-<h1><%= @journey.title %>'s Photo Gallery</h1>
-  <h2><%= @journey.start_date %> - <%= @journey.end_date %></h2>
+<div class="photo-gallery-title">
+  <h1><%= @journey.title %>'s Photo Gallery</h1>
+  <h2><%= @journey.show_time(@journey.start_date) %> - <%= @journey.show_time(@journey.end_date) %></h2>
   <h2><%= @journey.location %></h2>
-  <p>Add a photo: </p>
-  <div class="gallery-container">
-    <!-- <% @journey.photo_gallery.each do |p| %>
+</div>
 
-      <div class="each-photo">
-        <%= link_to journey_photo_path(@journey, p) do %>
-          <%= image_tag (p.picture.url) %>
-          <h4><%= p.name %></h4>
-        <% end %>
+<div class="modal">
+  <label for="modal-1">
+    <div class="modal-trigger">Add Photos</div>
+  </label>
+  <input class="modal-state" id="modal-1" type="checkbox" />
+  <div class="modal-fade-screen">
+    <div class="modal-inner">
+      <div class="modal-close" for="modal-1"></div>
+      <h1>Click to Add</h1>
+      <div class="photo-form">
+        <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+
+        <!-- <%= t.label :name  %>
+        <br>
+        <%= t.text_field :name %> -->
+        <div class="dropzone-previews"></div>
+        <br>
+        <%= t.hidden_field :imageable_id, :value => @journey.id %>
+         <%= t.hidden_field :imageable_type, :value => @journey.class %>
+        <% end  %>
       </div>
+    </div>
+  </div>
+</div>
 
-    <% end %> -->
 
 
-
+  <div class="gallery-container">
   <% @journey.photo_gallery.each do |p| %>
   <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= image_tag (p.picture.thumb.url) %></a>
 
@@ -70,29 +68,3 @@ a.fancybox-nav.fancybox-prev {
 
 <% end %>
 </div>
-<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			 *  Simple image gallery. Uses default settings
-			 */
-
-			$('.fancybox').fancybox();
-
-$(".fancybox-effects-d").fancybox({
-  padding: 0,
-
-  openEffect : 'elastic',
-  openSpeed  : 150,
-
-  closeEffect : 'elastic',
-  closeSpeed  : 150,
-
-  closeClick : true,
-
-  helpers : {
-    overlay : null
-  }
-});
-
-});
-</script>
