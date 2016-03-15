@@ -1,3 +1,49 @@
 // Place all the styles related to the Relationships controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.follow-page-wrapper {
+  @include outer-container(80%);
+  @include clearfix;
+  margin: auto;
+}
+.follow-user-profileimg{
+  @include span-columns(3);
+  margin-top: 2em;
+  img {
+    margin: auto;
+    max-width: 100%;
+    display: block;
+  }
+}
+
+.follow-user-info {
+  @include span-columns(10);
+  margin-bottom: 0.4em;
+
+  span {
+    font-size: 16px;
+  }
+  .follow-page-about {
+    margin-top: 1em;
+  }
+  .follow-page-about-content {
+    margin-left: 3em;
+  }
+  h1 {
+    margin-bottom: 0.3em;
+    margin-top: 0.5em;
+  }
+}
+
+.follow-container {
+  @include outer-container;
+    font-size: 30px;
+    /* border: 2px; */
+    margin: 1em;
+    color: #060612;
+    background-color: #85B3ED;
+}
+
+.follow-page-button {
+  @include span-columns(3);
+}

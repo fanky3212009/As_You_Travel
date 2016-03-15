@@ -40,7 +40,8 @@
         <% end %>
       </li>
 
-      <li><a href="#portfolio">
+      <li>
+        <%= link_to user_photos_path(current_user), :"data-no-turbolink" => true do %>
         <span>
         <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
         </span>
@@ -48,17 +49,19 @@
           <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
           <p>Gallery</p>
         </div>
-      </a></li>
-
-      <li><a href="#blog">
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_journey_path, :"data-no-turbolink" => true do  %>
         <span>
         <%=  image_tag "MenuBar-icon-timeline.png"  %>
         </span>
         <div class="menu-out">
           <%= image_tag "MenuBar-icon-timeline-hover.png"%>
-          <p>My Timeline</p>
+          <p>New Journey</p>
         </div>
-      </a></li>
+        <% end %>
+    </li>
 
       <li>
         <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
