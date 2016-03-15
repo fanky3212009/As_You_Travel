@@ -1,7 +1,35 @@
-<div class="follow-container">
+<!-- <div class="follow-container"> -->
+<!-- </div> -->
+
+<div class="follow-page-wrapper">
 <% if @users.any? %>
   <% @users.each do |user| %>
-    <%= link_to user.name, user %>
+  <div class="follow-container">
+  <div class="follow-user-profileimg">
+    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo image">
+  </div>
+  <div class="follow-user-info">
+    <h1>  <%= link_to user.name, user %></h1>
+    <p> Following : <%= link_to user.followings.count, followings_user_path(user) %> | Follower :<%= link_to user.followers.count, followers_user_path(user) %></p> <span>Last Location:     <%= user.owend_journeys.last.location %>
+</span>
+    <p class="follow-page-about"> About : </p>
+    <p class="follow-page-about-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, aspernatur, quia modi minima debitis tempora ducimus quam vero impedit alias earum nemo error tenetur sed.</p>
+    <p class="follow-user-detail"></p>
+  </div>
+  <div class="follow-page-button">
+  </div>
+  </div>
   <% end %>
 <% end %>
 </div>
+<!-- 
+<div class="comment">
+  <div class="comment-image">
+    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="Logo image">
+  </div>
+  <div class="comment-content">
+    <h1>Another One</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, aspernatur, quia modi minima debitis tempora ducimus quam vero impedit alias earum nemo error tenetur sed.</p>
+    <p class="comment-detail">Date or details about this post</p>
+  </div>
+</div> -->
