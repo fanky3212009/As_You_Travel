@@ -237,7 +237,7 @@ color: white;
 
 .journey-wrapper {
   color: black;
-  @include outer-container;
+  @include outer-container(100%);
   .journey_aside {
     @include span-columns(8);
     margin-right: 0;
