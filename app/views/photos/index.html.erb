@@ -1,8 +1,11 @@
+
+
+
 <h1>Photo Gallery</h1>
   <div class="gallerys-container">
     <% @journeys.each do |f| %>
       <div class="each-gallery">
-        <%= link_to gallery_journey_path(f) do %>
+        <%= link_to gallery_journey_path(f), :"data-no-turbolink" => true do %>
           <% if f.photo_gallery != [] %>
             <%= image_tag (f.photo_gallery.sample.picture.url) %>
           <% else %>

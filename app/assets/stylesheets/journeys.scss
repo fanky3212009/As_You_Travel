@@ -149,16 +149,15 @@ color: white;
 .back-img-journey {
   $base-border-radius: 3px !default;
   $action-color: #477DCA !default;
-  $large-screen: em(860) !default;
-  $hero-background-top: #7F99BE;
+  $large-screen: em(1280) !default;
+  $hero-background-top: #E0EDF8;
   $hero-background-bottom: #20392B;
-  $hero-color: white;
+  $hero-color: #E0EDF8;
   $gradient-angle: 10deg;
-  $background-image: 'Banner_Journey.jpg';
 
 
-  @include background(url($background-image), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
-  background-color: #324766;
+  @include background(no-repeat $hero-background-top scroll);
+  // background-color: #324766;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
@@ -192,22 +191,57 @@ color: white;
     img {
       margin:1.5em;
       transform: translateY(1em);
+      float: left;
     }
   }
 
-  .hero-inner {
+  .journey-header-inner {
     @include outer-container;
     @include clearfix;
     margin: auto;
-    padding: 10em;
+    padding: 5.5em;
     text-align: center;
+    .recommend {
+      @include span-columns(8);
+    }
+    .no-f-yet.f-already {
+      @include span-columns(8);
 
-    .hero-copy {
+    }
+    .journey-stat {
+      @include span-columns(16);
+      height: 4em;
+      .activity-tags {
+      color: #295ED5;
+      float: left;
+      margin-bottom: 0;
+      margin-top: 0.6em;
+      margin-left: 1em;
+      }
+      img {
+        margin-left: 0.5em;
+        float: left;
+      }
+      .journey-stat-name {
+        margin-top: 0.7em;
+        margin-left: 0.5em;
+        float: left;
+      }
+      .journey-tag-form {
+        display:none;
+      }
+    }
+
+
+
+    .journey-header-copy {
       text-align: center;
       margin-top: 2em;
 
-      .diary-title {
-        font-size: 4.8em;
+
+      .journey-title {
+        font-size: 38px;
+        color: #295ED5;
       }
 
       h1 {
@@ -221,14 +255,14 @@ color: white;
       }
 
       p {
-        color: $hero-color;
-        line-height: 1.4em;
+        font-size: 15px;
+        color: #87B5ED;
         margin: 0 auto 0 auto;
 
 
         @include media($large-screen) {
           font-size: 1.1em;
-          max-width: 40%;
+          max-width: 82%;
         }
       }
     }
@@ -378,14 +412,125 @@ color: white;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-.gm-style-iw {
+  .gm-style-iw {
     height: 40px;
     width: 300px;
+  }
 }
+
 .map-diary-title {
     font-size: 17px;
     font-family: cursive;
     font-weight: bold;
     height: 3em;
+}
+
+.journey-location-date {
+  @include outer-container;
+  @include clearfix;
+  text-align: center;
+  .first-book {
+    @include span-columns(4);
+    float: left;
+    display: block;
+    width: 21em;
+    display: block;
+    margin: 4em;
+    height: 16em;
+    position: relative;
+    background-image: url(asset-path("SingleJourney-location-bg.png"));
+    .journey-location-sm {
+        position: absolute;
+        left: 4.5em;
+        top: 3.5em;
+        font-size: 21px;
+        color: #295ED5;
+        strong {
+        position: absolute;
+        color: #295ED5;
+        top: 2em;
+        font-size: 0.88em;
+        }
+    }
+  }
+  .second-book {
+    @include span-columns(4);
+    float: left;
+    display: block;
+    width: 21em;
+    display: block;
+    margin: 4em;
+    height: 16em;
+    position: relative;
+    background-image: url(asset-path("SingleJourney-startdate-bg.png"));
+    .journey-location-icon-sm {
+      position: relative;
+      left: 5em;
+      top: 3.5em;
+        strong {
+        position: absolute;
+        color: #295ED5;
+        left: 1.5em;
+        font-size: 1.5em;
+        }
+        img {
+        float: left;
+        margin-top: 0.3em;
+        }
+    }
+  }
+  .third-book {
+    @include span-columns(4);
+    float: left;
+    display: block;
+    width: 21em;
+    display: block;
+    margin: 4em;
+    height: 16em;
+    position: relative;
+    background-image: url(asset-path("SingleJourney-enddate-bg.png"));
+  }
+
+}
+
+.journey-location-icon-sm {
+    position: absolute;
+    left: 6em;
+    top: 3.5em;
+    strong {
+      float: left;
+      margin: 1em;
+      font-size: 1.5em;
+      line-height: 0.3em;
+      margin-left: 0.5em;
+      color: #295ED5;
+    }
+    img {
+      float: left;
+    }
+}
+
+.journey-location-sm {
+    position: absolute;
+    left: 5em;
+    top: 3.5em;
+    font-size: 21px;
+    color: #295ED5;
+    strong {
+    position: absolute;
+    color: #295ED5;
+    top: 2.5em;
+    font-size: 0.88em;
+    left: 1em;
+    }
+}
+
+.journey-location-sm.data-on-book {
+    font-size: 1.3em;
+    strong {
+    width: 4em;
+    line-height: 1.3em;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+    }
 }

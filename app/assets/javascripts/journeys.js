@@ -169,6 +169,8 @@ $(".previous").click(function(){
   $(".submit").click(function(){
   	return false;
   })
+  if ($('#journey_path_map').length > 0) {
+
   var mapData = $('#journey_path_map').data('diaries')
   var map = new GMaps({
     el: '#journey_path_map',
@@ -238,5 +240,6 @@ $(".previous").click(function(){
   );
  }
   map.fitLatLngBounds(bounds);
+}
 
 });
