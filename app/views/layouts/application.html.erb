@@ -20,11 +20,11 @@
 
     <div id="nav-user-logout-application">
       <% if current_user %>
-        Logined as <%= current_user.email %> | <%= link_to "Edit Profile", edit_user_path(current_user.id) %>
+        Logined as <%= current_user.email %> | <%= link_to "Edit Profile", edit_user_path(current_user.id), :"data-no-turbolink" => true %>
         <%= link_to "Logout", :logout, method: :post %>
       <% else %>
-        <%= link_to "Register", new_user_path %> |
-        <%= link_to "Login", :login %>
+        <%= link_to "Register", new_user_path, :"data-no-turbolink" => true %> |
+        <%= link_to "Login", :login, :"data-no-turbolink" => true %>
       <% end %>
     </div>
     <div>
