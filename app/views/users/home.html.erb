@@ -224,14 +224,16 @@ font-size: 300;
       </div>
   </li>
 
-    <li>
-      <span>
-      <%=  image_tag "MenuBar-icon-favorites.png"  %>
-      </span>
-      <div class="menu-out">
-        <%= image_tag "MenuBar-icon-favorites-hover.png"%>
-        <p>Favourites</p>
-      </div>
+  <li>
+    <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
+    <span>
+    <%=  image_tag "MenuBar-icon-favorites.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+      <p>Favourites</p>
+    </div>
+    <% end %>
   </li>
     <!-- <li><a href="#contact">
       <img src="./images/contact.png" />
@@ -285,7 +287,28 @@ font-size: 300;
 
   <div class="second-down">
     <dt class="title-single"></dt>
-	  <dd>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper massa ac lobortis porttitor. Aenean porttitor luctus accumsan. Phasellus euismod facilisis enim suscipit tempor. Aliquam sed lectus vel nisl venenatis facilisis ut sit amet metus. Donec efficitur eget nulla aliquam hendreri</dd>
+	  <dd>
+    <% if Favourite.most_favourited_diaries.length > 0 %>
+      <% Favourite.most_favourited_diaries.each do |f| %>
+        <%= link_to  journey_diary_entry_path(f.journey, f) do %>
+        <div class="cards" id="homepage-diary-toggle">
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag (f.photos.sample.picture.thumb.url) %>
+            </div>
+            <div class="card-header">
+              <h4><%= f.title %></h4>
+            </div>
+            <div class="card-copy">
+              <h3><%= f.journey.owner.name %></h3>
+              <p><%= truncate(f.content, length: 150) %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    <% end %>
+	  </dd>
   </div>
 
 </div>
@@ -384,31 +407,6 @@ font-size: 300;
 </div>
 
 
-
-
-
-
-
-
-
-<!--
-<h1>Home page</h1>
-
-
-
-<section class="search-results">
-  <%= render 'tags/search_tag' %>
-</section>
-
-<h4>Search Tag Related Diaries and Journeys</h4>
-  <div class="search_by_tag">
-  <%= form_tag tags_path, method: :get, id: "search_tag" do %>
-    <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
-    <%= submit_tag "Search" %>
-  <% end %>
-  </div>
-  <div class="search-tag-results"></div>
-  <br> -->
 
 
 
