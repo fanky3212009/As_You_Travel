@@ -6,19 +6,118 @@
       <div class="logo">
         <%= image_tag ("logo-blue.png")  %>
       </div>
-      <div class="hero-inner">
-        <div class="hero-copy">
+      <div class="journey-header-inner">
+        <div class="journey-header-copy">
           <h1 class="journey-title"><%= @journey.title %></h1>
-            <h2>Written by <%= @user.email %></h2>
-
+            <p class="journey-content"><%= @journey.description %></p>
         </div>
-      </div>
 
-    </div>
+        <div class="journey-location-date">
+          <div class="first-book">
+              <div class="journey-location-icon-sm">
+                <%= image_tag ("Entries_icon_location.png" )%> <strong>Location</strong>
+              </div>
+              <div class="journey-location-sm">
+                  <strong><%= @journey.location %></strong>
+              </div>
+          </div>
+          <div class="second-book">
+            <div class="journey-location-icon-sm data-icon-book">
+              <%= image_tag ("Entries_icon_time.png" )%> <strong>Start Date</strong>
+            </div>
+            <div class="journey-location-sm data-on-book">
+                <strong><%= @journey.show_time(@journey.start_date) %></strong>
+            </div>
+
+          </div>
+          <div class="third-book">
+            <div class="journey-location-icon-sm data-icon-book">
+              <%= image_tag ("Entries_icon_time.png" )%> <strong>End Date</strong>
+            </div>
+            <div class="journey-location-sm data-on-book">
+                <strong><%=  @journey.show_time(@journey.end_date) %></strong>
+            </div>
+
+          </div>
+        </div>
+        <div class="journey-stat">
+          <%= image_tag ('Entries_icon_tag.png') %>
+          <h3 class="journey-stat-name">TAGS</h3>
+          <div class="activity-tags">
+             <% @journey.tags.each do |tag| %>
+                <% if tag.body != "recommended" %>
+                <span>
+                    <%= tag.body %>
+                </span>
+                  <% end %>
+            <% end %>
+
+            <% if current_user == @journey.owner %>
+              <span class="add-new-tag"><%= link_to "Add Tags" %></span>
+
+
+
+              <div class="journey-tag-form">
+                <%= form_for [@journey, Tag.new] do |t| %>
+
+                <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
+                <%= t.hidden_field :taggable_id, :value => @journey.id %>
+                <%= t.hidden_field :taggable_type, :value => @journey.class %>
+                <%= t.hidden_field :user_id, :value => current_user.id %>
+                <%= t.submit "Add" %>
+                <% end  %>
+              </div>
+            <% end %>
+          </div>
+      </div>
+        <% if current_user != @journey.owner%>
+          <div class="recommend">
+            <% if current_user != @user %>
+            <div class="recommend-form">
+              <%= form_for [@journey, Tag.new] do |t| %>
+              <%= t.hidden_field :body, :value=> 'recommended' %>
+              <%= t.hidden_field :taggable_id, :value => @journey.id %>
+              <%= t.hidden_field :taggable_type, :value => @journey.class %>
+              <%= t.hidden_field :user_id, :value => current_user.id %>
+              <%= t.submit "Recommend" %>
+              <% end  %>
+            </div>
+            <% end %>
+          </div>
+
+          <% if current_user != @user %>
+        <% if @journey.favourites.where(user_id: current_user.id).length > 0 %>
+          <button class="f-already">
+            <span class="fa fa-heart">
+              </span>
+          </button>
+          <div class="favourite-form-already">
+            <%= form_for [@journey, @journey.favourites.where(user_id: current_user.id)[0]], method: :delete do |f| %>
+            <%= f.button :class => "submit-already" %>
+            <% end %>
+          </div>
+        <% else %>
+          <button class="no-f-yet">
+            <span class="fa fa-heart">
+              </span>
+          </button>
+          <div class="favourite-form">
+            <%= form_for [@journey, Favourite.new] do |f| %>
+            <%= f.button :class => "f-submit" %>
+            <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  </div>
+</div>
+
+
 
     <ul class="navigation">
       <li>
-        <%= link_to @user, :"data-no-turbolink" => true do %>
+        <%= link_to current_user, :"data-no-turbolink" => true do %>
         <span>
         <%=  image_tag "MenuBar-icon-profile.png"  %>
         </span>
@@ -30,7 +129,7 @@
     </li>
 
       <li>
-        <%= link_to user_journeys_path(@user) do %>
+        <%= link_to user_journeys_path(current_user) do %>
           <span>
           <%=  image_tag "MenuBar-icon-Journey.png"  %>
           </span>
@@ -113,11 +212,14 @@
         <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
       <% end %>
 
-      <!-- <%= text_area_tag 'body', nil, rows: 10, cols: 25 , class: "comment-form" %> -->
+
     </div>
     <div class="comment-list journey_article">
       <%= render partial: 'comments/list', locals: { commentable: @journey }  %>
 
+
+        </div>
+        <% end %>
     </div>
   </div>
 
@@ -166,43 +268,8 @@
   <% end %>
   <br>
 
-  <% if current_user != @user %>
-<% if @journey.favourites.where(user_id: current_user.id).length > 0 %>
-  <button class="f-already">
-    <span class="fa fa-heart">
-      </span>
-  </button>
-  <div class="favourite-form-already">
-    <%= form_for [@journey, @journey.favourites.where(user_id: current_user.id)[0]], method: :delete do |f| %>
-    <%= f.button :class => "submit-already" %>
-    <% end %>
-  </div>
-<% else %>
-  <button class="no-f-yet">
-    <span class="fa fa-heart">
-      </span>
-  </button>
-  <div class="favourite-form">
-    <%= form_for [@journey, Favourite.new] do |f| %>
-    <%= f.button :class => "f-submit" %>
-    <% end %>
-  </div>
-<% end %>
-<% end %>
 
-<div class="recommend">
-  <% if current_user != @user %>
-  <div class="recommend-form">
-    <%= form_for [@journey, Tag.new] do |t| %>
-    <%= t.hidden_field :body, :value=> 'recommended' %>
-    <%= t.hidden_field :taggable_id, :value => @journey.id %>
-    <%= t.hidden_field :taggable_type, :value => @journey.class %>
-    <%= t.hidden_field :user_id, :value => current_user.id %>
-    <%= t.submit "Recommend" %>
-    <% end  %>
-  </div>
-  <% end %>
-</div>
+
 
   <br>
   <br>

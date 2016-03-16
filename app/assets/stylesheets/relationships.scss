@@ -27,11 +27,16 @@
     margin-top: 1em;
   }
   .follow-page-about-content {
-    margin-left: 3em;
+    margin-bottom: 0;
+    margin-top: 0.5em;
+
   }
   h1 {
     margin-bottom: 0.3em;
     margin-top: 0.5em;
+    a{
+      font-size: 0.8em;
+    }
   }
 }
 
@@ -41,7 +46,8 @@
     /* border: 2px; */
     margin: 1em;
     color: #060612;
-    background-color: #85B3ED;
+    border: 1px solid #85B3ED;
+    // background-color: #85B3ED;
 }
 
 .follow-page-button {

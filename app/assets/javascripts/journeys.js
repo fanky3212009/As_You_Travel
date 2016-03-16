@@ -241,4 +241,5 @@ $(".previous").click(function(){
  }
   map.fitLatLngBounds(bounds);
 }
+
 });

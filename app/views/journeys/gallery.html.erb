@@ -46,7 +46,9 @@ opacity: 1.0;
 
 
   <div class="img_large" id="inline<%= p.id %>">
-    <%= cl_image_tag(p.picture.public_id, width: 700, height: 500, crop: :limit) %>
+
+    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fit) %>
+
     <h3><%= p.name %></h3>
     <%= button_to "Set as journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
 

@@ -21,37 +21,7 @@
 // });
 
   $(document).on('ready page:load', function () {
-    $('h1').on('click', function (e) {
-      e.preventDefault();
-
-      $.ajax({
-         url: $(this).attr('href'),
-         type: 'GET',
-         dataType: 'json',
-         success: function (data) {
-
-           var map = new GMaps({
-             el: '#map',
-             lat: -12.043333,
-             lng: -77.028333
-           });
-
-           var latlngs = [{lat:data.latitude, lng:data.longitude}];
-           var bounds = [];
-
-           for (var i in latlngs) {
-             var latlng = new google.maps.LatLng(latlngs[i].lat, latlngs[i].lng);
-             bounds.push(latlng);
-             map.addMarker({
-               lat: latlngs[i].lat,
-               lng: latlngs[i].lng
-             });
-           }
-           map.fitLatLngBounds(bounds);
-         }
-      });
-    });
-
+    
 
      $('#path_map>a').on('click', function (e) {
        e.preventDefault();
