@@ -266,31 +266,19 @@
       <!-- <%= text_area_tag 'body', nil, rows: 10, cols: 25 , class: "comment-form" %> -->
       <div class="submit-comment-button-container">
         <button class="profile-button" href="<%= user_photos_path(@user) %>">SUBMIT</button>
-        <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >SUBMIT</div></a>
+        <div class = "button-border" >SUBMIT</div></a>
       </div>
     </div>
     <div class="comment-list journey_article">
-      <div class="comment-list-item">
-        <%= image_tag ("profile-UserImage-1.png") %>
-        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
-          <hr class="recomm-underline">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
+        <% @journey.comments.reverse.each do |c| %>
+        <div class="comment-list-item">
+          <%= image_tag ("profile-UserImage-1.png") %>
+          <h2 class="commenter-name"><%= c.user.name %> </h2><h4 class="commenter-info"><%= @journey.show_time(c.created_at) %></h4>
+            <hr class="recomm-underline">
+            <p><%= c.body %></p>
 
-      </div>
-
-      <div class="comment-list-item">
-        <%= image_tag ("profile-UserImage-1.png") %>
-        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
-          <hr class="recomm-underline">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
-
-      </div>
-
-      <div class="comment-list-button-container">
-        <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW MORE</button>
-        <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW MORE</div></a>
-      </div>
-
+        </div>
+        <% end %>
     </div>
   </div>
 
