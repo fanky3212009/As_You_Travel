@@ -5,7 +5,7 @@
 .home-slider {
   $base-border-radius: 3px !default;
   $action-color: #477DCA !default;
-  $large-screen: em(860) !default;
+  $large-screen: em(1280) !default;
   $hero-background-top: #7F99BE;
   $hero-background-bottom: #20392B;
   $hero-color: white;
@@ -117,13 +117,14 @@
     margin-left: 4em;
     }
     .img3 {
-    width: 38%;
-    position: absolute;
-    top: 20em;
-    margin-left: 30em;
+      width: 38%;
+      position: absolute;
+      top: 20em;
+      right: 8em;
     }
     .img1 {
-    margin-left: 11em;
+      float: right;
+      margin-right: 5em;
     }
   }
 }
@@ -179,55 +180,61 @@
   box-shadow: 2px 11px 25px 3px rgba(176,176,176,1);
 
 }
-.up-right {
-    float: left;
-    width: 50%;
-    margin: auto;
-}
+
+
+
+
 
 .up-left {
-    float: left;
-}
-
-.up-left img {
+  margin-left: 1em;
+  margin-right: 0 !important;
+  img {
     width: 55em;
+  }
 }
-.home-second-wrapper {
-  height: 65em;
-  margin-bottom: 8em;
+.home-second-section{
+  @include outer-container;
+  @include clearfix;
+  .mid-section-up {
+  @include span-columns(16);
+    .up-left {
+      @include span-columns(8 of 16);
+    }
+    .up-right {
+      @include span-columns(8 of 16);
+      width: 43% !important;
+      margin-left: 1em;
+    }
+  }
+  .mid-section-down {
+  @include span-columns(16);
+    .down-left {
+      @include span-columns(8 of 16);
+      .feature-user {
+      @include span-columns(2 of 8);
+      }
+    }
+    .down-right {
+      @include span-columns(8 of 16);
+      margin-right: 0.7em !important;
+    }
+  }
+
 }
 
 .up-right {
     text-align: center;
-    height: 31em;
+    height: 27.4em;
 }
 
-.down-right {
-  width: 720px;
-  height: 403px;
-  float: left;
-  img {
-    width: 56em;
-    position: relative;
-    top: 10px;
-  }
-}
 
-.feature-user {
-    width: 14%;
-    display: inline-block;
-}
+
 
 .mid-section-up {
-    height: 48%;
+    height: 27.4em;
 }
 .down-left {
-  width: 715px;
-  height: 403px;
-  margin: auto;
-  float: left;
-  /* display: inline-block; */
-  left: -55em;
+  margin-right: 1% !important;
 }
 
 
@@ -268,7 +275,7 @@ display: block;
 }
 
 .slider-shadow {
-    width: 123%;
+    width: 100%;
     height: 15px;
     position: relative;
     left: -7em;
@@ -451,8 +458,8 @@ font-size: 300;
     border: 3px solid #7CA7DE;
     p {
     font-family: fantasy;
-    font-size: 28px;
-    line-height: 43px;
+    font-size: 1.6em;
+    line-height: 1.6em;
     text-align: center;
     margin-top: 0.6em;
     text-shadow: 7px 7px 8px rgba(144, 150, 150, 0.99);
@@ -513,7 +520,23 @@ font-size: 300;
 }
 
 #homepage-friend-background {
+  @include outer-container(100%);
+  @include clearfix;
+  .homepage-aside {
+    @include span-columns(7);
+    margin-left: 0;
+    img {
+      margin: auto;
+      display: block;
+    }
+  }
+  .homepage-slider {
+    @include span-columns(7);
+  }
+  .empty-div-slider {
+    @include span-columns(2);
 
+  }
   position: relative;
   background: url(crumpled_white_paper_texture_by_melemel.jpg) !important;
   background-repeat: repeat;
