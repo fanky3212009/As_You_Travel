@@ -388,12 +388,14 @@ color: white;
     width: 300px;
   }
 }
+
 .map-diary-title {
     font-size: 17px;
     font-family: cursive;
     font-weight: bold;
     height: 3em;
 }
+
 .journey-location-date {
   @include outer-container;
   @include clearfix;
