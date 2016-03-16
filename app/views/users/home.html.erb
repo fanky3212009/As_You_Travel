@@ -211,9 +211,16 @@
 
 <div class="home-second-section">
   <div class="mid-section-up">
-    <div class="up-left">
-      <%= image_tag("hp-DividerSection-img1.jpg") %>
-    </div>
+    <div class="flip up-left">
+        <div class="card">
+            <div class="face front">
+                <%= image_tag("hp-DividerSection-img1.jpg") %>
+            </div>
+            <div class="face back">
+
+            </div>
+        </div>
+    </div> 
     <div class="up-right">
       <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
       <%= button_tag "Find stories happened near me", id: "search_nearby" %>

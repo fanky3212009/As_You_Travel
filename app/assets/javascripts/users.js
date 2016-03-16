@@ -29,14 +29,18 @@ $(document).on('ready page:change', function () {
     });
   });
 
-    $('#search_nearby').on('click', function() {
-      if("geolocation" in navigator)  {
-        navigator.geolocation.getCurrentPosition(itWorked, itDidNotWork);
-      }
-    });
+  $('#search_nearby').on('click', function() {
+    if("geolocation" in navigator)  {
+      navigator.geolocation.getCurrentPosition(itWorked, itDidNotWork);
+    }
+  });
 
-
-
+  $('.flip').click(function(){
+      $(this).find('.card').addClass('flipped').mouseleave(function(){
+          $(this).removeClass('flipped');
+      });
+      return false;
+  });
 });
 
 function itWorked(position){

@@ -488,36 +488,36 @@ font-size: 300;
 }
 
 .second-down dt {
-	position: relative;
-	cursor: pointer;
+  position: relative;
+  cursor: pointer;
   padding: 10px 15px;
 }
 .second-down dt:after {
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	right: 10px;
-	font-weight: 300;
-	font-size: 120%;
-	line-height: 1em;
-	margin-top: -.5em;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  font-weight: 300;
+  font-size: 120%;
+  line-height: 1em;
+  margin-top: -.5em;
 }
 
 .second-down dt:before {
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	right: 2.4em;
-	font-weight: 300;
-	font-size: 92%;
-	line-height: 1em;
-	margin-top:-.5em;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 2.4em;
+  font-weight: 300;
+  font-size: 92%;
+  line-height: 1em;
+  margin-top:-.5em;
 
 }
 .second-down dd {
-	display: none;
-	margin: 0;
-	padding: 15px;
+  display: none;
+  margin: 0;
+  padding: 15px;
 }
 
 #homepage-friend-background {
