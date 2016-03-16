@@ -277,11 +277,7 @@ color: white;
   background-repeat:repeat;
 }
 
-.commenter-name {
-  color: #314CD7;
-  margin-right: 1em;
-  font-size: 2em;
-}
+
 .commenter-name, .commenter-info {
   display: inline-block;
 }
@@ -365,8 +361,10 @@ color: white;
 }
 
 .comment-list.journey_article {
-    margin-top: 9em;
-    width: 42%;
+  margin-top: 9em;
+  width: 42%;
+  height: 84%;
+  overflow: scroll;
 }
 
 #journey_path_map {

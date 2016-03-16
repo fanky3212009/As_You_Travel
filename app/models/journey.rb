@@ -30,7 +30,7 @@ class Journey < ActiveRecord::Base
   end
 
   def show_time(created_at)
-    created_at.strftime('%b %e %Y')
+    created_at.strftime('%b %e %Y %H :%M :%S %p')
   end
 
   geocoded_by :location
