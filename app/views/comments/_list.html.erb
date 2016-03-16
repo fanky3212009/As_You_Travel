@@ -4,7 +4,7 @@
   <% commentable.comments.each do |comment| %>
     <div class="comment-list-item">
       <%= cl_image_tag(comment.user.profile_img, :radius=>"max", :width=>100, :height=>100, :crop=>:thumb) %>
-      <h3 class="commenter-name"><%= comment.user.name %> </h3><h4 class="commenter-info"><%= commentable.show_time(comment.created_at) %></h4>
+      <h3 class="commenter-name"><%= comment.user.name %> </h3><h4 class="commenter-info"><%= comment.show_time(comment.created_at) %></h4>
         <hr class="recomm-underline">
         <p><%= comment.body %></p>
 

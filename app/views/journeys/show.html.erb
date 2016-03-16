@@ -184,16 +184,13 @@
 <div class="journey-wrapper">
 
   <div class="journey-diaries-section">
-    <h1>Diaries</h1>
-
-    <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
-      <div class="diary_entry_block new_diary_entry_block">
-    <% end %>
-      </div>
+    <div class="new_diary_entry_block">
+      <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
+        <%= cl_image_tag("add_new.png") %>
+      <% end %>
+    </div>
     <% if @journey.diary_entries.any? %>
-        <%= render @diary_entries %>
-    <% else %>
-      <h2>No diary yet</h2>
+      <%= render @diary_entries %>
     <% end %>
 
   </div>
@@ -212,119 +209,12 @@
         <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
       <% end %>
 
-
     </div>
     <div class="comment-list journey_article">
       <%= render partial: 'comments/list', locals: { commentable: @journey }  %>
 
-
-        </div>
-        <% end %>
-    </div>
   </div>
 
 </div>
-
-
-<h1><%= @journey.title %></h1>
-
-
-<p>Description: <%= @journey.description %></p>
-<p>location: <%= @journey.location %></p>
-<p>From: <%= @journey.start_date %></p>
-<p>To: <%= @journey.end_date %></p>
-<p>Owner: <%= @journey.owner.email %></p>
-
-
-  <h4>Tags :</h4>
-    <div id="journey-tags-list" >
-
-        <% @journey.tags.each do |tag| %>
-          <% if tag.body != "recommended" %>
-            <div class="each-tag">
-              <%= tag.body %>
-            </div>
-          <% end %>
-        <% end  %>
-
-  </div>
-
-  <% if current_user == @journey.owner %>
-    <div class="add-new-tag">
-      <h4><%= link_to "Add Tags" %></h4>
-    </div>
-
-  <div class="tag-form">
-    <%= form_for [@journey, Tag.new] do |t| %>
-
-    <%= t.label :Description  %>
-    <%= t.text_field :body, :placeholder => 'Descripe Your Journey' %>
-    <%= t.hidden_field :taggable_id, :value => @journey.id %>
-    <%= t.hidden_field :taggable_type, :value => @journey.class %>
-    <%= t.hidden_field :user_id, :value => current_user.id %>
-    <%= t.submit "Add" %>
-    <% end  %>
-  </div>
-  <% end %>
-  <br>
-
-
-
-
-  <br>
-  <br>
-
-<h1>Diaries</h1>
-
-
-<%= link_to 'New Diary', new_journey_diary_entry_path(@journey) %>
-
-
-  <% if @journey.diary_entries.any? %>
-    <ul>
-      <li class="all_diaries">
-      <%= render @diary_entries %>
-      </li>
-    </ul>
-  <% else %>
-    <h2>No diary yet</h2>
-  <% end %>
-
-
-
-
-
-
-
-  <h4>Add Photos</h4>
-    <div class="photo-form">
-      <%= form_for @journey.photos.build, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
-
-      <%= t.label :name  %>
-      <br>
-      <%= t.text_field :name %>
-      <br>
-      <div class="dropzone-previews"></div>
-      <br>
-      <%= t.hidden_field :imageable_id, :value => @journey.id %>
-     <%= t.hidden_field :imageable_type, :value => @journey.class %>
-      <% end  %>
-    </div>
-
-<div class="photo_gallery-button">
-  <%= link_to "Photo Gallery", gallery_journey_path(@journey) %>
-</div>
-
-
-<% if current_user %>
-  <h4>Write a comment:</h4>
-  <%= form_for [@journey, @comment], :html => {:class => "comment-form"} do |f| %>
-  <%= render partial: 'comments/form', locals: { f: f, commentable: @journey } %>
-  <% end %>
-
-<% else %>
-  <p>Please <%= link_to "log in", login_path %> to add a comment.</p>
-
-<% end %>
 
 </body>
