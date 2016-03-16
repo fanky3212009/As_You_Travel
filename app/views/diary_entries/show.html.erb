@@ -55,15 +55,17 @@
         <% end %>
       </li>
 
-      <li><a href="#blog">
+      <li>
+        <%= link_to new_journey_path, :"data-no-turbolink" => true do  %>
         <span>
         <%=  image_tag "MenuBar-icon-timeline.png"  %>
         </span>
         <div class="menu-out">
           <%= image_tag "MenuBar-icon-timeline-hover.png"%>
-          <p>My Timeline</p>
+          <p>New Journey</p>
         </div>
-      </a></li>
+        <% end %>
+    </li>
 
       <li>
         <%= link_to user_favourites_path(current_user) do %>
@@ -216,19 +218,6 @@
 
       </div>
       <% end %>
-
-      <!-- <div class="comment-list-item">
-        <%= image_tag ("profile-UserImage-1.png") %>
-        <h2 class="commenter-name">User 1 </h2><h4 class="commenter-info">locaton | 2 hours ago</h4>
-          <hr class="recomm-underline">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </p>
-
-      </div> -->
-<!--
-      <div class="comment-list-button-container">
-        <button class="profile-button" href="<%= user_photos_path(@user) %>">VIEW MORE</button>
-        <a href="<%= user_photos_path(@user) %>"><div class = "button-border" >VIEW MORE</div></a>
-      </div> -->
 
     </div>
   </div>

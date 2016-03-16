@@ -193,8 +193,9 @@
   }
 }
 .home-second-section{
-  @include outer-container;
+  @include outer-container(100%);
   @include clearfix;
+  margin-bottom: 12em;
   .mid-section-up {
   @include span-columns(16);
     .up-left {
