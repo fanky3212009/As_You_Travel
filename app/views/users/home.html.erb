@@ -2,117 +2,7 @@
 
 
 
-.slider-wrapper {
-  z-index: 500;
-  left: -10em;
-  position: relative;
-  width: 129%;
-  height: 646px;
-  background: #FFF;
-  overflow: hidden;
-}
 
-.slider-wrapper li {
-display: none;
-}
-
-.slider-wrapper .current-slide {
-display: block;
-}
-
-.slider-shadow {
-    width: 123%;
-    height: 15px;
-    position: relative;
-    left: -7em;
-}
-
-.slider-shadow:after, .slider-shadow:before {
-content: '';
-position: absolute;
-background: #171c24;
-height: 100%;
-width: 50%;
-left: 10px;
-top: -20px;
--webkit-transform: rotate(-4deg);
--ms-transform: rotate(-4deg);
--o-transform: rotate(-4deg);
-transform: rotate(-4deg);
--webkit-box-shadow: 0 0 15px 8px #171c24;
-box-shadow: 0 0 15px 8px #171c24;
-}
-
-.slider-shadow:before {
-right: 10px;
-left: auto;
--webkit-transform: rotate(4deg);
--ms-transform: rotate(4deg);
--o-transform: rotate(4deg);
-transform: rotate(4deg);
-}
-
-.slider-wrapper img {
-position: relative;
-max-width: 100%;
-height: auto;
-top: 0;
-left: 0;
-}
-
-.diary-stat.homepage-stat:nth-child(2) {
-    width: -13em;
-}
-
-.diary-stat.homepage-stat {
-    font-size: 10px;
-    /* float: left; */
-    width: -6%;
-}
-
-.homepage-stat h3.diary-stat-name {
-    font-size: 16px;
-}
-/**
-* ---[Botones-Control] ----------------------
-**/
-.control-buttons {
-margin-top: 15px;
-text-align: center;
-}
-
-.control-buttons li {
-cursor: pointer;
-display: inline-block;
-background: #424f66;
-text-indent: -99999px;
-height: 12px;
-width: 12px;
-margin: 0 6px;
--webkit-border-radius: 50%;
--moz-border-radius: 50%;
-border-radius: 50%;
-}
-
-.control-buttons li.active {
-background: #00c5b9;
-}
-
-.authors {
-text-align: center;
-color: #7a8699;
-display: block;
-font-size: 1.6em;
-font-weight: 300;
-margin-top: 80px;
-font-size: 300;
-}
-
-.diary-stat.homepage-stat {
-    position: relative;
-    font-size: 10px;
-    top: 14em;
-}
 
 .homepage-stat .activity-tags {
   position: relative;
@@ -228,14 +118,16 @@ font-size: 300;
       </div>
   </li>
 
-    <li>
-      <span>
-      <%=  image_tag "MenuBar-icon-favorites.png"  %>
-      </span>
-      <div class="menu-out">
-        <%= image_tag "MenuBar-icon-favorites-hover.png"%>
-        <p>Favourites</p>
-      </div>
+  <li>
+    <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
+    <span>
+    <%=  image_tag "MenuBar-icon-favorites.png"  %>
+    </span>
+    <div class="menu-out">
+      <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+      <p>Favourites</p>
+    </div>
+    <% end %>
   </li>
     <!-- <li><a href="#contact">
       <img src="./images/contact.png" />
@@ -244,7 +136,9 @@ font-size: 300;
 <% end %>
 
 
-<div class="homepage-first-wrapper">
+<div class="homepage-wrapper">
+
+  <div class="homepage-first-section">
   <div class="first-left">
     <div class="first-text">
       <div class="first-left-img">
@@ -260,10 +154,13 @@ font-size: 300;
         <% end %>
       </div>
       <div class="activity-button-container">
-        <button class="profile-button" href="<%=  %>">VIEW ALL</button>
-        <a href="<%  %>">
+
+        <button id="home-top-picks"class="profile-button" href="">VIEW ALL</button>
+        <a href=>
           <div class = "button-border" >VIEW ALL</div>
         </a>
+
+
       </div>
     </div>
   </div>
@@ -281,9 +178,38 @@ font-size: 300;
       </div>
     </div>
   </div>
+
+  <div class="second-down">
+    <dt class="title-single"></dt>
+	  <dd>
+    <% if Favourite.most_favourited_diaries.length > 0 %>
+      <% Favourite.most_favourited_diaries.each do |f| %>
+        <%= link_to  journey_diary_entry_path(f.journey, f) do %>
+        <div class="cards" id="homepage-diary-toggle">
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag (f.photos.sample.picture.thumb.url) %>
+            </div>
+            <div class="card-header">
+              <h4><%= f.title %></h4>
+            </div>
+            <div class="card-copy">
+              <h3><%= f.journey.owner.name %></h3>
+              <p><%= truncate(f.content, length: 150) %></p>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    <% end %>
+	  </dd>
+  </div>
+
 </div>
 
-<div class="home-second-wrapper">
+
+
+<div class="home-second-section">
   <div class="mid-section-up">
     <div class="up-left">
       <%= image_tag("hp-DividerSection-img1.jpg") %>
@@ -295,32 +221,32 @@ font-size: 300;
         <%= text_field_tag :search, params[:search], :placeholder => "Search" %>
         <%= submit_tag "Search", :style => "display: none;" %>
       <% end %>
-<ul class="accordion-tabs-minimal">
-  <li class="tab-header-and-content">
-    <a href="#" class="tab-link">Top</a>
-    <div class="tab-content search-top-results">
+    <ul class="accordion-tabs-minimal">
+      <li class="tab-header-and-content">
+        <a href="#" class="tab-link">Top</a>
+        <div class="tab-content search-top-results">
 
-    </div>
-  </li>
-  <li class="tab-header-and-content">
-    <a href="#" class="tab-link">Name</a>
-    <div class="tab-content search-name-results">
+        </div>
+      </li>
+      <li class="tab-header-and-content">
+        <a href="#" class="tab-link">Name</a>
+        <div class="tab-content search-name-results">
 
-    </div>
-  </li>
-  <li class="tab-header-and-content">
-    <a href="#" class="tab-link">Tag</a>
-    <div class="tab-content search-tag-results">
+        </div>
+      </li>
+      <li class="tab-header-and-content">
+        <a href="#" class="tab-link">Tag</a>
+        <div class="tab-content search-tag-results">
 
-    </div>
-  </li>
-  <li class="tab-header-and-content">
-    <a href="#" class="tab-link" action="/">Location</a>
-    <div class="tab-content search-location-results">
+        </div>
+      </li>
+      <li class="tab-header-and-content">
+        <a href="#" class="tab-link" action="/">Location</a>
+        <div class="tab-content search-location-results">
 
-    </div>
-  </li>
-</ul>
+        </div>
+      </li>
+    </ul>
 
     </div>
   </div>
@@ -379,39 +305,14 @@ font-size: 300;
 
 
 
-
-
-
-<!--
-<h1>Home page</h1>
-
-
-
-<section class="search-results">
-  <%= render 'tags/search_tag' %>
-</section>
-
-<h4>Search Tag Related Diaries and Journeys</h4>
-  <div class="search_by_tag">
-  <%= form_tag tags_path, method: :get, id: "search_tag" do %>
-    <%= text_field_tag :search, params[:search], :placeholder => "Enter any Tag" %>
-    <%= submit_tag "Search" %>
-  <% end %>
-  </div>
-  <div class="search-tag-results"></div>
-  <br> -->
-
-
-
-
   <section id="slider" class="container">
     <ul class="slider-wrapper">
   <% if current_user != nil %>
     <% current_user.news_feed.each do |d| %>
       <li class="current-slide">
         <div class="diary-wrapper">
-          <div class="diary-picture-stat-section">
-            <div class="diary-picture diary_aside" id="friend-diary-photo">
+          <div class="diary-picture-stat-section" id="homepage-friend-background">
+            <div class="diary-picture diary_aside homepage-aside" id="friend-diary-photo">
               <%= image_tag ('Entries_image_1.png') %>
             </div>
             <div class="diary-stats homepage-slider">
@@ -475,6 +376,7 @@ font-size: 300;
                 </div>
               </div>
             </div>
+            <div class="empty-div-slider"></div>
           </div>
       </li>
         <% end %>
@@ -484,7 +386,7 @@ font-size: 300;
         <li class="current-slide">
           <div class="diary-wrapper">
             <div class="diary-picture-stat-section" id="homepage-friend-background">
-              <div class="diary-picture diary_aside" id="friend-diary-photo">
+              <div class="diary-picture diary_aside homepage-aside" id="friend-diary-photo">
                 <%= image_tag ('Entries_image_1.png') %>
               </div>
               <div class="diary-stats homepage-slider">
@@ -539,14 +441,13 @@ font-size: 300;
 
     </ul>
     <!-- Sombras -->
-    <div class="slider-shadow"></div>
 
     <!-- Controles de Navegacion -->
     <ul id="control-buttons" class="control-buttons"></ul>
   </section>
 
 
-
+</div>
 
 <script type="text/javascript">
 $(function() {
