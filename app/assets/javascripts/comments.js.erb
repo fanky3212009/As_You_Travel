@@ -20,7 +20,13 @@ $(document).on('ready page:load', function () {
                      data.comment.body + '</p>'+ '</div>';
         $(commentList).append(comment);
 
+        gotoBottom(commentList);
+
        }
     });
   });
 });
+
+function gotoBottom(div){
+  div.scrollTop = div.scrollHeight;
+}
