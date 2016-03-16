@@ -302,9 +302,8 @@ color: white;
 }
 
 .journey-diaries-section {
-  height: 56em;
-  background-image: url(brickwall_@2X.png);
-
+  display: flex;
+  justify-content: center;
 }
 
 .comment-form-list-section {
@@ -313,11 +312,7 @@ color: white;
   background-repeat:repeat;
 }
 
-.commenter-name {
-  color: #314CD7;
-  margin-right: 1em;
-  font-size: 2em;
-}
+
 .commenter-name, .commenter-info {
   display: inline-block;
 }
@@ -336,13 +331,26 @@ color: white;
     }
 }
 
+.new_diary_entry_block {
+  display: inline-block;
+  background-image: url(asset-path("crumpled_white_paper_texture_by_melemel.jpg"));
+  -webkit-box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  border: 12px solid #EFEDE8;
+  border-bottom: 60px solid #EFEDE8;  text-align: center;
+  height: 33em;
+  margin: 1.5em;
+  width: 29em;
+  a{
+    img {
+      margin-top: 25%;
+    }
+  }
+}
 .diary_entry_block {
   display: inline-block;
-  width: 27em;
-  border: 5px solid #555555;
-  text-align: center;
-  height: 18em;
-  margin: 2em;
+  margin: 1.5em;
   h2 {
     position: absolute;
     margin: 2em;
@@ -351,10 +359,24 @@ color: white;
 }
 
 .diary_img_preview{
-  width:17em;
+  -webkit-box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  border: 12px solid #EFEDE8;
+  border-bottom: 60px solid #EFEDE8;  text-align: center;
+  height: 33em;
+
+  width: 29em;
 }
 .diary_text_preview {
-  float: right;
+  margin: 1em;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  .diary-title {
+    color: #658ADE;
+    font-size: 2em;
+  }
 }
 
 .journey-stats {
@@ -382,11 +404,6 @@ color: white;
     transform: translateY(-10px);
 }
 
-.new_diary_entry_block {
-  position: relative;
-  top: 2.5em;
-}
-
 .comment-form.journey_aside {
     margin-left: 7em;
     margin-top: 7em;
@@ -401,8 +418,10 @@ color: white;
 }
 
 .comment-list.journey_article {
-    margin-top: 9em;
-    width: 42%;
+  margin-top: 9em;
+  width: 42%;
+  height: 84%;
+  overflow: scroll;
 }
 
 #journey_path_map {
@@ -424,7 +443,9 @@ color: white;
     font-weight: bold;
     height: 3em;
 }
-
+.journey-title {
+  text-transform: uppercase;
+}
 .journey-location-date {
   @include outer-container;
   @include clearfix;

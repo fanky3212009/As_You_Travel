@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 
   def set_profile_img
     if self.photos.last
-      self.profile_img = self.photos.last.picture.url
+      self.profile_img = self.photos.last.picture.public_id
       self.save
     end
     #code
