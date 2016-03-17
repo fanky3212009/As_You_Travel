@@ -181,7 +181,7 @@
 
   <div class="second-down">
     <dt class="title-single"></dt>
-	  <dd>
+    <dd>
     <% if Favourite.most_favourited_diaries.length > 0 %>
       <% Favourite.most_favourited_diaries.each do |f| %>
         <%= link_to  journey_diary_entry_path(f.journey, f) do %>
@@ -202,7 +202,7 @@
         <% end %>
       <% end %>
     <% end %>
-	  </dd>
+    </dd>
   </div>
 
 </div>
@@ -211,8 +211,15 @@
 
 <div class="home-second-section">
   <div class="mid-section-up">
-    <div class="up-left">
-      <%= image_tag("hp-DividerSection-img1.jpg") %>
+    <div class="flip up-left">
+        <div class="board">
+            <div class="face front">
+                <%= image_tag("hp-DividerSection-img1.jpg") %>
+            </div>
+            <div class="face back search_results">
+
+            </div>
+        </div>
     </div>
     <div class="up-right">
       <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
@@ -256,7 +263,7 @@
       <div class="feature-user">
         <div class="feature-user-info">
           <% if Favourite.most_favourable_user[0] != nil %>
-        <%= image_tag Favourite.most_favourable_user[0].profile_img %>
+        <%= cl_image_tag(Favourite.most_favourable_user[0].profile_img) %>
           <%= link_to Favourite.most_favourable_user[0] do  %>
         <h3><%= Favourite.most_favourable_user[0].name%></h3>
         <% end %>
@@ -267,7 +274,7 @@
       <div class="feature-user">
         <div class="feature-user-info">
           <% if Tag.most_recommended_user[0] != nil %>
-          <%= image_tag Tag.most_recommended_user[0].profile_img %>
+          <%= cl_image_tag(Tag.most_recommended_user[0].profile_img) %>
           <%= link_to Tag.most_recommended_user[0] do  %>
         <h3><%= Tag.most_recommended_user[0].name %></h3>
           <% end %>
@@ -278,7 +285,7 @@
       <div class="feature-user">
         <% if Relationship.most_followed_user[0] != nil %>
         <div class="feature-user-info">
-        <%= image_tag(Relationship.most_followed_user[0].profile_img) %>
+        <%= cl_image_tag(Relationship.most_followed_user[0].profile_img) %>
           <%= link_to Relationship.most_followed_user[0] do %>
         <h3><%= Relationship.most_followed_user[0].name %></h3>
         <% end %>

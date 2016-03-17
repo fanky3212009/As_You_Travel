@@ -4,7 +4,13 @@
 
 $(document).on('ready page:change', function () {
 
-
+  $('.flip').click(function(){
+    $(document).find('.board').addClass('flipped').mouseleave(function(){
+      $(this).removeClass('flipped');
+    });
+    return false;
+  });
+  
   $('.new_relationship .relationship-button-border').on('click', function () {
     $('.follow-button').submit();
   });
@@ -29,14 +35,11 @@ $(document).on('ready page:change', function () {
     });
   });
 
-    $('#search_nearby').on('click', function() {
-      if("geolocation" in navigator)  {
-        navigator.geolocation.getCurrentPosition(itWorked, itDidNotWork);
-      }
-    });
-
-
-
+  $('#search_nearby').on('click', function() {
+    if("geolocation" in navigator)  {
+      navigator.geolocation.getCurrentPosition(itWorked, itDidNotWork);
+    }
+  });
 });
 
 function itWorked(position){
@@ -49,8 +52,19 @@ function itWorked(position){
     data: {latitude: lat, longitude: lon},
     dataType: 'script'
   })
+
+  flipBoard();
 }
 
 function itDidNotWork(error){
   console.log(error.message);
+}
+
+function flipBoard(){
+  // $('.flip').click(function(){
+    $(document).find('.board').addClass('flipped').mouseleave(function(){
+      $(this).removeClass('flipped');
+    });
+    return false;
+  // });
 }
