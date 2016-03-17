@@ -2,8 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .each-gallery {
-  margin: 30px;
-  display: inline-table;
+  width: 18em;
+  height: 18em;
+  margin: 1em;
+  display: inline-block;
   border: 2px solid;
   text-align: center;
   -webkit-box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
@@ -37,7 +39,7 @@
 
 .img_large img {
   margin: auto;
-  display: block;
+  display: inline-block;
 }
 .button_to {
   input[type="submit"]{
@@ -259,4 +261,8 @@ a.fancybox-nav.fancybox-prev {
 
 .modal-open {
   overflow: hidden;
+}
+.gallery_img_preview {
+  height: 90%;
+  width: 100%;
 }
