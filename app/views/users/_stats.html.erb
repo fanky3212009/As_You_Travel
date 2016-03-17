@@ -1,7 +1,7 @@
 <% @user ||= current_user %>
 <div class="stats">
   <p>followings
-    <%= link_to followings_user_path(@user), id: "following" do %>
+    <%= link_to followings_user_path(@user), id: "following", :"data-no-turbolink" => true do %>
 
         <%= @user.followings.count %>
 
@@ -9,7 +9,7 @@
   </p>
 
   <p>followers
-  <%= link_to followers_user_path(@user), id: "followers" do %>
+  <%= link_to followers_user_path(@user), id: "followers", :"data-no-turbolink" => true do %>
 
       <%= @user.followers.count %>
 

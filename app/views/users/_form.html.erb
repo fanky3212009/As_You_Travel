@@ -11,31 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-   <%= f.label :password %><br />
-   <%= f.password_field :password %>
-  </div>
-  <div class="field">
-     <%= f.label :password_confirmation %><br />
-     <%= f.password_field :password_confirmation %>
-  </div>
-  <!-- <div class="field">
-    <%= f.label :crypted_password %><br>
-    <%= f.text_field :crypted_password %>
-  </div>
-  <div class="field">
-    <%= f.label :salt %><br>
-    <%= f.text_field :salt %>
-  </div> -->
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+    <%= f.email_field :email, :placeholder => "Enter Your Email", class:"login-input"  %>
+
+
+    <%= f.text_field :name, :placeholder => "Name", class:"login-input"  %>
+
+
+
+   <%= f.password_field :password, :placeholder => "Password", class:"login-input"  %>
+
+     <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", class:"login-input"  %>
+
+
+
+    <%= f.submit "Sign Up", class: "btn_sign_up" %>
+
 <% end %>
