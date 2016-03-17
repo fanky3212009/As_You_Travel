@@ -58,7 +58,6 @@ $(document).on('ready page:load', function () {
     if ($('.is-active').html() == "Tag") {
       params.url = $('#search_tag').attr('action');
     } else if ($('.is-active').html() == "Location") {
-      console.log('Location works');
       params.url = '/';
     } else if ($('.is-active').html() == "Top") {
       params.url = '/users/1/favourites';
@@ -67,6 +66,8 @@ $(document).on('ready page:load', function () {
     }
 
     $.ajax(params);
+    flipBoard();
+
   });
 
   // $('.tab-link').on('click', function (e) {

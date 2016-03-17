@@ -4,7 +4,13 @@
 
 $(document).on('ready page:change', function () {
 
-
+  $('.flip').click(function(){
+    $(document).find('.board').addClass('flipped').mouseleave(function(){
+      $(this).removeClass('flipped');
+    });
+    return false;
+  });
+  
   $('.new_relationship .relationship-button-border').on('click', function () {
     $('.follow-button').submit();
   });
@@ -34,13 +40,6 @@ $(document).on('ready page:change', function () {
       navigator.geolocation.getCurrentPosition(itWorked, itDidNotWork);
     }
   });
-
-  $('.flip').click(function(){
-      $(this).find('.card').addClass('flipped').mouseleave(function(){
-          $(this).removeClass('flipped');
-      });
-      return false;
-  });
 });
 
 function itWorked(position){
@@ -53,8 +52,19 @@ function itWorked(position){
     data: {latitude: lat, longitude: lon},
     dataType: 'script'
   })
+
+  flipBoard();
 }
 
 function itDidNotWork(error){
   console.log(error.message);
+}
+
+function flipBoard(){
+  // $('.flip').click(function(){
+    $(document).find('.board').addClass('flipped').mouseleave(function(){
+      $(this).removeClass('flipped');
+    });
+    return false;
+  // });
 }
