@@ -42,7 +42,7 @@ $(document).on('ready page:load', function() {
     });
   }
 
-  $('#first_diary').on('click', function (e) {
+  $('#first_diary').one('click', function (e) {
     e.preventDefault();
 
     $.ajax({
@@ -53,7 +53,7 @@ $(document).on('ready page:load', function() {
     });
   });
 
-  $('#second_diary').on('click', function (e) {
+  $('#second_diary').one('click', function (e) {
     e.preventDefault();
     $('button[data-func="save"]').click();
   });
@@ -68,7 +68,7 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
-$('#first_submit').on('click', function (e) {
+$('#first_submit').one('click', function (e) {
   e.preventDefault();
 
   $.ajax({
@@ -79,7 +79,7 @@ $('#first_submit').on('click', function (e) {
   });
 });
 
-$('#second_submit').on('click', function (e) {
+$('#second_submit').one('click', function (e) {
   e.preventDefault();
   $.ajax({
     url: '/journeys',
@@ -215,7 +215,7 @@ $(".previous").click(function(){
   for (var i = 0; i < mapData.length; i++) {
     // latlngs[i].lat = data[i].latitude;
     // latlngs[i].lng = data[i].longitude;
-    latlngs.push({lat:mapData[i].latitude, lng:mapData[i].longitude, title:mapData[i].title, id:mapData[i].id})
+    latlngs.push({lat:mapData[i].latitude, lng:mapData[i].longitude, title:mapData[i].title, id:mapData[i].id, journey_id:mapData[i].journey_id})
 
   }
   var bounds = [];
@@ -228,7 +228,7 @@ $(".previous").click(function(){
       lng: latlngs[i].lng,
       // icon: "<%= asset_path('Map-marker-2-1.png') %>",
       infoWindow: {
-        content: "<a href= /journeys/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
+        content: "<a href= /journeys/" +latlngs[i].journey_id + "/diary_entries/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
         + '<div class="map-diary-title">' + latlngs[i].title
         + "<span> GO!</span> </div>"+ "</a>",
         maxWidth: 200,
