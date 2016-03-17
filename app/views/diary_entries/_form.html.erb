@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= f.label :date %> <br>
-    <%= f.date_field :date %> <br>
+    <%= f.date_field(:date, min: @journey.start_date, max: @journey.end_date) %> <br>
   </div>
 
   <div class="field">
