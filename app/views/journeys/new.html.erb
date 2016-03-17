@@ -31,6 +31,70 @@ font-family: montserrat, arial, verdana;
   <% end %>
 </div>
 
+    <ul class="navigation">
+      <li>
+        <%= link_to current_user, :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-profile.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-profile-hover.png"%>
+          <p>My Profile</p>
+        </div>
+      <% end %>
+    </li>
+
+      <li>
+        <%= link_to user_journeys_path(current_user), :"data-no-turbolink" => true do %>
+          <span>
+          <%=  image_tag "MenuBar-icon-Journey.png"  %>
+          </span>
+          <div class="menu-out">
+            <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+            <p>My Journey</p>
+          </div>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_photos_path(current_user), :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+          <p>Gallery</p>
+        </div>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to new_journey_path, :"data-no-turbolink" => true do  %>
+        <span>
+        <%=  image_tag "MenuBar-icon-timeline.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+          <p>New Journey</p>
+        </div>
+        <% end %>
+    </li>
+
+      <li>
+        <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-favorites.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+          <p>Favourites</p>
+        </div>
+        <% end %>
+    </li>
+      <!-- <li><a href="#contact">
+        <img src="./images/contact.png" />
+      </a></li> -->
+    </ul>
 <!-- multistep form -->
 <div id="msform">
 	<!-- progressbar -->
