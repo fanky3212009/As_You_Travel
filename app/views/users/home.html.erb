@@ -372,7 +372,7 @@
 
               </div>
               <div class="diary-stat homepage-stat content slider-content">
-                <%= raw d.content%>
+                <%= filter_string(d.content)%>
                 <div class="recommend-button-container homepage-friend-button">
                   <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
                   <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
