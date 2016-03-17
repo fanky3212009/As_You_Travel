@@ -302,8 +302,8 @@ color: white;
 }
 
 .journey-diaries-section {
-  display: flex;
-  justify-content: center;
+  padding-left: 8em;
+
 }
 
 .comment-form-list-section {
@@ -340,17 +340,20 @@ color: white;
   border: 12px solid #EFEDE8;
   border-bottom: 60px solid #EFEDE8;  text-align: center;
   height: 33em;
-  margin: 1.5em;
-  width: 29em;
+  margin-left: 9em;
+
   a{
     img {
       margin-top: 25%;
+      padding-bottom: 12.5em;
+
     }
   }
 }
 .diary_entry_block {
   display: inline-block;
   margin: 1.5em;
+  width:29em;
   h2 {
     position: absolute;
     margin: 2em;
@@ -365,7 +368,6 @@ color: white;
   border: 12px solid #EFEDE8;
   border-bottom: 60px solid #EFEDE8;  text-align: center;
   height: 33em;
-
   width: 29em;
 }
 .diary_text_preview {
