@@ -3,11 +3,13 @@
     <% @journeys.each do |f| %>
       <div class="each-gallery">
         <%= link_to gallery_journey_path(f), :"data-no-turbolink" => true do %>
-          <% if f.photo_gallery != [] %>
-            <%= image_tag (f.photo_gallery.sample.picture.url) %>
-          <% else %>
-            <%= link_to 'Add a photo to this Journey!', journey_path(f) %>
-          <% end %>
+          <div>
+            <% if f.photo_gallery != [] %>
+              <%= cl_image_tag (f.feat_img) %>
+            <% else %>
+              <%= link_to 'Add a photo to this Journey!', journey_path(f) %>
+            <% end %>
+          </div>
           <div>
             <%= f.title %>
           </div>
