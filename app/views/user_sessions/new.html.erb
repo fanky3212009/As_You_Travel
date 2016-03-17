@@ -1,7 +1,98 @@
 <!-- <h1>UserSessions#new</h1>
 <p>Find me in app/views/user_sessions/new.html.erb</p> -->
 
-<h1>Login</h1>
+<%= stylesheet_link_tag    "//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css"%>
+<%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Caveat:400,700"  %>
+<%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" %>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_maps_api_key']}" %>
+
+
+<%= csrf_meta_tags %>
+
+<style media="screen">
+
+* {
+margin: 0px auto;
+padding: 0px;
+text-align: center;
+font-family: 'Open Sans', sans-serif;
+}
+
+</style>
+<div class="login-logo">
+  <%= link_to root_url, :"data-no-turbolink" => true do%>
+  <%= image_tag ("logo-blue.png")  %>
+  <% end %>
+</div>
+
+<div class="login-wrapper">
+<div class="cotn_principal">
+<div class="cont_centrar">
+
+  <div class="cont_login">
+    <div class="cont_info_log_sign_up">
+      <div class="col_md_login">
+      <h2>LOGIN</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+        </div>
+      <div class="col_md_sign_up">
+        <h2>SIGN UP</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+        </div>
+       </div>
+
+
+    <div class="cont_back_info">
+       <div class="cont_img_back_grey">
+       </div>
+
+    </div>
+    <div class="cont_forms" >
+        <div class="cont_img_back_">
+         </div>
+     <div class="cont_form_login">
+        <a href="#" onclick="ocultar_login_sign_up()" ><%= image_tag("icon-back.png", size: "30x30") %></a>
+           <h2>LOGIN</h2>
+            <%= render 'form' %>
+      </div>
+
+   <div class="cont_form_sign_up">
+    <a href="#" onclick="ocultar_login_sign_up()"><%= image_tag("icon-back.png", size: "30x30") %></a>
+         <h2>SIGN UP</h2>
+         <%= render partial: 'users/form' %>
+    <!-- <input type="text" placeholder="Email" />
+    <input type="text" placeholder="User" />
+    <input type="password" placeholder="Password" />
+    <input type="password" placeholder="Confirm Password" />
+    <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button> -->
+
+  </div>
+
+    </div>
+
+  </div>
+ </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>Login</h1>
 
 <%= render 'form' %>
 
@@ -10,4 +101,4 @@
 
 <%= render 'forgot_password_form' %>
 
-<%= link_to 'Back', :journeys %>
+<%= link_to 'Back', :journeys %> -->
