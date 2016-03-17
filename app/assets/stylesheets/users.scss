@@ -816,8 +816,9 @@ ul.navigation li p {
 }
 .flip .board .back {
   -webkit-transform: rotatey(-180deg);
-    background: blue;
-    background: white;
-    color: black;
-    cursor: pointer;
+  background: #7DA8DE;
+  color: black;
+  cursor: pointer;
+  border: 1px dashed #295ED5;
+  height: 9.1em;
 }
