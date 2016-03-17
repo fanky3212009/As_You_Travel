@@ -46,7 +46,7 @@
               <li class = "grid_item">
                 <%= link_to j, class: "grid_link", :"data-no-turbolink" => true do %>
 
-                    <%= cl_image_tag(j.feat_img, :width => 300, :height => 300, :crop => :limit) %>
+                    <%= cl_image_tag(j.feat_img, :width => 300, :height => 300, :crop => :fill) %>
 
                     <h3 class="grid__item-title"><%= j.title %></h3>
                 <% end %>
@@ -54,7 +54,7 @@
             <% end %>
           </ul>
 
-          <button class="button button--load" aria-label="Load more images">
+          <!-- <button class="button button--load" aria-label="Load more images">
             <svg class="polaroid" width="100%" height="100%" viewBox="0 0 220 243" preserveAspectRatio="xMidYMid meet">
               <rect class="polaroid__base" x="0" y="0" width="220" height="243" rx="5"></rect>
               <rect class="polaroid__inner" x="16" y="20" width="189" height="149"></rect>
@@ -65,7 +65,7 @@
               </g>
             </svg>
             <span class="button__text">Load more</span>
-          </button>
+          </button> -->
         </section>
         <div class="device">
           <div class="device__screen"></div>
