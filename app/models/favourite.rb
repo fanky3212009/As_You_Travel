@@ -31,7 +31,7 @@ class Favourite < ActiveRecord::Base
       count = most_favourable_stat[1]
       [most_favourable_user, count]
     else
-      []
+      [User.first]
     end
   end
 

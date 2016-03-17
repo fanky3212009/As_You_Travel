@@ -11,7 +11,7 @@ class Relationship < ActiveRecord::Base
       followed_number = most_followed_stat[1]
       [most_followed_user, followed_number]
     else
-      []
+      [User.first]
     end
   end
 end

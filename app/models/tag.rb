@@ -16,7 +16,7 @@ class Tag < ActiveRecord::Base
       count = most_recommended_stat[1]
       [most_recommended_user, count]
     else
-      []
+      [User.first]
     end
   end
 end
