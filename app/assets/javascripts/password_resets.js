@@ -1,7 +1,5 @@
 
-  $(document).on('click page:load', function () {
 
-    if ($('.cont_forms').length > 0) {
 
 
     function cambiar_login() {
@@ -44,5 +42,3 @@
     },500);
 
     }
-  }  
-})
