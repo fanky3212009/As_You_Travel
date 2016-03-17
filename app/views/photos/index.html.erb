@@ -1,11 +1,11 @@
 <h1>Photo Gallery</h1>
-  <div class="gallerys-container">
+  <div class="gallery-container">
     <% @journeys.each do |f| %>
       <div class="each-gallery">
         <%= link_to gallery_journey_path(f), :"data-no-turbolink" => true do %>
-          <div>
+          <div class="img_small">
             <% if f.photo_gallery != [] %>
-              <%= cl_image_tag (f.feat_img) %>
+              <%= cl_image_tag(f.feat_img, :width=> 230, :height => 230, :crop => :fill) %>
             <% else %>
               <%= link_to 'Add a photo to this Journey!', journey_path(f) %>
             <% end %>
