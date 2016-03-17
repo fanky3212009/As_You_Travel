@@ -4,8 +4,13 @@ color:none;
 background: transparent;
 opacity: 1.0;
 }
-</style>
 
+body {
+  background-image: url("concrete_seamless.png");
+  background-repeat:repeat;
+}
+</style>
+<div class="gallery-wrapper">
 
 <div class="photo-gallery-title">
   <h1><%= @journey.title %>'s Photo Gallery</h1>
@@ -69,4 +74,5 @@ opacity: 1.0;
 </div>
 
 <% end %>
+</div>
 </div>

@@ -63,12 +63,16 @@
     -moz-box-shadow: -4px 10px 17px 0px rgba(50, 50, 50, 0.35);
     box-shadow: 5px 12px 8px -1px rgba(50, 50, 50, 0.35);
     position: relative;
-    left: 6%;
+    left: 4%;
 }
 
 .gallery-container {
     margin: 10em;
-    margin-top: 4em
+    margin-top: 4em;
+}
+.gallery-wrapper {
+  background-image: url("concrete_seamless.png");
+  background-repeat:repeat;
 }
 
 .img_large{
