@@ -19,9 +19,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 3em;
-  height: 60.5em;
+  height: 62em;
   margin-top: -6em;
-  margin-bottom: 4em;
 
   @include transform(translateY(50px));
 
@@ -249,16 +248,14 @@ button#search_nearby {
 
 
 .container {
-  @include outer-container;
-  width: 100%;
+  @include outer-container(100%);
   margin: 40px auto 0;
 }
 
 .slider-wrapper {
   z-index: 500;
-  left: -10em;
   position: relative;
-  width: 129%;
+  width: 100%;
   height: 646px;
   background: #FFF;
   overflow: hidden;
@@ -430,12 +427,20 @@ font-size: 300;
 .diary-stat.homepage-stat.content {
     left: 1em;
 }
+.diary-stat.homepage-stat.content.slider-content {
+    height: 18em;
+    overflow: hidden;
+}
 .diary-stats.homepage-slider {position: relative;top: -11em;}
 
 #friend-diary-photo {
   margin-top: 5em;
 }
-
+.homepage-slider-btn {
+    position: relative;
+    left: 1em;
+    top: 13em;
+}
 
 .first-left-text strong {
   font-size: 29px;
@@ -566,15 +571,11 @@ font-size: 300;
 .slider-wrapper {
   height: 200px;
 
-}
-
-
-
-
+ }
 }
 
 @media only screen and (max-width: 410px) {
 .slider-wrapper {
   height: 160px;
-}
+ } 
 }

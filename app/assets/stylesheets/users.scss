@@ -50,9 +50,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 3em;
-  height: 52em;
+  height: 60em;
   margin-top: -6em;
-  margin-bottom: 8em;
+  // margin-bottom: 8em;
 
   @include transform(translateY(50px));
 
