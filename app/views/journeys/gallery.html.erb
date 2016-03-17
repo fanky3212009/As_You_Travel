@@ -47,7 +47,7 @@ body {
 
   <div class="gallery-container">
   <% @journey.photo_gallery.each do |p| %>
-  <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= cl_image_tag(p.picture.thumb.url,:width=>250,:height=>250,:crop=>:fill) %></a>
+  <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= cl_image_tag(p.picture.thumb.url, :width=>250, :height=>250, :crop=>:fill) %></a>
 
 
   <div class="img_large" id="inline<%= p.id %>">
