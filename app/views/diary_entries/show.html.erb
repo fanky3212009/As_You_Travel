@@ -123,7 +123,7 @@
 
 
 
-          <div class="diary-tag-form">
+          <div class="tag-form">
             <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
 
             <%= t.text_field :body, :placeholder => 'Descripe your diary' %>

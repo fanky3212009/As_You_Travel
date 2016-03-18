@@ -264,12 +264,12 @@
             <h2><%= d.title %></h2>
             <% end %>
             <h3><%= d.location%> | <%=d.date %></h3>
-            <p><%= d.content %></p>
+            <div class="stream-content"><%= filter_string(d.content) %></div>
 
           <div class="activity-tags">
           <%   d.tags.last(3).each do |t| %>
             <% if t.body != "recommended" %>
-              <span><%= t.body %></span>
+              <span class="tag-span"><%= t.body %></span>
               <% end %>
           <% end %>
               <!-- <span>Tag</span>

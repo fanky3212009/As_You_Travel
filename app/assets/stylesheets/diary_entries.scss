@@ -116,7 +116,7 @@ $red: #F97E76;
     background: $blueDark;
 
     button {
-      float: left;
+      text-align: left;
       @include size(45px);
       background: $blueDark;
       border: none;
@@ -537,14 +537,14 @@ h2.commenter-name {
     margin-top: 5em;
   }
 }
-.diary-stat {
-  .diary-tag-form {
-    width: 25%;
-    transform: translateY(2em);
-    margin-left: 1em;
-    display: none;
-  }
+
+.tag-form {
+  width: 25%;
+  transform: translateY(2em);
+  margin-left: 1em;
+  display: none;
 }
+
 
 
 #diary-last-step {
