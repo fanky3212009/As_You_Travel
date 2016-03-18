@@ -29,5 +29,7 @@ module FinalProject
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << Rails.root.join('vendor', 'assets')
     config.assets.paths << Rails.root.join("vendor", "assets", "stylesheets", "fonts")
+    config.assets.paths << Rails.root.join("vendor", "assets", "stylesheets", "icons")
+
   end
 end
