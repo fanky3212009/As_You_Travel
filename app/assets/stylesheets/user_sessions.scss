@@ -427,9 +427,11 @@ font-size: 300;
 .diary-stat.homepage-stat.content {
     left: 1em;
 }
-.diary-stat.homepage-stat.content.slider-content {
-    height: 18em;
-    overflow: hidden;
+.diary-stat.slider-content {
+    margin-top: 17em;
+    height: 7em;
+    overflow: scroll;
+    font-size: 1.1em;
 }
 .diary-stats.homepage-slider {position: relative;top: -11em;}
 
@@ -439,7 +441,7 @@ font-size: 300;
 .homepage-slider-btn {
     position: relative;
     left: 1em;
-    top: 13em;
+    top: 3em;
 }
 
 .first-left-text strong {
@@ -577,5 +579,5 @@ font-size: 300;
 @media only screen and (max-width: 410px) {
 .slider-wrapper {
   height: 160px;
- } 
+ }
 }
