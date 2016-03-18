@@ -1,10 +1,161 @@
-<h1> Edit Journey </h1>
 
-<%= link_to "Back", journey_path(@journey) %>
 
-<p>
-<br>
-<br>
+<style >
+/*custom font*/
+/*@import url(http://fonts.googleapis.com/css?family=Montserrat);*/
 
-</p>
-<%= render 'form' %>
+/*basic reset*/
+/** {margin: 0; padding: 0;}*/
+
+html {
+height: 100%;
+/*Image only BG fallback*/
+background: url('http://thecodeplayer.com/uploads/media/gs.png');
+/*background = gradient + image pattern combo*/
+background:
+  linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
+  url('http://thecodeplayer.com/uploads/media/gs.png');
+}
+
+body {
+font-family: montserrat, arial, verdana;
+}
+/*form styles*/
+
+
+</style>
+
+<div class="logo">
+  <%= link_to root_url do%>
+  <%= image_tag ("logo-blue.png")  %>
+  <% end %>
+</div>
+
+    <ul class="navigation">
+      <li>
+        <%= link_to current_user, :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-profile.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-profile-hover.png"%>
+          <p>My Profile</p>
+        </div>
+      <% end %>
+    </li>
+
+      <li>
+        <%= link_to user_journeys_path(current_user), :"data-no-turbolink" => true do %>
+          <span>
+          <%=  image_tag "MenuBar-icon-Journey.png"  %>
+          </span>
+          <div class="menu-out">
+            <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+            <p>My Journey</p>
+          </div>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to user_photos_path(current_user), :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+          <p>Gallery</p>
+        </div>
+        <% end %>
+      </li>
+
+      <li>
+        <%= link_to new_journey_path, :"data-no-turbolink" => true do  %>
+        <span>
+        <%=  image_tag "MenuBar-icon-timeline.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+          <p>New Journey</p>
+        </div>
+        <% end %>
+    </li>
+
+      <li>
+        <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-favorites.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+          <p>Favourites</p>
+        </div>
+        <% end %>
+    </li>
+      <!-- <li><a href="#contact">
+        <img src="./images/contact.png" />
+      </a></li> -->
+    </ul>
+<!-- multistep form -->
+<div id="msform">
+	<!-- progressbar -->
+
+	<ul id="progressbar">
+		<li class="active">Basic Info</li>
+		<li>About this Journey </li>
+		<li>Photo Collection</li>
+	</ul>
+	<!-- fieldsets -->
+	<fieldset>
+		<h2 class="fs-title">Create your Journey</h2>
+		<h3 class="fs-subtitle">This is step 1</h3>
+	  <%= render 'form' %>
+		<input type="button" name="next" class="next action-button" value="Next" id="first_submit" />
+	</fieldset>
+	<fieldset>
+		<h2 class="fs-title">Desciption</h2>
+		<h3 class="fs-subtitle">Descripe this journey</h3>
+      <%= form_for @journey, html: { class:"editing-journey" } do |f| %>
+      <div class="field">
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+      <% end %>
+
+		<!-- <input type="text" name="twitter" placeholder="Twitter" />
+		<input type="text" name="facebook" placeholder="Facebook" />
+		<input type="text" name="gplus" placeholder="Google Plus" /> -->
+
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+		<input type="button" id="second_submit" name="next" class="next action-button" value="Next" />
+	</fieldset>
+	<fieldset id="journey-last-step">
+		<h2 class="fs-title">Photos</h2>
+		<h3 class="fs-subtitle">
+      <p>Upload your photos here</p>
+      <p>(feature image can be set in the gallery)</p>
+    </h3>
+    <div class="photo-form" id="photo-last-step">
+      <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+
+      <!-- <%= t.label :name  %>
+      <br>
+      <%= t.text_field :name %> -->
+
+      <div class="dropzone-previews"></div>
+      <br>
+      <%= t.hidden_field :imageable_id, :value => @journey.id %>
+     <%= t.hidden_field :imageable_type, :value => @journey.class %>
+      <% end  %>
+		<!-- <input type="text" name="fname" placeholder="First Name" />
+		<input type="text" name="lname" placeholder="Last Name" />
+		<input type="text" name="phone" placeholder="Phone" />
+		<textarea name="address" placeholder="Address"></textarea> -->
+    </div>
+		<input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="submit" name="submit" class="submit action-button" value="Submit" id="final_submit" />
+	</fieldset>
+</div>
+
+<div class="h-link">
+  <%= link_to "",  journey_path(@journey), method: :get%>
+</div>

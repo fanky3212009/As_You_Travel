@@ -89,7 +89,7 @@
   <div class="diary-picture-stat-section">
     <div class="diary-picture diary_aside">
       <% if @diary_entry.photos.first %>
-        <%= image_tag(@diary_entry.photos.first.picture.url, :class => "diary_entry_img") %>
+        <%= cl_image_tag(@diary_entry.photos.first.picture.url, :class => "diary_entry_img") %>
       <% else %>
       <%= cl_image_tag("img_placeholder.png", :class => "diary_entry_img") %>
       <% end %>
@@ -148,7 +148,7 @@
 
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
-      <p><%= filter_string(@diary_entry.content) %></p>
+      <div class="diary-content-left"><%= filter_string(@diary_entry.content) %></div>
       <% if current_user != @diary_entry.journey.owner%>
       <div class="recommend diary-content">
         <% if @diary_entry.tags.where(user_id: current_user.id, body: "recommended").size > 0 %>
@@ -189,10 +189,16 @@
         <% end %>
       </div>
       <% end %>
+      <% if current_user == @diary_entry.journey.owner %>
+      <div class="edit-journey diary-edit">
+      <button><%= link_to "Edit", edit_journey_diary_entry_path(@journey, @diary_entry), :"data-no-turbolink" => true %></button>
+    </div>
+    <% end %>
+
     </div>
     <div class="diary-picture diary_article">
       <% if @diary_entry.photos.second %>
-        <%= image_tag(@diary_entry.photos.second.picture.url, :class => "diary_entry_img diary_entry_img2") %>
+        <%= cl_image_tag(@diary_entry.photos.second.picture.url, :class => "diary_entry_img diary_entry_img2") %>
       <% else %>
       <%= cl_image_tag("img_placeholder.png", :class => "diary_entry_img diary_entry_img2") %>
       <% end %>

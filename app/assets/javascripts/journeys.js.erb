@@ -25,12 +25,22 @@ $(document).on('ready page:load', function() {
       localStorage.setItem("wysiwyg", $content);
       dataText = JSON.stringify($('.editor').html());
       // dataText = ActiveSupport::JSON.decode("{\"content\": $('.editor').html()}")
-      $.ajax({
-        url: $('.new_diary_entry').attr('action'),
-        type: 'POST',
-        dataType: 'json',
-        data: { "content": dataText},
-      });
+      if ($('.new_diary_entry').length > 0) {
+        $.ajax({
+          url: $('.new_diary_entry').attr('action'),
+          type: 'POST',
+          dataType: 'json',
+          data: { "content": dataText},
+        });
+      }
+      else {
+        $.ajax({
+          url: $('.edit_diary_entry').attr('action'),
+          type: 'PUT',
+          dataType: 'json',
+          data: { "content": dataText},
+        });
+      }
       // $('.editor').append('<span class="saved"><i class="fa fa-check"></i></span>').fadeIn(function(){
       //   $(this).find('.saved').fadeOut(500);
       // });
@@ -44,13 +54,23 @@ $(document).on('ready page:load', function() {
 
   $('#first_diary').one('click', function (e) {
     e.preventDefault();
-
-    $.ajax({
-      url: $('.new_diary_entry').attr('action'),
-      type: 'POST',
-      dataType: 'json',
-      data: $('.new_diary_entry').serialize(),
-    });
+    e.stopPropagation();
+    if ($('.new_diary_entry').length > 0) {
+      $.ajax({
+        url: $('.new_diary_entry').attr('action'),
+        type: 'POST',
+        dataType: 'json',
+        data: $('.new_diary_entry').serialize(),
+      });
+    }
+    else {
+      $.ajax({
+        url: $('.edit_diary_entry').attr('action'),
+        type: 'PUT',
+        dataType: 'json',
+        data: $('.edit_diary_entry').serialize(),
+      });
+    }
   });
 
   $('#second_diary').one('click', function (e) {
@@ -70,23 +90,42 @@ var animating; //flag to prevent quick multi-click glitches
 
 $('#first_submit').one('click', function (e) {
   e.preventDefault();
-
-  $.ajax({
-    url: $('.new_journey').attr('action'),
-    type: 'POST',
-    dataType: 'json',
-    data: $('.new_journey').serialize(),
-  });
+  if ($('.new_journey').length > 0) {
+    $.ajax({
+      url: $('.new_journey').attr('action'),
+      type: 'POST',
+      dataType: 'json',
+      data: $('.new_journey').serialize(),
+    });
+  }
+  else {
+    $.ajax({
+      url: $('.edit_journey').attr('action'),
+      type: 'PUT',
+      dataType: 'json',
+      data: $('.edit_journey').serialize(),
+    });
+  }
 });
 
 $('#second_submit').one('click', function (e) {
   e.preventDefault();
-  $.ajax({
-    url: '/journeys',
-    type: 'post',
-    dataType: 'json',
-    data: $('.existing-journey').serialize(),
-  });
+  if ($('.existing-journey').length > 0) {
+    $.ajax({
+      url: '/journeys',
+      type: 'post',
+      dataType: 'json',
+      data: $('.existing-journey').serialize(),
+    });
+  }
+  else {
+    $.ajax({
+      url: $('.editing-journey').attr('action'),
+      type: 'PUT',
+      dataType: 'json',
+      data: $('.editing-journey').serialize(),
+    });
+  }
 });
 
 $('#final_submit').on('click', function (e) {
@@ -172,7 +211,7 @@ $(".previous").click(function(){
   if ($('#journey_path_map').length > 0) {
 
   var mapData = $('#journey_path_map').data('diaries')
-  if (mapData.size) {
+  if (mapData[0]) {
     var map = new GMaps({
       el: '#journey_path_map',
       lat: -12.043333,
@@ -227,7 +266,7 @@ $(".previous").click(function(){
       map.addMarker({
         lat: latlngs[i].lat,
         lng: latlngs[i].lng,
-        // icon: "<%= asset_path('Map-marker-2-1.png') %>",
+        icon: "<%= asset_path('Map-marker-2-1.png') %>",
         infoWindow: {
           content: "<a href= /journeys/" +latlngs[i].journey_id + "/diary_entries/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
           + '<div class="map-diary-title">' + latlngs[i].title

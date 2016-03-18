@@ -1,13 +1,4 @@
-/**
- * main.js
- * http://www.codrops.com
- *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- *
- * Copyright 2016, Codrops
- * http://www.codrops.com
- */
+
 $(document).on('ready page:load', function () {
   if ($(".js").length > 0 ) {
 
@@ -208,7 +199,6 @@ $(document).on('ready page:load', function () {
     		window.addEventListener('scroll', scrollfn);
 
     		// todo: show/load more grid items
-    		loadMoreCtrl.addEventListener('click', loadNextItems);
 
     		// window resize: recalculate window sizes and reposition the 6 grid items behind the phone (if the grid view is not yet shown)
     		window.addEventListener('resize', debounce(function(ev) {

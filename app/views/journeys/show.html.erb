@@ -62,7 +62,7 @@
               <div class="tag-form">
                 <%= form_for [@journey, Tag.new] do |t| %>
 
-                <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
+                <%= t.text_field :body%>
                 <%= t.hidden_field :taggable_id, :value => @journey.id %>
                 <%= t.hidden_field :taggable_type, :value => @journey.class %>
                 <%= t.hidden_field :user_id, :value => current_user.id %>
@@ -106,11 +106,15 @@
           <div class="favourite-form">
             <%= form_for [@journey, Favourite.new] do |f| %>
             <%= f.button :class => "f-submit" %>
+          </div>
             <% end %>
         <% end %>
-    <% end %>
-  </div>
-
+      <% end %>
+      <% if current_user == @journey.owner %>
+          <div class="edit-journey">
+            <button><%= link_to "Edit", edit_journey_path(@journey), :"data-no-turbolink" => true %></button>
+          </div>
+      <% end %>
   </div>
 </div>
 
@@ -193,6 +197,10 @@
     <% if @journey.diary_entries.any? %>
       <%= render @diary_entries %>
     <% end %>
+
+    <div class="journey-photo-gallery">
+      <strong><%= link_to "Photo Gallery", gallery_journey_path(@journey) %></strong>
+    </div>
 
   </div>
 

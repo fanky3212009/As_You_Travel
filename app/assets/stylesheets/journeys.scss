@@ -231,6 +231,11 @@ color: white;
         display:none;
       }
     }
+    .journey-photo-gallery {
+      @include span-columns(16);
+      @include clearfix;
+      margin-top: 1em;
+    }
 
 
 
@@ -556,4 +561,13 @@ color: white;
     margin-left: 0.5em;
     margin-top: 0.5em;
     }
+}
+.journey-photo-gallery a {
+    color: blue;
+    font-size: 1.7em;
+    cursor: pointer;
+    outline: none;
+}
+.edit-journey a {
+    color: white !important;
 }
