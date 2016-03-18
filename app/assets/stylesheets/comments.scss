@@ -4,7 +4,7 @@
 .comment-list-item img {
   -webkit-transform: translateY(1em);
   transform: translateY(1em);
-  height: 5em;
-  width: 5em;
+  margin-left: 1em !important;
+  margin-top: 1em !important;
   border-radius: 50%;
 }

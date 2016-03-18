@@ -274,7 +274,8 @@ color: white;
   @include outer-container(100%);
   .journey_aside {
     @include span-columns(8);
-    margin-right: 0;
+    margin-left: 9em;
+    margin-right: -8em;
   }
   .journey_article {
     @include span-columns(8);
@@ -409,7 +410,6 @@ color: white;
 .comment-form.journey_aside {
     margin-left: 7em;
     margin-top: 7em;
-    width: 41%;
 }
 
 #comment_body {

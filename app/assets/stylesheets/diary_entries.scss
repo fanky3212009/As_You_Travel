@@ -469,8 +469,7 @@ $red: #F97E76;
     }
 }
 
-.comment-form.diary_aside {
-    margin-left: 9em;
+.diary-comment-form.diary_aside {
     margin-top: 7em;
 }
 
@@ -483,6 +482,11 @@ $red: #F97E76;
 }
 
 .comment-list-item {
+    border: 1px solid #98B7EF;
+}
+
+.comment-content{
+  margin-left: 2em;
 }
 
 .comment-list.diary_article {
@@ -494,7 +498,8 @@ $red: #F97E76;
 }
 
 comment-list-item img {
-    margin-top: 2em;
+  margin-left: 1em;
+  margin-top: 2em;
 }
 
 
@@ -506,9 +511,6 @@ comment-list-item img {
     height: 56em;
 }
 
-.comment-list-item {
-}
-
 .comment-list.diary_article {
     margin-top: 9em;
     width: 42%;
@@ -518,9 +520,7 @@ hr.recomm-underline {
     /* margin: 0; */
 }
 
-comment-list-item img {
-    margin-top: 2em;
-}
+
 
 h2.commenter-name {
     display: inline-block;

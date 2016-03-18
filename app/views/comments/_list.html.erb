@@ -1,12 +1,10 @@
 <div class="comment-list">
-<h4>Comments:</h4>
-
   <% commentable.comments.each do |comment| %>
     <div class="comment-list-item">
       <%= cl_image_tag(comment.user.profile_img, :width=>50, :height=>50, :crop=>:thumb) %>
       <h3 class="commenter-name"><%= comment.user.name %> </h3><h4 class="commenter-info"><%= comment.show_time(comment.created_at) %></h4>
         <hr class="recomm-underline">
-        <p><%= comment.body %></p>
+        <p class="comment-content"><%= comment.body %></p>
 
     </div>
   <% end %>
