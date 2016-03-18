@@ -25,12 +25,22 @@ $(document).on('ready page:load', function() {
       localStorage.setItem("wysiwyg", $content);
       dataText = JSON.stringify($('.editor').html());
       // dataText = ActiveSupport::JSON.decode("{\"content\": $('.editor').html()}")
-      $.ajax({
-        url: $('.new_diary_entry').attr('action'),
-        type: 'POST',
-        dataType: 'json',
-        data: { "content": dataText},
-      });
+      if ($('.new_diary_entry').length > 0) {
+        $.ajax({
+          url: $('.new_diary_entry').attr('action'),
+          type: 'POST',
+          dataType: 'json',
+          data: { "content": dataText},
+        });
+      }
+      else {
+        $.ajax({
+          url: $('.edit_diary_entry').attr('action'),
+          type: 'PUT',
+          dataType: 'json',
+          data: { "content": dataText},
+        });
+      }
       // $('.editor').append('<span class="saved"><i class="fa fa-check"></i></span>').fadeIn(function(){
       //   $(this).find('.saved').fadeOut(500);
       // });
@@ -44,13 +54,23 @@ $(document).on('ready page:load', function() {
 
   $('#first_diary').one('click', function (e) {
     e.preventDefault();
-
-    $.ajax({
-      url: $('.new_diary_entry').attr('action'),
-      type: 'POST',
-      dataType: 'json',
-      data: $('.new_diary_entry').serialize(),
-    });
+    e.stopPropagation();
+    if ($('.new_diary_entry').length > 0) {
+      $.ajax({
+        url: $('.new_diary_entry').attr('action'),
+        type: 'POST',
+        dataType: 'json',
+        data: $('.new_diary_entry').serialize(),
+      });
+    }
+    else {
+      $.ajax({
+        url: $('.edit_diary_entry').attr('action'),
+        type: 'PUT',
+        dataType: 'json',
+        data: $('.edit_diary_entry').serialize(),
+      });
+    }
   });
 
   $('#second_diary').one('click', function (e) {

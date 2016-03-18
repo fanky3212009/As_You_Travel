@@ -64,13 +64,24 @@ class DiaryEntriesController < ApplicationController
   end
 
   def update
-    @diary_entry = DiaryEntry.find(params[:id])
-
-    if @diary_entry.update_attributes(diary_entry_params)
-      redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry)
+    if params.has_key?("content")
+      @diary_entry = DiaryEntry.find(params[:id])
+      @diary_entry.update_attributes({:content => params[:content]})
+      @diary_entry.save
+      render nothing: true, status: 200
     else
-      render :edit
+      @diary_entry = DiaryEntry.find(params[:id])
+
+      if @diary_entry.update_attributes(diary_entry_params)
+        respond_to do |format|
+          format.html {redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry), notice: "Diary successfully created!"}
+          format.json { render nothing: true, status: 200}
+        end
+      else
+        render :edit
+      end
     end
+
   end
 
   def destroy

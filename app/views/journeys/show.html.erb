@@ -62,7 +62,7 @@
               <div class="tag-form">
                 <%= form_for [@journey, Tag.new] do |t| %>
 
-                <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
+                <%= t.text_field :body%>
                 <%= t.hidden_field :taggable_id, :value => @journey.id %>
                 <%= t.hidden_field :taggable_type, :value => @journey.class %>
                 <%= t.hidden_field :user_id, :value => current_user.id %>
@@ -112,7 +112,7 @@
       <% end %>
       <% if current_user == @journey.owner %>
           <div class="edit-journey">
-            <button><%= link_to "Edit", edit_journey_path(@journey) %></button>
+            <button><%= link_to "Edit", edit_journey_path(@journey), :"data-no-turbolink" => true %></button>
           </div>
       <% end %>
   </div>
