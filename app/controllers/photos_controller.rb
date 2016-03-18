@@ -14,7 +14,10 @@ class PhotosController < ApplicationController
       @photo = Photo.new(photo_params)
       @photo.picture = params[:file]
       @photo.save
-
+      if photo_params[:imageable_type] == Journey
+        @journey = journey.find(photo_params[:imageable_id])
+        @journey.set_feat_img
+      end
       render nothing: true, status: 200
     else
       @journey = Journey.last
@@ -37,8 +40,7 @@ class PhotosController < ApplicationController
   def update
     @journey = Journey.find(params[:journey_id])
     @photo = Photo.find(params[:id])
-    @journey.set_feat_img(@photo)
-    @journey.save
+    @journey.set_as_feat_img(@photo)
     redirect_to @journey
     #code
   end
