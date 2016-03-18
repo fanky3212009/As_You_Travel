@@ -2,7 +2,7 @@ json.id @user.id
 
 json.title do
   json.text do
-    json.headline @user.email
+    json.headline @user.name
   end
 
   json.media do
