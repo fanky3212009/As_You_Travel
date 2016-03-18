@@ -48,7 +48,8 @@ class JourneysController < ApplicationController
         @journey = @user.owend_journeys.build(journey_params)
 
         if @journey.save
-          redirect_to @user, notice: "Journey successfully created!"
+          @journey.set_feat_img
+          redirect_to @journey, notice: "Journey successfully created!"
         else
           render :new
         end

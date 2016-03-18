@@ -20,7 +20,12 @@ class Journey < ActiveRecord::Base
   end
 
   def set_feat_img(photo)
-      self.feat_img = photo.picture.url
+    if self.photo_gallery.last
+      self.feat_img = self.photo_gallery.last
+    else
+      self.feat_img = "img_placeholder.png"
+    end
+    self.save
   end
 
   def set_description
