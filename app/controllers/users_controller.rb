@@ -44,6 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        auto_login(@user)
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render :home, status: :created, location: @user }
       else
