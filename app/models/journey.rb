@@ -25,8 +25,10 @@ class Journey < ActiveRecord::Base
   end
 
   def set_feat_img
-    if self.photo_gallery.last
-      self.feat_img = self.photo_gallery.last.picture.public_id
+    if self.feat_img == "img_placeholder.png"
+      if self.photo_gallery.last
+        self.feat_img = self.photo_gallery.last.picture.public_id
+      end
     else
       self.feat_img = "img_placeholder.png"
     end

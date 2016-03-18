@@ -14,8 +14,8 @@ class PhotosController < ApplicationController
       @photo = Photo.new(photo_params)
       @photo.picture = params[:file]
       @photo.save
-      if photo_params[:imageable_type] == Journey
-        @journey = journey.find(photo_params[:imageable_id])
+      if photo_params[:imageable_type] == "Journey"
+        @journey = Journey.find(photo_params[:imageable_id])
         @journey.set_feat_img
       end
       render nothing: true, status: 200
