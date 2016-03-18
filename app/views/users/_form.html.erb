@@ -25,7 +25,10 @@
      <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", class:"login-input"  %>
 
 
-
+    <% if @user.name != nil %>
+    <%= f.submit "Edit", class: "btn_sign_up" %>
+    <% else %>
     <%= f.submit "Sign Up", class: "btn_sign_up" %>
+    <% end %>
 
 <% end %>
