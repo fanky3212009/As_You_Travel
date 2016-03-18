@@ -285,7 +285,6 @@ color: white;
   .journey_article {
     @include span-columns(8);
     position: relative;
-    left: 2em;
   }
 }
 
@@ -413,7 +412,6 @@ color: white;
 }
 
 .comment-form.journey_aside {
-    margin-left: 7em;
     margin-top: 7em;
 }
 

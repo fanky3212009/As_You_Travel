@@ -11,7 +11,7 @@ json.title do
 end
 json.events @user.owend_journeys do |journey|
   json.media do
-    json.url journey.feat_img
+    json.url "http://res.cloudinary.com/frankychau/image/upload/" + journey.feat_img
     json.credit journey.location
   end
 
