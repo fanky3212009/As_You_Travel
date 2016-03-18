@@ -1,28 +1,4 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+As You Travel is a web application designed for users to record their travel stories. Users are able to build
+their own journey with diaries and photos, to share them with others. Personal map and timeline were built to enrich user's treasure memory. This app was built using Ruby on Rails, JavaScript and jQuery, HTML5, SCSS/CSS and Bourbon.
