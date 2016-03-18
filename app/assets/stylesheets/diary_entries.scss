@@ -116,7 +116,7 @@ $red: #F97E76;
     background: $blueDark;
 
     button {
-      float: left;
+      text-align: left;
       @include size(45px);
       background: $blueDark;
       border: none;
@@ -353,16 +353,16 @@ $red: #F97E76;
   @include outer-container(100%);
   .diary_aside {
     @include span-columns(8);
-    margin-left: 9em;
+    margin-left: 4em;
     margin-right: -8em;
   }
   .diary_article {
     @include span-columns(8);
     position: relative;
+    float: right;
   }
 }
 
-.diary-picture img {margin-left: 3em;}
 
 .diary-picture-stat-section {
   height: 100vh;
@@ -419,9 +419,7 @@ $red: #F97E76;
   margin-top: 8em;
 }
 
-.diary-picture img {
-    margin-left: 6em;
-}
+
 
 .diary-stat-name {
     display: inline-block;
@@ -445,8 +443,9 @@ $red: #F97E76;
 
 .diary-content-picture-section .diary-picture img {
     margin-top: 9em;
-
+    margin-left: 11em;
 }
+
 
 .diary-content-picture-section {
     height: 56em;
@@ -538,14 +537,14 @@ h2.commenter-name {
     margin-top: 5em;
   }
 }
-.diary-stat {
-  .diary-tag-form {
-    width: 25%;
-    transform: translateY(2em);
-    margin-left: 1em;
-    display: none;
-  }
+
+.tag-form {
+  width: 25%;
+  transform: translateY(2em);
+  margin-left: 1em;
+  display: none;
 }
+
 
 
 #diary-last-step {

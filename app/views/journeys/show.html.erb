@@ -59,7 +59,7 @@
 
 
 
-              <div class="journey-tag-form">
+              <div class="tag-form">
                 <%= form_for [@journey, Tag.new] do |t| %>
 
                 <%= t.text_field :body, :placeholder => 'Descripe your journey' %>
@@ -73,8 +73,10 @@
           </div>
       </div>
         <% if current_user != @journey.owner%>
-          <div class="recommend">
-            <% if current_user != @user %>
+        <div class="recommend">
+          <% if @journey.tags.where(user_id: current_user.id, body: "recommended").size > 0 %>
+            <button class="recommend-alreday" type="button" name="button">Recommend</button>
+          <% else %>
             <div class="recommend-form">
               <%= form_for [@journey, Tag.new] do |t| %>
               <%= t.hidden_field :body, :value=> 'recommended' %>
@@ -84,10 +86,8 @@
               <%= t.submit "Recommend" %>
               <% end  %>
             </div>
-            <% end %>
-          </div>
-
-          <% if current_user != @user %>
+          <% end %>
+        </div>
         <% if @journey.favourites.where(user_id: current_user.id).length > 0 %>
           <button class="f-already">
             <span class="fa fa-heart">
@@ -108,7 +108,6 @@
             <%= f.button :class => "f-submit" %>
             <% end %>
         <% end %>
-      <% end %>
     <% end %>
   </div>
 

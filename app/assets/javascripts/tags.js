@@ -36,11 +36,11 @@ $(document).on('ready page:load', function () {
 
   $('.add-new-tag').on('click', function (e) {
     e.preventDefault();
-    if ($('.diary-tag-form').css("display") == "block") {
-      $('.diary-tag-form').css("display", "none");
+    if ($('.tag-form').css("display") == "block") {
+      $('.tag-form').css("display", "none");
     }
     else {
-      $('.diary-tag-form').css("display", "block");
+      $('.tag-form').css("display", "block");
     }
   });
 

@@ -123,7 +123,7 @@
 
 
 
-          <div class="diary-tag-form">
+          <div class="tag-form">
             <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
 
             <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
@@ -148,9 +148,12 @@
 
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
-      <p><%= raw @diary_entry.content %></p>
+      <p><%= filter_string(@diary_entry.content) %></p>
       <% if current_user != @diary_entry.journey.owner%>
       <div class="recommend diary-content">
+        <% if @diary_entry.tags.where(user_id: current_user.id, body: "recommended").size > 0 %>
+          <button class="recommend-alreday" type="button" name="button">Recommend</button>
+        <% else %>
         <div class="recommend-form">
           <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
           <%= t.hidden_field :body, :value=> 'recommended' %>
@@ -160,6 +163,7 @@
           <%= t.submit "Recommend" %>
           <% end  %>
         </div>
+        <% end %>
       </div>
       <div class="favourite-diary">
         <% if @diary_entry.favourites.where(user_id: current_user.id).length > 0 %>
