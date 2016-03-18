@@ -172,74 +172,114 @@ $(".previous").click(function(){
   if ($('#journey_path_map').length > 0) {
 
   var mapData = $('#journey_path_map').data('diaries')
-  var map = new GMaps({
-    el: '#journey_path_map',
-    lat: -12.043333,
-    lng: -77.028333,
-    zoom: 13,
-    scrollwheel: false
-  });
-  var styles = [
-    {
-      stylers: [
-        { hue: "#052772" },
-        { saturation: 0 }
-      ]
-    }, {
+  if (mapData.size) {
+    var map = new GMaps({
+      el: '#journey_path_map',
+      lat: -12.043333,
+      lng: -77.028333,
+      zoom: 13,
+      scrollwheel: false
+    });
+    var styles = [
+      {
+        stylers: [
+          { hue: "#052772" },
+          { saturation: 0 }
+        ]
+      }, {
         featureType: "road",
         elementType: "geometry",
         stylers: [
-            { lightness: 100 },
-            { visibility: "simplified" }
-      ]
-    }, {
+          { lightness: 100 },
+          { visibility: "simplified" }
+        ]
+      }, {
         featureType: "road",
         elementType: "labels",
         stylers: [
-            { visibility: "off" }
-      ]
-    }
-  ];
+          { visibility: "off" }
+        ]
+      }
+    ];
 
-  map.addStyle({
+    map.addStyle({
       styledMapName:"Styled Map",
       styles: styles,
       mapTypeId: "map_style"
-  });
+    });
 
-  map.setStyle("map_style");
+    map.setStyle("map_style");
 
-      console.log(mapData[0].title);
+    console.log(mapData[0].title);
 
-  var latlngs = [];
-  for (var i = 0; i < mapData.length; i++) {
-    // latlngs[i].lat = data[i].latitude;
-    // latlngs[i].lng = data[i].longitude;
-    latlngs.push({lat:mapData[i].latitude, lng:mapData[i].longitude, title:mapData[i].title, id:mapData[i].id, journey_id:mapData[i].journey_id})
+    var latlngs = [];
+    for (var i = 0; i < mapData.length; i++) {
+      // latlngs[i].lat = data[i].latitude;
+      // latlngs[i].lng = data[i].longitude;
+      latlngs.push({lat:mapData[i].latitude, lng:mapData[i].longitude, title:mapData[i].title, id:mapData[i].id, journey_id:mapData[i].journey_id})
 
-  }
-  var bounds = [];
-
-  for (var i in latlngs) {
-    var latlng = new google.maps.LatLng(latlngs[i].lat, latlngs[i].lng);
-    bounds.push(latlng);
-    map.addMarker({
-      lat: latlngs[i].lat,
-      lng: latlngs[i].lng,
-      // icon: "<%= asset_path('Map-marker-2-1.png') %>",
-      infoWindow: {
-        content: "<a href= /journeys/" +latlngs[i].journey_id + "/diary_entries/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
-        + '<div class="map-diary-title">' + latlngs[i].title
-        + "<span> GO!</span> </div>"+ "</a>",
-        maxWidth: 200,
-        height:100
-      },
-      animation: google.maps.Animation.DROP
-      // icon: .
     }
-  );
- }
+    var bounds = [];
+
+    for (var i in latlngs) {
+      var latlng = new google.maps.LatLng(latlngs[i].lat, latlngs[i].lng);
+      bounds.push(latlng);
+      map.addMarker({
+        lat: latlngs[i].lat,
+        lng: latlngs[i].lng,
+        // icon: "<%= asset_path('Map-marker-2-1.png') %>",
+        infoWindow: {
+          content: "<a href= /journeys/" +latlngs[i].journey_id + "/diary_entries/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
+          + '<div class="map-diary-title">' + latlngs[i].title
+          + "<span> GO!</span> </div>"+ "</a>",
+          maxWidth: 200,
+          height:100
+        },
+        animation: google.maps.Animation.DROP
+        // icon: .
+      }
+    );
+  }
   map.fitLatLngBounds(bounds);
-}
+  }
+  else {
+    var map = new GMaps({
+      el: '#journey_path_map',
+      lat: mapData.latitude,
+      lng: mapData.longitude,
+      zoom: 10,
+      scrollwheel: false
+    });
+    var styles = [
+      {
+        stylers: [
+          { hue: "#052772" },
+          { saturation: 0 }
+        ]
+      }, {
+        featureType: "road",
+        elementType: "geometry",
+        stylers: [
+          { lightness: 100 },
+          { visibility: "simplified" }
+        ]
+      }, {
+        featureType: "road",
+        elementType: "labels",
+        stylers: [
+          { visibility: "off" }
+        ]
+      }
+    ];
+
+    map.addStyle({
+      styledMapName:"Styled Map",
+      styles: styles,
+      mapTypeId: "map_style"
+    });
+
+    map.setStyle("map_style");
+  }
+  }
 
 });

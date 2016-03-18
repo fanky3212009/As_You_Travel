@@ -197,7 +197,11 @@
 
   </div>
 
-  <div id="journey_path_map" data-diaries="<%=@journey.diary_entries.to_json%>"></div>
+  <% if @journey.diary_entries.size > 0 %>
+    <div id="journey_path_map" data-diaries="<%=@journey.diary_entries.to_json%>"></div>
+  <% else %>
+    <div id="journey_path_map" data-diaries="<%=@journey.to_json%>"></div>
+  <% end %>
 
   <div class="comment-form-list-section">
     <div class="comment-form journey_aside">
