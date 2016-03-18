@@ -704,3 +704,18 @@ h1.new-diary {
     text-align: center;
     font-size: 3em;
 }
+
+.diary_entry_img {
+  border: 12px solid #EFEDE8;
+  border-bottom: 55px solid #EFEDE8;
+  transform: rotate(-5deg);
+  -webkit-box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  box-shadow: 0px 8px 12px -2px rgba(0,0,0,0.75);
+  height: 33em;
+  width: 29em;
+}
+
+.diary_entry_img2 {
+  transform: rotate(5deg);
+}

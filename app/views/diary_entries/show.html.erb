@@ -88,7 +88,11 @@
 <div class="diary-wrapper">
   <div class="diary-picture-stat-section">
     <div class="diary-picture diary_aside">
-      <%= image_tag ('Entries_image_1.png') %>
+      <% if @diary_entry.photos.first %>
+        <%= image_tag(@diary_entry.photos.first.picture.url, :class => "diary_entry_img") %>
+      <% else %>
+      <%= cl_image_tag("img_placeholder.png", :class => "diary_entry_img") %>
+      <% end %>
     </div>
 
     <div class="diary-stats diary_article">
@@ -183,8 +187,11 @@
       <% end %>
     </div>
     <div class="diary-picture diary_article">
-      <%= image_tag ('Entries_image_2.png') %>
-
+      <% if @diary_entry.photos.second %>
+        <%= image_tag(@diary_entry.photos.second.picture.url, :class => "diary_entry_img diary_entry_img2") %>
+      <% else %>
+      <%= cl_image_tag("img_placeholder.png", :class => "diary_entry_img diary_entry_img2") %>
+      <% end %>
     </div>
 
   </div>
