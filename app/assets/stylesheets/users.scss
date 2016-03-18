@@ -825,3 +825,29 @@ ul.navigation li p {
   border: 1px dashed #295ED5;
   height: 9.1em;
 }
+.edit-page-title {
+  margin-top: 5em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 2em;
+}
+.edit_user {
+  width: 33%;
+  margin: auto;
+  input.login-input {
+    margin-bottom: 9%;
+  }
+  input.btn_sign_up {
+    margin: auto;
+    display: block;
+  }
+}
+.edit-profile-photo {
+  .modal .modal-trigger {
+    text-align: center;
+    font-size: 19px;
+    margin-top: 2em;
+    color: #191709;
+  }
+}
