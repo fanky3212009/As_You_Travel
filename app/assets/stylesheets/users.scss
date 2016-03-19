@@ -389,8 +389,6 @@
 ul.navigation{
   @include transition (all 0.5s ease-in-out);
   // display: none;
-  font: $moon-font;
-
   list-style:none;
   padding:0;
   margin:0;

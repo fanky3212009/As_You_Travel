@@ -2,9 +2,9 @@
 
 @import 'bourbon';
 
-@import "base/base";
-
 @import "neat";
+
+@import "base/base";
 
 @import "timeline";
 
@@ -39,6 +39,5 @@
 @import 'diary_index/diary_indexD';
 
 @import "diary_index/component";
-
 
 @import "fonts/font.default.css";

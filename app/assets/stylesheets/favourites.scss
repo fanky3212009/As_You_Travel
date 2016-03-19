@@ -11,7 +11,7 @@
   @include outer-container(100%);
     background-image: url("concrete_seamless.png");
     background-repeat:repeat;
-
+    padding: 8em;
 
 }
 
@@ -20,9 +20,11 @@
   @include flex-wrap(wrap);
   @include justify-content(space-between);
   height: 32em;
-  width: 19%;
   float: left;
-  margin: 7em 7em
+  width: 23.4em;
+  float: left;
+  margin: auto;
+  display: block;
 }
 
 .card {
@@ -49,7 +51,7 @@
   border: $card-border;
   box-shadow: 0 2px 4px darken($base-background-color, 10%);
   cursor: pointer;
-  margin: 0 $card-margin $base-spacing $card-margin;
+  margin: 0 1em 0 0;
   position: relative;
 
 
@@ -107,9 +109,9 @@
   }
 }
 .favourites-title {
-  position: absolute;
   text-align: center;
   width: 100%;
+  margin-bottom: 3em;
 
 }
 
