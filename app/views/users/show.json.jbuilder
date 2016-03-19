@@ -6,7 +6,7 @@ json.title do
   end
 
   json.media do
-    json.url @user.profile_img
+    json.url "http://res.cloudinary.com/frankychau/image/upload/" + @user.profile_img
   end
 end
 json.events @user.owend_journeys do |journey|
