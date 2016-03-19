@@ -3,14 +3,14 @@ $medium-screen: 600px;
 $large-screen: 900px;
 
 // Typography
-$base-font-family: $helvetica;
-// $base-font-family: $font-stack-system;
-$heading-font-family: $base-font-family;
 @font-face {
   font-family: "moon";
   src:font-url('Moon_Bold.otf') format('truetype');
 }
 $moon-font: "moon";
+$base-font-family: $moon-font;
+// $base-font-family: $font-stack-system;
+$heading-font-family: $base-font-family;
 
 // Font Sizes
 $base-font-size: 1em;
