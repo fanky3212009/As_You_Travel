@@ -135,7 +135,6 @@
   </ul>
 <% end %>
 
-
 <div class="homepage-wrapper">
 
   <div class="homepage-first-section">
@@ -150,7 +149,7 @@
         <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
 
         <h3><%= Favourite.most_favourited_diaries.first.journey.owner.name %></h3>
-          <p><%= truncate(Favourite.most_favourited_diaries.first.content, length: 150) %></p>
+          <div class="top-picks-content"><%= filter_string(Favourite.most_favourited_diaries.first.content) %></div>
         <% end %>
       </div>
       <div class="activity-button-container">
@@ -195,7 +194,7 @@
             </div>
             <div class="card-copy">
               <h3><%= f.journey.owner.name %></h3>
-              <p><%= truncate(f.content, length: 150) %></p>
+              <p><%= filter_string(f.content) %></p>
             </div>
           </div>
         </div>
