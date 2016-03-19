@@ -137,11 +137,10 @@
   }
 }
 
-#homepage-diary-toggle{
-  margin: 1em 4em;
-}
 .second-down {
   @include span-columns(16);
+  margin-top: 8em;
+  padding-left: 10%;
 }
 
 .first-left-text {

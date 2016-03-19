@@ -177,7 +177,6 @@
       </div>
     </div>
   </div>
-
   <div class="second-down">
     <dt class="title-single"></dt>
     <dd>
@@ -187,7 +186,7 @@
         <div class="cards" id="homepage-diary-toggle">
           <div class="card">
             <div class="card-image">
-              <%= image_tag (f.photos.sample.picture.thumb.url) %>
+              <%= image_tag (f.photos.sample.picture.url) %>
             </div>
             <div class="card-header">
               <h4><%= f.title %></h4>
@@ -203,6 +202,7 @@
     <% end %>
     </dd>
   </div>
+
 
 </div>
 
