@@ -12,10 +12,17 @@ class UsersController < ApplicationController
       @search_results.sort_by! {|result| result.created_at }
       @search_results.reverse!
 
-    end
-    respond_to do |format|
-      format.html
-      format.js
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    else
+      if current_user.email == "1@1.com"
+        render :index
+      else
+        render file: "#{Rails.root}/public/404.html", layout: false, status: 404
+
+      end
     end
   end
 
