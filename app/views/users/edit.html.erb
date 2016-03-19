@@ -1,33 +1,11 @@
-<h1 class="edit-page-title">Edit My Profile</h1>
 
-<%= render 'form' %>
 
 
 <!--
 <%= link_to 'Show public profile', user_path(@user) %> |
 <%= link_to 'Back', users_path %> -->
+<div class="edit-page-wrapper">
+  <h1 class="edit-page-title">Edit My Profile</h1>
+  <%= render 'form' %>
 
-<div class="edit-profile-photo">
-<div class="modal">
-  <label for="modal-1">
-    <div class="modal-trigger">Add Photos</div>
-  </label>
-  <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal-fade-screen">
-    <div class="modal-inner">
-      <div class="modal-close" for="modal-1"></div>
-      <h1>Click to Add</h1>
-      <div class="photo-form">
-        <%= form_for @user.photos.build, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
-
-        <div class="dropzone-previews"></div>
-        <br>
-        <%= t.hidden_field :imageable_id, :value => @user.id %>
-        <%= t.hidden_field :imageable_type, :value => @user.class %>
-        <% end %>
-      </div>
-
-    </div>
-  </div>
-</div>
 </div>

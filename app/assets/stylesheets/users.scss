@@ -256,6 +256,9 @@
   margin-bottom: 7em;
   position: relative;
   z-index: 99;
+  p {
+    margin-top: 2em;
+  }
 
 }
 
@@ -833,14 +836,10 @@ ul.navigation li p {
   margin-bottom: 2em;
 }
 .edit_user {
-  width: 33%;
+  width: 45%;
   margin: auto;
   input.login-input {
     margin-bottom: 9%;
-  }
-  input.btn_sign_up {
-    margin: auto;
-    display: block;
   }
 }
 .edit-profile-photo {
@@ -848,6 +847,28 @@ ul.navigation li p {
     text-align: center;
     font-size: 19px;
     margin-top: 2em;
-    color: #191709;
+    width: 46%;
+    margin-left: auto;
+    margin-right: auto;
+    color: lightgrey;
+  }
+}
+.edit-page-wrapper {
+  @include outer-container(60%);
+  @include clearfix;
+  background-image: url("dark_embroidery.png");
+  background-repeat: repeat;
+
+}
+.edit-page-wrapper {
+  padding: 2em;
+  .btn_sign_up {
+    color: #fff;
+    background-color: #FFD400;
+    font-size: 1.1em;
+    margin: auto;
+    display: block;
+    margin-top: 2em;
+    margin-bottom: 10%;
   }
 }

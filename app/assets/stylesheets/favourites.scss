@@ -8,7 +8,7 @@
 }
 
 .favourites-wrapper {
-  @include outer-container;
+  @include outer-container(100%);
     background-image: url("concrete_seamless.png");
     background-repeat:repeat;
 
@@ -20,9 +20,9 @@
   @include flex-wrap(wrap);
   @include justify-content(space-between);
   height: 32em;
-  width: 24%;
+  width: 19%;
   float: left;
-  margin: 5em 4em
+  margin: 7em 7em
 }
 
 .card {
@@ -80,6 +80,8 @@
   .card-copy {
     font-size: 0.9em;
     line-height: 1.5em;
+    height: 10.2em;
+    overflow: scroll;
     padding: ($base-spacing / 2) ($base-spacing / 2);
 
     p {

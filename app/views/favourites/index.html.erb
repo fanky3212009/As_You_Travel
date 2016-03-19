@@ -2,8 +2,8 @@
 
 
 
-<h2 class="favourites-title"> All the Favourites</h2>
 <div class="favourites-wrapper">
+<h2 class="favourites-title"> All the Favourites</h2>
   <% if @favourites.length > 0  %>
     <% @favourites.each do |f| %>
     <% if f.favourable.class == Journey %>
@@ -17,8 +17,8 @@
             <h4><%= f.favourable.title %></h4>
           </div>
           <div class="card-copy">
-            <h3><%= f.favourable.owner.email %></h3>
-            <p><%= truncate(f.favourable.description, length: 150) %></p>
+            <h3><%= f.favourable.owner.name %></h3>
+            <p><%= f.favourable.description%></p>
           </div>
         </div>
       </div>
@@ -34,8 +34,8 @@
             <h4><%= f.favourable.title %></h4>
           </div>
           <div class="card-copy">
-            <h3><%= f.favourable.journey.owner.email %></h3>
-            <p><%= truncate(f.favourable.content, length: 150) %></p>
+            <h3><%= f.favourable.journey.owner.name %></h3>
+            <p><%= filter_string(f.favourable.content) %></p>
           </div>
         </div>
       </div>
