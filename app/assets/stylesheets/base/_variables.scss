@@ -8,9 +8,16 @@ $large-screen: 900px;
   src:font-url('Moon_Bold.otf') format('truetype');
 }
 $moon-font: "moon";
-$base-font-family: $moon-font;
+
+@font-face {
+  font-family: "static";
+  src:font-url('Static.otf') format('truetype');
+}
+$static-font: "static";
+
+$base-font-family: $static-font;
 // $base-font-family: $font-stack-system;
-$heading-font-family: $base-font-family;
+$heading-font-family: $moon-font;
 
 // Font Sizes
 $base-font-size: 1em;

@@ -33,7 +33,7 @@
         </div>
         <section class="page page--static">
           <div class="page__title">
-            <h2 class="page__title-main">Journeys</h2>
+            <h2 class="page__title-main"><%= image_tag "journey-title.png" %></h2>
             <h3><% if current_user %>
               <%= link_to 'Add New Journey', new_journey_path, :"data-no-turbolink" => true %>
             <% end %></h3>
