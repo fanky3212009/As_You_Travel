@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  layout "profile"
+  layout "photo_layout"
 
   def index
     @user = User.find(params[:user_id])
