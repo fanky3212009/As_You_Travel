@@ -24,9 +24,9 @@ class TagsController < ApplicationController
     if @tag.save
       if @tag.body != "recommended"
         respond_to do |format|
-        format.html
-        format.js
-      end
+          format.html
+          format.js
+        end
       else
         render nothing: true
       end

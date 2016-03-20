@@ -263,7 +263,7 @@
             <%= link_to journey_diary_entry_path(d.journey, d), :"data-no-turbolink" => true do%>
             <h2><%= d.title %></h2>
             <% end %>
-            <h3><%= d.location%> | <%=d.date %></h3>
+            <h3><%= truncate(d.location, length: 25) %> | <%=d.show_time(d.date) %></h3>
             <div class="stream-content"><%= filter_string(d.content) %></div>
 
           <div class="activity-tags">
