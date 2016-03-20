@@ -33,10 +33,18 @@
         </div>
         <section class="page page--static">
           <div class="page__title">
+
             <h2 class="page__title-main"><%= image_tag "journey-title.png" %></h2>
-            <h3><% if current_user %>
+            <% if current_user == @user %>
+            <div class="activity-button-container page__title-sub">
+              <a class="profile-button" href="<%= new_journey_path %>"></a>
+              <div class = "button-border" ><%= image_tag "journey-btn-addnew.png" %>ADD NEW</div>
+            </div>
+            <% end %>
+            <!-- <h3 class="page__title-main"><% if current_user %>
               <%= link_to 'Add New Journey', new_journey_path, :"data-no-turbolink" => true %>
-            <% end %></h3>
+            <% end %>
+            </h3> -->
           </div>
 
           <% if @journeys.any? %>
