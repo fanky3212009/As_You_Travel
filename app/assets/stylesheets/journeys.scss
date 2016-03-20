@@ -101,7 +101,7 @@ margin-bottom: 20px;
   overflow: hidden;
   counter-reset: step;
   width: 40em;
-  margin-left: -5em;
+  margin-left: -9em;
 }
 #progressbar li {
 list-style-type: none;
@@ -656,4 +656,7 @@ position: relative;
     -webkit-transform: translateY(1em);
     transform: translateY(1em);
   }
+}
+.journey-btn-section {
+  @include span-columns(16);
 }

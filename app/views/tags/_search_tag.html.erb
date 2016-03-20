@@ -1,17 +1,17 @@
 <ol>
 <% @search_results.each do |t| %>
   <% if t.class == DiaryEntry %>
-    <%= link_to [t.journey, t] do%>
     <li>
       <div class="search-result">
+        <%= link_to journey_diary_entry_path(t.journey, t), :"data-no-turbolink" => true do%>
       <h4> "Diary" :</h4>
+      <% end %>
       <p><%= t.title %></p>
       <p><%= t.location %></p>
       </div>
     </li>
-    <% end %>
   <% else %>
-    <%= link_to t do%>
+    <%= link_to t, :"data-no-turbolink" => true do%>
     <li>
       <div class="search-result">
       <h4>"Journey" :</h4>

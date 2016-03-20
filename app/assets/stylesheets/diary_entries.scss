@@ -571,7 +571,7 @@ position: relative;
   box-sizing: border-box;
   width: 150%;
   margin: 0 -26%;
-  height: 60em;
+  height: 55em;
   position: relative;
   .new_diary_entry .field {
     height: 8em;
@@ -632,7 +632,8 @@ margin-bottom: 20px;
   overflow: hidden;
   counter-reset: step;
   width: 74em;
-  margin-left: -22em;
+  margin-left: -26em;
+
 
 }
 #progressbar-diary li {
@@ -655,6 +656,8 @@ color: #333;
 background: white;
 border-radius: 3px;
 margin: 0 auto 5px auto;
+position: relative;
+z-index: 1;
 }
 /*progressbar-diary connectors*/
 #progressbar-diary li:after {
@@ -665,7 +668,7 @@ background: white;
 position: absolute;
 left: -50%;
 top: 9px;
-z-index: -1; /*put it behind the numbers*/
+z-index: 0;
 }
 #progressbar-diary li:first-child:after {
 /*connector not needed before the first step*/
