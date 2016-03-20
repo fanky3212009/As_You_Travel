@@ -521,7 +521,12 @@ font-size: 300;
   margin-top:-.5em;
 
 }
-.top-picks-content {height: 14em;overflow: scroll;}
+.top-picks-content {
+  height: 14em;
+  overflow: scroll;
+  font-size: 17px;
+}
+
 .second-down dd {
   display: none;
   margin: 0;
