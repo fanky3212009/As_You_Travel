@@ -459,6 +459,8 @@ $red: #F97E76;
     }
     .recommend.diary-content {
     float: left;
+    margin-top: 5em;
+    margin-left: 6em;
     }
 }
 
@@ -526,8 +528,9 @@ h2.commenter-name {
     margin-left: 7em;
   }
   .f-already {
-    margin-left: 9em;
-    margin-top: 5em;
+  float: right;
+  margin-top: 2em;
+  margin-right: 5em;
   }
 }
 

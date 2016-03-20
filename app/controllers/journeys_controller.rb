@@ -37,10 +37,15 @@ class JourneysController < ApplicationController
 
   def create
     if journey_params.has_key?("description")
-      @journey = Journey.last
-      @journey.update_attributes(journey_params)
-      @journey.save
-      render nothing: true, status: 200
+      if journey_params[:description].size > 0
+        @journey = Journey.last
+        @journey.update_attributes(journey_params)
+        @journey.save
+        render nothing: true, status: 200
+      else
+        render nothing: true
+        flash[:alert] = "Description Cannot be Blank!"
+      end
     else
 
       if current_user

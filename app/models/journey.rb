@@ -8,7 +8,7 @@ class Journey < ActiveRecord::Base
   has_many :comments, :as => :commentable
   # validates :title, :description, :location, presence: true
 
-
+  validates :title, :location, :start_date, :end_date, presence: true
 
   def photo_gallery
     @photo_gallery = []
