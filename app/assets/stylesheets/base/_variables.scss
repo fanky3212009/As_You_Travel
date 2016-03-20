@@ -6,11 +6,22 @@ $large-screen: 900px;
 $base-font-family: $helvetica;
 // $base-font-family: $font-stack-system;
 $heading-font-family: $base-font-family;
-// @font-face {
-//   font-family: "moon";
-//   src:font-url('Moon_Bold.otf') format('truetype');
-// }
-// $moon-font: "moon";
+
+@font-face {
+  font-family: "moon";
+  src:font-url('Moon_Bold.otf') format('truetype');
+}
+$moon-font: "moon";
+
+@font-face {
+  font-family: "static";
+  src:font-url('Static.otf') format('truetype');
+}
+$static-font: "static";
+
+$base-font-family: $static-font;
+// $base-font-family: $font-stack-system;
+$heading-font-family: $moon-font;
 
 // Font Sizes
 $base-font-size: 1em;
