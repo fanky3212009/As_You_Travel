@@ -9,13 +9,10 @@
 // }
 
 
- #map {
-   width: 400px;
-   height: 400px;
- }
+
 
  #path_map {
-   width: 100%;
+   width: 100% !important;
    height: 750px;
  }
 
@@ -461,9 +458,7 @@ $red: #F97E76;
       width: 80%;
     }
     .recommend.diary-content {
-    margin-left: 5em;
-    position: relative;
-    top: 15em;
+    float: left;
     }
 }
 
@@ -528,8 +523,7 @@ h2.commenter-name {
 
 .diary-content .favourite-diary {
   .no-f-yet {
-    margin-left: 9em;
-    margin-top: 5em;
+    margin-left: 7em;
   }
   .f-already {
     margin-left: 9em;
@@ -724,6 +718,9 @@ h1.new-diary {
   text-align: center;
   margin-top: 10%;
 }
-.diary-content-left p {
+.diary-content-left {
+  mmargin-bottom: 10%;
+   p {
     font-size: 1.3em;
+  }
 }

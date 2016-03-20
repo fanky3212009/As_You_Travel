@@ -146,7 +146,7 @@
       </div>
       <div class="first-left-text">
         <% if Favourite.most_favourited_diaries.first != nil %>
-        <strong><%= Favourite.most_favourited_diaries.first.title %></strong>
+        <strong><%= link_to Favourite.most_favourited_diaries.first.title, journey_diary_entry_path(Favourite.most_favourited_diaries.first.journey, Favourite.most_favourited_diaries.first ) %></strong>
 
         <h3><%= Favourite.most_favourited_diaries.first.journey.owner.name %></h3>
           <div class="top-picks-content"><%= filter_string(Favourite.most_favourited_diaries.first.content) %></div>
@@ -154,7 +154,7 @@
       </div>
       <div class="activity-button-container">
 
-        <button id="home-top-picks"class="profile-button" href="">VIEW ALL</button>
+        <button id="home-top-picks"class="profile-button">VIEW ALL</button>
         <a href=>
           <div class = "button-border" >VIEW ALL</div>
         </a>
@@ -263,7 +263,7 @@
         <div class="feature-user-info">
           <% if Favourite.most_favourable_user[0] != nil %>
         <%= cl_image_tag(Favourite.most_favourable_user[0].profile_img) %>
-          <%= link_to Favourite.most_favourable_user[0] do  %>
+          <%= link_to Favourite.most_favourable_user[0], :"data-no-turbolink" => true do  %>
         <h3><%= Favourite.most_favourable_user[0].name%></h3>
         <% end %>
         <% end %>
@@ -274,7 +274,7 @@
         <div class="feature-user-info">
           <% if Tag.most_recommended_user[0] != nil %>
           <%= cl_image_tag(Tag.most_recommended_user[0].profile_img) %>
-          <%= link_to Tag.most_recommended_user[0] do  %>
+          <%= link_to Tag.most_recommended_user[0], :"data-no-turbolink" => true do  %>
         <h3><%= Tag.most_recommended_user[0].name %></h3>
           <% end %>
         <% end %>
@@ -285,7 +285,7 @@
         <% if Relationship.most_followed_user[0] != nil %>
         <div class="feature-user-info">
         <%= cl_image_tag(Relationship.most_followed_user[0].profile_img) %>
-          <%= link_to Relationship.most_followed_user[0] do %>
+          <%= link_to Relationship.most_followed_user[0], :"data-no-turbolink" => true do %>
         <h3><%= Relationship.most_followed_user[0].name %></h3>
         <% end %>
         </div>
