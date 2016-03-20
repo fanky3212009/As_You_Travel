@@ -159,7 +159,7 @@ html body {
       <div class="activity-button-container">
 
         <button id="home-top-picks"class="profile-button">VIEW ALL</button>
-        <a href=>
+        <a href>
           <div class = "button-border" >VIEW ALL</div>
         </a>
 
@@ -227,7 +227,11 @@ html body {
     <div class="up-right">
       <p class="moon-light">FIND OUT WHAT'S HAPPENING</p>
       <h1>NEAR YOU.</h1>
-      <%= button_tag "Find stories happened near me", id: "search_nearby" %>
+
+      <button id="search_nearby" class="profile-button">SEARCH NEARBY</button>
+      <a href>
+        <div id="search_nearby" class = "button-border" >SEARCH NEARBY</div>
+      </a>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
         <%= text_field_tag :search, params[:search], :placeholder => "Search" %>
         <%= submit_tag "Search", :style => "display: none;" %>

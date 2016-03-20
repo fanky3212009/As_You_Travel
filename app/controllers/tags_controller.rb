@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   def index
     if params[:search]
-      @tags = Tag.where("lower(body) LIKE ?", params[:search].downcase)
+      @tags = Tag.where("lower(body) LIKE ?", "%#{params[:search].downcase}%")
       @search_results = []
       @tags.each { |t| @search_results << t.taggable }
 
