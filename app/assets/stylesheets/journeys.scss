@@ -569,3 +569,33 @@ color: white;
 .edit-journey a {
     color: white !important;
 }
+.hero-journey {
+  $base-border-radius: 3px !default;
+  // $action-color: #477DCA !default;
+  $large-screen: em(860) !default;
+  $hero-background-top: #7F99BE;
+  $hero-background-bottom: #20392B;
+  $hero-color: white;
+  $gradient-angle: 10deg;
+  $background-image: 'journey-slider.jpg';
+
+
+  @include background(url(asset-path($background-image)), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+  background-color: #324766;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // padding-bottom: 3em;
+  margin-top: -4.6em;
+  height: 70%;
+  // margin-bottom: 8em;
+
+  @include transform(translateY(50px));
+}
+
+#j-navi-logout {
+  margin-top: 4.2em;
+  position: fixed;
+  z-index: 1000;
+  right: 5em;
+}

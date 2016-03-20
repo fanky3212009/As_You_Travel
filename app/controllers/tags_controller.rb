@@ -22,7 +22,6 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
 
     if @tag.save
-      # @tag_name = @tag.name
       if @tag.body != "recommended"
         respond_to do |format|
         format.html
@@ -30,9 +29,9 @@ class TagsController < ApplicationController
       end
       else
         render nothing: true
-
       end
-
+    else
+      flash[:error] = "Body Can't be Blank!"
     end
 
   end

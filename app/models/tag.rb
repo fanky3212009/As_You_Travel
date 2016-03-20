@@ -3,7 +3,7 @@ class Tag < ActiveRecord::Base
   belongs_to :user
 
 
-  validates :body, uniqueness: true
+  validates :body, presence: true, length: { minimum: 1 }
 
   def self.most_recommended_user
     most_recommended_stat = Tag.where("body LIKE ?", "recommended").group(:taggable_type, :taggable_id).count().sort_by{|k, v| v}.reverse.first
