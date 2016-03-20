@@ -421,17 +421,18 @@ font-size: 300;
 }
 
 .diary-stat.homepage-stat {
-    transform: translateY(5em);
+    transform: translateY(12em);
 }
 
 .diary-stat.homepage-stat.content {
     left: 1em;
 }
 .diary-stat.slider-content {
-    margin-top: 17em;
+    margin-top: 16em;
     height: 7em;
-    overflow: scroll;
+    overflow-y: scroll;
     font-size: 1.1em;
+    line-height: 1.4em;
 }
 .diary-stats.homepage-slider {position: relative;top: -11em;}
 
@@ -441,7 +442,7 @@ font-size: 300;
 .homepage-slider-btn {
     position: relative;
     left: 1em;
-    top: 3em;
+
 }
 
 .first-left-text strong {

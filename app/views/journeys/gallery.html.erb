@@ -17,41 +17,45 @@ body {
   <h2><%= @journey.show_time(@journey.start_date) %> - <%= @journey.show_time(@journey.end_date) %> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<%= @journey.location %></h2>
 </div>
 
-<div class="modal">
-  <label for="modal-1">
-    <div class="modal-trigger">Add Photos</div>
-  </label>
-  <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal-fade-screen">
-    <div class="modal-inner">
-      <div class="modal-close" for="modal-1"></div>
-      <h1>Click to Add</h1>
-      <div class="photo-form">
-        <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
 
-        <!-- <%= t.label :name  %>
-        <br>
-        <%= t.text_field :name %> -->
-        <div class="dropzone-previews"></div>
-        <br>
-        <%= t.hidden_field :imageable_id, :value => @journey.id %>
-         <%= t.hidden_field :imageable_type, :value => @journey.class %>
-        <% end  %>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 
   <div class="gallery-container">
+
+      <div class="modal">
+        <label for="modal-1">
+          <div class="modal-trigger">  <div class="add-new-photo">
+              <%= cl_image_tag("add_new.png") %>
+            </div></div>
+        </label>
+        <input class="modal-state" id="modal-1" type="checkbox" />
+        <div class="modal-fade-screen">
+          <div class="modal-inner">
+            <div class="modal-close" for="modal-1"></div>
+            <h1>Click to Add</h1>
+            <div class="photo-form">
+              <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+
+              <!-- <%= t.label :name  %>
+              <br>
+              <%= t.text_field :name %> -->
+              <div class="dropzone-previews"></div>
+              <br>
+              <%= t.hidden_field :imageable_id, :value => @journey.id %>
+               <%= t.hidden_field :imageable_type, :value => @journey.class %>
+              <% end  %>
+            </div>
+          </div>
+        </div>
+      </div>
   <% @journey.photo_gallery.each do |p| %>
   <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= cl_image_tag(p.picture.url, :width=>250, :height=>250, :crop=>:fill) %></a>
 
 
   <div class="img_large" id="inline<%= p.id %>">
 
-    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fill) %>
+    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fit) %>
 
     <%= button_to "Set journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
 
