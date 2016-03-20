@@ -1,0 +1,112 @@
+<html>
+<head>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>FinalProject</title>
+  <%= stylesheet_link_tag    "//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css"%>
+  <%= stylesheet_link_tag "//fonts.googleapis.com/css?family=Caveat:400,700"  %>
+  <%= stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_maps_api_key']}" %>
+
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+  <div id="nav-user-favourites">
+    <% if current_user %>
+      Hello ! <%= current_user.name %> | <%= link_to "Edit Profile", edit_user_path(current_user.id), :"data-no-turbolink" => true %>
+      <%= link_to "Logout", :logout, method: :post, :"data-no-turbolink" => true %>
+    <% else %>
+      <%= link_to "Sign Up", :login, :"data-no-turbolink" => true %> |
+      <%= link_to "Login", :login, :"data-no-turbolink" => true %>
+    <% end %>
+  </div>
+
+  <div>
+    <p id="notice"><%= flash[:notice] %></p>
+    <p id="alert"><%= flash[:alert] %></p>
+  </div>
+
+  <div class="hero-favourites">
+    <div class="logo">
+      <%= link_to root_url do%>
+      <%= image_tag ("logo-blue.png")  %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <ul class="navigation">
+    <li>
+      <%= link_to current_user, :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-profile.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-profile-hover.png"%>
+        <p>My Profile</p>
+      </div>
+    <% end %>
+  </li>
+
+    <li>
+      <%= link_to user_journeys_path(current_user), :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-Journey.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+          <p>My Journey</p>
+        </div>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to user_photos_path(current_user), :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+        <p>Gallery</p>
+      </div>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to new_journey_path, :"data-no-turbolink" => true do  %>
+      <span>
+      <%=  image_tag "MenuBar-icon-timeline.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+        <p>New Journey</p>
+      </div>
+      <% end %>
+  </li>
+
+    <li>
+      <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-favorites.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+        <p>Favourites</p>
+      </div>
+      <% end %>
+  </li>
+    <!-- <li><a href="#contact">
+      <img src="./images/contact.png" />
+    </a></li> -->
+  </ul>
+
+<%= yield %>
+
+</body>
+</html>

@@ -50,7 +50,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 3em;
-  height: 60em;
+  height: 95%;
   margin-top: -6em;
   // margin-bottom: 8em;
 
@@ -271,39 +271,37 @@
     text-align: left;
     .counter1 {
       border-bottom: 1px solid white;
-      height: 4.5em;
+      height: 3em;
       width: 76%;
       margin: auto;
-      line-height: 4em;
-      font-family: fantasy;
+      line-height: 3em;
+      font-family: static;
       font-size: 17px;
-      padding: 1em;
       color: white;
-      font-size: large;
+      font-size: 1.7em;
+
 
       strong {
         margin: 0 1em;
         color: #295ED5;
         font-family: monospace;
-        font-size: 2em;
+        font-size: 1em;
       }
     }
     .counter2 {
-      border-bottom: 1px solid white;
-      height: 4.5em;
-      width: 90%;
+      height: 3em;
+      width: 76%;
       margin: auto;
-      line-height: 4em;
-      font-family: fantasy;
+      line-height: 3em;
+      font-family: static;
       font-size: 17px;
-      padding: 1em;
       color: white;
-      font-size: large;
+      font-size: 1.7em;
       strong {
         margin: 0 1em;
         color: #295ED5;
         font-family: monospace;
-        font-size: 2em;
+        font-size: 1em;
       }
     }
   }

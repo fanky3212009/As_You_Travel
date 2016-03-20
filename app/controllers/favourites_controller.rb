@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  layout 'profile', only: [:index]
+  layout 'favourites_layout', only: [:index]
 
 
   def index
