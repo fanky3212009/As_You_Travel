@@ -48,9 +48,9 @@
           <div class="activity-tags">
              <% @journey.tags.each do |tag| %>
                 <% if tag.body != "recommended" %>
-                <span>
+                <div class="listing-tag">
                     <%= tag.body %>
-                </span>
+                </div>
                   <% end %>
             <% end %>
 

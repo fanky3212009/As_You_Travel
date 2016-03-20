@@ -54,8 +54,8 @@ body {
 
     <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fit) %>
 
-    <h3><%= p.name %></h3>
-    <%= button_to "Set as journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
+    <%= button_to "Set journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
+
 
     <%= render partial: 'comments/list', locals: { commentable: p } %>
 

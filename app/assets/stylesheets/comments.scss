@@ -8,3 +8,25 @@
   margin-top: 1em !important;
   border-radius: 50%;
 }
+
+
+.fancybox-inner {
+
+  .commenter-name {
+    color: #314CD7;
+    margin-right: 1em;
+    font-size: 1.3em;
+    margin: 0;
+  }
+  .commenter-info {
+    font-size: 1em;
+    margin: 0;
+  }
+  .recomm-underline {
+    margin:0.7em;
+  }
+  .comment-list-item {
+    height:13%;
+    border: none;
+  }
+}

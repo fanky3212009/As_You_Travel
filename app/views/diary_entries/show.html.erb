@@ -32,7 +32,7 @@
     </li>
 
       <li>
-        <%= link_to user_journeys_path(@user) do %>
+        <%= link_to user_journeys_path(@user), :"data-no-turbolink" => true do %>
           <span>
           <%=  image_tag "MenuBar-icon-Journey.png"  %>
           </span>
@@ -44,7 +44,7 @@
       </li>
 
       <li>
-        <%= link_to user_photos_path(current_user) do %>
+        <%= link_to user_photos_path(current_user), :"data-no-turbolink" => true do %>
         <span>
         <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
         </span>
@@ -68,7 +68,7 @@
     </li>
 
       <li>
-        <%= link_to user_favourites_path(current_user) do %>
+        <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
         <span>
         <%=  image_tag "MenuBar-icon-favorites.png"  %>
         </span>
@@ -104,7 +104,7 @@
       <div class="diary-stat">
         <%= image_tag ('Entries_icon_time.png') %>
         <h3 class="diary-stat-name">DATE</h3>
-        <p class="diary-stat-content"><%= @diary_entry.date %></p>
+        <p class="diary-stat-content"><%= @diary_entry.show_time(@diary_entry.date)%></p>
       </div>
       <div class="diary-stat">
         <%= image_tag ('Entries_icon_tag.png') %>
@@ -112,9 +112,9 @@
         <div class="activity-tags">
            <% @diary_entry.tags.each do |tag| %>
               <% if tag.body != "recommended" %>
-              <span>
+              <div class="listing-tag">
                   <%= tag.body %>
-              </span>
+              </div>
                 <% end %>
           <% end %>
 

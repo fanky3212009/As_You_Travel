@@ -31,6 +31,7 @@ class TagsController < ApplicationController
         render nothing: true
       end
     else
+      render nothing: true
       flash[:error] = "Body Can't be Blank!"
     end
 

@@ -5,6 +5,7 @@
   @include outer-container(80%);
   @include clearfix;
   margin: auto;
+  margin-top: 6%;
 }
 .follow-user-profileimg{
   @include span-columns(3);
