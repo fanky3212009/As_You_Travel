@@ -70,6 +70,12 @@ $(document).on('ready page:load', function () {
 
   });
 
+  $('.recommend-form').on('click', function () {
+    $('.new_tag input[type="submit"]').css('background-color', 'grey');
+    $('.new_tag input[type="submit"]').css('color', 'blue');
+    $('.new_tag input[type="submit"]').css('cursor', 'no-drop');
+  })
+
   // $('.tab-link').on('click', function (e) {
   //
   //   $('#search_tag').trigger('submit');

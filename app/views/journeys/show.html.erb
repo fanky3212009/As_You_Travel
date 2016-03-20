@@ -134,7 +134,7 @@
     </li>
 
       <li>
-        <%= link_to user_journeys_path(current_user) do %>
+        <%= link_to user_journeys_path(current_user), :"data-no-turbolink" => true do %>
           <span>
           <%=  image_tag "MenuBar-icon-Journey.png"  %>
           </span>
