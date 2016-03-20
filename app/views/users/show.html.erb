@@ -19,71 +19,6 @@
 
 </div>
 
-<!-- <ul class="navigation">
-
-  <li>
-    <%= link_to user_url(current_user) do %>
-    <span>
-    <%=  image_tag "MenuBar-icon-profile.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-profile-hover.png"%>
-      <p>My Profile</p>
-    </div>
-    <% end %>
-  </li>
-
-  <li>
-    <%= link_to user_journeys_path(current_user) do %>
-      <span>
-      <%=  image_tag "MenuBar-icon-Journey.png"  %>
-      </span>
-      <div class="menu-out">
-        <%= image_tag "MenuBar-icon-Journey-hover.png"%>
-        <p>My Journey</p>
-      </div>
-    <% end %>
-  </li>
-
-  <li>
-    <%= link_to user_photos_path(current_user) do %>
-    <span>
-    <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
-      <p>Gallery</p>
-    </div>
-    <% end %>
-  </li>
-
-  <li><a href="#blog">
-    <span>
-    <%=  image_tag "MenuBar-icon-timeline.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-timeline-hover.png"%>
-      <p>My Timeline</p>
-    </div>
-  </a></li>
-
-  <li>
-    <%= link_to user_favourites_path(current_user) do %>
-    <span>
-    <%=  image_tag "MenuBar-icon-favorites.png"  %>
-    </span>
-    <div class="menu-out">
-      <%= image_tag "MenuBar-icon-favorites-hover.png"%>
-      <p>Favourites</p>
-    </div>
-    <% end %>
-  </li>
-  <!-- <li><a href="#contact">
-    <img src="./images/contact.png" />
-  </a></li> -->
-<!-- </ul> -->
-
-
 
 <span class="nav-link">
 
@@ -280,47 +215,7 @@
         </div>
         <% end %>
       <% end %>
-<!--
-      <div class="user-diary-activity">
-        <div class="activity-title">
-          <h2>Trip to India</h2>
-          <h3>Location, Date</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-          <div class="activity-tags">
-              <span>Tag</span>
-              <span>Tag</span>
-              <span>Tag</span>
-          </div>
-
-        </div>
-      </div>
-      <div class="user-diary-activity">
-        <div class="activity-title">
-          <h2>Trip to India</h2>
-          <h3>Location, Date</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <div class="activity-tags">
-            <span>Tag</span>
-            <span>Tag</span>
-            <span>Tag</span>
-        </div>
-        </div>
-      </div>
-      <div class="user-diary-activity">
-        <div class="activity-title">
-          <h2>ip to India</h2>
-          <h3>Location, Date</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-          <div class="activity-tags">
-              <span>Tag</span>
-              <span>Tag</span>
-              <span>Tag</span>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="activity-button-container">
       <a class="profile-button" href="<%= user_journeys_path(@user) %>">VIEW ALL</a>
       <div class = "button-border" >VIEW ALL</div>
@@ -336,31 +231,6 @@
     <%= image_tag "profile-graphic_MountainLowPoy.png" %>
   </div>
 </div>
-
-<!--
-    <p>
-      <strong>Email:</strong>
-      <%= @user.email %>
-    </p>
-
-      <br>
-
-
-
-
-
-    <br>
-
-  <div class="user-journey-list">
-  <% @user.owend_journeys.each do |journey| %>
-    <div class="user-journey">
-    <%= link_to journey.title, journey, :"data-no-turbolink" => true %>
-    </div>
-  <% end %>
-  </div> -->
-
-  <!-- <br>
-  <h3><%= link_to "My Favourites", user_favourites_path(current_user) %></h3> -->
 
   <div class="hidden-map">
   <a id="demo01" href="#animatedModal">My Path</a>
