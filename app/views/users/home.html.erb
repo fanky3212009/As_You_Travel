@@ -225,7 +225,8 @@ html body {
         </div>
     </div>
     <div class="up-right">
-      <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
+      <p class="moon-light">FIND OUT WHAT'S HAPPENING</p>
+      <h1>NEAR YOU.</h1>
       <%= button_tag "Find stories happened near me", id: "search_nearby" %>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
         <%= text_field_tag :search, params[:search], :placeholder => "Search" %>

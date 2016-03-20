@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     if params[:search]
-      @search_results = DiaryEntry.where("title LIKE ?", params[:search].downcase)
-      @search_results = @search_results.concat(Journey.where("title LIKE ?", params[:search].downcase))
+      @search_results = DiaryEntry.where("lower(title) LIKE ?", params[:search].downcase)
+      @search_results = @search_results.concat(Journey.where("lower(title) LIKE ?", params[:search].downcase))
       @search_results.sort_by! {|result| result.created_at }
       @search_results.reverse!
 
