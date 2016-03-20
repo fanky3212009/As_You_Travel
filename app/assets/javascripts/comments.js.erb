@@ -14,7 +14,7 @@ $(document).on('ready page:load', function () {
 
       success: function (data) {
         console.log(this);
-        var comment = '<div class="comment-list-item">' + '<img src="http://res.cloudinary.com/frankychau/image/upload/c_thumb,h_100,w_100/' + data.comment.user.profile_img +'" >' + '<h2 class="commenter-name">' + data.comment.user.name + '</h2> <h4 class="commenter-info">' +
+        var comment = '<div class="comment-list-item">' + '<img src="http://res.cloudinary.com/frankychau/image/upload/c_thumb,h_50,w_50/' + data.comment.user.profile_img +'" >' + '<h2 class="commenter-name">' + data.comment.user.name + '</h2> <h4 class="commenter-info">' +
                       data.comment.created_at + '</h4>' + '<hr class="recomm-underline">' + '<p>' +
                      data.comment.body + '</p>'+ '</div>';
         $(commentList).append(comment);
