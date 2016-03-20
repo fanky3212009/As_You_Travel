@@ -145,14 +145,15 @@
 }
 
 .first-left-text {
+  font-family: static;
   margin-top: 2em;
+  font-size: 17px;
  p {
    margin-top: 1em;
    font-size: 1.2em;
    line-height: 2em;
    color: black;
   }
-
 }
 .first-img {
   position: relative;
@@ -465,12 +466,11 @@ font-size: 300;
     margin-left: 2em;
     border: 3px solid #7CA7DE;
     p {
-    font-family: fantasy;
+    font-family: "static";
     font-size: 1.6em;
     line-height: 1.6em;
     text-align: center;
     margin-top: 0.6em;
-    text-shadow: 7px 7px 8px rgba(144, 150, 150, 0.99);
     color: black;
     }
 }
@@ -481,16 +481,17 @@ font-size: 300;
     img {
       width: 60%;
       position: relative;
-      left: 3em;
+      left: 2em;
       top: 1em;
     }
     h3 {
       position: relative;
-      left: 2.2em;
+      left: 1.7em;
       top: 0.7em;
       font-size: 18px;
       margin-bottom: 2em;
       color: #295ED5;
+      font-family: moon;
     }
 }
 
@@ -521,7 +522,12 @@ font-size: 300;
   margin-top:-.5em;
 
 }
-.top-picks-content {height: 14em;overflow: scroll;}
+.top-picks-content {
+  height: 14em;
+  overflow: scroll;
+  font-size: 17px;
+}
+
 .second-down dd {
   display: none;
   margin: 0;

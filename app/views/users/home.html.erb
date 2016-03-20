@@ -268,7 +268,7 @@ html body {
           <% if Favourite.most_favourable_user[0] != nil %>
         <%= cl_image_tag(Favourite.most_favourable_user[0].profile_img) %>
           <%= link_to Favourite.most_favourable_user[0], :"data-no-turbolink" => true do  %>
-        <h3><%= Favourite.most_favourable_user[0].name%></h3>
+        <h3><%= truncate(Favourite.most_favourable_user[0].name, length: 10)%></h3>
         <% end %>
         <% end %>
         </div>
