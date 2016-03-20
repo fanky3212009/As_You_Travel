@@ -2,15 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .each-gallery {
-  width: 18em;
-  height: 18em;
-  margin: 1em;
+  margin: 1.1em;
   display: inline-block;
-  border: 2px solid;
   text-align: center;
-  -webkit-box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
-  box-shadow: 20px -4px 24px -7px rgba(0, 0, 0, 0.75);
   img {
     display: block;
     margin: auto;
@@ -47,18 +41,21 @@
 }
 
 .img_small img {
-  width: 20em;
+  width: 257px;
 
 }
 
 .gallery-container {
     margin: 14em;
     margin-top: 4em;
+    padding-left: 1em;
 }
 .gallery-wrapper {
   background-image: url("concrete_seamless.png");
   background-repeat:repeat;
   padding-bottom: 10em;
+  margin-top: 3.8em;
+
 }
 
 .img_large{
@@ -272,4 +269,28 @@ a.fancybox-nav.fancybox-prev {
   // margin-bottom: 8em;
 
   @include transform(translateY(50px));
+}
+.gallery-title {
+  padding-top: 7em;
+  text-align: center;
+}
+.each-gallery img {
+    border: 15px solid #FFFFFF;
+    text-align: center;
+    height: 300px;
+    width: 310px;
+}
+.img-title {
+    margin-top: 1em;
+    font-size: 1.5em;
+}
+.photo-gallery-title {
+  h1 {
+    font-size: 2em;
+    color: #295ED5;
+  }
+  h2 {
+    font-family: static;
+    color: #87B4ED;
+  }    
 }

@@ -13,9 +13,8 @@ body {
 <div class="gallery-wrapper">
 
 <div class="photo-gallery-title">
-  <h1><%= @journey.title %>'s Photo Gallery</h1>
-  <h2><%= @journey.show_time(@journey.start_date) %> - <%= @journey.show_time(@journey.end_date) %></h2>
-  <h2><%= @journey.location %></h2>
+  <h1><%= @journey.title %></h1>
+  <h2><%= @journey.show_time(@journey.start_date) %> - <%= @journey.show_time(@journey.end_date) %> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<%= @journey.location %></h2>
 </div>
 
 <div class="modal">
@@ -52,7 +51,7 @@ body {
 
   <div class="img_large" id="inline<%= p.id %>">
 
-    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fit) %>
+    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fill) %>
 
     <%= button_to "Set journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
 

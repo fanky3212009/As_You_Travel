@@ -1,6 +1,6 @@
 class JourneysController < ApplicationController
 
-  layout "journey_layout", only: [:index, :gallery]  # except: [:index]
+  layout "photo_layout", only: [:gallery]
 
   before_action :set_journey, only: [:show, :edit, :update, :destroy, :gallery]
   before_action :require_login, only: [:edit, :new, :create, :update, :destroy]
@@ -10,7 +10,7 @@ class JourneysController < ApplicationController
       @journeys = @user.owend_journeys
 
       respond_to do |format|
-        format.html
+        format.html {  render layout: "journey_layout"}
         format.json { render json: @journeys }
       end
 
