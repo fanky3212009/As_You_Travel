@@ -110,7 +110,7 @@
             <% end %>
         <% end %>
       <% end %>
-    
+
   </div>
 </div>
 
@@ -195,12 +195,13 @@
   </div>
 
   <div class="journey-diaries-section">
-
+    <% if current_user == @journey.owner %>
     <div class="new_diary_entry_block diary_entry_block">
       <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
         <%= cl_image_tag("add_new.png") %>
       <% end %>
     </div>
+    <% end %>
     <% if @journey.diary_entries.any? %>
       <%= render @diary_entries %>
     <% end %>

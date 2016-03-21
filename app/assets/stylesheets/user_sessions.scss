@@ -603,9 +603,12 @@ font-size: 300;
         h1 {
           font-family: moon;
           font-size: 2em;
+          color: #295ED5
         }
         p {
           line-height: 1.5em;
+          font-size: 18px;
+          color: black;
         }
       }
     }
@@ -629,6 +632,11 @@ font-size: 300;
           h1 {
             font-family: moon;
             font-size: 2em;
+            color: #295ED5
+          }
+          p {
+            font-size: 18px;
+            color: black;
           }
       }
     }
@@ -665,6 +673,11 @@ font-size: 300;
         h1 {
           margin-bottom: 0.5em;
           font-size: 2em;
+          color: #295ED5
+        }
+        p {
+          font-size: 18px;
+          color: black;
         }
       }
 
@@ -690,6 +703,11 @@ font-size: 300;
             font-family: moon;
             font-size: 2em;
             margin-bottom: 0.3em;
+            color: #295ED5
+          }
+          p {
+            font-size: 18px;
+            color: black;
           }
       }
     }

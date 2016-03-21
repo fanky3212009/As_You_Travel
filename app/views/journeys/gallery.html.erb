@@ -22,7 +22,7 @@ body {
 
 
   <div class="gallery-container">
-
+    <% if current_user == @journey.owner %>
       <div class="modal">
         <label for="modal-1">
           <div class="modal-trigger">  <div class="add-new-photo">
@@ -47,6 +47,7 @@ body {
           </div>
         </div>
       </div>
+    <% end %>
   <% @journey.photo_gallery.each do |p| %>
   <a class="fancybox img_small" href="#inline<%= p.id %>" title="<%= p.name %>" data-fancybox-group="gallery"><%= cl_image_tag(p.picture.url, :width=>250, :height=>250, :crop=>:fill) %></a>
 

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   layout "profile", except: [:index, :home, :new, :edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy, :followings, :followers]
-  before_action :require_login, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_action :require_login, only: [:edit, :update, :destroy, :following, :followers]
 
 
   def index
@@ -17,11 +17,10 @@ class UsersController < ApplicationController
         format.js
       end
     else
-      if current_user.email == "1@1.com"
+      if current_user && current_user.email == "1@1.com"
         render :index
       else
         render file: "#{Rails.root}/public/404.html", layout: false, status: 404
-
       end
     end
   end
