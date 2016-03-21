@@ -10,7 +10,7 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $background-image: 'hp-sliderbg-1.jpg';
+  $background-image: 'hp-slider-bg.jpg';
 
 
   @include background(url(asset-path($background-image)), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
@@ -20,61 +20,43 @@
   background-size: cover;
   padding-bottom: 3em;
   // height: 90%;
-  padding-bottom: 44%;
+  padding-bottom: 10%;
   margin-top: -7em;
 
   @include transform(translateY(50px));
 
-  .hero-logo {
-    margin-bottom: 1em;
-    border-radius: 50%;
-    color: grey;
-    background-color: #B5B5B5;
-    height: 10em;
-    margin: auto;
-    border: 2px solid;
-    width: 13%;
-    margin-top: -11em;
-    overflow: hidden;
-    img {
-      margin-top: -0.3em;
-      height: 10.5em;
-      width: 10em;
-    }
-  }
-
-
   .logo {
     img {
-      margin:1.5em;
+      margin:1.9em;
       transform: translateY(1em);
     }
   }
 
-  .hero-inner {
+  .home-slider-inner {
     @include outer-container;
     @include clearfix;
     margin: auto;
-    padding: 10em;
-    text-align: center;
+    text-align: left;
+    margin-top: 2em;
+    .home-slider-create {
+      margin-left: -12em;
+    }
 
-    .hero-copy {
-      text-align: center;
+    h1 {
+      margin: 0;
+      width: 25%;
+      font-size: 4em;
+      color: white;
+
+      @include media($large-screen) {
+        // font-size: 1.8em;
+      }
+    }
+    .home-slider-copy {
+      text-align: left;
+      width: 15%;
       margin-top: 2em;
 
-      .diary-title {
-        font-size: 4.8em;
-      }
-
-      h1 {
-        color: $hero-color;
-        font-size: 1.6em;
-        margin-bottom: 0.5em;
-
-        @include media($large-screen) {
-          font-size: 1.8em;
-        }
-      }
 
       p {
         color: $hero-color;
@@ -83,8 +65,8 @@
 
 
         @include media($large-screen) {
-          font-size: 1.1em;
-          max-width: 40%;
+        //   font-size: 1.1em;
+        //   max-width: 40%;
         }
       }
     }
@@ -596,7 +578,7 @@ font-size: 300;
   @include outer-container(100%);
   @include clearfix;
   background-color: #E1ECFC;
-  margin-top: 4em;
+  margin-top: 3.8em;
   padding-bottom: 10em;
   .homepage-top-one {
     @include span-columns(16);
