@@ -1,5 +1,6 @@
 <% @user ||= current_user %>
 <div class="stats">
+  [&nbsp;&nbsp;
   <p>followings
     <%= link_to followings_user_path(@user), id: "following", :"data-no-turbolink" => true do %>
 
@@ -8,12 +9,19 @@
     <% end %>
   </p>
 
-  <p>followers
+  <p>|&nbsp;&nbsp;&nbsp;followers
   <%= link_to followers_user_path(@user), id: "followers", :"data-no-turbolink" => true do %>
 
       <%= @user.followers.count %>
 
   <% end %>
   </p>
+  ]
 
+</div>
+
+<div class="follow-button-container">
+  <% if current_user %>
+      <%= render 'follow_form' %>
+  <% end %>
 </div>
