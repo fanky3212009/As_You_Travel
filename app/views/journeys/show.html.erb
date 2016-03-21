@@ -188,6 +188,15 @@
 
 
 <div class="journey-wrapper">
+  <div class="journey-buttons-section">
+    <% if current_user == @journey.owner %>
+    <%= link_to "EDIT JOURNEY", edit_journey_path(@journey), :"data-no-turbolink" => true, :"class" => "profile-button" %>
+      <div class = "button-border" >EDIT JOURNEY</div>
+    <% end %>
+
+      <%= link_to "PHOTO GALLERY", gallery_journey_path(@journey), :"data-no-turbolink" => true,  :"class" => "profile-button" %>
+      <div class = "button-border" >PHOTO GALLERY</div>
+  </div>
 
   <div class="journey-diaries-section">
     <div class="new_diary_entry_block diary_entry_block">
@@ -199,9 +208,7 @@
       <%= render @diary_entries %>
     <% end %>
 
-    <div class="journey-photo-gallery">
-      <strong><%= link_to "Photo Gallery", gallery_journey_path(@journey), :"data-no-turbolink" => true %></strong>
-    </div>
+
 
   </div>
 
