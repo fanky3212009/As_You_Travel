@@ -10,6 +10,12 @@ $large-screen: 900px;
 $moon-font: "moon";
 
 @font-face {
+  font-family: "moon-light";
+  src:font-url('Moon_Light.otf') format('truetype');
+}
+$moon-light-font: "moon-light";
+
+@font-face {
   font-family: "static";
   src:font-url('Static.otf') format('truetype');
 }

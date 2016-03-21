@@ -52,6 +52,7 @@
     </div>
   </div>
 
+<% if current_user %>
   <ul class="navigation">
     <li>
       <%= link_to current_user, :"data-no-turbolink" => true do %>
@@ -99,7 +100,7 @@
         <p>New Journey</p>
       </div>
       <% end %>
-  </li>
+    </li>
 
     <li>
       <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
@@ -111,11 +112,10 @@
         <p>Favourites</p>
       </div>
       <% end %>
-  </li>
-    <!-- <li><a href="#contact">
-      <img src="./images/contact.png" />
-    </a></li> -->
+    </li>
+
   </ul>
+<% end %>
 
 <%= yield %>
 

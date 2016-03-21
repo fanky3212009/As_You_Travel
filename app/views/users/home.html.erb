@@ -159,7 +159,7 @@ html body {
       <div class="activity-button-container">
 
         <button id="home-top-picks"class="profile-button">VIEW ALL</button>
-        <a href=>
+        <a href>
           <div class = "button-border" >VIEW ALL</div>
         </a>
 
@@ -225,8 +225,13 @@ html body {
         </div>
     </div>
     <div class="up-right">
-      <h1>FIND OUT WHAT'S HAPPENING NEAR YOU.</h1>
-      <%= button_tag "Find stories happened near me", id: "search_nearby" %>
+      <p class="moon-light">FIND OUT WHAT'S HAPPENING</p>
+      <h1>NEAR YOU.</h1>
+
+      <button id="search_nearby" class="profile-button">SEARCH NEARBY</button>
+      <a href>
+        <div id="search_nearby" class = "button-border" >SEARCH NEARBY</div>
+      </a>
       <%= form_tag tags_path, method: :get, id: "search_tag" do %>
         <%= text_field_tag :search, params[:search], :placeholder => "Search" %>
         <%= submit_tag "Search", :style => "display: none;" %>
@@ -268,7 +273,7 @@ html body {
           <% if Favourite.most_favourable_user[0] != nil %>
         <%= cl_image_tag(Favourite.most_favourable_user[0].profile_img) %>
           <%= link_to Favourite.most_favourable_user[0], :"data-no-turbolink" => true do  %>
-        <h3><%= Favourite.most_favourable_user[0].name%></h3>
+        <h3><%= truncate(Favourite.most_favourable_user[0].name, length: 10)%></h3>
         <% end %>
         <% end %>
         </div>
@@ -378,13 +383,10 @@ html body {
                 <p><%= filter_string(d.content)%></p>
               </div>
               <div class="homepage-slider-btn">
-              <div class="recommend-button-container homepage-friend-button">
-                <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
-                <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
-              </div>
-              <div class="like-button-container homepage-friend-button">
-                <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
-                <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
+
+              <div class="homepage-friend-button">
+                <a class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</a>
+                <div class = "button-border" >VIEW ALL</div>
               </div>
               </div>
             </div>
@@ -435,14 +437,12 @@ html body {
 
                 </div>
                 <div class="diary-stat homepage-stat content">
+
                   <p class="diary-stat-content"><%= filter_string(d.content)%> </p>
-                  <div class="recommend-button-container homepage-friend-button">
-                    <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
-                    <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
-                  </div>
-                  <div class="like-button-container homepage-friend-button">
-                    <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
-                    <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>
+                  <div class="homepage-friend-button">
+                    <a class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</a>
+                    <div class = "button-border" >VIEW ALL</div>
+
                   </div>
                 </div>
               </div>

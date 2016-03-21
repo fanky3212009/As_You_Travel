@@ -657,6 +657,20 @@ position: relative;
     transform: translateY(1em);
   }
 }
-.journey-btn-section {
-  @include span-columns(16);
+
+
+.journey-buttons-section {
+  padding-top: 1em;
+  height: 6em;
+  padding-left: 13em;
+}
+
+.journey-buttons-section a.profile-button {
+    position: relative !important;
+}
+
+.journey-buttons-section .button-border {
+    position: relative !important;
+    left: -13em;
+
 }

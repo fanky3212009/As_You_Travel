@@ -18,6 +18,7 @@
 
     </div>
 
+  <% if current_user %>
     <ul class="navigation">
       <li>
         <%= link_to current_user, :"data-no-turbolink" => true do %>
@@ -82,11 +83,19 @@
         <img src="./images/contact.png" />
       </a></li> -->
     </ul>
-
+  <% end %>
 
 
 <div class="diary-wrapper">
+
   <div class="diary-picture-stat-section">
+    <div class="journey-buttons-section">
+      <% if current_user == @diary_entry.journey.owner %>
+      <%= link_to "EDIT DIARY", edit_journey_diary_entry_path(@diary_entry, @diary_entry.journey), :"data-no-turbolink" => true, :"class" => "profile-button" %>
+        <div class = "button-border" >EDIT DIARY</div>
+      <% end %>
+    </div>
+    
     <div class="diary-picture diary_aside">
       <% if @diary_entry.photos.first %>
         <%= cl_image_tag(@diary_entry.photos.first.picture.url, :class => "diary_entry_img") %>
@@ -149,7 +158,7 @@
   <div class="diary-content-picture-section">
     <div class="diary-content diary_aside">
       <div class="diary-content-left"><%= filter_string(@diary_entry.content) %></div>
-      <% if current_user != @diary_entry.journey.owner%>
+      <% if current_user && current_user != @diary_entry.journey.owner%>
       <div class="recommend diary-content">
         <% if @diary_entry.tags.where(user_id: current_user.id, body: "recommended").size > 0 %>
           <button class="recommend-alreday" type="button" name="button">Recommend</button>

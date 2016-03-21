@@ -3,7 +3,7 @@ class TagsController < ApplicationController
 
   def index
     if params[:search]
-      @tags = Tag.where("body LIKE ?", params[:search].downcase)
+      @tags = Tag.where("lower(body) LIKE ?", "%#{params[:search].downcase}%")
       @search_results = []
       @tags.each { |t| @search_results << t.taggable }
 
@@ -22,6 +22,7 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
 
     if @tag.save
+
       if @tag.body != "recommended"
         respond_to do |format|
           format.html
@@ -31,7 +32,6 @@ class TagsController < ApplicationController
         render nothing: true
       end
     else
-      render nothing: true
       flash[:error] = "Body Can't be Blank!"
     end
 

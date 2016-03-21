@@ -3,7 +3,7 @@
 
 
 <div class="favourites-wrapper">
-<h2 class="favourites-title"> All the Favourites</h2>
+<h2 class="favourites-title"><%= image_tag "favourite-title.png" %></h2>
   <% if @favourites.length > 0  %>
     <% @favourites.each do |f| %>
     <% if f.favourable.class == Journey %>
