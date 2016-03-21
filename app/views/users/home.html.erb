@@ -71,12 +71,10 @@ html body {
     </div>
     <div class="home-slider-create">
       <div class="activity-button-container">
-
-        <button class="profile-button">VIEW ALL</button>
-        <a href>
+        <%= link_to new_journey_path, :"data-no-turbolink" => true do %>
+        <button class="profile-button">CREATE</button>
           <div class = "button-border" >VIEW ALL</div>
-        </a>
-
+        <% end %>
 
       </div>
     </div>
@@ -438,22 +436,6 @@ html body {
                         <% end %>
                   <% end %>
 
-                  <!-- <% if current_user == @diary_entry.journey.owner %>
-                    <span class="add-new-tag"><%= link_to "Add Tags" %></span>
-
-                  <div class="diary-tag-form">
-                    <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
-
-                    <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
-                    <%= t.hidden_field :taggable_id, :value => @diary_entry.id %>
-                    <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
-                    <%= t.hidden_field :user_id, :value => current_user.id %>
-                    <%= t.submit "Add" %>
-                    <% end  %>
-                  </div>
-                  <% end %> -->
-                </div>
-
               </div>
               <div class="diary-stat slider-content">
                 <p><%= filter_string(d.content)%></p>
@@ -486,7 +468,9 @@ html body {
               <div class="diary-stats homepage-slider">
                 <div class="diary-stat homepage-stat friend-photo">
                   <%= image_tag("profile-UserImage-1.png") %>
+
                   <strong class="friend-name"><%= d.journey.owner.name %></strong>
+
                 </div>
 
                 <div class="homepage-location-date">
@@ -498,7 +482,7 @@ html body {
                 <div class="diary-stat homepage-stat location-date">
                   <%= image_tag ('Entries_icon_time.png') %>
                   <h3 class="diary-stat-name">DATE</h3>
-                  <p class="diary-stat-content"><%= d.show_time(d.date)%></p>
+                  <p class="diary-stat-content"><%= d.show_time(d.date) %></p>
                 </div>
               </div>
                 <div class="diary-stat homepage-stat">
@@ -513,19 +497,19 @@ html body {
                           <% end %>
                     <% end %>
 
-                  </div>
-
                 </div>
-                <div class="diary-stat homepage-stat content">
+                <div class="diary-stat slider-content">
+                  <p><%= filter_string(d.content)%></p>
+                </div>
+                <div class="homepage-slider-btn">
 
-                  <p class="diary-stat-content"><%= filter_string(d.content)%> </p>
-                  <div class="homepage-friend-button">
-                    <a class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</a>
-                    <div class = "button-border" >VIEW ALL</div>
-
-                  </div>
+                <div class="homepage-friend-button">
+                  <a class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</a>
+                  <div class = "button-border" >VIEW ALL</div>
+                </div>
                 </div>
               </div>
+              <div class="empty-div-slider"></div>
             </div>
         </li>
       <% end %>
