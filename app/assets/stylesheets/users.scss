@@ -106,13 +106,12 @@
         line-height: 1.4em;
         margin: 0 auto 0 auto;
         color: #E7E89F;
-        font-size: initial;
         font-style: italic;
         font-weight: bolder;
 
 
         @include media($large-screen) {
-          font-size: 1.1em;
+          font-size: initial;
           max-width: 40%;
         }
       }
