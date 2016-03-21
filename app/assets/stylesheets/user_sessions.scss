@@ -327,7 +327,7 @@ transform: rotate(4deg);
   font-size: 23px;
   color: #374BD9;
   position: relative;
-  top: -1.7em;
+  top: -0.7em;
   left: 1em;
   font-family: monospace;
 }
@@ -720,4 +720,8 @@ font-size: 300;
       @include span-columns(7 of 16);
     }
   }
+}
+
+.diary-stat.homepage-stat.friend-photo img {
+  border-radius: 50%;
 }

@@ -406,7 +406,7 @@ html body {
             </div>
             <div class="diary-stats homepage-slider">
               <div class="diary-stat homepage-stat friend-photo">
-                <%= image_tag("profile-UserImage-1.png") %>
+                <%= cl_image_tag(d.journey.owner.profile_img, :width=>50, :height=>50, :crop=>:thumb) %>
 
                 <strong class="friend-name"><%= d.journey.owner.name %></strong>
 
