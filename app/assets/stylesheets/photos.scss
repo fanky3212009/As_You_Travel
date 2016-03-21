@@ -26,7 +26,7 @@
 .button_to {
   input[type="submit"]{
     text-align: right;
-    margin-top: 3px;
+    margin-top: -3px;
   }
 }
 
@@ -51,7 +51,8 @@
     padding-left: 1em;
 }
 .gallery-wrapper {
-  background-color: #f9f9f9;
+  background-image: url("concrete_seamless.png");
+  background-repeat:repeat;
   padding-bottom: 10em;
   margin-top: 3.8em;
 
@@ -109,6 +110,7 @@ a.fancybox-nav.fancybox-prev {
   }
 
   label img {
+    border-radius: $modal-trigger-image-width / 2;
     display: block;
     max-width: $modal-trigger-image-width;
   }
@@ -117,6 +119,12 @@ a.fancybox-nav.fancybox-prev {
     display: none;
   }
 
+  .modal-trigger {
+      text-align: right;
+      margin: 0 15em;
+      font-size: 19px;
+      color: #191709;
+  }
 
   .modal-fade-screen { // overlay
     @include transition(opacity 0.25s ease);
@@ -256,16 +264,11 @@ a.fancybox-nav.fancybox-prev {
   background-repeat: no-repeat;
   background-size: cover;
   // padding-bottom: 3em;
-  margin-top: -5em;
+  margin-top: -4.6em;
   height: 70%;
   // margin-bottom: 8em;
 
   @include transform(translateY(50px));
-  .logo {
-    img {
-      margin:1.5em;
-    }
-  }
 }
 .gallery-title {
   padding-top: 7em;
@@ -291,19 +294,4 @@ a.fancybox-nav.fancybox-prev {
     font-family: static;
     color: #87B4ED;
   }
-<<<<<<< HEAD
-}
-.add-new-photo {
-  float: left;
-  clear: both;
-  background-image: url("crumpled_white_paper_texture_by_melemel.jpg");
-  background-repeat: repeat;
-  width: 19.9em;
-  height: 19em;
-  img {
-    margin-left: 2em;
-    margin-top: 2em;
-  }
-=======
->>>>>>> font
 }
