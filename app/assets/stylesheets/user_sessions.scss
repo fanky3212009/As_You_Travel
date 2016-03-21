@@ -35,16 +35,20 @@
   .home-slider-inner {
     @include outer-container;
     @include clearfix;
-    margin: auto;
+    margin: 0;
+    margin-left: 6em;
     text-align: left;
     margin-top: 2em;
+    // @include media($x-large-screen-up) {
+    //   margin:
+    // }
     .home-slider-create {
       margin-left: -12em;
     }
 
     h1 {
       margin: 0;
-      width: 25%;
+      width: 27%;
       font-size: 4em;
       color: white;
 
