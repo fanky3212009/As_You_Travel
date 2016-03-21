@@ -2,31 +2,8 @@
   <h3><%= @photo.name %></h3>
   <%= button_to "Set this photo as this journey's feature image", journey_photo_path(@photo.find_journey_of_photo, @photo), method: :put %>
 
-  <div class="activity-tags">
-     <% @photo.tags.each do |tag| %>
-        <% if tag.body != "recommended" %>
-        <span>
-            <%= tag.body %>
-        </span>
-          <% end %>
-    <% end %>
 
 
-      <span class="add-new-tag"><%= link_to "Add Tags" %></span>
-
-
-
-    <div class="diary-tag-form">
-      <%= form_for [@photo, Tag.new] do |t| %>
-
-      <%= t.text_field :body, :placeholder => 'Descripe your diary' %>
-      <%= t.hidden_field :taggable_id, :value => @photo.id %>
-      <%= t.hidden_field :taggable_type, :value => @photo.class %>
-      <%= t.hidden_field :user_id, :value => current_user.id %>
-      <%= t.submit "Add" %>
-      <% end  %>
-    </div>
-  
 
   <%= render partial: 'comments/list', locals: { commentable: @photo } %>
 

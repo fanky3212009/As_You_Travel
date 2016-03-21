@@ -41,6 +41,7 @@
 
   </div>
 
+<% if current_user %>
   <ul class="navigation">
     <li>
       <%= link_to current_user, :"data-no-turbolink" => true do %>
@@ -105,8 +106,10 @@
       <img src="./images/contact.png" />
     </a></li> -->
   </ul>
+<% end %>
 
 <%= yield %>
+<%= render "layouts/footer" %>
 
 </body>
 </html>
