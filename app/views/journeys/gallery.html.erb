@@ -51,7 +51,7 @@ body {
 
   <div class="img_large" id="inline<%= p.id %>">
 
-    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fill) %>
+    <%= cl_image_tag(p.picture.url, :width=> 300, :height => 300, :crop => :fit) %>
 
     <%= button_to "Set journey's feature image", journey_photo_path(p.find_journey_of_photo, p), method: :put%>
 
