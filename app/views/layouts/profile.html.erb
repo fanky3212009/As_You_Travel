@@ -20,7 +20,7 @@
   <div id="nav-user-logout">
     <% if current_user %>
       Hello ! <%= current_user.name %> | <%= link_to "Edit Profile", edit_user_path(current_user.id), :"data-no-turbolink" => true %>
-      <%= link_to "Logout", :logout, method: :post, :"data-no-turbolink" => true %>
+    &nbsp;  | &nbsp;<%= link_to "Logout", :logout, method: :post, :"data-no-turbolink" => true %>
     <% else %>
       <%= link_to "Sign Up", :login, :"data-no-turbolink" => true %> |
       <%= link_to "Login", :login, :"data-no-turbolink" => true %>

@@ -75,6 +75,9 @@ a.fancybox-nav.fancybox-prev {
     width: 17%;
     position: absolute;
 }
+.fancybox-inner form.button_to {
+    margin-top: 1em;
+}
 
 .photo-gallery-title {
     /* display: block; */
@@ -110,7 +113,6 @@ a.fancybox-nav.fancybox-prev {
   }
 
   label img {
-    border-radius: $modal-trigger-image-width / 2;
     display: block;
     max-width: $modal-trigger-image-width;
   }
@@ -121,9 +123,10 @@ a.fancybox-nav.fancybox-prev {
 
   .modal-trigger {
       text-align: right;
-      margin: 0 15em;
+      float: left;
+      width: 13.7em;
       font-size: 19px;
-      color: #191709;
+      height: 13.2em;
   }
 
   .modal-fade-screen { // overlay
@@ -264,16 +267,34 @@ a.fancybox-nav.fancybox-prev {
   background-repeat: no-repeat;
   background-size: cover;
   // padding-bottom: 3em;
-  margin-top: -4.6em;
+  margin-top: -5em;
   height: 70%;
   // margin-bottom: 8em;
 
   @include transform(translateY(50px));
+  .logo {
+    img {
+      margin:1.5em;
+    }
+  }
 }
 .gallery-title {
   padding-top: 7em;
   text-align: center;
 }
+
+.add-new-photo {
+   float: left;
+   clear: both;
+   background-image: url("crumpled_white_paper_texture_by_melemel.jpg");
+   background-repeat: repeat;
+   width: 13.6em;
+   height: 13.4em;
+  img {
+    margin-left: 2em;
+     margin-top: 2em;
+   }
+  }
 .each-gallery img {
     border: 15px solid #FFFFFF;
     text-align: center;
