@@ -592,3 +592,129 @@ font-size: 300;
   height: 160px;
  }
 }
+.homepage-top-section {
+  @include outer-container(100%);
+  @include clearfix;
+  background-color: #E1ECFC;
+  margin-top: 4em;
+  padding-bottom: 10em;
+  .homepage-top-one {
+    @include span-columns(16);
+    .top-one-empty {
+      @include span-columns(1 of 16);
+      height: 1px;
+
+    }
+    .top-one-img {
+      @include span-columns(4 of 16);
+    }
+    .top-one-content {
+      @include span-columns(11 of 16);
+      .top-one-number {
+        margin-top: 4em;
+      }
+      .top-one-words {
+        margin-top: 1em;
+        width: 70%;
+        h1 {
+          font-family: moon;
+          font-size: 2em;
+        }
+        p {
+          line-height: 1.5em;
+        }
+      }
+    }
+  }
+  .homepage-top-two {
+    @include span-columns(16);
+    margin-top: 1em;
+    .top-two-content {
+      @include span-columns(7 of 16);
+      margin-top: 9em;
+      .top-two-number {
+        float: left;
+        clear: both;
+        margin-right: 3em;
+      }
+      .top-two-words {
+        width: 90%;
+        margin-left: 1em;
+        margin-right: 0;
+        margin-top: 2em;
+          h1 {
+            font-family: moon;
+            font-size: 2em;
+          }
+      }
+    }
+    .top-two-empty {
+      @include span-columns(2 of 16);
+      height: 1px;
+    }
+    .top-two-img {
+      @include span-columns(7 of 16);
+    }
+
+  }
+  .homepage-top-three {
+    @include span-columns(16);
+    .top-three-empty {
+      @include span-columns(1 of 16);
+      height: 1px;
+    }
+    .top-three-img {
+      @include span-columns(6 of 16);
+      margin-top: 5em;
+    }
+    .top-three-content {
+      @include span-columns(9 of 16);
+      .top-three-number {
+        float: left;
+        margin-right: 3em;
+        margin-top: 2em;
+        height: 14em;
+      }
+      .top-three-words {
+        margin-top: 9em;
+        width: 72%;
+        h1 {
+          margin-bottom: 0.5em;
+          font-size: 2em;
+        }
+      }
+
+    }
+  }
+  .homepage-top-four {
+    @include span-columns(16);
+    .top-four-content {
+      @include span-columns(7 of 16);
+      margin-top: 7em;
+      .top-four-number {
+        float: left;
+        clear: both;
+        height: 14em;
+        margin-right: 3em;
+      }
+      .top-four-words {
+        width: 90%;
+        margin-left: 1em;
+        margin-right: 0;
+        margin-top: 5em;
+          h1 {
+            font-family: moon;
+            font-size: 2em;
+            margin-bottom: 0.3em;
+          }
+      }
+    }
+    .top-four-empty {
+      @include span-columns(2 of 16);
+      height: 1px;
+    }
+    .top-four-img {
+      @include span-columns(7 of 16);
+    }
+  }
+}

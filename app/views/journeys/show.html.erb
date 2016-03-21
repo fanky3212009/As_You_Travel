@@ -110,11 +110,7 @@
             <% end %>
         <% end %>
       <% end %>
-      <% if current_user == @journey.owner %>
-          <div class="edit-journey">
-            <button><%= link_to "Edit", edit_journey_path(@journey), :"data-no-turbolink" => true %></button>
-          </div>
-      <% end %>
+    
   </div>
 </div>
 
@@ -199,7 +195,7 @@
   </div>
 
   <div class="journey-diaries-section">
-    
+
     <div class="new_diary_entry_block diary_entry_block">
       <%= link_to new_journey_diary_entry_path(@journey), :"data-no-turbolink" => true do %>
         <%= cl_image_tag("add_new.png") %>
