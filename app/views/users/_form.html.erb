@@ -27,10 +27,10 @@
     <% if @user.name != nil %>
     <%= f.text_area :about, :placeholder => "Say something about yourself.", class:"login-input"  %>
 
-  
-    <%= f.submit "Edit", class: "btn_sign_up" %>
+
+    <%= f.submit "Edit", class: "btn_sign_up", :"data-no-turbolink" => true %>
     <% else %>
-    <%= f.submit "Sign Up", class: "btn_sign_up" %>
+    <%= f.submit "Sign Up", class: "btn_sign_up", :"data-no-turbolink" => true%>
     <% end %>
 
 <% end %>
