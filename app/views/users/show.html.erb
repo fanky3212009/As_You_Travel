@@ -88,12 +88,18 @@
         <% if @user.latest_recommendation.first %>
           <% @user.latest_recommendation.first(4).each do |r| %>
           <div class="recomm">
+            <% if r.class == Journey %>
+            <%= link_to r do%>
             <h4 class="recomm-name"><%= r.title %></h4>
             <hr class="recomm-underline">
-            <% if r.class == Journey %>
             <div class="recomm-text-editor"><%= r.description %></div>
+              <% end %>
             <% else %>
+            <%= link_to  journey_diary_entry_path(r.journey, r) do%>
+            <h4 class="recomm-name"><%= r.title %></h4>
+            <hr class="recomm-underline">
             <div class="recomm-text-editor"><%= filter_string(r.content) %></div>
+              <% end %>
             <% end %>
           </div>
           <% end %>
