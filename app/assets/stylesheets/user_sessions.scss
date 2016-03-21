@@ -84,6 +84,7 @@
     @include outer-container;
     @include clearfix;
     height: 50em;
+    padding-top: 4em;
 
   .first-left {
   @include span-columns(6);
@@ -298,13 +299,13 @@ left: auto;
 transform: rotate(4deg);
 }
 
-.slider-wrapper img {
-position: relative;
-max-width: 100%;
-height: auto;
-top: 0;
-left: 0;
-}
+// .slider-wrapper img {
+// position: relative;
+// max-width: 100%;
+// height: auto;
+// top: 0;
+// left: 0;
+// }
 
 .diary-stat.homepage-stat:nth-child(2) {
     width: -13em;
