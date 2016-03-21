@@ -55,6 +55,18 @@
   background-repeat:repeat;
   padding-bottom: 10em;
   margin-top: 3.8em;
+  .modal-trigger {
+      text-align: right;
+      float: left;
+      width: 13.7em;
+      font-size: 19px;
+      height: 13.2em;
+  }
+  .modal-trigger {
+      text-align: right;
+      float: left;
+      font-size: 19px;
+  }
 
 }
 
@@ -122,11 +134,8 @@ a.fancybox-nav.fancybox-prev {
   }
 
   .modal-trigger {
-      text-align: right;
-      float: left;
-      width: 13.7em;
+      text-align: center;
       font-size: 19px;
-      height: 13.2em;
   }
 
   .modal-fade-screen { // overlay
