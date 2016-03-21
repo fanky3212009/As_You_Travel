@@ -13,6 +13,7 @@ $visual-grid-color: red;
 $small-screen: 300px;
 $medium-screen: 600px;
 $large-screen: 900px;
+$x-large-screen:1780px;
 
 
 $small-screen-up: new-breakpoint(min-width $small-screen);
@@ -20,3 +21,4 @@ $small-screen-only: new-breakpoint(min-width $small-screen max-width ($medium-sc
 $medium-screen-up: new-breakpoint(min-width $medium-screen);
 $medium-screen-only: new-breakpoint(min-width $medium-screen max-width ($large-screen - 1px));
 $large-screen-up: new-breakpoint(min-width $large-screen);
+$x-large-screen-up: new-breakpoint(min-width $x-large-screen);
