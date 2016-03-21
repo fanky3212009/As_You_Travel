@@ -32,7 +32,7 @@ $(document).on('ready page:load', function () {
       data: $(this).serialize(),
       dataType:'script'
     });
-  })
+  });
 
   $('.add-new-tag').on('click', function (e) {
     e.preventDefault();
