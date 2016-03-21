@@ -37,9 +37,7 @@ body {
             <div class="photo-form">
               <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
 
-              <!-- <%= t.label :name  %>
-              <br>
-              <%= t.text_field :name %> -->
+
               <div class="dropzone-previews"></div>
               <br>
               <%= t.hidden_field :imageable_id, :value => @journey.id %>

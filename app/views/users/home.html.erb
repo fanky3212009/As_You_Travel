@@ -317,7 +317,7 @@ html body {
 
   <section id="slider" class="container">
     <ul class="slider-wrapper">
-  <% if current_user != nil %>
+  <% if current_user != nil && current_user.followings.length > 0%>
     <% current_user.news_feed.each do |d| %>
       <li class="current-slide">
         <div class="diary-wrapper">
@@ -342,7 +342,7 @@ html body {
               <div class="diary-stat homepage-stat location-date">
                 <%= image_tag ('Entries_icon_time.png') %>
                 <h3 class="diary-stat-name">DATE</h3>
-                <p class="diary-stat-content"><%= d.date %></p>
+                <p class="diary-stat-content"><%= d.show_time(d.date) %></p>
               </div>
             </div>
               <div class="diary-stat homepage-stat">
@@ -416,7 +416,7 @@ html body {
                 <div class="diary-stat homepage-stat location-date">
                   <%= image_tag ('Entries_icon_time.png') %>
                   <h3 class="diary-stat-name">DATE</h3>
-                  <p class="diary-stat-content"><%= d.date %></p>
+                  <p class="diary-stat-content"><%= d.show_time(d.date)%></p>
                 </div>
               </div>
                 <div class="diary-stat homepage-stat">
@@ -435,7 +435,7 @@ html body {
 
                 </div>
                 <div class="diary-stat homepage-stat content">
-                  <p class="diary-stat-content"><%= (d.content).truncate(150)%> </p>
+                  <p class="diary-stat-content"><%= filter_string(d.content)%> </p>
                   <div class="recommend-button-container homepage-friend-button">
                     <button class="profile-button" href="<%= journey_diary_entry_path(d.journey, d) %>">VIEW ALL</button>
                     <a href="<%= journey_diary_entry_path(d.journey, d) %>"><div class = "button-border" >VIEW ALL</div></a>

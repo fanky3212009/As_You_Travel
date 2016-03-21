@@ -3,23 +3,22 @@
   <% if t.class == DiaryEntry %>
     <li>
       <div class="search-result">
-        <%= link_to journey_diary_entry_path(t.journey, t), :"data-no-turbolink" => true do%>
-      <h4> "Diary" :</h4>
-      <% end %>
-      <p><%= t.title %></p>
-      <p><%= t.location %></p>
+      <h4> &lt;Diary&gt;</h4>
+      <%= link_to journey_diary_entry_path(t.journey, t), :"data-no-turbolink" => true, method: :get do%>
+      <p><%= t.title %> | <%= t.location %></p>
       </div>
+      <% end %>
     </li>
   <% else %>
-    <%= link_to t, :"data-no-turbolink" => true do%>
     <li>
       <div class="search-result">
-      <h4>"Journey" :</h4>
-      <p><%= t.title %></p>
-      <p><%= t.location %></p>
+      <h4>&lt;Journey&gt;</h4>
+      <%= link_to t, :"data-no-turbolink" => true do%>
+      <p><%= t.title %> | <%= t.location %></p>
+
       </div>
+      <% end %>
     </li>
-    <% end %>
   <% end %>
 <% end %>
 </ol>

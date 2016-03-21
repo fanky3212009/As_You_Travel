@@ -2,10 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #nav-user-logout {
-    position: fixed;
-    z-index: 10;
-    right: 5em;
-    margin-top: 6em;
+  position: fixed;
+  z-index: 10;
+  right: 5em;
+  margin-top: 4.3em;
+  font-family: static;
+  font-size: 1.4em;
+  color: #B6D2F4;
+  a {
+    color: #B6D2F4;  
+  }
 }
 
 .favourites-wrapper {

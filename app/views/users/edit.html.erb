@@ -4,8 +4,103 @@
 <!--
 <%= link_to 'Show public profile', user_path(@user) %> |
 <%= link_to 'Back', users_path %> -->
+<div class="new-journey-wrapper">
+
+  <div class="logo">
+    <%= link_to root_url do%>
+    <%= image_tag ("logo-blue.png")  %>
+    <% end %>
+  </div>
+
+  <ul class="navigation">
+    <li>
+      <%= link_to current_user, :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-profile.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-profile-hover.png"%>
+        <p>My Profile</p>
+      </div>
+    <% end %>
+  </li>
+
+    <li>
+      <%= link_to user_journeys_path(current_user), :"data-no-turbolink" => true do %>
+        <span>
+        <%=  image_tag "MenuBar-icon-Journey.png"  %>
+        </span>
+        <div class="menu-out">
+          <%= image_tag "MenuBar-icon-Journey-hover.png"%>
+          <p>My Journey</p>
+        </div>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to user_photos_path(current_user), :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-PhotoGallery.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-PhotoGallery-hover.png"%>
+        <p>Gallery</p>
+      </div>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to new_journey_path, :"data-no-turbolink" => true do  %>
+      <span>
+      <%=  image_tag "MenuBar-icon-timeline.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-timeline-hover.png"%>
+        <p>New Journey</p>
+      </div>
+      <% end %>
+  </li>
+
+    <li>
+      <%= link_to user_favourites_path(current_user), :"data-no-turbolink" => true do %>
+      <span>
+      <%=  image_tag "MenuBar-icon-favorites.png"  %>
+      </span>
+      <div class="menu-out">
+        <%= image_tag "MenuBar-icon-favorites-hover.png"%>
+        <p>Favourites</p>
+      </div>
+      <% end %>
+  </li>
+    <!-- <li><a href="#contact">
+      <img src="./images/contact.png" />
+    </a></li> -->
+  </ul>
+
 <div class="edit-page-wrapper">
   <h1 class="edit-page-title">Edit My Profile</h1>
+  <div class="modal">
+    <label for="modal-1">
+      <div class="modal-trigger">Set Profile Image</div>
+    </label>
+    <input class="modal-state" id="modal-1" type="checkbox" />
+    <div class="modal-fade-screen">
+      <div class="modal-inner">
+        <div class="modal-close" for="modal-1"></div>
+        <h1>Click to Add</h1>
+        <div class="photo-form">
+          <%= form_for Photo.new, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+          <div class="dropzone-previews"></div>
+          <br>
+          <%= t.hidden_field :imageable_id, :value => @user.id %>
+           <%= t.hidden_field :imageable_type, :value => @user.class %>
+          <% end  %>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <%= render 'form' %>
 
+</div>
 </div>

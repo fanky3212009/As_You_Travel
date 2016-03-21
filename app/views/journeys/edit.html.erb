@@ -1,29 +1,7 @@
 
 
-<style >
-/*custom font*/
-/*@import url(http://fonts.googleapis.com/css?family=Montserrat);*/
+<div class="new-journey-wrapper">
 
-/*basic reset*/
-/** {margin: 0; padding: 0;}*/
-
-html {
-height: 100%;
-/*Image only BG fallback*/
-background: url('http://thecodeplayer.com/uploads/media/gs.png');
-/*background = gradient + image pattern combo*/
-background:
-  linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
-  url('http://thecodeplayer.com/uploads/media/gs.png');
-}
-
-body {
-font-family: montserrat, arial, verdana;
-}
-/*form styles*/
-
-
-</style>
 
 <div class="logo">
   <%= link_to root_url do%>
@@ -158,4 +136,5 @@ font-family: montserrat, arial, verdana;
 
 <div class="h-link">
   <%= link_to "",  journey_path(@journey), method: :get%>
+</div>
 </div>

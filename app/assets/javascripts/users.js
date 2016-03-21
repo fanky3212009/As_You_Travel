@@ -4,13 +4,7 @@
 
 $(document).on('ready page:change', function () {
 
-  $('.flip').click(function(){
-    $(document).find('.board').addClass('flipped').mouseleave(function(){
-      $(this).removeClass('flipped');
-    });
-    return false;
-  });
-  
+
   $('.new_relationship .relationship-button-border').on('click', function () {
     $('.follow-button').submit();
   });

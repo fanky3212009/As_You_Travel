@@ -19,37 +19,15 @@
     <%= f.text_field :name, :placeholder => "Name", class:"login-input"  %>
 
 
-
    <%= f.password_field :password, :placeholder => "Password", class:"login-input"  %>
 
      <%= f.password_field :password_confirmation, :placeholder => "Confirm Password", class:"login-input"  %>
 
 
     <% if @user.name != nil %>
-    <div class="edit-profile-photo">
-    <div class="modal">
-      <label for="modal-1">
-        <div class="modal-trigger">Add Photos</div>
-      </label>
-      <input class="modal-state" id="modal-1" type="checkbox" />
-      <div class="modal-fade-screen">
-        <div class="modal-inner">
-          <div class="modal-close" for="modal-1"></div>
-          <h1>Click to Add</h1>
-          <div class="photo-form">
-            <%= form_for @user.photos.build, html: { multipart: true, id: "my-awesome-dropzone", class: "dropzone"} do |t| %>
+    <%= f.text_area :about, :placeholder => "Say something about yourself.", class:"login-input"  %>
 
-            <div class="dropzone-previews"></div>
-            <br>
-            <%= t.hidden_field :imageable_id, :value => @user.id %>
-            <%= t.hidden_field :imageable_type, :value => @user.class %>
-            <% end %>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    </div>
+  
     <%= f.submit "Edit", class: "btn_sign_up" %>
     <% else %>
     <%= f.submit "Sign Up", class: "btn_sign_up" %>
