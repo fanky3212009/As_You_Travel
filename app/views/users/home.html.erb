@@ -328,7 +328,11 @@ html body {
         <div class="diary-wrapper">
           <div class="diary-picture-stat-section" id="homepage-friend-background">
             <div class="diary-picture diary_aside homepage-aside" id="friend-diary-photo">
-              <%= image_tag ('Entries_image_1.png') %>
+              <% if d.photos.first %>
+                <%= cl_image_tag(d.photos.first.picture.url, :class => "diary_entry_img") %>
+              <% else %>
+              <%= cl_image_tag("img_placeholder.png", :class => "diary_entry_img") %>
+              <% end %>
             </div>
             <div class="diary-stats homepage-slider">
               <div class="diary-stat homepage-stat friend-photo">
@@ -401,7 +405,11 @@ html body {
           <div class="diary-wrapper">
             <div class="diary-picture-stat-section" id="homepage-friend-background">
               <div class="diary-picture diary_aside homepage-aside" id="friend-diary-photo">
-                <%= image_tag ('Entries_image_1.png') %>
+                <% if d.photos.first %>
+                  <%= cl_image_tag(d.photos.first.picture.url, :class => "diary_entry_img") %>
+                <% else %>
+                <%= cl_image_tag("img_placeholder.png", :class => "diary_entry_img") %>
+                <% end %>
               </div>
               <div class="diary-stats homepage-slider">
                 <div class="diary-stat homepage-stat friend-photo">
