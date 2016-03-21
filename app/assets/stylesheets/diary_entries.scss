@@ -730,3 +730,14 @@ h1.new-diary {
     font-size: 1.3em;
   }
 }
+
+.diary-picture-stat-section .journey-buttons-section {
+    padding-top: 3em;
+    height: 6em;
+    padding-left: 13em;
+}
+
+.diary-picture-stat-section .journey-buttons-section .button-border {
+    position: relative !important;
+    left: -12em;
+}
