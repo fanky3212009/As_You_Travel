@@ -21,6 +21,16 @@ $moon-light-font: "moon-light";
 }
 $static-font: "static";
 
+@font-face {
+  font-family: 'tl-icons';
+  src:font-url('tl-icons.eot');
+  src:font-url('tl-icons.eot?#iefix') format('embedded-opentype'),
+    font-url('tl-icons.ttf') format('truetype'),
+    font-url('tl-icons.woff') format('woff'),
+    font-url('tl-icons.svg#tl-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 $base-font-family: $static-font;
 // $base-font-family: $font-stack-system;
