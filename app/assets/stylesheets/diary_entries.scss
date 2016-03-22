@@ -529,12 +529,10 @@ h2.commenter-name {
 
 .diary-content .favourite-diary {
   .no-f-yet {
-    margin-left: 7em;
+    margin-left: 10em;
   }
   .f-already {
-  float: right;
-  margin-top: 2em;
-  margin-right: 5em;
+  margin-left: 10em;
   }
 }
 
@@ -750,6 +748,7 @@ h1.new-diary {
     float: left;
     position: absolute;
     margin-top: 5em;
+    width: 5%;
 
 }
 .diary-author {

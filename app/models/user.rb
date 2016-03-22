@@ -87,6 +87,15 @@ class User < ActiveRecord::Base
     diaryArray.count
   end
 
+  def last_diaries
+    diaryArray = []
+    self.owend_journeys.each do |x|
+      diaryArray.concat(x.diary_entries)
+    end
+    diaryArray.sort! {|x,y| x.created_at <=> y.created_at }
+    diaryArray.last(4)
+  end
+
   def news_feed
     following_diary_entries = []
     self.followings.each do |following|
