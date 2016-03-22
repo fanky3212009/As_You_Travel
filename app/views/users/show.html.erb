@@ -27,7 +27,7 @@
   <aside>
     <div class="about">
       <%= image_tag ("profile-SectionTitiles-about.png") %>
-      <% if @user.about %>
+      <% if @user.about != nil %>
         <p><%= @user.about %></p>
       <% else %>
         <% if current_user == @user %>
