@@ -41,7 +41,7 @@
     @include outer-container;
     @include clearfix;
     margin: 0;
-    margin-left: 6em;
+    margin-left: 5.5em;
     text-align: left;
     margin-top: 2em;
     @include media($x-large-screen-up) {
@@ -55,7 +55,7 @@
 
     h1 {
       margin: 0;
-      width: 27%;
+      width: 30%;
       font-size: 4em;
       color: white;
 
