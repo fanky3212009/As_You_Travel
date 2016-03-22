@@ -16,7 +16,7 @@ class DiaryEntriesController < ApplicationController
       render nothing: true, status: 200
     else
         if diary_entry_params[:imageable_type]
-          @diary_entry = current_user.owend_journeys.last
+          @diary_entry = current_user.last_diaries.last
           @photo = @diary_entry.photos.build(diary_entry_params)
           @photo.picture = params[:file]
           @photo.save
