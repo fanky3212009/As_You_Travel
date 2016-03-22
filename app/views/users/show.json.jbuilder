@@ -3,6 +3,9 @@ json.id @user.id
 json.title do
   json.text do
     json.headline @user.name
+    if @user.about?
+      json.text @user.about
+    end
   end
 
   json.media do

@@ -255,13 +255,13 @@ html body {
     <dt class="title-single"></dt>
     <dd>
     <% if Favourite.most_favourited_diaries.length > 0 %>
-      <% Favourite.most_favourited_diaries.each do |f| %>
+      <% Favourite.most_favourited_diaries.first(6).each do |f| %>
         <%= link_to  journey_diary_entry_path(f.journey, f) do %>
         <div class="cards" id="homepage-diary-toggle">
           <div class="card">
             <div class="card-image">
               <% if f.photos.first %>
-                <%= cl_image_tag(f.photos.first.picture.url) %>
+                <%= cl_image_tag(f.photos.first.picture.url, :width => 289, :height => 200, :crop => :crop) %>
               <% else %>
               <%= cl_image_tag("img_placeholder.png") %>
               <% end %>
