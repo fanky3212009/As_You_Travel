@@ -21,7 +21,7 @@
 // });
 
   $(document).on('ready page:load', function () {
-    
+
 
      $('#path_map>a').on('click', function (e) {
        e.preventDefault();
@@ -34,7 +34,9 @@
             var map = new GMaps({
               el: '#path_map',
               lat: -12.043333,
-              lng: -77.028333
+              lng: -77.028333,
+              minZoom: 2,
+              maxZoom: 13
             });
             var styles = [
               {
@@ -84,6 +86,7 @@
                 lat: latlngs[i].lat,
                 lng: latlngs[i].lng,
                 icon: "<%= asset_path('Map-marker-2-1.png') %>",
+                optimized: false,
                 infoWindow: {
                   content: "<a href= /journeys/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
                   + '<div class="map-journey-title">' + latlngs[i].title

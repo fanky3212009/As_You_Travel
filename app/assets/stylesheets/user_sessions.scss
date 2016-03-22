@@ -26,6 +26,8 @@
   @include transform(translateY(50px));
   @include media($x-large-screen-up) {
     background-image: url(asset-path('hp-slider-bg-2550.jpg'));
+    padding-bottom: 22%;
+
   }
 
   .logo {
@@ -44,6 +46,7 @@
     margin-top: 2em;
     @include media($x-large-screen-up) {
       margin-left:  10em;
+      margin-top: 6.5em;
     }
     .home-slider-create {
       position: relative;
