@@ -24,6 +24,8 @@ class PhotosController < ApplicationController
       @photo = @journey.photos.build(photo_params)
       @photo.picture = params[:file]
       @photo.save
+      @journey.set_as_feat_img(@photo)
+
       render nothing: true, status: 200
     end
     # redirect_to journey_diary_entry_path(@diary_entry.journey, @diary_entry)
