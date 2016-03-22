@@ -5,7 +5,7 @@
   </div>
   <div class="diary_text_preview">
     <span class="diary-title">
-      <%= diary_entry.title %>
+      <%= truncate(diary_entry.title, length: 13) %>
     </span>
     <span>
       <%= truncate(diary_entry.location, length: 15) %> |

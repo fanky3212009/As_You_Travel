@@ -14,7 +14,7 @@
     <% if user.owend_journeys.last %>
       <span>Last Location:     <%= user.owend_journeys.last.location %></span>
     <% end %>
-    <p class="follow-page-about-content">About : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, aspernatur, quia modi minima debitis tempora ducimus quam vero impedit alias earum nemo error tenetur sed.</p>
+    <p class="follow-page-about-content"><%= user.about %></p>
     <p class="follow-user-detail"></p>
   </div>
   <div class="follow-page-button">
