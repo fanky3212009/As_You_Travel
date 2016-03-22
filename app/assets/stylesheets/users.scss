@@ -531,11 +531,6 @@ left: 9.3em;
 border: 5px solid #80B3F0;
 }
 
-.follow-button-container{
-  position: relative;
-  margin-right: 15em;
-}
-
 .photo-gallery-button-container{
   position: relative;
   margin-left: 21em;
@@ -552,12 +547,6 @@ border: 5px solid #80B3F0;
 
 }
 
-.activity-button-container{
-  position: relative;
-  margin-left: 12em;
-  margin-top: 4em;
-}
-
 .button-border {
     border: none !important;
     padding: 13px 50px !important;
@@ -567,7 +556,7 @@ border: 5px solid #80B3F0;
     display: inline-block !important;
     font-size: 17px !important;
     cursor: pointer !important;
-    position: absolute !important;
+    position: relative !important;
     background-color: #FFD400 !important;
     color: rgba(0, 0, 0, 0) !important;
     font-family: moon;
@@ -901,10 +890,6 @@ ul.navigation li p {
   font-family: moon-light;
   font-size: 2.5em;
   color: #295ED5;
-}
-
-.up-right #search_tag {
-    margin-top: 6rem;
 }
 
 .up-right #search_tag input#search {
