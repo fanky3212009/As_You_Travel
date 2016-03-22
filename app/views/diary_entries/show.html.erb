@@ -162,6 +162,7 @@
       <div class="recommend diary-content">
         <% if @diary_entry.tags.where(user_id: current_user.id, body: "recommended").size > 0 %>
           <button class="recommend-alreday" type="button" name="button">Recommend</button>
+
         <% else %>
         <div class="recommend-form">
           <%= form_for [@diary_entry.journey, @diary_entry, Tag.new] do |t| %>
@@ -170,6 +171,7 @@
           <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
           <%= t.hidden_field :user_id, :value => current_user.id %>
           <%= t.submit "Recommend" %>
+          
           <% end  %>
         </div>
         <% end %>
