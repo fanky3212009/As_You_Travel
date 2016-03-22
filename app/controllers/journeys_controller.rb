@@ -7,7 +7,7 @@ class JourneysController < ApplicationController
 
   def index
       @user = User.find(params[:user_id])
-      @journeys = @user.owend_journeys
+      @journeys = @user.owend_journeys.order(:start_date)
 
       respond_to do |format|
         format.html {  render layout: "journey_layout"}
