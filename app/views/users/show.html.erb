@@ -35,43 +35,43 @@
     </div>
 
       <div class="grid-alligned-items">
-        <a href="" class="grid-alligned-item">
+        <a class="grid-alligned-item">
           <% if @user.owend_journeys.length > 0 && @user.owend_journeys.first.photos.sample %>
             <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
             :crop => :fill) %>
             <% end %>
         </a>
-        <a href="" class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
+        <a class="grid-alligned-item grid-alligned-item-big grid-alligned-item-image">
             <% if @user.owend_journeys.length > 0 && @user.owend_journeys.first.photos.sample %>
               <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 464, :height => 182,
                :crop => :fill) %>
             <% end %>
         </a>
-        <a href="" class="grid-alligned-item grid-alligned-item-big">
+        <a class="grid-alligned-item grid-alligned-item-big">
           <% if @user.owend_journeys.length >0 && @user.owend_journeys.first.photos.sample %>
             <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 464, :height => 182,
             :crop => :fill) %>
           <% end %>
         </a>
-        <a href="" class="grid-alligned-item">
+        <a class="grid-alligned-item">
           <% if @user.owend_journeys.length >0 && @user.owend_journeys.first.photos.sample %>
             <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
             :crop => :lfill) %>
           <% end %>
         </a>
-        <a href="" class="grid-alligned-item">
+        <a class="grid-alligned-item">
           <% if @user.owend_journeys.length >0 && @user.owend_journeys.first.photos.sample %>
           <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
            :crop => :crop) %>
            <% end %>
         </a>
-        <a href="" class="grid-alligned-item">
+        <a class="grid-alligned-item">
           <% if @user.owend_journeys.length >0 && @user.owend_journeys.first.photos.sample %>
             <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
             :crop => :crop) %>
            <% end %>
         </a>
-        <a href="" class="grid-alligned-item">
+        <a class="grid-alligned-item">
           <% if @user.owend_journeys.length >0 && @user.owend_journeys.first.photos.sample %>
             <%= cl_image_tag(@user.owend_journeys.first.photos.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
              :crop => :lfill) %>
