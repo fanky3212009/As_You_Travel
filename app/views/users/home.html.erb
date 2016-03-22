@@ -260,7 +260,11 @@ html body {
         <div class="cards" id="homepage-diary-toggle">
           <div class="card">
             <div class="card-image">
-              <%= image_tag (f.photos.sample.picture.url) %>
+              <% if f.photos.first %>
+                <%= cl_image_tag(f.photos.first.picture.url) %>
+              <% else %>
+              <%= cl_image_tag("img_placeholder.png") %>
+              <% end %>
             </div>
             <div class="card-header">
               <h4><%= f.title %></h4>
