@@ -6,7 +6,7 @@
   <% @users.each do |user| %>
   <div class="follow-container">
   <div class="follow-user-profileimg">
-    <%= image_tag(user.profile_img) %>
+    <%= cl_image_tag(d.journey.owner.profile_img, :width=>75, :height=>75, :crop=>:thumb) %>
   </div>
   <div class="follow-user-info">
     <h1>  <%= link_to user.name, user %></h1>
