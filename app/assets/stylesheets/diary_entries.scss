@@ -750,5 +750,12 @@ h1.new-diary {
     float: left;
     position: absolute;
     margin-top: 5em;
-    
+
+}
+.diary-author {
+  font-size: 2em;
+    color: white;
+    a:visited {
+      color: white;
+    }
 }

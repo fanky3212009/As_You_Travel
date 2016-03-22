@@ -93,6 +93,7 @@ class User < ActiveRecord::Base
       following.owend_journeys.each do |journey|
         following_diary_entries.concat(journey.diary_entries)
       end
+    following_diary_entries.last(5)
     end
 
 

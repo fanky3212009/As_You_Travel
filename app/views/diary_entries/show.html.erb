@@ -11,7 +11,7 @@
       <div class="hero-inner">
         <div class="hero-copy">
           <h1 class="diary-title"><%= @diary_entry.title %></h1>
-            <h2>Written by <%= @user.name %></h2>
+            <h2 class="diary-author">Written by <%= link_to @user.name, @user %></h2>
 
         </div>
       </div>
@@ -171,7 +171,7 @@
           <%= t.hidden_field :taggable_type, :value => @diary_entry.class %>
           <%= t.hidden_field :user_id, :value => current_user.id %>
           <%= t.submit "Recommend" %>
-          
+
           <% end  %>
         </div>
         <% end %>
