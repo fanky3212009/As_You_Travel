@@ -38,7 +38,7 @@ class JourneysController < ApplicationController
   def create
     if journey_params.has_key?("description")
       if journey_params[:description].size > 0
-        @journey = Journey.last
+        @journey = current_user.owend_journeys.last
         @journey.update_attributes(journey_params)
         @journey.save
         render nothing: true, status: 200

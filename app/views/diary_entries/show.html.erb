@@ -11,7 +11,7 @@
       <div class="hero-inner">
         <div class="hero-copy">
           <h1 class="diary-title"><%= @diary_entry.title %></h1>
-            <h2>Written by <%= @user.email %></h2>
+            <h2>Written by <%= @user.name %></h2>
 
         </div>
       </div>
@@ -91,7 +91,7 @@
   <div class="diary-picture-stat-section">
     <div class="journey-buttons-section">
       <% if current_user == @diary_entry.journey.owner %>
-      <%= link_to "EDIT DIARY", edit_journey_diary_entry_path(@diary_entry, @diary_entry.journey), :"data-no-turbolink" => true, :"class" => "profile-button" %>
+      <%= link_to "EDIT DIARY", edit_journey_diary_entry_path(@diary_entry.journey, @diary_entry), :"data-no-turbolink" => true, :"class" => "profile-button" %>
         <div class = "button-border" >EDIT DIARY</div>
       <% end %>
     </div>
@@ -198,7 +198,7 @@
         <% end %>
       </div>
       <% end %>
-    
+
 
     </div>
     <div class="diary-picture diary_article">

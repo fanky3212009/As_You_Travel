@@ -27,8 +27,6 @@ class UsersController < ApplicationController
 
 
   def show
-    @user.set_profile_img
-
     respond_to do |format|
       format.html
       format.json
@@ -50,6 +48,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        @user.set_profile_img
         auto_login(@user)
         format.html { redirect_to root_url, notice: 'User was successfully created.' }
         format.json { render :home, status: :created, location: @user }
@@ -63,6 +62,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        @user.set_profile_img
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else

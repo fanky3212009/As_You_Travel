@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
       end
       render nothing: true, status: 200
     else
-      @journey = Journey.last
+      @journey = current_user.owend_journeys.last
       @photo = @journey.photos.build(photo_params)
       @photo.picture = params[:file]
       @photo.save
