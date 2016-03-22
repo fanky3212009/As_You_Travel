@@ -9,11 +9,13 @@
 }
 .follow-user-profileimg{
   @include span-columns(3);
-  margin-top: 2em;
+  margin-top: 1em;
+
   img {
     margin: auto;
     max-width: 100%;
     display: block;
+    border-radius: 50%;
   }
 }
 
