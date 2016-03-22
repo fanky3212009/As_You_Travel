@@ -27,7 +27,7 @@
   <aside>
     <div class="about">
       <%= image_tag ("profile-SectionTitiles-about.png") %>
-      <% if @user.about %>
+      <% if @user.about  %>
       <p><%= @user.about %></p>
       <% else %>
       <p><%= link_to "Add your about statement.",  edit_user_path(@user) %></p>
