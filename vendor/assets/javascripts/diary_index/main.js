@@ -1,6 +1,6 @@
 
 $(document).on('ready page:load', function () {
-  if ($(".js").length > 0 ) {
+  if ($(".page--static").length > 0 ) {
 
 
     ;(function(window) {
