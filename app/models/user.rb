@@ -69,6 +69,7 @@ class User < ActiveRecord::Base
     self.owend_journeys.each do |x|
       diaryArray.concat(x.diary_entries)
     end
+
     diaryLocation = []
     diaryArray.each do |d|
       diaryLocation << d.location
