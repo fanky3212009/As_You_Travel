@@ -428,7 +428,7 @@ html body {
                 <%= image_tag ('Entries_icon_tag.png') %>
                 <h3 class="diary-stat-name">TAGS</h3>
                 <div class="activity-tags">
-                   <% d.tags.each do |tag| %>
+                   <% d.tags.last(4).each do |tag| %>
                       <% if tag.body != "recommended" %>
                       <span>
                           <%= tag.body %>
@@ -489,7 +489,7 @@ html body {
                   <%= image_tag ('Entries_icon_tag.png') %>
                   <h3 class="diary-stat-name">TAGS</h3>
                   <div class="activity-tags">
-                     <% d.tags.each do |tag| %>
+                     <% d.tags.last(4).each do |tag| %>
                         <% if tag.body != "recommended" %>
                         <span>
                             <%= tag.body %>

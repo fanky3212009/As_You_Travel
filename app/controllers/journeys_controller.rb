@@ -22,7 +22,7 @@ class JourneysController < ApplicationController
   end
 
   def show
-    @diary_entries = @journey.diary_entries
+    @diary_entries = @journey.diary_entries.order('date')
     @comment = Comment.new
     @user = @journey.owner
   end
