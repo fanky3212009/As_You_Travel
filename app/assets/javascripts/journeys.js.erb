@@ -217,6 +217,8 @@ $(".previous").click(function(){
       lat: -12.043333,
       lng: -77.028333,
       zoom: 13,
+      minZoom: 2,
+      maxZoom: 13,
       scrollwheel: false
     });
     var styles = [
@@ -267,6 +269,7 @@ $(".previous").click(function(){
         lat: latlngs[i].lat,
         lng: latlngs[i].lng,
         icon: "<%= asset_path('Map-marker-2-1.png') %>",
+        optimized: false,
         infoWindow: {
           content: "<a href= /journeys/" +latlngs[i].journey_id + "/diary_entries/" + latlngs[i].id + " " + "data-no-turbolink='true' >"
           + '<div class="map-diary-title">' + latlngs[i].title
