@@ -96,6 +96,14 @@ class User < ActiveRecord::Base
     diaryArray.last(4)
   end
 
+  def full_gallery
+    full_gallery = []
+    self.owend_journeys.each do |j|
+      full_gallery.concat(j.photo_gallery)
+    end
+    full_gallery
+  end
+
   def news_feed
     following_diary_entries = []
     self.followings.each do |following|

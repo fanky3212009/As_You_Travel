@@ -19,6 +19,8 @@ class Journey < ActiveRecord::Base
     @photo_gallery
   end
 
+
+
   def set_as_feat_img(photo)
     self.feat_img = photo.picture.public_id
     self.save
