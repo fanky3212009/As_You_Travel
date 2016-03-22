@@ -15,12 +15,15 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Diary Entries Show</title>
+<% if @journeys.length > 0 %>
+  <script>
 
-      <script>
-        document.documentElement.className = 'js';
-      </script>
+    document.documentElement.className = 'js';
+  </script>
+<% end %>
     </head>
     <body>
+    <% if @journeys.length > 0 %>
       <div class="view">
         <section class="page page--mover">
 
@@ -37,7 +40,7 @@
             <h2 class="page__title-main"><%= image_tag "journey-title.png" %></h2>
             <% if current_user == @user %>
             <div class="activity-button-container page__title-sub">
-              <a class="profile-button" href="<%= new_journey_path %>"></a>
+              <a class="profile-button" href="<%= new_journey_path %>" data-no-turbolink="true"></a>
               <div class = "button-border" ><%= image_tag "journey-btn-addnew.png" %>ADD NEW</div>
             </div>
             <% end %>
@@ -47,7 +50,6 @@
             </h3> -->
           </div>
 
-          <% if @journeys.any? %>
 
           <ul class="grid">
             <% @journeys.each do |j|%>
@@ -88,5 +90,11 @@
   </html>
 
   <% else %>
-    <h2>No journeys yet</h2>
+    <h2 class="journey-index-title"><%= image_tag "journey-title.png" %></h2>
+    <% if current_user == @user %>
+    <div class="activity-button-container page__title-sub journey-index-add">
+      <a class="profile-button" href="<%= new_journey_path %>" data-no-turbolink="true"></a>
+      <div class = "button-border" ><%= image_tag "journey-btn-addnew.png" %>ADD NEW</div>
+    </div>
+    <% end %>
   <% end %>
