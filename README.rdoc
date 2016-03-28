@@ -2,3 +2,6 @@
 
 As You Travel is a web application designed to let users to record their travel stories. Users are able to build
 their own journey with diaries and photos, to share them with others. Personal map and timeline were built to enrich user's treasure memory. This app was built using Ruby on Rails, JavaScript and jQuery, HTML5, SCSS/CSS and Bourbon.
+
+view it here:
+http://as-you-travel.herokuapp.com
