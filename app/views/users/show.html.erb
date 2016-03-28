@@ -74,7 +74,7 @@
            <% end %>
         </a>
         <a class="grid-alligned-item">
-          <% if @user.full_gallery.length > 0 %>
+          <% if @user.full_gallery.length > 0  %>
             <%= cl_image_tag(@user.full_gallery.sample.picture.full_public_id, :format => "jpg", :width => 232, :height => 182,
              :crop => :lfill) %>
           <% end %>

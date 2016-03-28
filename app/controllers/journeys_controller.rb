@@ -36,30 +36,35 @@ class JourneysController < ApplicationController
   end
 
   def create
-    if journey_params.has_key?("description")
-      if journey_params[:description].size > 0
-        @journey = current_user.owend_journeys.last
-        @journey.update_attributes(journey_params)
-        @journey.save
-        render nothing: true, status: 200
-      else
-        render nothing: true
-        flash[:alert] = "Description Cannot be Blank!"
-      end
+    if journey_params[:title] == Journey.last.title
+      render nothing: true
     else
-
-      if current_user
-        @user = current_user
-        @journey = @user.owend_journeys.build(journey_params)
-
-        if @journey.save
-          @journey.set_feat_img
-          redirect_to @journey, notice: "Journey successfully created!"
+      if journey_params.has_key?("description")
+        if journey_params[:description].size > 0
+          @journey = current_user.owend_journeys.last
+          @journey.update_attributes(journey_params)
+          @journey.save
+          render nothing: true, status: 200
         else
-          render :new
+          render nothing: true
+          flash[:alert] = "Description Cannot be Blank!"
+        end
+      else
+
+        if current_user
+          @user = current_user
+          @journey = @user.owend_journeys.build(journey_params)
+
+          if @journey.save
+            @journey.set_feat_img
+            redirect_to @journey, notice: "Journey successfully created!"
+          else
+            render :new
+          end
         end
       end
     end
+
   end
 
   def destroy

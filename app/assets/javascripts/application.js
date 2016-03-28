@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery.validate.min
 //= require timeline
 //= require fancybox.js
 //= require diary_index/main.js

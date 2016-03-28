@@ -1,8 +1,12 @@
 
 <%= form_for @journey do |f| %>
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label :title  %>
     <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
   </div>
 
   <div class="field">
@@ -15,12 +19,8 @@
     <%= f.date_field :end_date %>
   </div>
 
-  <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
 
-  
+
     <!-- <%= f.fields_for :photos  do |builder| %>
      <%= render "photos_fields", :f => builder %>
     <% end %> -->

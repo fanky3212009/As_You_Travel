@@ -146,3 +146,30 @@ background: url('images/AddNew-bg.jpg');
   <%= link_to "", user_journeys_path(@user)%>
 </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+
+  $(".new_journey").validate({
+  debug: true,
+  rules: {
+  "journey[title]": {required: true, minlength: 4},
+  "journey[location]": {required: true, minlength: 6},
+  "journey[start_date]": {required: true},
+  "journey[end_date]": {required: true}
+  // “user[password_confirmation]“: {required: true, equalTo: “#user_password”}
+  }
+  });
+
+
+  $(".existing-journey").validate({
+  debug: true,
+  rules: {
+  "journey[description]": {required: true, minlength: 7}
+
+  // “user[password_confirmation]“: {required: true, equalTo: “#user_password”}
+  }
+  });
+
+  });
+</script>
