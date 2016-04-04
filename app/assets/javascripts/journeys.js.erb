@@ -71,7 +71,7 @@ $(document).on('ready page:load', function() {
           dataType: 'json',
           data: $('.edit_diary_entry').serialize(),
         });
-      }      
+      }
     }
   });
 
@@ -94,14 +94,15 @@ $('#first_submit').on('click', function (e) {
   e.preventDefault();
   e.stopPropagation();
 
-  if ($(".new_journey").valid()) {
     if ($('.new_journey').length > 0) {
-      $.ajax({
-        url: $('.new_journey').attr('action'),
-        type: 'POST',
-        dataType: 'json',
-        data: $('.new_journey').serialize(),
-      });
+      if ($(".new_journey").valid()) {
+        $.ajax({
+          url: $('.new_journey').attr('action'),
+          type: 'POST',
+          dataType: 'json',
+          data: $('.new_journey').serialize(),
+        });
+      }
     }
     else {
       $.ajax({
@@ -111,7 +112,7 @@ $('#first_submit').on('click', function (e) {
         data: $('.edit_journey').serialize(),
       });
     }
-  }
+
   // else {
   //   alert( "Valid: " + $(".new_journey").valid() );
   // }
@@ -146,7 +147,7 @@ $('#final_submit').on('click', function (e) {
 });
 
 $(".next").click(function(){
-  if ($(".new_journey").valid()) {
+  if ($(".new_journey").valid() || $(".new_diary_entry").valid()) {
 
     if(animating) return false;
     animating = true;
