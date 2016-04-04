@@ -23,16 +23,16 @@ class DiaryEntriesController < ApplicationController
           render nothing: true, status: 200
         else
           @diary_entry = @journey.diary_entries.build(diary_entry_params)
+          @diary_entry.save
+          # if @diary_entry.save
+            # respond_to do |format|
+            #   format.html {redirect_to journey_diary_entries_path, notice: "Diary successfully created!"}
+            #   # format.json { render nothing: true, status: 200}
+            # end
 
-          if @diary_entry.save
-            respond_to do |format|
-              format.html {redirect_to journey_diary_entries_path, notice: "Diary successfully created!"}
-              format.json { render nothing: true, status: 200}
-            end
-
-          else
-          render :new
-          end
+          # else
+          # render :new
+          # end
       end
     end
 
