@@ -9,33 +9,37 @@ class DiaryEntriesController < ApplicationController
 
 
   def create
-    if params.has_key?("content")
-      @diary_entry = DiaryEntry.last
-      @diary_entry.update_attributes({:content => params[:content]})
-      @diary_entry.save
-      render nothing: true, status: 200
+    if diary_entry_params[:title] == DiaryEntry.last.title
+      render nothing: true
     else
-        if diary_entry_params[:imageable_type]
-          @diary_entry = current_user.last_diaries.last
-          @photo = @diary_entry.photos.build(diary_entry_params)
-          @photo.picture = params[:file]
-          @photo.save
-          render nothing: true, status: 200
-        else
-          @diary_entry = @journey.diary_entries.build(diary_entry_params)
 
-          if @diary_entry.save
-            respond_to do |format|
-              format.html {redirect_to journey_diary_entries_path, notice: "Diary successfully created!"}
-              format.json { render nothing: true, status: 200}
-            end
-
+      if params.has_key?("content")
+        @diary_entry = DiaryEntry.last
+        @diary_entry.update_attributes({:content => params[:content]})
+        @diary_entry.save
+        render nothing: true, status: 200
+      else
+          if diary_entry_params[:imageable_type]
+            @diary_entry = current_user.last_diaries.last
+            @photo = @diary_entry.photos.build(diary_entry_params)
+            @photo.picture = params[:file]
+            @photo.save
+            render nothing: true, status: 200
           else
-          render :new
-          end
+            @diary_entry = @journey.diary_entries.build(diary_entry_params)
+
+            if @diary_entry.save
+              respond_to do |format|
+                format.html {redirect_to journey_diary_entries_path, notice: "Diary successfully created!"}
+                format.json { render nothing: true, status: 200}
+              end
+
+            else
+            render :new
+            end
+        end
       end
     end
-
   end
 
   def index

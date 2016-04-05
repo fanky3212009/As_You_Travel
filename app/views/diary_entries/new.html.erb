@@ -197,3 +197,30 @@
 
 
 <% end %>
+
+<script>
+  $(document).ready(function () {
+
+  $(".new_diary_entry").validate({
+    debug: true,
+    rules: {
+    "diary_entry[title]": {required: true, minlength: 4},
+    "diary_entry[location]": {required: true, minlength: 6},
+    "diary_entry[date]": {required: true},
+    "diary_entry[recommendation]": {required: true}
+    // “user[password_confirmation]“: {required: true, equalTo: “#user_password”}
+    }
+  });
+
+
+  // $(".existing-journey").validate({
+  //   debug: true,
+  //   rules: {
+  //   "journey[description]": {required: true, minlength: 7}
+  //
+  //   // “user[password_confirmation]“: {required: true, equalTo: “#user_password”}
+  //   }
+  //   });
+
+  });
+</script>
