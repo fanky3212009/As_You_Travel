@@ -393,7 +393,6 @@ font-size: 300;
 .homepage-stat .activity-tags {
   position: relative;
   left: 3em;
-  top: 2em;
   .add-new-tag {
     padding: 13px 25px;
     font-size: 13px;
@@ -428,7 +427,7 @@ font-size: 300;
     left: 1em;
 }
 .diary-stat.slider-content {
-    margin-top: 4em;
+    margin-top: 3em;
     height: 7em;
     overflow-y: scroll;
   -webkit-scrollbar {
@@ -437,7 +436,7 @@ font-size: 300;
     font-size: 1.5em;
     line-height: 1.4em;
 }
-.diary-stats.homepage-slider {position: relative;top: -11em;}
+.diary-stats.homepage-slider {position: relative;top: -13em;}
 
 ::-webkit-scrollbar {
     display: none;
