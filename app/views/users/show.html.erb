@@ -4,22 +4,9 @@
         width:100%;
         padding: 0px;
         margin: 0px;
+        background-color: white;
       }
-      .tl-timeline {
-
-      }
-
 </style>
-
-
-</div>
-
-
-<span class="nav-link">
-
-</span>
-
-
 
 <div class="profile-wrapper">
   <section id="page-content">
@@ -242,15 +229,12 @@
   <div class="hidden-map">
   <a id="demo01" href="#animatedModal">My Path</a>
 
-  <!--DEMO01-->
   <div id="animatedModal">
-    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
     <div class="close-animatedModal">
       <Strong>Go Back!</Strong>
     </div>
 
     <div class="modal-content">
-      <!--Your modal content goes here-->
       <div id="path_map"><%= link_to 'My Path',  user_journeys_path(@user) %></div>
 
     </div>

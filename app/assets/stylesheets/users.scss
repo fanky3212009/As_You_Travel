@@ -52,12 +52,14 @@
   background-repeat: no-repeat;
   background-size: cover;
   padding-bottom: 3em;
-  height: 95%;
+  height: 770px;
   margin-top: -6em;
   // margin-bottom: 8em;
 
   @include transform(translateY(50px));
-
+  // @include media($small-screen-only) {
+  //   height: 50%;
+  // }
   .hero-logo {
     margin-bottom: 1em;
     border-radius: 50%;
@@ -127,7 +129,6 @@
   article {
     @include span-columns(6);
     position: relative;
-    left: 2em;
   }
 }
 
@@ -333,9 +334,9 @@
 .activity-stream {
   margin-top: -8em;
   // transform: translate(-4em);
-  img {
-    margin-left: 6em;
-  }
+  // img {
+  //   margin-left: 6em;
+  // }
   .activity-title {
 
     color: #295ED5;
@@ -753,7 +754,7 @@ div.tl-media-content-container {
 .map-button-container {
     position: relative;
   transform: translateY(-18em);
-  left: 13em;
+  margin-left: 12em;;
 
 }
 #demo01 {
